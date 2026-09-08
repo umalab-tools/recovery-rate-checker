@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -366,17 +367,30 @@
     border-radius:10px;
   }
   .cta-note span:first-child{font-size:13px;font-weight:700;}
-  .cta-note a, .cta-note .cta-btn{
+  .cta-btn{
     font-family:"Zen Kaku Gothic New",sans-serif;
     font-weight:700;
-    font-size:13px;
-    padding:9px 16px;
+    font-size:14px;
+    padding:12px 20px;
+    min-height:44px;
     border-radius:999px;
     background:var(--accent);
     color:#f4fbf6;
     text-decoration:none;
     white-space:nowrap;
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    border:none;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+  .cta-btn:visited{color:#f4fbf6;}
+  .cta-btn[href]:active{opacity:0.85;}
+  .cta-btn:not([href]){
+    cursor:default;
+    opacity:0.6;
   }
 
   footer{
@@ -526,8 +540,8 @@
     </div>
     <p>424件のバックテストで的中率94%・回収率96.49%という好成績に見えた条件も、統計的に検定すると「利益はゼロより有意にマイナス」という結果でした。<strong>理論値だけでは分からない「本当にプラスかどうか」を、UMALABはサンプル数・信頼区間・統計的検定まで確認して公開しています。</strong></p>
     <div class="cta-note">
-      <span>7,600レース超のAI検証結果を詳しく見る</span>
-      <span class="cta-btn" id="ctaBtn">noteマガジン「UMALAB」で公開中</span>
+      <span>実際の地方競馬データで検証した結果を見る</span>
+      <a class="cta-btn" id="ctaBtn">UMALABの検証記事を読む →</a>
     </div>
   </div>
 
@@ -539,20 +553,18 @@
 
 <script>
 (function(){
-  // note記事の公開URLが決まったら、この行を書き換えてください。
-  // 例: const NOTE_ARTICLE_URL = "https://note.com/umalab/n/xxxxxxxx";
-  const NOTE_ARTICLE_URL = "";
+  // note記事111（公開済み: 2026-09-08）
+  const NOTE_ARTICLE_URL = "https://note.com/umalab_ai/n/n93bd47f51f54";
 
   const ctaBtn = document.getElementById('ctaBtn');
   if(NOTE_ARTICLE_URL){
-    const a = document.createElement('a');
-    a.href = NOTE_ARTICLE_URL;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.className = 'cta-btn';
-    a.textContent = ctaBtn.textContent;
-    ctaBtn.replaceWith(a);
+    ctaBtn.setAttribute('href', NOTE_ARTICLE_URL);
+    ctaBtn.setAttribute('target', '_blank');
+    ctaBtn.setAttribute('rel', 'noopener noreferrer');
   }
+  // NOTE_ARTICLE_URLが空の間は<a>にhref属性を付けない。
+  // href属性のない<a>はリンクとして機能しない(タップしても何も起きない)ため、
+  // 空リンクや#へのダミーリンクを作らずに「準備中」の状態を安全に表現できる。
 
   const $ = id => document.getElementById(id);
   const hitRateEl = $('hitRate'), oddsEl = $('odds'), stakeEl = $('stake'), racesEl = $('races');
