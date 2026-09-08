@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -104,6 +103,23 @@
     color:var(--text-muted);
   }
   .disclaimer strong{color:var(--text);}
+  .header-link{
+    display:inline-block;
+    margin-top:10px;
+    font-size:12.5px;
+    color:var(--accent);
+    text-decoration:none;
+  }
+  .header-link:not([href]){color:var(--text-muted);text-decoration:none;cursor:default;}
+  .cta-secondary{
+    display:block;
+    margin-top:12px;
+    font-size:12.5px;
+    color:var(--text-muted);
+    text-decoration:underline;
+    text-align:center;
+  }
+  .cta-secondary:not([href]){text-decoration:none;cursor:default;opacity:0.7;}
 
   .panel{
     background:var(--surface);
@@ -409,6 +425,7 @@
     <h1>回収率チェッカー</h1>
     <p class="lede">的中率・平均オッズ・購入額を入れると、期待払戻・期待損益・連敗確率・損益分岐点を一度に計算します。地方競馬AI検証プロジェクト「UMALAB」が、自分たちのバックテストで使っている計算式をそのまま公開しています。</p>
     <p class="disclaimer"><strong>これは統計計算の学習用ツールです。</strong>入力した的中率・オッズが将来も続く保証はありません。「プラス想定」の表示は、あくまで入力値をそのまま計算した理論値であり、実際に勝てることを保証するものではありません。</p>
+    <a class="header-link" id="headerLink">UMALABが実際に検証した46,378レースの結果はこちら →</a>
   </header>
 
   <div class="panel">
@@ -539,10 +556,12 @@
       </div>
     </div>
     <p>424件のバックテストで的中率94%・回収率96.49%という好成績に見えた条件も、統計的に検定すると「利益はゼロより有意にマイナス」という結果でした。<strong>理論値だけでは分からない「本当にプラスかどうか」を、UMALABはサンプル数・信頼区間・統計的検定まで確認して公開しています。</strong></p>
+    <p>この続き（EVルールの検証・買わない基準・AIの限界など）と、46,378レース分の全データ・分析ツールは「UMALAB PRO」にまとめています。</p>
     <div class="cta-note">
-      <span>実際の地方競馬データで検証した結果を見る</span>
-      <a class="cta-btn" id="ctaBtn">UMALABの検証記事を読む →</a>
+      <span>もっと詳しい検証結果を見る</span>
+      <a class="cta-btn" id="ctaProBtn">UMALAB PROで続きを見る（800円）→</a>
     </div>
+    <a class="cta-secondary" id="ctaArticleLink">先に無料の検証記事を読む →</a>
   </div>
 
   <footer>
@@ -553,16 +572,27 @@
 
 <script>
 (function(){
-  // note記事111（公開済み: 2026-09-08）
+  // note記事111（無料、公開済み: 2026-09-08）
   const NOTE_ARTICLE_URL = "https://note.com/umalab_ai/n/n93bd47f51f54";
+  // UMALAB PRO（有料800円、公開済み: 2026-09-09）
+  const NOTE_PRO_URL = "https://note.com/umalab_ai/n/nc2fd5706d720";
 
-  const ctaBtn = document.getElementById('ctaBtn');
-  if(NOTE_ARTICLE_URL){
-    ctaBtn.setAttribute('href', NOTE_ARTICLE_URL);
-    ctaBtn.setAttribute('target', '_blank');
-    ctaBtn.setAttribute('rel', 'noopener noreferrer');
+  const headerLink = document.getElementById('headerLink');
+  const ctaArticleLink = document.getElementById('ctaArticleLink');
+  const ctaProBtn = document.getElementById('ctaProBtn');
+  [headerLink, ctaArticleLink].forEach(el => {
+    if(NOTE_ARTICLE_URL && el){
+      el.setAttribute('href', NOTE_ARTICLE_URL);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+  if(NOTE_PRO_URL && ctaProBtn){
+    ctaProBtn.setAttribute('href', NOTE_PRO_URL);
+    ctaProBtn.setAttribute('target', '_blank');
+    ctaProBtn.setAttribute('rel', 'noopener noreferrer');
   }
-  // NOTE_ARTICLE_URLが空の間は<a>にhref属性を付けない。
+  // 各URLが空の間は<a>にhref属性を付けない。
   // href属性のない<a>はリンクとして機能しない(タップしても何も起きない)ため、
   // 空リンクや#へのダミーリンクを作らずに「準備中」の状態を安全に表現できる。
 
