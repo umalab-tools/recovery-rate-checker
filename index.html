@@ -1,16 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>回収率チェッカー | UMALAB</title>
-<meta name="description" content="的中率・オッズ・購入額から期待払戻・期待損益・連敗確率・損益分岐点を計算する無料診断ツール。UMALABの地方競馬AI検証データとの比較付き。">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>回収率チェッカー | UM
+<meta name="description"
+content="的中率・オッズ・購  連敗確率・損益分岐点を計算する無料診断ツール。UMALABの地方競馬AI検証データとの比較付き。">
+<link rel="preconnect" href=com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.goen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&displa
+y=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{box-sizing:border-box;}
+  *,*::before,*::after{box-s
   html{-webkit-text-size-adjust:100%;}
   body{margin:0;}
   :root{
@@ -42,7 +43,7 @@
       --text-muted:#a4ac97;
       --border:#333c2b;
       --accent:#71c191;
-      --accent-strong:#93d8ac;
+      --accent-strong:#93d8a
       --accent-soft:#1e3327;
       --good:#71c191;
       --good-soft:#1e3327;
@@ -52,7 +53,7 @@
       --bad-soft:#382019;
       --gold:#e2c073;
       --gold-soft:#332b13;
-      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px -12px rgba(0,0,0,0.5);
+      --shadow: 0 1px 2px rg-12px rgba(0,0,0,0.5);
     }
   }
 
@@ -74,7 +75,7 @@
     font-family:"JetBrains Mono",monospace;
     font-size:11px;
     letter-spacing:0.14em;
-    text-transform:uppercase;
+    text-transform:uppercase
     color:var(--accent);
     font-weight:700;
     display:block;
@@ -98,15 +99,33 @@
     margin-top:16px;
     padding:12px 14px;
     background:var(--surface-alt);
-    border:1px solid var(--border);
+    border:1px solid var(--b
     border-radius:10px;
     font-size:12.5px;
     color:var(--text-muted);
   }
   .disclaimer strong{color:var(--text);}
+  .header-link{
+    display:inline-block;
+    margin-top:10px;
+    font-size:12.5px;
+    color:var(--accent);
+    text-decoration:none;
+  }
+  .header-link:not([href]){color:var(--text-muted);text-decoration:none;cursor:defau
+lt;}
+  .cta-secondary{
+    display:block;
+    margin-top:12px;
+    font-size:12.5px;
+    color:var(--text-muted);
+    text-decoration:underlin
+    text-align:center;
+  }
+  .cta-secondary:not([href]){text-decoration:none;cursor:default;opacity:0.7;}
 
   .panel{
-    background:var(--surface);
+    background:var(--surface
     border:1px solid var(--border);
     border-radius:16px;
     box-shadow:var(--shadow);
@@ -114,7 +133,7 @@
     margin-bottom:18px;
   }
   .panel h2{
-    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-family:"Zen Kaku Go
     font-size:14px;
     font-weight:700;
     margin:0 0 16px;
@@ -124,7 +143,7 @@
 
   .grid-inputs{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:re
     gap:14px;
   }
   @media (max-width:480px){ .grid-inputs{grid-template-columns:1fr;} }
@@ -140,13 +159,13 @@
   .input-row{
     display:flex;
     align-items:center;
-    background:var(--surface-alt);
+    background:var(--surface
     border:1px solid var(--border);
     border-radius:10px;
     padding:0 12px;
   }
   .input-row:focus-within{
-    border-color:var(--accent);
+    border-color:var(--accen
     outline:2px solid var(--accent-soft);
   }
   input[type="number"]{
@@ -156,13 +175,13 @@
     background:transparent;
     border:none;
     padding:12px 4px;
-    font-family:"JetBrains Mono",monospace;
+    font-family:"JetBrains M
     font-size:16px;
     font-weight:500;
     color:var(--text);
-    font-variant-numeric:tabular-nums;
+    font-variant-numeric:tab
   }
-  input[type="number"]:focus{outline:none;}
+  input[type="number"]:focus
   .unit{
     font-size:12.5px;
     color:var(--text-muted);
@@ -216,9 +235,9 @@
     font-size:clamp(32px,10vw,44px);
     line-height:1;
     margin:6px 0 0;
-    font-variant-numeric:tabular-nums;
+    font-variant-numeric:tab
   }
-  .hero-value sup{font-size:0.4em;font-weight:500;margin-left:2px;}
+  .hero-value sup{font-size:in-left:2px;}
   .pill{
     display:inline-flex;
     align-items:center;
@@ -228,7 +247,7 @@
     font-size:13px;
     font-weight:700;
     font-family:"Zen Kaku Gothic New",sans-serif;
-    background:rgba(255,255,255,0.16);
+    background:rgba(255,255,
     white-space:nowrap;
   }
   .pill .dot{width:8px;height:8px;border-radius:50%;background:currentColor;}
@@ -238,9 +257,9 @@
     grid-template-columns:repeat(2,1fr);
     gap:10px;
   }
-  @media (max-width:480px){ .stat-grid{grid-template-columns:1fr;} }
+  @media (max-width:480px){ olumns:1fr;} }
   .stat{
-    background:var(--surface-alt);
+    background:var(--surface
     border:1px solid var(--border);
     border-radius:12px;
     padding:14px;
@@ -254,11 +273,11 @@
     font-family:"JetBrains Mono",monospace;
     font-size:20px;
     font-weight:700;
-    font-variant-numeric:tabular-nums;
+    font-variant-numeric:tab
     word-break:break-word;
   }
   .stat-value.bad{color:var(--bad);}
-  .stat-value.good{color:var(--good);}
+  .stat-value.good{color:var
   .stat-note{
     font-size:11.5px;
     color:var(--text-muted);
@@ -282,13 +301,13 @@
     font-size:11.5px;
   }
   td:not(:first-child){
-    font-family:"JetBrains Mono",monospace;
+    font-family:"JetBrains M
     font-variant-numeric:tabular-nums;
     text-align:right;
   }
-  th:not(:first-child){text-align:right;}
+  th:not(:first-child){text-
   .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .profit-pos{color:var(--good);}
+  .profit-pos{color:var(--go
   .profit-neg{color:var(--bad);}
 
   .verdict-box{
@@ -299,11 +318,14 @@
     border-radius:12px;
     border:1px solid var(--border);
   }
-  .verdict-box.good{background:var(--good-soft);border-color:color-mix(in srgb, var(--good) 35%, var(--border));}
-  .verdict-box.warn{background:var(--warn-soft);border-color:color-mix(in srgb, var(--warn) 35%, var(--border));}
-  .verdict-box.bad{background:var(--bad-soft);border-color:color-mix(in srgb, var(--bad) 35%, var(--border));}
+  .verdict-box.good{background:var(--good-soft);border-color:color-mix(in srgb,
+var(--good) 35%, var(--borde
+  .verdict-box.warn{background:var(--warn-soft);border-color:color-mix(in srgb,
+var(--warn) 35%, var(--borde
+  .verdict-box.bad{background:var(--bad-soft);border-color:color-mix(in srgb,
+var(--bad) 35%, var(--border
   .verdict-icon{
-    font-family:"JetBrains Mono",monospace;
+    font-family:"JetBrains M
     font-weight:700;
     font-size:12px;
     padding:4px 9px;
@@ -311,13 +333,13 @@
     white-space:nowrap;
   }
   .verdict-box.good .verdict-icon{background:var(--good);color:var(--good-soft);}
-  .verdict-box.warn .verdict-icon{background:var(--warn);color:var(--warn-soft);}
+  .verdict-box.warn .verdictn);color:var(--warn-soft);}
   .verdict-box.bad .verdict-icon{background:var(--bad);color:var(--bad-soft);}
-  .verdict-text{font-size:13px;}
+  .verdict-text{font-size:13
   .verdict-text strong{display:block;margin-bottom:4px;font-size:14px;}
 
   .data-panel{
-    background:linear-gradient(155deg, var(--surface-alt), var(--surface));
+    background:linear-gradielt), var(--surface));
     border:1px solid var(--gold);
     border-radius:16px;
     padding:20px;
@@ -327,7 +349,7 @@
     font-family:"JetBrains Mono",monospace;
     font-size:11px;
     letter-spacing:0.1em;
-    text-transform:uppercase;
+    text-transform:uppercase
     color:var(--gold);
     font-weight:700;
   }
@@ -345,14 +367,14 @@
     margin:14px 0;
   }
   .data-card{
-    background:var(--surface);
+    background:var(--surface
     border:1px solid var(--border);
     border-radius:12px;
     padding:14px;
   }
   .data-card .k{font-size:11.5px;color:var(--text-muted);margin-bottom:4px;}
-  .data-card .v{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:17px;word-break:break-word;}
-  .data-card .v.bad{color:var(--bad);}
+  .data-card .v{font-family:Mono",monospace;font-weight:700;font-size:17px;word-break:break-word;}
+  .data-card .v.bad{color:va
   .data-panel p{font-size:13px;color:var(--text-muted);margin:10px 0;}
   .cta-note{
     display:flex;
@@ -362,19 +384,19 @@
     flex-wrap:wrap;
     margin-top:14px;
     padding:14px;
-    background:var(--gold-soft);
+    background:var(--gold-so
     border:1px solid var(--gold);
     border-radius:10px;
   }
-  .cta-note span:first-child{font-size:13px;font-weight:700;}
+  .cta-note span:first-childt:700;}
   .cta-btn{
-    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-family:"Zen Kaku Go
     font-weight:700;
     font-size:14px;
     padding:12px 20px;
     min-height:44px;
     border-radius:999px;
-    background:var(--accent);
+    background:var(--accent)
     color:#f4fbf6;
     text-decoration:none;
     white-space:nowrap;
@@ -384,9 +406,9 @@
     cursor:pointer;
     border:none;
     -webkit-tap-highlight-color:transparent;
-    touch-action:manipulation;
+    touch-action:manipulatio
   }
-  .cta-btn:visited{color:#f4fbf6;}
+  .cta-btn:visited{color:#f4
   .cta-btn[href]:active{opacity:0.85;}
   .cta-btn:not([href]){
     cursor:default;
@@ -406,9 +428,13 @@
 <div class="wrap">
   <header>
     <span class="eyebrow">UMALAB DATA TOOL</span>
-    <h1>回収率チェッカー</h1>
-    <p class="lede">的中率・平均オッズ・購入額を入れると、期待払戻・期待損益・連敗確率・損益分岐点を一度に計算します。地方競馬AI検証プロジェクト「UMALAB」が、自分たちのバックテストで使っている計算式をそのまま公開しています。</p>
-    <p class="disclaimer"><strong>これは統計計算の学習用ツールです。</strong>入力した的中率・オッズが将来も続く保証はありません。「プラス想定」の表示は、あくまで入力値をそのまま計算した理論値であり、実際に勝てることを保証するものではありません。</p>
+    <h1>回収率チェッカー</h1
+    <p class="lede">的中率・平均オッズ・購入額を入れると、期待払戻・期待損益・連敗確
+率・損益分岐点を一度に計算しェクト「UMALAB」が、自分たちのバックテストで使っている計算式をそのまま公開しています。</p>
+    <p class="disclaimer"><s用ツールです。</strong>入力した的中率・オッズが将来も続く保証はありません。「プラス想定」の表示は、あくまで入力値
+をそのまま計算した理論値であするものではありません。</p>
+    <a class="header-link"
+id="headerLink">UMALABが実際果はこちら →</a>
   </header>
 
   <div class="panel">
@@ -416,25 +442,27 @@
     <div class="grid-inputs">
       <label>的中率
         <div class="input-row">
-          <input type="number" id="hitRate" value="90" min="1" max="99.9" step="0.1" inputmode="decimal">
-          <span class="unit">%</span>
+          <input type="numbe min="1" max="99.9" step="0.1" inputmode="decimal">
+          <span class="unit"
         </div>
       </label>
       <label>平均オッズ（複勝・単勝など）
-        <div class="input-row">
-          <input type="number" id="odds" value="1.3" min="1.01" step="0.01" inputmode="decimal">
+        <div class="input-ro
+          <input type="number" id="odds" value="1.3" min="1.01" step="0.01"
+inputmode="decimal">
           <span class="unit">倍</span>
         </div>
       </label>
-      <label>1点あたりの購入額
+      <label>1点あたりの購入
         <div class="input-row">
-          <input type="number" id="stake" value="100" min="1" step="10" inputmode="numeric">
-          <span class="unit">円</span>
+          <input type="numbemin="1" step="10"inputmode="numeric">
+          <span class="unit"
         </div>
       </label>
       <label>想定レース数
-        <div class="input-row">
-          <input type="number" id="races" value="100" min="1" step="1" inputmode="numeric">
+        <div class="input-ro
+          <input type="number" id="races" value="100" min="1" step="1"
+inputmode="numeric">
           <span class="unit">件</span>
         </div>
       </label>
@@ -442,64 +470,66 @@
   </div>
 
   <div class="hero">
-    <p class="hero-headline" id="heroHeadline">あなたの条件（的中率90%・オッズ1.30倍）なら、<span class="amount">100レース</span>で期待利益は<span class="amount">+1,700円</span>です。</p>
-    <hr class="hero-divider">
+    <p class="hero-headline"id="heroHeadline">あなたの条件（的中率90%・オッズ1.30倍）なら、<span
+class="amount">100レース</spclass="amount">+1,700円</span>です。</p>
+    <hr class="hero-divider"
     <div class="hero-top">
       <div>
         <div class="hero-label">期待回収率（的中率 × オッズ）</div>
-        <div class="hero-value" id="recoveryValue">117<sup>%</sup></div>
+        <div class="hero-val<sup>%</sup></div>
       </div>
-      <span class="pill" id="verdictPill"><span class="dot"></span><span id="verdictPillText">プラス想定</span></span>
+      <span class="pill" id="dot"></span><spanid="verdictPillText">プラス想定</span></span>
     </div>
   </div>
 
   <div class="panel">
-    <h2>2. 1回あたりの損益</h2>
+    <h2>2. 1回あたりの損益</
     <div class="stat-grid">
       <div class="stat">
         <div class="stat-label">的中したときの利益</div>
-        <div class="stat-value good" id="perHitProfit">+30円</div>
+        <div class="stat-val>+30円</div>
         <div class="stat-note">購入額 ×（オッズ − 1）</div>
       </div>
       <div class="stat">
-        <div class="stat-label">外れたときの損失</div>
+        <div class="stat-lab
         <div class="stat-value bad" id="perMissLoss">-100円</div>
-        <div class="stat-note">購入額の全額</div>
+        <div class="stat-not
       </div>
     </div>
   </div>
 
   <div class="panel">
-    <h2>3. 想定レース数分の合計</h2>
+    <h2>3. 想定レース数分の
     <div class="stat-grid">
       <div class="stat">
         <div class="stat-label">期待払戻額（合計）</div>
-        <div class="stat-value" id="expectedPayout">11,700円</div>
+        <div class="stat-val,700円</div>
         <div class="stat-note">期待回収率 × 購入額 × レース数</div>
       </div>
       <div class="stat">
-        <div class="stat-label">期待損益（合計）</div>
+        <div class="stat-lab
         <div class="stat-value" id="expectedPnl">+1,700円</div>
-        <div class="stat-note">期待払戻額 − 総購入額</div>
+        <div class="stat-notdiv>
       </div>
       <div class="stat">
         <div class="stat-label">黒字になる最低オッズ</div>
-        <div class="stat-value" id="breakevenOdds">1.11倍</div>
+        <div class="stat-val1倍</div>
         <div class="stat-note">現在の的中率で回収率100%になるオッズ</div>
       </div>
       <div class="stat">
-        <div class="stat-label">損益分岐点となる的中率</div>
+        <div class="stat-lab</div>
         <div class="stat-value" id="breakevenHitRate">76.9%</div>
-        <div class="stat-note">現在のオッズで回収率100%になる的中率</div>
+        <div class="stat-not%になる的中率</div>
       </div>
     </div>
   </div>
 
   <div class="panel">
-    <h2>4. 続けた場合のシミュレーション</h2>
+    <h2>4. 続けた場合のシミ
     <div class="table-wrap">
       <table>
-        <thead><tr><th>レース数</th><th>総購入額</th><th>期待払戻額</th><th>期待損益</th></tr></thead>
+        <thead><tr><th>レース数</th><th>総購入額</th><th>期待払戻額</th><th>期待損益
+</th></tr></thead>
         <tbody id="scenarioTable"></tbody>
       </table>
     </div>
@@ -509,76 +539,93 @@
     <h2>5. 連敗確率の目安（近似計算）</h2>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>連敗数</th><th>1回だけ外れが続く確率</th><th>想定レース数の中で1回以上起きる確率</th></tr></thead>
-        <tbody id="streakTable"></tbody>
+        <thead><tr><th>連敗  確率</th><th>想定レース数の中で1回以上起きる確率</th></tr></thead>
+        <tbody id="streakTab
       </table>
     </div>
-    <p class="stat-note" style="margin-top:10px;">※ 各レースの結果が独立であると仮定した簡易近似です。実際のレースでは条件間に相関がある場合もあります。</p>
+    <p class="stat-note" style="margin-top:10px;">※ 各レースの結果が独立であると仮定
+した簡易近似です。実際のレー合もあります。</p>
   </div>
 
   <div class="panel">
-    <h2>6. 簡易リスク判定</h2>
+    <h2>6. 簡易リスク判定</h
     <div class="verdict-box" id="verdictBox">
-      <span class="verdict-icon" id="verdictIcon">CHECK</span>
+      <span class="verdict-iK</span>
       <div class="verdict-text" id="verdictText"><strong>判定文</strong>説明文</div>
     </div>
   </div>
 
   <div class="data-panel">
-    <span class="eyebrow2">Reality check</span>
+    <span class="eyebrow2">R
     <h2>理論値と、実際の競馬ではどうなるか</h2>
-    <p>ここまでの数字は「入力した的中率・オッズがそのまま続いた場合」の理論値です。UMALABは地方競馬15競馬場・46,378レース分の実データで、これと似た条件を実際に検証しています。</p>
+    <p>ここまでの数字は「入  ま続いた場合」の理論値です。UMALABは地方競馬15競馬場・46,378レース分の実データで、これと似た条件を実際に検証して
+います。</p>
     <div class="data-compare">
-      <div class="data-card">
+      <div class="data-card"
         <div class="k">あなたの入力（理論値）</div>
-        <div class="v" id="realityYourInput">的中90%・オッズ1.30倍 → 回収率117%</div>
+        <div class="v" id="rオッズ1.30倍 →回収率117%</div>
       </div>
       <div class="data-card">
-        <div class="k">UMALAB実データに近い条件（的中率94.04%・オッズ約1.13倍）</div>
-        <div class="v bad">理論値106%だが、実際は統計的に有意にマイナス（p=0.0002）</div>
+        <divclass="k">UMALAB実データに近い条件（的中率94.04%・オッズ約1.13倍）</div>
+        <div class="vbad">理論値106%だが、実際は統計的に有意にマイナス（p=0.0002）</div>
       </div>
     </div>
-    <p>424件のバックテストで的中率94%・回収率96.49%という好成績に見えた条件も、統計的に検定すると「利益はゼロより有意にマイナス」という結果でした。<strong>理論値だけでは分からない「本当にプラスかどうか」を、UMALABはサンプル数・信頼区間・統計的検定まで確認して公開しています。</strong></p>
+    <p>424件のバックテストで う好成績に見えた条件も、統計的に検定すると「利益はゼロより有意にマイナス」という結果でした。<strong>理論値だけで
+は分からない「本当にプラスかル数・信頼区間・統計的検定まで確認して公開しています。</strong></p>
+    <p>この続き（EVルールの  など）と、46,378レース分の全データ・分析ツールは「UMALAB PRO」にまとめています。</p>
     <div class="cta-note">
-      <span>実際の地方競馬データで検証した結果を見る</span>
-      <a class="cta-btn" id="ctaBtn">UMALABの検証記事を読む →</a>
+      <span>もっと詳しい検証結果を見る</span>
+      <a class="cta-btn" id=きを見る（800円）→</a>
     </div>
+    <a class="cta-secondary" 料の検証記事を読む →</a>
   </div>
 
   <footer>
-    UMALABの検証では、単一の点推定（1回計算しただけの回収率）は信頼区間・サンプル数とあわせて確認しています。<br>
-    詳しい検証プロセスは note マガジン「UMALAB｜AI競馬解析」で公開しています。
+    UMALABの検証では、単一の 収率）は信頼区間・サンプル数とあわせて確認しています。<br>
+    詳しい検証プロセスは not解析」で公開しています。
   </footer>
 </div>
 
 <script>
 (function(){
-  // note記事111（公開済み: 2026-09-08）
+  // note記事111（無料、公開
   const NOTE_ARTICLE_URL = "https://note.com/umalab_ai/n/n93bd47f51f54";
+  // UMALAB PRO（有料800円、
+  const NOTE_PRO_URL = "https://note.com/umalab_ai/n/nc2fd5706d720";
 
-  const ctaBtn = document.getElementById('ctaBtn');
-  if(NOTE_ARTICLE_URL){
-    ctaBtn.setAttribute('href', NOTE_ARTICLE_URL);
-    ctaBtn.setAttribute('target', '_blank');
-    ctaBtn.setAttribute('rel', 'noopener noreferrer');
+  const headerLink = document.getElementById('headerLink');
+  const ctaArticleLink = docrticleLink');
+  const ctaProBtn = document.getElementById('ctaProBtn');
+  [headerLink, ctaArticleLin
+    if(NOTE_ARTICLE_URL && el){
+      el.setAttribute('href'
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel',
+    }
+  });
+  if(NOTE_PRO_URL && ctaProBtn){
+    ctaProBtn.setAttribute('
+    ctaProBtn.setAttribute('target', '_blank');
+    ctaProBtn.setAttribute('');
   }
-  // NOTE_ARTICLE_URLが空の間は<a>にhref属性を付けない。
+  // 各URLが空の間は<a>にhre
   // href属性のない<a>はリンクとして機能しない(タップしても何も起きない)ため、
-  // 空リンクや#へのダミーリンクを作らずに「準備中」の状態を安全に表現できる。
+  // 空リンクや#へのダミーリ状態を安全に表現できる。
 
-  const $ = id => document.getElementById(id);
-  const hitRateEl = $('hitRate'), oddsEl = $('odds'), stakeEl = $('stake'), racesEl = $('races');
+  const $ = id => document.g
+  const hitRateEl = $('hitRate'), oddsEl = $('odds'), stakeEl = $('stake'), racesEl
+= $('races');
 
-  function fmtPct(x, digits=1){ return x.toLocaleString('ja-JP', {minimumFractionDigits:digits, maximumFractionDigits:digits}); }
-  function fmtYen(x, withSign=true){
+  function fmtPct(x, digits=g('ja-JP',{minimumFractionDigits:digits, maximumFractionDigits:digits}); }
+  function fmtYen(x, withSig
     const sign = withSign ? (x >= 0 ? '+' : '') : '';
-    return sign + Math.round(x).toLocaleString('ja-JP') + '円';
+    return sign + Math.round) + '円';
   }
 
   function compute(){
-    let p = parseFloat(hitRateEl.value);
+    let p = parseFloat(hitRa
     let odds = parseFloat(oddsEl.value);
-    let stake = parseFloat(stakeEl.value);
+    let stake = parseFloat(s
     let n = parseInt(racesEl.value, 10);
 
     if(!(p > 0 && p < 100) || !(odds > 1) || !(stake > 0) || !(n > 0)){
@@ -586,79 +633,86 @@
     }
     const pFrac = p / 100;
     const recovery = pFrac * odds * 100;
-    const totalStake = stake * n;
+    const totalStake = stake
     const expectedPayout = (recovery/100) * totalStake;
-    const pnl = expectedPayout - totalStake;
+    const pnl = expectedPayo
     const breakevenOdds = 1 / pFrac;
-    const breakevenHitRate = (1/odds) * 100;
+    const breakevenHitRate =
     const perHitProfit = stake * (odds - 1);
-    const perMissLoss = -stake;
+    const perMissLoss = -sta
 
-    $('recoveryValue').innerHTML = fmtPct(recovery, 1) + '<sup>%</sup>';
+    $('recoveryValue').inner + '<sup>%</sup>';
     $('perHitProfit').textContent = fmtYen(perHitProfit);
-    $('perMissLoss').textContent = fmtYen(perMissLoss);
+    $('perMissLoss').textCon;
     $('expectedPayout').textContent = fmtYen(expectedPayout, false);
-    $('expectedPnl').textContent = fmtYen(pnl);
+    $('expectedPnl').textCon
     $('expectedPnl').className = 'stat-value ' + (pnl >= 0 ? 'good' : 'bad');
-    $('breakevenOdds').textContent = breakevenOdds.toFixed(2) + '倍';
+    $('breakevenOdds').textCixed(2) + '倍';
     $('breakevenHitRate').textContent = fmtPct(breakevenHitRate, 1) + '%';
 
     $('heroHeadline').innerHTML =
-      `あなたの条件（的中率${fmtPct(p,1)}%・オッズ${odds.toFixed(2)}倍）なら、` +
+      `あなたの条件（的中率$ds.toFixed(2)}倍）なら、` +
       `<span class="amount">${n.toLocaleString('ja-JP')}レース</span>で期待利益は` +
-      `<span class="amount">${fmtYen(pnl)}</span>です。`;
+      `<span class="amount"> `;
 
-    $('realityYourInput').textContent =
-      `的中${fmtPct(p,0)}%・オッズ${odds.toFixed(2)}倍 → 回収率${fmtPct(recovery,1)}%`;
+    $('realityYourInput').te
+      `的中${fmtPct(p,0)}%・オッズ${odds.toFixed(2)}倍 →
+回収率${fmtPct(recovery,1)}%
 
-    const pill = $('verdictPill');
+    const pill = $('verdictP
     const pillText = $('verdictPillText');
-    const vbox = $('verdictBox');
+    const vbox = $('verdictB
     const vicon = $('verdictIcon');
-    const vtext = $('verdictText');
+    const vtext = $('verdict
 
-    let level, label, msg, detail;
+    let level, label, msg, d
     if(recovery >= 105){
-      level = 'good'; label='プラス想定'; vicon.textContent='GREEN';
-      detail = `期待回収率が${fmtPct(recovery,1)}%と100%を上回っています。ただし、これは1回計算しただけの点推定です。サンプル数が少ない・信頼区間を確認していない場合は、偶然の結果である可能性があります。`;
-      msg = '入力値の通りなら理論上プラスですが、点推定だけで判断しないでください。';
-    } else if(recovery >= 95){
+      level = 'good'; label=ntent='GREEN';
+      detail = `期待回収率が${fmtPct(recovery,1)}%と100%を上回っています。ただし、こ
+れは1回計算しただけの点推定  頼区間を確認していない場合は、偶然の結果である可能性があります。`;
+      msg ='入力値の通りなら理論上プラスですが、点推定だけで判断しないでください。';
+    } else if(recovery >= 95
       level = 'warn'; label='ほぼ均衡'; vicon.textContent='YELLOW';
-      detail = `期待回収率が${fmtPct(recovery,1)}%で、100%に近い水準です。わずかな誤差やオッズ変動でプラスにもマイナスにもなりうる、判断の難しい境界線上の条件です。`;
-      msg = 'この水準では「勝てる」とも「負ける」とも言い切れません。';
+      detail = `期待回収率が100%に近い水準です。わずかな誤差やオッズ変動でプラスにもマイナスにもなりうる、判断の難しい境界線上の条件です。`;
+      msg = 'この水準では「  い切れません。';
     } else {
-      level = 'bad'; label='マイナス想定'; vicon.textContent='RED';
-      detail = `期待回収率が${fmtPct(recovery,1)}%にとどまり、100%を下回っています。この条件を続けた場合、理論上は購入額を回収しきれない見込みです。`;
+      level = 'bad'; label='ontent='RED';
+      detail = `期待回収率が${fmtPct(recovery,1)}%にとどまり、100%を下回っています。
+この条件を続けた場合、理論上込みです。`;
       msg = '現在の入力値では、理論上の期待値はマイナスです。';
     }
-    pill.style.color = level === 'good' ? '#eafff1' : level === 'warn' ? '#fff6e3' : '#ffe9e6';
+    pill.style.color = level === 'good' ? '#eafff1' : level === 'warn' ? '#fff6e3' :
+'#ffe9e6';
     pillText.textContent = label;
-    vbox.className = 'verdict-box ' + level;
+    vbox.className = 'verdic
     vtext.innerHTML = `<strong>${msg}</strong>${detail}`;
 
     const scenarios = [100, 500, 1000];
     let srows = '';
     scenarios.forEach(sn=>{
-      const sStake = stake * sn;
+      const sStake = stake *
       const sPayout = (recovery/100) * sStake;
-      const sPnl = sPayout - sStake;
-      srows += `<tr><td>${sn.toLocaleString('ja-JP')}R</td><td>${fmtYen(sStake,false)}</td><td>${fmtYen(sPayout,false)}</td><td class="${sPnl>=0?'profit-pos':'profit-neg'}">${fmtYen(sPnl)}</td></tr>`;
+      const sPnl = sPayout -
+      srows += `<tr><td>${sn.toLocaleString('ja-JP')}R</td><td>${fmtYen(sStake,false
+)}</td><td>${fmtYen(sPayout,class="${sPnl>=0?'profit-pos':'profit-neg'}">${fmtYen(sPnl)}</td></tr>`;
     });
     $('scenarioTable').innerHTML = srows;
 
     const q = 1 - pFrac;
-    const streaks = [3,5,10,15,20];
+    const streaks = [3,5,10,
     let rows = '';
     streaks.forEach(k=>{
       const single = Math.pow(q, k) * 100;
-      const trials = Math.max(1, n - k + 1);
+      const trials = Math.ma
       const atLeastOnce = (1 - Math.pow(1 - Math.pow(q,k), trials)) * 100;
-      rows += `<tr><td>${k}連敗</td><td>${single < 0.01 ? '<0.01' : fmtPct(single, single<1?3:1)}%</td><td>${atLeastOnce < 0.01 ? '<0.01' : fmtPct(atLeastOnce, atLeastOnce<1?3:1)}%</td></tr>`;
+      rows += `<tr><td>${k} 1 ? '<0.01' : fmtPct(single,single<1?3:1)}%</td><td>${atLeastOnce < 0.01 ? '<0.01' : fmtPct(atLeastOnce,
+atLeastOnce<1?3:1)}%</td></t
     });
-    $('streakTable').innerHTML = rows;
+    $('streakTable').innerHT
   }
 
-  [hitRateEl, oddsEl, stakeEl, racesEl].forEach(el => el.addEventListener('input', compute));
+  [hitRateEl, oddsEl, stakeEl, racesEl].forEach(el => el.addEventListener('input',
+compute));
   compute();
 })();
 </script>
