@@ -93,6 +93,14 @@
     max-width:58ch;
     margin:0;
   }
+  .subtitle{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:700;
+    color:var(--accent);
+    font-size:clamp(14px,3.6vw,16px);
+    margin:0 0 10px;
+    text-wrap:balance;
+  }
   .disclaimer{
     margin-top:16px;
     padding:12px 14px;
@@ -423,6 +431,7 @@
   <header>
     <span class="eyebrow">UMALAB DATA TOOL</span>
     <h1>回収率チェッカー</h1>
+    <p class="subtitle">あなたの馬券、本当にプラス期待値？30秒で無料診断。</p>
     <p class="lede">的中率・平均オッズ・購入額を入れると、期待払戻・期待損益・連敗確率・損益分岐点を一度に計算します。地方競馬AI検証プロジェクト「UMALAB」が、自分たちのバックテストで使っている計算式をそのまま公開しています。</p>
     <p class="disclaimer"><strong>これは統計計算の学習用ツールです。</strong>入力した的中率・オッズが将来も続く保証はありません。「プラス想定」の表示は、あくまで入力値をそのまま計算した理論値であり、実際に勝てることを保証するものではありません。</p>
     <a class="header-link" id="headerLink">UMALABが実際に検証した46,378レースの結果はこちら →</a>
