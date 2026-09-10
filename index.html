@@ -424,6 +424,135 @@
     text-align:center;
   }
   footer a{color:var(--accent);}
+
+  .diagnosis-panel{
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:14px;
+    text-align:center;
+    border:1px solid var(--border);
+  }
+  .diagnosis-panel.good{background:var(--good-soft);border-color:color-mix(in srgb, var(--good) 35%, var(--border));}
+  .diagnosis-panel.warn{background:var(--warn-soft);border-color:color-mix(in srgb, var(--warn) 35%, var(--border));}
+  .diagnosis-panel.bad{background:var(--bad-soft);border-color:color-mix(in srgb, var(--bad) 35%, var(--border));}
+  .diagnosis-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-bottom:6px;
+  }
+  .diagnosis-emoji{font-size:28px;line-height:1;}
+  .diagnosis-grade{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:900;
+    font-size:22px;
+  }
+  .diagnosis-message{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:700;
+    font-size:15px;
+    margin:0 0 6px;
+  }
+  .diagnosis-note{
+    font-size:11.5px;
+    color:var(--text-muted);
+    margin:0 0 10px;
+  }
+  .share-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--text-muted);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:8px 14px;
+    cursor:pointer;
+    min-height:36px;
+  }
+  .share-btn:active{opacity:0.8;}
+
+  .cta-strong{
+    background:linear-gradient(155deg, var(--accent-strong), var(--accent));
+    border-radius:16px;
+    padding:22px 20px;
+    margin-bottom:18px;
+    color:#f4fbf6;
+    box-shadow:var(--shadow);
+    text-align:center;
+  }
+  .cta-strong-lead{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:900;
+    font-size:clamp(16px,4.4vw,19px);
+    margin:0 0 10px;
+    text-wrap:balance;
+  }
+  .cta-strong-body{
+    font-size:13.5px;
+    line-height:1.8;
+    margin:0 0 16px;
+    opacity:0.95;
+  }
+  .cta-strong-body strong{
+    font-family:"JetBrains Mono",monospace;
+    font-size:15px;
+  }
+  .cta-strong-btn{
+    width:100%;
+    max-width:360px;
+    font-size:15px;
+    padding:14px 20px;
+  }
+  .cta-strong-compare{
+    font-size:11.5px;
+    opacity:0.85;
+    margin:0 0 14px;
+    line-height:1.6;
+  }
+
+  .sim-lead{
+    font-size:13px;
+    color:var(--text-muted);
+    margin:-8px 0 14px;
+  }
+  .bar-chart{
+    margin-top:16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .bar-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .bar-label{
+    font-size:12px;
+    color:var(--text-muted);
+    width:84px;
+    flex-shrink:0;
+  }
+  .bar-track{
+    flex:1;
+    height:16px;
+    background:var(--surface-alt);
+    border:1px solid var(--border);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    border-radius:8px 0 0 8px;
+    transition:width 0.2s ease;
+  }
+  .bar-fill-stake{background:var(--text-muted);}
+  .bar-fill-payout.good{background:var(--good);}
+  .bar-fill-payout.bad{background:var(--bad);}
 </style>
 </head>
 <body>
@@ -475,12 +604,67 @@
         <div class="hero-label">期待回収率（的中率 × オッズ）</div>
         <div class="hero-value" id="recoveryValue">117<sup>%</sup></div>
       </div>
-      <span class="pill" id="verdictPill"><span class="dot"></span><span id="verdictPillText">プラス想定</span></span>
+      <span class="pill" id="verdictPill"><span class="dot"></span><span id="verdictPillText">A判定</span></span>
     </div>
   </div>
 
+  <div class="diagnosis-panel" id="diagnosisPanel">
+    <div class="diagnosis-row">
+      <span class="diagnosis-emoji" id="diagnosisEmoji">🟢</span>
+      <span class="diagnosis-grade" id="diagnosisGrade">A判定</span>
+    </div>
+    <p class="diagnosis-message" id="diagnosisMessage">プラス期待値圏です</p>
+    <p class="diagnosis-note">※あくまで入力値をそのまま計算した理論値です。将来の利益を保証するものではありません。</p>
+    <button type="button" class="share-btn" id="shareBtn" hidden>🔗 診断結果をシェア</button>
+  </div>
+
+  <div class="cta-strong">
+    <p class="cta-strong-lead">的中率だけ見ていませんか？</p>
+    <p class="cta-strong-body">UMALABでは<strong>46,378レース</strong>を検証し、「当てる」ではなく「買う・見送る」を数字で判断する方法を検証しています。あなたの買い方を、感覚ではなく数字で見直したい方へ。</p>
+    <p class="cta-strong-compare">無料ツール: 今の数字を確認する ／ UMALAB PRO: その数字を買う・見送るにどう活かすかまで理解する</p>
+    <a class="cta-btn cta-strong-btn" id="ctaProBtnTop">▶ 46,378レース検証｜UMALAB PROを見る</a>
+  </div>
+
   <div class="panel">
-    <h2>2. 1回あたりの損益</h2>
+    <h2>2. 年間シミュレーション</h2>
+    <p class="sim-lead" id="simLead">想定レース数（100件）続けた場合</p>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-label">購入総額</div>
+        <div class="stat-value" id="totalStakeValue">10,000円</div>
+        <div class="stat-note">1点あたりの購入額 × レース数</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">推定払戻額</div>
+        <div class="stat-value" id="expectedPayout">11,700円</div>
+        <div class="stat-note">期待回収率 × 購入総額</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">推定損益</div>
+        <div class="stat-value" id="expectedPnl">+1,700円</div>
+        <div class="stat-note">推定払戻額 − 購入総額</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">推定回収率</div>
+        <div class="stat-value" id="simRecoveryValue">117.0%</div>
+        <div class="stat-note">的中率 × オッズ</div>
+      </div>
+    </div>
+    <div class="bar-chart">
+      <div class="bar-row">
+        <span class="bar-label">購入総額</span>
+        <div class="bar-track"><div class="bar-fill bar-fill-stake" id="barStake" style="width:50%"></div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">推定払戻額</span>
+        <div class="bar-track"><div class="bar-fill bar-fill-payout good" id="barPayout" style="width:59%"></div></div>
+      </div>
+    </div>
+    <p class="stat-note" style="margin-top:8px;">的中率だけでなく、回収率まで見ることが大切です。</p>
+  </div>
+
+  <div class="panel">
+    <h2>3. 1回あたりの損益</h2>
     <div class="stat-grid">
       <div class="stat">
         <div class="stat-label">的中したときの利益</div>
@@ -496,18 +680,8 @@
   </div>
 
   <div class="panel">
-    <h2>3. 想定レース数分の合計</h2>
+    <h2>4. 損益分岐点</h2>
     <div class="stat-grid">
-      <div class="stat">
-        <div class="stat-label">期待払戻額（合計）</div>
-        <div class="stat-value" id="expectedPayout">11,700円</div>
-        <div class="stat-note">期待回収率 × 購入額 × レース数</div>
-      </div>
-      <div class="stat">
-        <div class="stat-label">期待損益（合計）</div>
-        <div class="stat-value" id="expectedPnl">+1,700円</div>
-        <div class="stat-note">期待払戻額 − 総購入額</div>
-      </div>
       <div class="stat">
         <div class="stat-label">黒字になる最低オッズ</div>
         <div class="stat-value" id="breakevenOdds">1.11倍</div>
@@ -522,7 +696,7 @@
   </div>
 
   <div class="panel">
-    <h2>4. 続けた場合のシミュレーション</h2>
+    <h2>5. 続けた場合のシミュレーション（他のレース数との比較）</h2>
     <div class="table-wrap">
       <table>
         <thead><tr><th>レース数</th><th>総購入額</th><th>期待払戻額</th><th>期待損益</th></tr></thead>
@@ -532,7 +706,7 @@
   </div>
 
   <div class="panel">
-    <h2>5. 連敗確率の目安（近似計算）</h2>
+    <h2>6. 連敗確率の目安（近似計算）</h2>
     <div class="table-wrap">
       <table>
         <thead><tr><th>連敗数</th><th>1回だけ外れが続く確率</th><th>想定レース数の中で1回以上起きる確率</th></tr></thead>
@@ -543,7 +717,7 @@
   </div>
 
   <div class="panel">
-    <h2>6. 簡易リスク判定</h2>
+    <h2>7. 簡易リスク判定（技術的な内訳）</h2>
     <div class="verdict-box" id="verdictBox">
       <span class="verdict-icon" id="verdictIcon">CHECK</span>
       <div class="verdict-text" id="verdictText"><strong>判定文</strong>説明文</div>
@@ -567,8 +741,8 @@
     <p>424件のバックテストで的中率94%・回収率96.49%という好成績に見えた条件も、統計的に検定すると「利益はゼロより有意にマイナス」という結果でした。<strong>理論値だけでは分からない「本当にプラスかどうか」を、UMALABはサンプル数・信頼区間・統計的検定まで確認して公開しています。</strong></p>
     <p>この続き（EVルールの検証・買わない基準・AIの限界など）と、46,378レース分の全データ・分析ツールは「UMALAB PRO」にまとめています。</p>
     <div class="cta-note">
-      <span>もっと詳しい検証結果を見る</span>
-      <a class="cta-btn" id="ctaProBtn">UMALAB PROで続きを見る（800円）→</a>
+      <span>的中率だけ見ていませんか？</span>
+      <a class="cta-btn" id="ctaProBtn">▶ 46,378レース検証｜UMALAB PROを見る</a>
     </div>
     <a class="cta-secondary" id="ctaArticleLink">先に無料の検証記事を読む →</a>
   </div>
@@ -589,6 +763,7 @@
   const headerLink = document.getElementById('headerLink');
   const ctaArticleLink = document.getElementById('ctaArticleLink');
   const ctaProBtn = document.getElementById('ctaProBtn');
+  const ctaProBtnTop = document.getElementById('ctaProBtnTop');
   [headerLink, ctaArticleLink].forEach(el => {
     if(NOTE_ARTICLE_URL && el){
       el.setAttribute('href', NOTE_ARTICLE_URL);
@@ -596,11 +771,13 @@
       el.setAttribute('rel', 'noopener noreferrer');
     }
   });
-  if(NOTE_PRO_URL && ctaProBtn){
-    ctaProBtn.setAttribute('href', NOTE_PRO_URL);
-    ctaProBtn.setAttribute('target', '_blank');
-    ctaProBtn.setAttribute('rel', 'noopener noreferrer');
-  }
+  [ctaProBtn, ctaProBtnTop].forEach(el => {
+    if(NOTE_PRO_URL && el){
+      el.setAttribute('href', NOTE_PRO_URL);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
   // 各URLが空の間は<a>にhref属性を付けない。
   // href属性のない<a>はリンクとして機能しない(タップしても何も起きない)ため、
   // 空リンクや#へのダミーリンクを作らずに「準備中」の状態を安全に表現できる。
@@ -612,6 +789,25 @@
   function fmtYen(x, withSign=true){
     const sign = withSign ? (x >= 0 ? '+' : '') : '';
     return sign + Math.round(x).toLocaleString('ja-JP') + '円';
+  }
+
+  // 診断結果シェア機能（対応ブラウザのみ表示、未対応でもエラーにならないよう
+  // feature detectionで安全にガードする）
+  let lastShareText = '';
+  const shareBtn = $('shareBtn');
+  if(shareBtn){
+    if(typeof navigator.share === 'function'){
+      shareBtn.hidden = false;
+      shareBtn.addEventListener('click', () => {
+        try{
+          navigator.share({ text: lastShareText, url: location.href }).catch(() => {});
+        }catch(e){
+          // 共有に失敗しても画面は壊さない
+        }
+      });
+    } else {
+      shareBtn.hidden = true;
+    }
   }
 
   function compute(){
@@ -642,6 +838,39 @@
     $('breakevenOdds').textContent = breakevenOdds.toFixed(2) + '倍';
     $('breakevenHitRate').textContent = fmtPct(breakevenHitRate, 1) + '%';
 
+    // 年間シミュレーション（想定レース数を使った合計値の表示）
+    $('totalStakeValue').textContent = fmtYen(totalStake, false);
+    $('simRecoveryValue').textContent = fmtPct(recovery, 1) + '%';
+    $('simLead').textContent = `想定レース数（${n.toLocaleString('ja-JP')}件）続けた場合`;
+
+    // 購入総額と払戻額の比較バー（同じスケールに揃えて幅を計算）
+    const maxBarVal = Math.max(totalStake, expectedPayout, 1) * 1.05;
+    $('barStake').style.width = (totalStake / maxBarVal * 100).toFixed(1) + '%';
+    const barPayoutEl = $('barPayout');
+    barPayoutEl.style.width = (expectedPayout / maxBarVal * 100).toFixed(1) + '%';
+    barPayoutEl.className = 'bar-fill bar-fill-payout ' + (pnl >= 0 ? 'good' : 'bad');
+
+    // 自分事化した診断（A/B/C判定）。回収率100%/90%を境界にした
+    // シンプルな3段階評価。統計的な計算結果であり、将来の利益を
+    // 保証するものではない旨を診断パネル内に明記している。
+    let grade, gradeEmoji, gradeMsg, gradeClass;
+    if(recovery >= 100){
+      grade = 'A判定'; gradeEmoji = '🟢'; gradeClass = 'good';
+      gradeMsg = 'プラス期待値圏です';
+    } else if(recovery >= 90){
+      grade = 'B判定'; gradeEmoji = '🟡'; gradeClass = 'warn';
+      gradeMsg = 'ほぼトントン。条件を絞る余地があります';
+    } else {
+      grade = 'C判定'; gradeEmoji = '🔴'; gradeClass = 'bad';
+      gradeMsg = 'この条件のまま買い続けると、長期では資金が減る可能性があります';
+    }
+    $('diagnosisPanel').className = 'diagnosis-panel ' + gradeClass;
+    $('diagnosisEmoji').textContent = gradeEmoji;
+    $('diagnosisGrade').textContent = grade;
+    $('diagnosisMessage').textContent = gradeMsg;
+
+    lastShareText = `自分の馬券をUMALABで診断したら回収率${fmtPct(recovery,1)}%だった🏇`;
+
     $('heroHeadline').innerHTML =
       `あなたの条件（的中率${fmtPct(p,1)}%・オッズ${odds.toFixed(2)}倍）なら、` +
       `<span class="amount">${n.toLocaleString('ja-JP')}レース</span>で期待利益は` +
@@ -670,8 +899,8 @@
       detail = `期待回収率が${fmtPct(recovery,1)}%にとどまり、100%を下回っています。この条件を続けた場合、理論上は購入額を回収しきれない見込みです。`;
       msg = '現在の入力値では、理論上の期待値はマイナスです。';
     }
-    pill.style.color = level === 'good' ? '#eafff1' : level === 'warn' ? '#fff6e3' : '#ffe9e6';
-    pillText.textContent = label;
+    pill.style.color = gradeClass === 'good' ? '#eafff1' : gradeClass === 'warn' ? '#fff6e3' : '#ffe9e6';
+    pillText.textContent = grade;
     vbox.className = 'verdict-box ' + level;
     vtext.innerHTML = `<strong>${msg}</strong>${detail}`;
 
