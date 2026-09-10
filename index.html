@@ -454,6 +454,13 @@
     font-size:15px;
     margin:0 0 6px;
   }
+  .diagnosis-hook{
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:13px;
+    font-weight:500;
+    color:var(--text);
+    margin:0 0 10px;
+  }
   .diagnosis-note{
     font-size:11.5px;
     color:var(--text-muted);
@@ -508,11 +515,45 @@
     font-size:15px;
     padding:14px 20px;
   }
-  .cta-strong-compare{
+  .compare-box{
+    display:flex;
+    gap:8px;
+    text-align:left;
+    margin:0 0 16px;
+    background:rgba(255,255,255,0.1);
+    border-radius:12px;
+    padding:12px;
+  }
+  .compare-col{
+    flex:1;
+    min-width:0;
+  }
+  .compare-head{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:700;
     font-size:11.5px;
     opacity:0.85;
-    margin:0 0 14px;
-    line-height:1.6;
+    margin:0 0 6px;
+  }
+  .compare-col-pro .compare-head{
+    color:var(--gold);
+    opacity:1;
+  }
+  .compare-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    font-size:11.5px;
+    line-height:1.7;
+  }
+  .compare-list li{
+    padding-left:14px;
+    position:relative;
+  }
+  .compare-list li::before{
+    content:"・";
+    position:absolute;
+    left:0;
   }
 
   .sim-lead{
@@ -614,15 +655,36 @@
       <span class="diagnosis-grade" id="diagnosisGrade">A判定</span>
     </div>
     <p class="diagnosis-message" id="diagnosisMessage">プラス期待値圏です</p>
+    <p class="diagnosis-hook" id="diagnosisHook">この条件、実際の46,378レースではどうだったか気になりませんか？</p>
     <p class="diagnosis-note">※あくまで入力値をそのまま計算した理論値です。将来の利益を保証するものではありません。</p>
     <button type="button" class="share-btn" id="shareBtn" hidden>🔗 診断結果をシェア</button>
   </div>
 
   <div class="cta-strong">
-    <p class="cta-strong-lead">的中率だけ見ていませんか？</p>
-    <p class="cta-strong-body">UMALABでは<strong>46,378レース</strong>を検証し、「当てる」ではなく「買う・見送る」を数字で判断する方法を検証しています。あなたの買い方を、感覚ではなく数字で見直したい方へ。</p>
-    <p class="cta-strong-compare">無料ツール: 今の数字を確認する ／ UMALAB PRO: その数字を買う・見送るにどう活かすかまで理解する</p>
-    <a class="cta-btn cta-strong-btn" id="ctaProBtnTop">▶ 46,378レース検証｜UMALAB PROを見る</a>
+    <p class="cta-strong-lead">その判定、理論値だけで大丈夫ですか？</p>
+    <p class="cta-strong-body">今の診断は、入力した的中率・オッズをそのまま計算した理論値です。UMALABでは<strong>46,378レース</strong>の実データで、似た条件が実際にどうだったかまで検証しています。</p>
+    <div class="compare-box">
+      <div class="compare-col">
+        <div class="compare-head">無料（このツール）</div>
+        <ul class="compare-list">
+          <li>入力条件の簡易診断</li>
+          <li>理論回収率</li>
+          <li>期待利益の目安</li>
+          <li>実データとの比較（一部）</li>
+        </ul>
+      </div>
+      <div class="compare-col compare-col-pro">
+        <div class="compare-head">UMALAB PRO</div>
+        <ul class="compare-list">
+          <li>46,378レースの実データ</li>
+          <li>条件別の分析</li>
+          <li>買う・見送るの判断材料</li>
+          <li>サンプル数・信頼区間・統計検定</li>
+          <li>EVルールの検証結果</li>
+        </ul>
+      </div>
+    </div>
+    <a class="cta-btn cta-strong-btn" id="ctaProBtnTop">▶ 自分の条件を46,378レースの実データと照合する（UMALAB PRO）</a>
   </div>
 
   <div class="panel">
@@ -741,8 +803,8 @@
     <p>424件のバックテストで的中率94%・回収率96.49%という好成績に見えた条件も、統計的に検定すると「利益はゼロより有意にマイナス」という結果でした。<strong>理論値だけでは分からない「本当にプラスかどうか」を、UMALABはサンプル数・信頼区間・統計的検定まで確認して公開しています。</strong></p>
     <p>この続き（EVルールの検証・買わない基準・AIの限界など）と、46,378レース分の全データ・分析ツールは「UMALAB PRO」にまとめています。</p>
     <div class="cta-note">
-      <span>的中率だけ見ていませんか？</span>
-      <a class="cta-btn" id="ctaProBtn">▶ 46,378レース検証｜UMALAB PROを見る</a>
+      <span>買う・見送るの判断基準まで見てみませんか？</span>
+      <a class="cta-btn" id="ctaProBtn">▶ 46,378レースの全データを見る（UMALAB PRO）</a>
     </div>
     <a class="cta-secondary" id="ctaArticleLink">先に無料の検証記事を読む →</a>
   </div>
@@ -853,21 +915,25 @@
     // 自分事化した診断（A/B/C判定）。回収率100%/90%を境界にした
     // シンプルな3段階評価。統計的な計算結果であり、将来の利益を
     // 保証するものではない旨を診断パネル内に明記している。
-    let grade, gradeEmoji, gradeMsg, gradeClass;
+    let grade, gradeEmoji, gradeMsg, gradeClass, gradeHook;
     if(recovery >= 100){
       grade = 'A判定'; gradeEmoji = '🟢'; gradeClass = 'good';
       gradeMsg = 'プラス期待値圏です';
+      gradeHook = 'この条件、実際の46,378レースでも同じ傾向か気になりませんか？';
     } else if(recovery >= 90){
       grade = 'B判定'; gradeEmoji = '🟡'; gradeClass = 'warn';
       gradeMsg = 'ほぼトントン。条件を絞る余地があります';
+      gradeHook = 'どう絞ればいいのか、実データの条件別分析で確認できます。';
     } else {
       grade = 'C判定'; gradeEmoji = '🔴'; gradeClass = 'bad';
       gradeMsg = 'この条件のまま買い続けると、長期では資金が減る可能性があります';
+      gradeHook = 'どんな条件なら資金が減りにくいのか、実データで確認できます。';
     }
     $('diagnosisPanel').className = 'diagnosis-panel ' + gradeClass;
     $('diagnosisEmoji').textContent = gradeEmoji;
     $('diagnosisGrade').textContent = grade;
     $('diagnosisMessage').textContent = gradeMsg;
+    $('diagnosisHook').textContent = gradeHook;
 
     lastShareText = `自分の馬券をUMALABで診断したら回収率${fmtPct(recovery,1)}%だった🏇`;
 
