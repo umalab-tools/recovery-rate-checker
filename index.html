@@ -3,8 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>回収率チェッカー | UMALAB</title>
+<title>競馬 回収率チェッカー | UMALAB</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8F%87</text></svg>">
 <meta name="description" content="的中率・オッズ・購入額から期待払戻・期待損益・連敗確率・損益分岐点を計算する無料診断ツール。UMALABの地方競馬AI検証データとの比較付き。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://umalab-tools.github.io/recovery-rate-checker/">
+<meta property="og:title" content="競馬 回収率チェッカー | UMALAB">
+<meta property="og:description" content="的中率・オッズを入れると30秒で期待回収率を診断。UMALABが46,378レースを検証して使っている計算式をそのまま公開しています。">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="競馬 回収率チェッカー | UMALAB">
+<meta name="twitter:description" content="的中率・オッズを入れると30秒で期待回収率を診断。UMALABが46,378レースを検証して使っている計算式をそのまま公開しています。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -454,6 +463,18 @@
     font-size:15px;
     margin:0 0 6px;
   }
+  .diagnosis-actionable{
+    display:inline-block;
+    font-family:"Noto Sans JP",sans-serif;
+    font-size:12px;
+    color:var(--text-muted);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:8px 12px;
+    margin:0 0 10px;
+    text-align:left;
+  }
   .diagnosis-hook{
     font-family:"Noto Sans JP",sans-serif;
     font-size:13px;
@@ -482,6 +503,7 @@
     min-height:36px;
   }
   .share-btn:active{opacity:0.8;}
+  .share-btn[hidden]{display:none;}
 
   .cta-strong{
     background:linear-gradient(155deg, var(--accent-strong), var(--accent));
@@ -603,7 +625,7 @@
     <h1>回収率チェッカー</h1>
     <p class="subtitle">あなたの馬券、本当にプラス期待値？30秒で無料診断。</p>
     <p class="lede">的中率・平均オッズ・購入額を入れると、期待払戻・期待損益・連敗確率・損益分岐点を一度に計算します。地方競馬AI検証プロジェクト「UMALAB」が、自分たちのバックテストで使っている計算式をそのまま公開しています。</p>
-    <p class="disclaimer"><strong>これは統計計算の学習用ツールです。</strong>入力した的中率・オッズが将来も続く保証はありません。「プラス想定」の表示は、あくまで入力値をそのまま計算した理論値であり、実際に勝てることを保証するものではありません。</p>
+    <p class="disclaimer"><strong>これは統計計算の学習用ツールです。</strong>入力した的中率・オッズが将来も続く保証はありません。「A判定」などの表示は、あくまで入力値をそのまま計算した理論値であり、実際に勝てることを保証するものではありません。</p>
     <a class="header-link" id="headerLink">UMALABが実際に検証した46,378レースの結果はこちら →</a>
   </header>
 
@@ -655,6 +677,7 @@
       <span class="diagnosis-grade" id="diagnosisGrade">A判定</span>
     </div>
     <p class="diagnosis-message" id="diagnosisMessage">プラス期待値圏です</p>
+    <p class="diagnosis-actionable" id="diagnosisActionable">目安として、同じ的中率ならオッズが1.11倍を下回ると損益分岐点を割り込みます。</p>
     <p class="diagnosis-hook" id="diagnosisHook">この条件、実際の46,378レースではどうだったか気になりませんか？</p>
     <p class="diagnosis-note">※あくまで入力値をそのまま計算した理論値です。将来の利益を保証するものではありません。</p>
     <button type="button" class="share-btn" id="shareBtn" hidden>🔗 診断結果をシェア</button>
@@ -789,7 +812,7 @@
   <div class="data-panel">
     <span class="eyebrow2">Reality check</span>
     <h2>理論値と、実際の競馬ではどうなるか</h2>
-    <p>ここまでの数字は「入力した的中率・オッズがそのまま続いた場合」の理論値です。UMALABは地方競馬15競馬場・46,378レース分の実データで、これと似た条件を実際に検証しています。</p>
+    <p>ここまでの数字は「入力した的中率・オッズがそのまま続いた場合」の理論値です。UMALABは地方競馬15競馬場・46,378レース分の実データ（2023年8月〜2026年7月）で、これと似た条件を実際に検証しています。</p>
     <div class="data-compare">
       <div class="data-card">
         <div class="k">あなたの入力（理論値）</div>
@@ -811,7 +834,7 @@
 
   <footer>
     UMALABの検証では、単一の点推定（1回計算しただけの回収率）は信頼区間・サンプル数とあわせて確認しています。<br>
-    詳しい検証プロセスは note マガジン「UMALAB｜AI競馬解析」で公開しています。
+    詳しい検証プロセスは <a id="footerMagazineLink" target="_blank" rel="noopener noreferrer">noteマガジン「UMALAB｜AI競馬解析」</a>で公開しています。
   </footer>
 </div>
 
@@ -821,25 +844,50 @@
   const NOTE_ARTICLE_URL = "https://note.com/umalab_ai/n/n93bd47f51f54";
   // UMALAB PRO（有料800円、公開済み: 2026-09-09）
   const NOTE_PRO_URL = "https://note.com/umalab_ai/n/nc2fd5706d720";
+  // noteマガジン（UMALABの記事一覧、公開済み）
+  const NOTE_PROFILE_URL = "https://note.com/umalab_ai";
+
+  // どのCTAがクリックされたかを後から判別できるよう、リンク先に
+  // utm_contentだけ変えたクエリパラメータを付与する（note側の解析
+  // ツールで参照元URLを見た際、どの設置位置からの流入か分かるように
+  // するための下準備。現時点ではnote標準ダッシュボードでの表示可否は
+  // 未確認だが、将来アクセス解析を追加した際にそのまま使える）。
+  function withUtm(url, content){
+    if(!url) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    return url + sep + 'utm_source=checker&utm_medium=cta&utm_content=' + encodeURIComponent(content);
+  }
 
   const headerLink = document.getElementById('headerLink');
   const ctaArticleLink = document.getElementById('ctaArticleLink');
   const ctaProBtn = document.getElementById('ctaProBtn');
   const ctaProBtnTop = document.getElementById('ctaProBtnTop');
-  [headerLink, ctaArticleLink].forEach(el => {
+  const footerMagazineLink = document.getElementById('footerMagazineLink');
+  const articleLinks = [
+    [headerLink, 'header'],
+    [ctaArticleLink, 'reality_check_secondary']
+  ];
+  articleLinks.forEach(([el, content]) => {
     if(NOTE_ARTICLE_URL && el){
-      el.setAttribute('href', NOTE_ARTICLE_URL);
+      el.setAttribute('href', withUtm(NOTE_ARTICLE_URL, content));
       el.setAttribute('target', '_blank');
       el.setAttribute('rel', 'noopener noreferrer');
     }
   });
-  [ctaProBtn, ctaProBtnTop].forEach(el => {
+  const proLinks = [
+    [ctaProBtnTop, 'diagnosis_top'],
+    [ctaProBtn, 'reality_check_bottom']
+  ];
+  proLinks.forEach(([el, content]) => {
     if(NOTE_PRO_URL && el){
-      el.setAttribute('href', NOTE_PRO_URL);
+      el.setAttribute('href', withUtm(NOTE_PRO_URL, content));
       el.setAttribute('target', '_blank');
       el.setAttribute('rel', 'noopener noreferrer');
     }
   });
+  if(NOTE_PROFILE_URL && footerMagazineLink){
+    footerMagazineLink.setAttribute('href', withUtm(NOTE_PROFILE_URL, 'footer'));
+  }
   // 各URLが空の間は<a>にhref属性を付けない。
   // href属性のない<a>はリンクとして機能しない(タップしても何も起きない)ため、
   // 空リンクや#へのダミーリンクを作らずに「準備中」の状態を安全に表現できる。
@@ -878,9 +926,16 @@
     let stake = parseFloat(stakeEl.value);
     let n = parseInt(racesEl.value, 10);
 
-    if(!(p > 0 && p < 100) || !(odds > 1) || !(stake > 0) || !(n > 0)){
+    // 空欄・非数値の間だけ計算を止める。範囲外の数値（的中率100等）は
+    // 早期returnで画面を無反応に見せるのではなく、有効な範囲に補正して
+    // 必ず結果を表示する（入力ミスをツールの不具合と誤解させないため）。
+    if(isNaN(p) || isNaN(odds) || isNaN(stake) || isNaN(n)){
       return;
     }
+    p = Math.min(Math.max(p, 0.1), 99.9);
+    odds = Math.max(odds, 1.01);
+    stake = Math.max(stake, 1);
+    n = Math.max(n, 1);
     const pFrac = p / 100;
     const recovery = pFrac * odds * 100;
     const totalStake = stake * n;
@@ -915,27 +970,36 @@
     // 自分事化した診断（A/B/C判定）。回収率100%/90%を境界にした
     // シンプルな3段階評価。統計的な計算結果であり、将来の利益を
     // 保証するものではない旨を診断パネル内に明記している。
-    let grade, gradeEmoji, gradeMsg, gradeClass, gradeHook;
+    let grade, gradeEmoji, gradeMsg, gradeClass, gradeHook, gradeActionable;
+    const bOdds = breakevenOdds.toFixed(2);
+    const bHit = fmtPct(breakevenHitRate, 1) + '%';
     if(recovery >= 100){
       grade = 'A判定'; gradeEmoji = '🟢'; gradeClass = 'good';
       gradeMsg = 'プラス期待値圏です';
       gradeHook = 'この条件、実際の46,378レースでも同じ傾向か気になりませんか？';
+      gradeActionable = `目安として、同じ的中率ならオッズが${bOdds}倍を下回ると損益分岐点を割り込みます。`;
     } else if(recovery >= 90){
       grade = 'B判定'; gradeEmoji = '🟡'; gradeClass = 'warn';
-      gradeMsg = 'ほぼトントン。条件を絞る余地があります';
+      gradeMsg = '現在の入力では、わずかにマイナスです。条件を絞る余地があります';
       gradeHook = 'どう絞ればいいのか、実データの条件別分析で確認できます。';
+      gradeActionable = `同じ的中率のままなら平均オッズ${bOdds}倍以上、同じオッズなら的中率${bHit}以上が損益分岐点の目安です。`;
     } else {
       grade = 'C判定'; gradeEmoji = '🔴'; gradeClass = 'bad';
       gradeMsg = 'この条件のまま買い続けると、長期では資金が減る可能性があります';
       gradeHook = 'どんな条件なら資金が減りにくいのか、実データで確認できます。';
+      gradeActionable = `損益分岐点の目安は、同じ的中率ならオッズ${bOdds}倍、同じオッズなら的中率${bHit}です。今の入力とは差があります。`;
     }
     $('diagnosisPanel').className = 'diagnosis-panel ' + gradeClass;
     $('diagnosisEmoji').textContent = gradeEmoji;
     $('diagnosisGrade').textContent = grade;
     $('diagnosisMessage').textContent = gradeMsg;
+    $('diagnosisActionable').textContent = gradeActionable;
     $('diagnosisHook').textContent = gradeHook;
 
-    lastShareText = `自分の馬券をUMALABで診断したら回収率${fmtPct(recovery,1)}%だった🏇`;
+    const shareSuffix = gradeClass === 'good'
+      ? 'あなたの馬券はどっち？30秒で診断できます。'
+      : '「当たる」と「儲かる」は別物でした。あなたの馬券はどっち？';
+    lastShareText = `自分の馬券をUMALABで診断したら回収率${fmtPct(recovery,1)}%（${grade}）だった🏇\n${shareSuffix}`;
 
     $('heroHeadline').innerHTML =
       `あなたの条件（的中率${fmtPct(p,1)}%・オッズ${odds.toFixed(2)}倍）なら、` +
@@ -951,17 +1015,17 @@
     const vicon = $('verdictIcon');
     const vtext = $('verdictText');
 
-    let level, label, msg, detail;
+    let level, msg, detail;
     if(recovery >= 105){
-      level = 'good'; label='プラス想定'; vicon.textContent='GREEN';
+      level = 'good'; vicon.textContent='GREEN';
       detail = `期待回収率が${fmtPct(recovery,1)}%と100%を上回っています。ただし、これは1回計算しただけの点推定です。サンプル数が少ない・信頼区間を確認していない場合は、偶然の結果である可能性があります。`;
       msg = '入力値の通りなら理論上プラスですが、点推定だけで判断しないでください。';
     } else if(recovery >= 95){
-      level = 'warn'; label='ほぼ均衡'; vicon.textContent='YELLOW';
+      level = 'warn'; vicon.textContent='YELLOW';
       detail = `期待回収率が${fmtPct(recovery,1)}%で、100%に近い水準です。わずかな誤差やオッズ変動でプラスにもマイナスにもなりうる、判断の難しい境界線上の条件です。`;
       msg = 'この水準では「勝てる」とも「負ける」とも言い切れません。';
     } else {
-      level = 'bad'; label='マイナス想定'; vicon.textContent='RED';
+      level = 'bad'; vicon.textContent='RED';
       detail = `期待回収率が${fmtPct(recovery,1)}%にとどまり、100%を下回っています。この条件を続けた場合、理論上は購入額を回収しきれない見込みです。`;
       msg = '現在の入力値では、理論上の期待値はマイナスです。';
     }
