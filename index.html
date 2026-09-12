@@ -14,6 +14,8 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="競馬 回収率チェッカー | UMALAB">
 <meta name="twitter:description" content="的中率・オッズを入れると30秒で期待回収率を診断。UMALABが46,378レースを検証して使っている計算式をそのまま公開しています。">
+<!-- アクセス解析（無料、GoatCounter。サイトコード: umalab-checker） -->
+<script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -527,6 +529,13 @@
     margin:0 0 16px;
     opacity:0.95;
   }
+  .cta-strong-question{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:700;
+    font-size:clamp(14.5px,3.8vw,16.5px);
+    margin:0 0 10px;
+    text-wrap:balance;
+  }
   .cta-strong-body strong{
     font-family:"JetBrains Mono",monospace;
     font-size:15px;
@@ -685,7 +694,9 @@
 
   <div class="cta-strong">
     <p class="cta-strong-lead">その判定、理論値だけで大丈夫ですか？</p>
-    <p class="cta-strong-body">今の診断は、入力した的中率・オッズをそのまま計算した理論値です。UMALABでは<strong>46,378レース</strong>の実データで、似た条件が実際にどうだったかまで検証しています。</p>
+    <p class="cta-strong-body">今の診断は、入力した的中率・オッズをそのまま計算した理論値です。実際の競馬では、これだけでは「勝てる条件」かどうか分かりません。</p>
+    <p class="cta-strong-question">では、どんな条件なら回収率100%を超えたのか？</p>
+    <p class="cta-strong-body">UMALABが<strong>46,378レース</strong>を検証したところ、単独では回収率100%を割っていた条件同士でも、組み合わせ方によっては回収率<strong>123.81%</strong>になったケースが見つかりました（N=525件、検証中の候補条件）。後出しではないリアルタイムのPaper Tradingでの追跡も始めています。</p>
     <div class="compare-box">
       <div class="compare-col">
         <div class="compare-head">無料（このツール）</div>
@@ -703,11 +714,11 @@
           <li>条件別の分析</li>
           <li>買う・見送るの判断材料</li>
           <li>サンプル数・信頼区間・統計検定</li>
-          <li>EVルールの検証結果</li>
+          <li>EVルール・新候補ルールの検証結果</li>
         </ul>
       </div>
     </div>
-    <a class="cta-btn cta-strong-btn" id="ctaProBtnTop">▶ 自分の条件を46,378レースの実データと照合する（UMALAB PRO）</a>
+    <a class="cta-btn cta-strong-btn" id="ctaProBtnTop">▶ 回収率123.81%になった条件を見る（UMALAB PRO・800円）</a>
   </div>
 
   <div class="panel">
@@ -827,7 +838,7 @@
     <p>この続き（EVルールの検証・買わない基準・AIの限界など）と、46,378レース分の全データ・分析ツールは「UMALAB PRO」にまとめています。</p>
     <div class="cta-note">
       <span>買う・見送るの判断基準まで見てみませんか？</span>
-      <a class="cta-btn" id="ctaProBtn">▶ 46,378レースの全データを見る（UMALAB PRO）</a>
+      <a class="cta-btn" id="ctaProBtn">▶ 買う・見送るの基準を全部見る（UMALAB PRO・800円）</a>
     </div>
     <a class="cta-secondary" id="ctaArticleLink">先に無料の検証記事を読む →</a>
   </div>
@@ -891,6 +902,25 @@
   // 各URLが空の間は<a>にhref属性を付けない。
   // href属性のない<a>はリンクとして機能しない(タップしても何も起きない)ため、
   // 空リンクや#へのダミーリンクを作らずに「準備中」の状態を安全に表現できる。
+
+  // クリック計測（GoatCounter、無料、サイトコード: umalab-checker）。
+  // 「訪問した」だけでなく「PROへ進もうとした」を区別できるよう、
+  // 位置ごとに別イベント名で記録する。GoatCounterのスクリプト読み込みが
+  // 何らかの理由で失敗しても、window.goatcounterが存在しないだけで
+  // エラーにはならない。
+  function trackClick(el, eventPath){
+    if(!el) return;
+    el.addEventListener('click', function(){
+      if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+        window.goatcounter.count({path: eventPath, title: eventPath, event: true});
+      }
+    });
+  }
+  trackClick(ctaProBtnTop, 'click-cta-pro-diagnosis-top');
+  trackClick(ctaProBtn, 'click-cta-pro-reality-check');
+  trackClick(ctaArticleLink, 'click-cta-article-reality-check');
+  trackClick(headerLink, 'click-cta-article-header');
+  trackClick(footerMagazineLink, 'click-cta-magazine-footer');
 
   const $ = id => document.getElementById(id);
   const hitRateEl = $('hitRate'), oddsEl = $('odds'), stakeEl = $('stake'), racesEl = $('races');
@@ -1056,7 +1086,20 @@
     $('streakTable').innerHTML = rows;
   }
 
-  [hitRateEl, oddsEl, stakeEl, racesEl].forEach(el => el.addEventListener('input', compute));
+  // 「訪問しただけ」と「実際に自分の条件を入力して使った」を区別する
+  // ための計測（初回の入力操作でのみ1回だけ記録する）。
+  let hasTrackedUsage = false;
+  function trackUsageOnce(){
+    if(hasTrackedUsage) return;
+    hasTrackedUsage = true;
+    if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+      window.goatcounter.count({path: 'tool-used-first-input', title: 'tool-used-first-input', event: true});
+    }
+  }
+  [hitRateEl, oddsEl, stakeEl, racesEl].forEach(el => el.addEventListener('input', function(){
+    compute();
+    trackUsageOnce();
+  }));
   compute();
 })();
 </script>
