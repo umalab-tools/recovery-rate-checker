@@ -845,7 +845,8 @@
 
   <footer>
     UMALABの検証では、単一の点推定（1回計算しただけの回収率）は信頼区間・サンプル数とあわせて確認しています。<br>
-    詳しい検証プロセスは <a id="footerMagazineLink" target="_blank" rel="noopener noreferrer">noteマガジン「UMALAB｜AI競馬解析」</a>で公開しています。
+    詳しい検証プロセスは <a id="footerMagazineLink" target="_blank" rel="noopener noreferrer">noteマガジン「UMALAB｜AI競馬解析」</a>で公開しています。<br>
+    複数点買いをすることが多い方は、<a id="footerTrigamiLink" href="./trigami-checker.html">トリガミ判定ツール</a>もあわせてどうぞ。
   </footer>
 </div>
 
@@ -921,6 +922,7 @@
   trackClick(ctaArticleLink, 'click-cta-article-reality-check');
   trackClick(headerLink, 'click-cta-article-header');
   trackClick(footerMagazineLink, 'click-cta-magazine-footer');
+  trackClick(document.getElementById('footerTrigamiLink'), 'click-cta-trigami-footer');
 
   const $ = id => document.getElementById(id);
   const hitRateEl = $('hitRate'), oddsEl = $('odds'), stakeEl = $('stake'), racesEl = $('races');
@@ -935,19 +937,41 @@
   // feature detectionで安全にガードする）
   let lastShareText = '';
   const shareBtn = $('shareBtn');
+  const shareBtnDefaultLabel = shareBtn ? shareBtn.textContent : '';
   if(shareBtn){
-    if(typeof navigator.share === 'function'){
-      shareBtn.hidden = false;
-      shareBtn.addEventListener('click', () => {
+    shareBtn.hidden = false;
+    shareBtn.addEventListener('click', () => {
+      if(typeof navigator.share === 'function'){
         try{
           navigator.share({ text: lastShareText, url: location.href }).catch(() => {});
+          if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+            window.goatcounter.count({path: 'share-native', title: 'share-native', event: true});
+          }
+          return;
         }catch(e){
-          // 共有に失敗しても画面は壊さない
+          // navigator.shareが例外を投げた場合はコピーにフォールバックする
         }
-      });
-    } else {
-      shareBtn.hidden = true;
-    }
+      }
+      // navigator.share非対応（主にデスクトップブラウザ）向けのフォールバック:
+      // クリップボードにコピーし、ボタンの文言で一時的に完了を伝える。
+      const textToCopy = lastShareText + '\n' + location.href;
+      const showCopied = () => {
+        shareBtn.textContent = '✅ コピーしました（Xに貼り付けできます）';
+        if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+          window.goatcounter.count({path: 'share-clipboard', title: 'share-clipboard', event: true});
+        }
+        setTimeout(() => { shareBtn.textContent = shareBtnDefaultLabel; }, 2500);
+      };
+      if(navigator.clipboard && typeof navigator.clipboard.writeText === 'function'){
+        navigator.clipboard.writeText(textToCopy).then(showCopied).catch(() => {
+          shareBtn.textContent = '診断結果をシェア（コピー失敗、手動で選択してください）';
+          setTimeout(() => { shareBtn.textContent = shareBtnDefaultLabel; }, 2500);
+        });
+      } else {
+        shareBtn.textContent = '診断結果をシェア（このブラウザは非対応です）';
+        setTimeout(() => { shareBtn.textContent = shareBtnDefaultLabel; }, 2500);
+      }
+    });
   }
 
   function compute(){
@@ -1003,11 +1027,16 @@
     let grade, gradeEmoji, gradeMsg, gradeClass, gradeHook, gradeActionable;
     const bOdds = breakevenOdds.toFixed(2);
     const bHit = fmtPct(breakevenHitRate, 1) + '%';
-    if(recovery >= 100){
+    if(recovery >= 110){
+      grade = 'S判定'; gradeEmoji = '🌟'; gradeClass = 'good';
+      gradeMsg = 'はっきりとしたプラス期待値です。ただし、これは1回の理論値です';
+      gradeHook = '期待値がプラスでも、少ない試行回数では外れが続くこともあります。実際の46,378レースでの連敗・変動幅を確認しませんか？';
+      gradeActionable = `目安として、同じ的中率ならオッズが${bOdds}倍を下回ると損益分岐点を割り込みます。試行回数を増やすほど理論値に近づきます。`;
+    } else if(recovery >= 100){
       grade = 'A判定'; gradeEmoji = '🟢'; gradeClass = 'good';
-      gradeMsg = 'プラス期待値圏です';
-      gradeHook = 'この条件、実際の46,378レースでも同じ傾向か気になりませんか？';
-      gradeActionable = `目安として、同じ的中率ならオッズが${bOdds}倍を下回ると損益分岐点を割り込みます。`;
+      gradeMsg = 'わずかながらプラス期待値圏です。優位性はまだ小さめです';
+      gradeHook = 'この小さな優位性、条件をどう絞ればもっとはっきりするか気になりませんか？';
+      gradeActionable = `目安として、同じ的中率ならオッズが${bOdds}倍を下回ると損益分岐点を割り込みます。優位性が小さいうちは、条件を絞り込む余地があります。`;
     } else if(recovery >= 90){
       grade = 'B判定'; gradeEmoji = '🟡'; gradeClass = 'warn';
       gradeMsg = '現在の入力では、わずかにマイナスです。条件を絞る余地があります';

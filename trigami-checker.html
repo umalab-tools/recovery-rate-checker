@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>競馬 トリガミ判定ツール | UMALAB</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8F%87</text></svg>">
+<meta name="description" content="複数の馬に同じ金額で賭けたとき、的中しても『トリガミ（当たったのに損）』にならないか30秒で判定する無料ツール。黒字化に必要な最低オッズも計算します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://umalab-tools.github.io/recovery-rate-checker/trigami-checker.html">
+<meta property="og:title" content="競馬 トリガミ判定ツール | UMALAB">
+<meta property="og:description" content="買い目点数と的中オッズを入れるだけで、トリガミかどうか・黒字化に必要な最低オッズが分かる無料ツール。">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="競馬 トリガミ判定ツール | UMALAB">
+<meta name="twitter:description" content="買い目点数と的中オッズを入れるだけで、トリガミかどうか・黒字化に必要な最低オッズが分かる無料ツール。">
+<!-- アクセス解析（無料、GoatCounter。サイトコード: umalab-checker、回収率チェッカーと共通） -->
+<script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;}
+  :root{
+    --bg:#f6f4ee; --surface:#ffffff; --surface-alt:#eeebe1;
+    --text:#1d2318; --text-muted:#5c6455; --border:#dcd5c5;
+    --accent:#2f6e4b; --accent-strong:#1f4d34; --accent-soft:#e3ede5;
+    --good:#2f6e4b; --good-soft:#e3ede5;
+    --warn:#a8761f; --warn-soft:#f5ecd8;
+    --bad:#af3a35; --bad-soft:#f6e3e0;
+    --shadow: 0 1px 2px rgba(30,35,25,0.06), 0 8px 24px -12px rgba(30,35,25,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12150f; --surface:#1a1f16; --surface-alt:#20261b;
+      --text:#eae7dc; --text-muted:#a4ac97; --border:#333c2b;
+      --accent:#71c191; --accent-strong:#93d8ac; --accent-soft:#1e3327;
+      --good:#71c191; --good-soft:#1e3327;
+      --warn:#dcb15a; --warn-soft:#332b16;
+      --bad:#e2867d; --bad-soft:#382019;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px -12px rgba(0,0,0,0.5);
+    }
+  }
+  body{background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
+  .wrap{max-width:640px;margin:0 auto;padding:32px 18px 72px;}
+  header{margin-bottom:26px;}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:10px;}
+  h1{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-weight:900;font-size:clamp(24px,7vw,34px);margin:0 0 10px;text-wrap:balance;letter-spacing:-0.01em;}
+  .lede{color:var(--text-muted);font-size:14px;margin:0 0 14px;}
+  .disclaimer{padding:12px 14px;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text-muted);margin-bottom:14px;}
+  .header-link{display:inline-block;font-size:13px;color:var(--accent);font-weight:700;text-decoration:none;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px 20px;margin-bottom:18px;}
+  .panel h2{font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;font-weight:700;margin:0 0 16px;}
+  .grid-inputs{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:420px){.grid-inputs{grid-template-columns:1fr;}}
+  label{display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:500;color:var(--text-muted);}
+  .input-row{display:flex;align-items:center;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;padding:0 12px;}
+  input[type="number"]{flex:1;border:none;background:transparent;padding:12px 0;font-family:"JetBrains Mono",monospace;font-size:17px;color:var(--text);width:0;}
+  input[type="number"]:focus{outline:none;}
+  .unit{font-size:12.5px;color:var(--text-muted);}
+  .result{border-radius:16px;padding:24px 20px;margin-bottom:18px;text-align:center;border:1px solid var(--border);}
+  .result.good{background:var(--good-soft);}
+  .result.bad{background:var(--bad-soft);}
+  .result-badge{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:26px;margin:0 0 10px;}
+  .result-msg{font-size:14px;margin:0 0 4px;}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+  .stat{background:var(--surface-alt);border-radius:12px;padding:12px 14px;}
+  .stat-label{font-size:11.5px;color:var(--text-muted);margin-bottom:4px;}
+  .stat-value{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:19px;}
+  .cta-strong{background:linear-gradient(155deg, var(--accent-strong), var(--accent));border-radius:16px;padding:22px 20px;margin-bottom:18px;color:#f4fbf6;text-align:center;box-shadow:var(--shadow);}
+  .cta-strong p{font-size:13.5px;line-height:1.8;margin:0 0 14px;opacity:0.95;}
+  .cta-strong p strong{font-family:"JetBrains Mono",monospace;font-size:15px;}
+  .cta-btn{display:block;width:100%;max-width:380px;margin:0 auto;text-align:center;text-decoration:none;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;padding:14px 18px;border-radius:12px;min-height:44px;background:#fff;color:var(--accent-strong);box-shadow:var(--shadow);}
+  .cta-btn:not([href]){opacity:0.5;pointer-events:none;}
+  .cta-btn-outline{display:inline-block;margin-top:10px;font-size:13px;color:var(--accent);font-weight:700;text-decoration:none;}
+  footer{margin-top:24px;font-size:11.5px;color:var(--text-muted);text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">UMALAB DATA TOOL</span>
+    <h1>トリガミ判定ツール</h1>
+    <p class="lede">同じ金額で複数の馬に賭けたとき、的中しても「トリガミ（当たったのに損）」にならないか30秒で無料診断します。黒字化に必要な最低オッズも計算します。</p>
+    <p class="disclaimer"><strong>これは入力値をそのまま計算する診断ツールです。</strong>実際の払戻はオッズ変動により確定時まで変わる場合があります。将来の的中・利益を保証するものではありません。</p>
+    <a class="header-link" id="headerLink">回収率チェッカーで馬券全体の期待値も診断する →</a>
+  </header>
+
+  <div class="panel">
+    <h2>1. 買い目を入力（同額を複数点に賭けた場合）</h2>
+    <div class="grid-inputs">
+      <label>購入点数
+        <div class="input-row">
+          <input type="number" id="points" value="3" min="1" step="1" inputmode="numeric">
+          <span class="unit">点</span>
+        </div>
+      </label>
+      <label>1点あたりの購入額
+        <div class="input-row">
+          <input type="number" id="stake" value="100" min="1" step="10" inputmode="numeric">
+          <span class="unit">円</span>
+        </div>
+      </label>
+      <label>的中した馬のオッズ
+        <div class="input-row">
+          <input type="number" id="hitOdds" value="2.5" min="1.01" step="0.1" inputmode="decimal">
+          <span class="unit">倍</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div class="result" id="resultPanel">
+    <p class="result-badge" id="resultBadge">判定</p>
+    <p class="result-msg" id="resultMsg"></p>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-label">総購入額</div>
+        <div class="stat-value" id="totalStake">300円</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">払戻額</div>
+        <div class="stat-value" id="payout">250円</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">損益</div>
+        <div class="stat-value" id="pnl">-50円</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">黒字化に必要な最低オッズ</div>
+        <div class="stat-value" id="breakevenOdds">3.00倍</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-strong">
+    <p>同額の複数点買いでは「購入点数＝黒字化に必要な最低オッズ」が目安になります（3点買いなら3倍以上、5点買いなら5倍以上）。実際にどのオッズ帯・人気帯でトリガミが起きやすいかは、UMALABが46,378レースの実データで検証しています。</p>
+    <a class="cta-btn" id="ctaProBtn">▶ トリガミになりやすい条件を見る（UMALAB PRO・800円）</a>
+  </div>
+
+  <div class="panel">
+    <h2>2. 自分の馬券全体の期待値も確認する</h2>
+    <p style="font-size:13px;color:var(--text-muted);margin:0 0 4px;">トリガミは「1レース・複数点買い」の話ですが、長期的に勝てるかどうかは的中率とオッズの掛け算（回収率）で決まります。</p>
+    <a class="cta-btn-outline" id="ctaCheckerLink">▶ 無料の回収率チェッカーで確認する →</a>
+  </div>
+
+  <footer>
+    UMALABは46,378レースの実データから「買う・見送る」を数字で判断する検証を続けています。<br>
+    詳しい検証プロセスは <a id="footerMagazineLink" target="_blank" rel="noopener noreferrer">noteマガジン「UMALAB｜AI競馬解析」</a>で公開しています。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const NOTE_PRO_URL = "https://note.com/umalab_ai/n/nc2fd5706d720";
+  const NOTE_PROFILE_URL = "https://note.com/umalab_ai";
+  const CHECKER_URL = "https://umalab-tools.github.io/recovery-rate-checker/";
+
+  function withUtm(url, content){
+    if(!url) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    return url + sep + 'utm_source=trigami&utm_medium=cta&utm_content=' + encodeURIComponent(content);
+  }
+
+  const $ = id => document.getElementById(id);
+  const headerLink = $('headerLink');
+  const ctaProBtn = $('ctaProBtn');
+  const ctaCheckerLink = $('ctaCheckerLink');
+  const footerMagazineLink = $('footerMagazineLink');
+
+  if(headerLink){
+    headerLink.setAttribute('href', withUtm(CHECKER_URL, 'header'));
+  }
+  if(ctaCheckerLink){
+    ctaCheckerLink.setAttribute('href', withUtm(CHECKER_URL, 'panel2'));
+  }
+  if(NOTE_PRO_URL && ctaProBtn){
+    ctaProBtn.setAttribute('href', withUtm(NOTE_PRO_URL, 'trigami_cta'));
+    ctaProBtn.setAttribute('target', '_blank');
+    ctaProBtn.setAttribute('rel', 'noopener noreferrer');
+  }
+  if(NOTE_PROFILE_URL && footerMagazineLink){
+    footerMagazineLink.setAttribute('href', withUtm(NOTE_PROFILE_URL, 'footer'));
+  }
+
+  function trackClick(el, eventPath){
+    if(!el) return;
+    el.addEventListener('click', function(){
+      if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+        window.goatcounter.count({path: eventPath, title: eventPath, event: true});
+      }
+    });
+  }
+  trackClick(ctaProBtn, 'trigami-click-cta-pro');
+  trackClick(ctaCheckerLink, 'trigami-click-cta-checker');
+  trackClick(headerLink, 'trigami-click-header-checker');
+  trackClick(footerMagazineLink, 'trigami-click-magazine-footer');
+
+  const pointsEl = $('points'), stakeEl = $('stake'), hitOddsEl = $('hitOdds');
+
+  function fmtYen(x){ return Math.round(x).toLocaleString('ja-JP') + '円'; }
+
+  let hasTrackedUsage = false;
+  function trackUsageOnce(){
+    if(hasTrackedUsage) return;
+    hasTrackedUsage = true;
+    if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+      window.goatcounter.count({path: 'trigami-tool-used-first-input', title: 'trigami-tool-used-first-input', event: true});
+    }
+  }
+
+  function compute(){
+    let points = parseFloat(pointsEl.value);
+    let stake = parseFloat(stakeEl.value);
+    let odds = parseFloat(hitOddsEl.value);
+    if(isNaN(points) || isNaN(stake) || isNaN(odds)) return;
+    points = Math.max(Math.round(points), 1);
+    stake = Math.max(stake, 1);
+    odds = Math.max(odds, 1.01);
+
+    const totalStake = points * stake;
+    const payout = stake * odds;
+    const pnl = payout - totalStake;
+    const breakevenOdds = points; // 同額買いの場合、黒字化に必要な最低オッズ = 購入点数
+
+    const panel = $('resultPanel');
+    const badge = $('resultBadge');
+    const msg = $('resultMsg');
+
+    if(pnl < 0){
+      panel.className = 'result bad';
+      badge.textContent = '🔴 トリガミです';
+      msg.textContent = `的中しても、購入額全体では${fmtYen(Math.abs(pnl))}のマイナスです。`;
+    } else if(pnl === 0){
+      panel.className = 'result bad';
+      badge.textContent = '🟡 トントンです';
+      msg.textContent = '的中しても損益ゼロ。手数料等を考えると実質マイナスです。';
+    } else {
+      panel.className = 'result good';
+      badge.textContent = '🟢 黒字的中です';
+      msg.textContent = `的中すれば、購入額全体で${fmtYen(pnl)}のプラスです。`;
+    }
+
+    $('totalStake').textContent = fmtYen(totalStake);
+    $('payout').textContent = fmtYen(payout);
+    $('pnl').textContent = (pnl >= 0 ? '+' : '') + fmtYen(pnl).replace('円','') + '円';
+    $('breakevenOdds').textContent = breakevenOdds.toFixed(2) + '倍';
+  }
+
+  [pointsEl, stakeEl, hitOddsEl].forEach(el => el.addEventListener('input', function(){
+    compute();
+    trackUsageOnce();
+  }));
+  compute();
+})();
+</script>
+</body>
+</html>
