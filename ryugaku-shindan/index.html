@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>留学・ワーホリ スタイル診断 | 4つの質問で自分に合う行き方がわかる</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%E2%9C%88%EF%B8%8F</text></svg>">
+<meta name="description" content="留学・ワーホリで失敗しやすいポイントは「目的」「予算」「期間」「英語レベル」のズレ。4つの質問に答えるだけで、あなたに合う留学スタイルと注意点を無料で診断します。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="留学・ワーホリ スタイル診断 | 4つの質問で自分に合う行き方がわかる">
+<meta property="og:description" content="目的・予算・期間・英語レベルを選ぶだけ。あなたに合う留学スタイルを30秒で無料診断します。">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="留学・ワーホリ スタイル診断">
+<meta name="twitter:description" content="4つの質問で、あなたに合う留学スタイルと注意点が30秒でわかる無料診断ツール。">
+<!--
+  アクセス解析: 本ページは独立サイトのため、UMALAB側のGoatCounterアカウントとは
+  分離すること。https://www.goatcounter.com/ で無料アカウントを作成し、
+  発行されたサイトコードを下記 data-goatcounter に設定してください。
+  未設定の間はクリック計測が動作しません（エラーにはなりません）。
+-->
+<!-- <script data-goatcounter="https://YOUR-SITE-CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script> -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;}
+  :root{
+    --bg:#f5f3fb; --surface:#ffffff; --surface-alt:#edeaf7;
+    --text:#211f2e; --text-muted:#615d75; --border:#d9d4ea;
+    --accent:#5b4cc4; --accent-strong:#3f3396; --accent-soft:#e7e3fb;
+    --pr-bg:#fff4e0; --pr-text:#8a5a00;
+    --shadow: 0 1px 2px rgba(30,25,50,0.06), 0 8px 24px -12px rgba(30,25,50,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#15131f; --surface:#1c1a29; --surface-alt:#231f33;
+      --text:#ece9f7; --text-muted:#a9a4c2; --border:#332e4a;
+      --accent:#9c8cf0; --accent-strong:#bcb0f7; --accent-soft:#2a2542;
+      --pr-bg:#3a2f12; --pr-text:#e8bd6a;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px -12px rgba(0,0,0,0.5);
+    }
+  }
+  body{background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
+  .wrap{max-width:640px;margin:0 auto;padding:32px 18px 72px;}
+  header{margin-bottom:22px;}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:10px;}
+  h1{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-weight:900;font-size:clamp(24px,7vw,32px);margin:0 0 10px;text-wrap:balance;letter-spacing:-0.01em;}
+  .lede{color:var(--text-muted);font-size:14px;margin:0 0 14px;}
+  .disclaimer{padding:12px 14px;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text-muted);margin-bottom:14px;}
+  .pr-badge{display:inline-block;background:var(--pr-bg);color:var(--pr-text);font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:0.04em;margin-bottom:10px;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px 20px;margin-bottom:18px;}
+  .panel h2{font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;font-weight:700;margin:0 0 16px;}
+  .q{margin-bottom:22px;}
+  .q:last-child{margin-bottom:4px;}
+  .q-label{font-size:13.5px;font-weight:700;margin:0 0 10px;}
+  .opts{display:grid;gap:8px;}
+  .opt{position:relative;}
+  .opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer;}
+  .opt span{display:block;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-size:13.5px;transition:border-color .15s,background .15s;}
+  .opt input:checked + span{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-strong);font-weight:700;}
+  .opt input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px;}
+  .diagnose-btn{display:block;width:100%;margin-top:8px;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;padding:14px 18px;border-radius:12px;min-height:44px;background:var(--accent);color:#fff;border:none;cursor:pointer;box-shadow:var(--shadow);}
+  .diagnose-btn:disabled{opacity:0.45;cursor:not-allowed;}
+  .diagnose-btn:not(:disabled):active{transform:translateY(1px);}
+  .hint{font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px;}
+  .result{display:none;border-radius:16px;padding:24px 20px;margin-bottom:18px;text-align:center;border:1px solid var(--border);background:var(--accent-soft);}
+  .result.show{display:block;}
+  .result-type{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-strong);font-weight:700;margin:0 0 6px;}
+  .result-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:22px;margin:0 0 12px;}
+  .result-msg{font-size:13.5px;text-align:left;margin:0 0 4px;color:var(--text);}
+  .result-points{text-align:left;margin:14px 0 0;padding:0;list-style:none;display:grid;gap:8px;}
+  .result-points li{font-size:12.5px;background:var(--surface);border-radius:10px;padding:10px 12px;border:1px solid var(--border);}
+  .cta-strong{display:none;background:linear-gradient(155deg, var(--accent-strong), var(--accent));border-radius:16px;padding:22px 20px;margin-bottom:18px;color:#f6f4ff;text-align:center;box-shadow:var(--shadow);}
+  .cta-strong.show{display:block;}
+  .cta-strong .pr-badge{background:rgba(255,255,255,0.18);color:#fff;}
+  .cta-strong p{font-size:13.5px;line-height:1.8;margin:8px 0 14px;opacity:0.95;}
+  .cta-btn{display:block;width:100%;max-width:380px;margin:0 auto;text-align:center;text-decoration:none;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;padding:14px 18px;border-radius:12px;min-height:44px;background:#fff;color:var(--accent-strong);box-shadow:var(--shadow);}
+  .cta-sub{font-size:11px;opacity:0.85;margin-top:10px;}
+  .info-panel p{font-size:13px;color:var(--text-muted);margin:0 0 10px;}
+  .info-panel p:last-child{margin-bottom:0;}
+  footer{margin-top:24px;font-size:11px;color:var(--text-muted);text-align:center;}
+  footer a{color:var(--text-muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">STUDY ABROAD TYPE CHECK</span>
+    <h1>留学・ワーホリ スタイル診断</h1>
+    <p class="lede">留学・ワーホリでよくある後悔は「目的」「予算」「期間」「英語レベル」のミスマッチから生まれます。4つの質問に答えるだけで、あなたに合いそうな行き方と注意点を無料で診断します。</p>
+    <p class="disclaimer"><strong>これは入力内容をもとにした簡易診断です。</strong>診断結果は一般的な傾向をもとにした目安であり、個別の渡航可否や費用を保証するものではありません。診断結果には広告（PR）を含みます。</p>
+  </header>
+
+  <div class="panel">
+    <h2>4つの質問に答える</h2>
+
+    <div class="q">
+      <p class="q-label">Q1. 留学・ワーホリの一番の目的は？</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="purpose" value="skill"><span>本気で英語力を伸ばしたい</span></label>
+        <label class="opt"><input type="radio" name="purpose" value="life"><span>海外での暮らしを体験してみたい</span></label>
+        <label class="opt"><input type="radio" name="purpose" value="career"><span>帰国後のキャリアチェンジのきっかけにしたい</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <p class="q-label">Q2. 予算に対する考え方は？</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="budget" value="low"><span>できるだけ費用を抑えたい</span></label>
+        <label class="opt"><input type="radio" name="budget" value="mid"><span>必要なら多少は投資してもいい</span></label>
+        <label class="opt"><input type="radio" name="budget" value="high"><span>費用より内容の質を優先したい</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <p class="q-label">Q3. 想定している期間は？</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="duration" value="short"><span>3ヶ月未満</span></label>
+        <label class="opt"><input type="radio" name="duration" value="mid"><span>3ヶ月〜1年</span></label>
+        <label class="opt"><input type="radio" name="duration" value="long"><span>1年以上</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <p class="q-label">Q4. 今の英語レベルは？</p>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="level" value="beginner"><span>ほぼ初心者</span></label>
+        <label class="opt"><input type="radio" name="level" value="daily"><span>日常会話くらいはできる</span></label>
+        <label class="opt"><input type="radio" name="level" value="business"><span>ビジネスレベル以上</span></label>
+      </div>
+    </div>
+
+    <button class="diagnose-btn" id="diagnoseBtn" disabled>診断結果を見る</button>
+    <p class="hint" id="hintText">4つすべて選ぶと診断できます（あと4問）</p>
+  </div>
+
+  <div class="result" id="resultPanel">
+    <p class="result-type" id="resultType">TYPE</p>
+    <p class="result-title" id="resultTitle"></p>
+    <p class="result-msg" id="resultMsg"></p>
+    <ul class="result-points" id="resultPoints"></ul>
+  </div>
+
+  <div class="cta-strong" id="ctaPanel">
+    <span class="pr-badge">PR</span>
+    <p id="ctaMsg">あなたのタイプに近い人には、費用を抑えたオーダーメイド留学プランの無料カウンセリングが向いています。</p>
+    <a class="cta-btn" id="ctaBtn" href="#" target="_blank" rel="noopener noreferrer sponsored">▶ 無料カウンセリングを予約する</a>
+    <p class="cta-sub">相談は無料・その場での契約義務はありません</p>
+  </div>
+
+  <div class="panel info-panel">
+    <h2>留学・ワーホリの費用でよくある誤解</h2>
+    <p>「留学は高い」というイメージの多くは、語学学校の授業料に加えて航空券・保険・滞在費を別々に見積もることで実際より高く感じてしまうケースです。反対に、渡航先の物価や滞在方法（ホームステイ／シェアハウス／学生寮）によって総額は大きく変わります。</p>
+    <p>また、語学学校選びでは「日本人比率」も英語力の伸びに影響しやすいポイントです。同じ授業料でも、日本人の少ない環境を選べるかどうかで結果が変わることがあります。</p>
+    <p>この診断はあくまで一般的な傾向の目安です。実際の費用・プランは目的地や時期によって変動するため、具体的な見積もりは無料カウンセリングで確認することをおすすめします。</p>
+  </div>
+
+  <footer>
+    本ページは独立運営の情報サイトです。診断結果に含まれるリンクの一部は提携先の紹介（アフィリエイト広告）であり、リンク経由でお申し込みされた場合、運営者が紹介料を受け取ることがあります。紹介料の有無によって診断結果や表示内容が変わることはありません。
+  </footer>
+</div>
+
+<script>
+(function(){
+  // TODO: A8.net提携審査の承認後、実際の成果報酬リンク（商品リンク）に差し替えること。
+  // 現在は審査中のため、広告主の公式ページ（非アフィリエイトリンク）を暫定的に設定している。
+  // 承認後は A8.net管理画面 > プログラム管理 > 商品リンク作成 で発行したURLに置き換える。
+  const CTA_URL_PENDING_REVIEW = "https://ryugaku.yume-kana.com/wh-lp/";
+
+  const $ = id => document.getElementById(id);
+  const form = { purpose: null, budget: null, duration: null, level: null };
+
+  function withUtm(url, content){
+    if(!url) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    return url + sep + 'utm_source=ryugaku_shindan&utm_medium=diagnostic_tool&utm_content=' + encodeURIComponent(content);
+  }
+
+  function trackEvent(eventPath){
+    if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+      window.goatcounter.count({path: eventPath, title: eventPath, event: true});
+    }
+  }
+
+  let hasTrackedStart = false;
+  function trackStartOnce(){
+    if(hasTrackedStart) return;
+    hasTrackedStart = true;
+    trackEvent('ryugaku-shindan-started');
+  }
+
+  const btn = $('diagnoseBtn');
+  const hint = $('hintText');
+
+  function updateReadiness(){
+    const answered = Object.keys(form).filter(k => form[k]).length;
+    btn.disabled = answered < 4;
+    hint.textContent = answered < 4
+      ? `4つすべて選ぶと診断できます（あと${4 - answered}問）`
+      : '準備完了！ボタンを押すと診断結果が表示されます';
+  }
+
+  document.querySelectorAll('input[type=radio]').forEach(function(el){
+    el.addEventListener('change', function(){
+      form[el.name] = el.value;
+      trackStartOnce();
+      updateReadiness();
+    });
+  });
+
+  const TYPES = {
+    'skill|low':    ['コスパ重視・実践派', '費用を抑えながら本気で英語力を伸ばしたいタイプです。学校選びでは授業料の安さだけでなく「日本人比率」と「1日の会話量」を必ず確認しましょう。安さを優先しすぎると、結局伸び悩んで期間を延長し、総額が高くつくケースもあります。'],
+    'skill|mid':    ['バランス重視・語学集中派', '無理のない範囲で投資し、確実に英語力を伸ばしたいタイプです。マンツーマン比率の高いカリキュラムや、渡航前の事前学習サービスがあるプランは伸びが早くなりやすい傾向があります。'],
+    'skill|high':   ['本格投資・スキル特化派', '費用よりも質を優先して本気で語学力を仕上げたいタイプです。少人数制やビジネス英語特化コースなど、目的に直結したカリキュラムを軸に比較すると失敗が減ります。'],
+    'life|low':     ['お試し体験・低予算派', 'まずは海外生活を安く体験したいタイプです。短期のホームステイやワーホリの物価が安いエリアを組み合わせると、初めての海外生活でも負担を抑えやすくなります。'],
+    'life|mid':     ['暮らし重視・バランス派', '無理のない予算で海外の暮らしをしっかり味わいたいタイプです。滞在方法（シェアハウス／ホームステイ）の相性で満足度が大きく変わるため、事前に生活スタイルの希望を伝えられるプランを選びましょう。'],
+    'life|high':    ['じっくり滞在・充実派', '費用よりも生活の質を優先し、じっくり海外生活を楽しみたいタイプです。長期滞在向けのサポート体制（現地相談窓口など）があるかどうかを重視すると安心です。'],
+    'career|low':   ['低コスト・キャリア転換派', '費用を抑えつつ帰国後のキャリアに繋げたいタイプです。ワーホリで実務経験を積める渡航先や、帰国後の就職・転職サポートが付いているプランとの相性が良いです。'],
+    'career|mid':   ['実践重視・キャリア形成派', '適度な投資でキャリアに直結する経験を積みたいタイプです。現地就業のサポートや、帰国後のキャリア相談まで一貫してサポートしてくれるプランを軸に検討しましょう。'],
+    'career|high':  ['戦略的投資・キャリア特化派', '費用よりも成果を重視し、本格的にキャリアチェンジを狙うタイプです。渡航前の準備から帰国後の転職支援まで一気通貫のサポートがあるプランが向いています。']
+  };
+
+  function diagnose(){
+    const key = form.purpose + '|' + form.budget;
+    const [title, msg] = TYPES[key] || TYPES['life|mid'];
+
+    $('resultType').textContent = 'あなたの診断結果';
+    $('resultTitle').textContent = title;
+    $('resultMsg').textContent = msg;
+
+    const points = [];
+    if(form.duration === 'short') points.push('期間3ヶ月未満：短期でも「日本人が少ない環境」を選べるかで英語の伸びが変わります。');
+    if(form.duration === 'mid') points.push('期間3ヶ月〜1年：中期滞在は費用対効果が出やすいレンジです。学校の切り替えプランがあるかも確認しましょう。');
+    if(form.duration === 'long') points.push('期間1年以上：長期は総額が大きくなりやすいため、分割の支払い方法や現地サポート体制を要チェックです。');
+    if(form.level === 'beginner') points.push('英語レベル初心者：最初の1〜2ヶ月に基礎固め期間を設けているプランだと挫折しにくくなります。');
+    if(form.level === 'daily') points.push('英語レベル日常会話：伸び悩みやすい中級者の壁を越えるには、アウトプット量の多い環境選びが重要です。');
+    if(form.level === 'business') points.push('英語レベル上級：ビジネス英語特化やインターンシップ付きのプランだとキャリアへの直結度が上がります。');
+
+    const pointsEl = $('resultPoints');
+    pointsEl.innerHTML = '';
+    points.forEach(function(p){
+      const li = document.createElement('li');
+      li.textContent = p;
+      pointsEl.appendChild(li);
+    });
+
+    $('resultPanel').classList.add('show');
+
+    const ctaPanel = $('ctaPanel');
+    const ctaBtn = $('ctaBtn');
+    ctaBtn.setAttribute('href', withUtm(CTA_URL_PENDING_REVIEW, key));
+    ctaPanel.classList.add('show');
+
+    trackEvent('ryugaku-shindan-completed-' + key);
+
+    $('resultPanel').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  btn.addEventListener('click', function(){
+    if(btn.disabled) return;
+    diagnose();
+    trackEvent('ryugaku-shindan-diagnose-click');
+  });
+
+  $('ctaBtn').addEventListener('click', function(){
+    trackEvent('ryugaku-shindan-cta-click');
+  });
+
+  updateReadiness();
+})();
+</script>
+</body>
+</html>
