@@ -13,13 +13,8 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="留学・ワーホリ スタイル診断">
 <meta name="twitter:description" content="4つの質問で、あなたに合う留学スタイルと注意点が30秒でわかる無料診断ツール。">
-<!--
-  アクセス解析: 本ページは独立サイトのため、UMALAB側のGoatCounterアカウントとは
-  分離すること。https://www.goatcounter.com/ で無料アカウントを作成し、
-  発行されたサイトコードを下記 data-goatcounter に設定してください。
-  未設定の間はクリック計測が動作しません（エラーにはなりません）。
--->
-<!-- <script data-goatcounter="https://YOUR-SITE-CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script> -->
+<!-- アクセス解析（無料、GoatCounter。サイトコード: umalab-checker、回収率チェッカーと共通アカウント。イベント名はryugaku-shindan-接頭辞で区別） -->
+<script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -148,7 +143,7 @@
     <span class="pr-badge">PR</span>
     <p id="ctaMsg">あなたのタイプに近い人には、費用を抑えたオーダーメイド留学プランの無料カウンセリングが向いています。</p>
     <a class="cta-btn" id="ctaBtn" href="#" target="_blank" rel="noopener noreferrer sponsored">▶ 無料カウンセリングを予約する</a>
-    <p class="cta-sub">相談は無料・その場での契約義務はありません</p>
+    <p class="cta-sub" id="ctaSub">相談は無料・その場での契約義務はありません</p>
   </div>
 
   <div class="panel info-panel">
@@ -165,18 +160,90 @@
 
 <script>
 (function(){
-  // TODO: A8.net提携審査の承認後、実際の成果報酬リンク（商品リンク）に差し替えること。
-  // 現在は審査中のため、広告主の公式ページ（非アフィリエイトリンク）を暫定的に設定している。
-  // 承認後は A8.net管理画面 > プログラム管理 > 商品リンク作成 で発行したURLに置き換える。
-  const CTA_URL_PENDING_REVIEW = "https://ryugaku.yume-kana.com/wh-lp/";
+  // ===== 案件レジストリ =====
+  // 診断結果ごとに、どの提携案件へ送るかをここで一元管理する。
+  // 新しい案件をA8.netで確認できたら、同じ形式でここに追加し、
+  // 下のRESULT_TYPESの program キーを差し替えるだけで導線が切り替わる。
+  //
+  // a8Status: 'pending_review'(審査中) | 'approved'(提携済み・リンク差替済み) | 'not_applied'(未申請)
+  // url: pending_review中は広告主の公式URL（非アフィリエイト）を暫定使用。
+  //      approvedになったら A8.net管理画面 > プログラム管理 > 商品リンク作成 で
+  //      発行したURLに置き換える。
+  const PROGRAMS = {
+    // ===== 提携済み・承認済み（2026/09/21 即時提携で承認） =====
+    nativecamp_ryugaku: {
+      label: 'ネイティブキャンプ留学',
+      ctaText: '▶ 無料の正式見積もりを申し込む',
+      ctaSub: '見積もりは無料・最低価格保証つき',
+      ctaMsg: 'あなたのタイプに近い人には、業界最低価格保証＋留学前の英会話が無料になるプランが向いています。',
+      // A8.net「広告リンク作成」で発行した実リンク（素材ID:001, テキストリンク）。差し替え不要。
+      url: 'https://px.a8.net/svt/ejp?a8mat=4BCGFJ+FP0DV6+35VG+BWVTE',
+      a8Status: 'approved'
+    },
+    // ===== 審査中（承認され次第、A8.net「広告リンク作成」で実リンクを発行してurlを差し替える） =====
+    yumekana: {
+      label: '夢カナ留学', ctaText: '▶ 無料カウンセリングを予約する',
+      ctaSub: '相談は無料・その場での契約義務はありません',
+      ctaMsg: 'あなたのタイプに近い人には、費用を抑えたオーダーメイド留学プランの無料カウンセリングが向いています。',
+      url: null, a8Status: 'pending_review'
+    },
+    last_resort: {
+      label: 'ラストリゾート', ctaText: '▶ 無料カウンセリングを申し込む',
+      ctaSub: '資料請求・セミナー参加もOK。相談は無料です',
+      ctaMsg: 'あなたのタイプに近い人には、業界大手・実績11万人以上の留学エージェントの無料カウンセリングが向いています。',
+      url: null, a8Status: 'pending_review'
+    },
+    studyin: {
+      label: 'StudyIn', ctaText: '▶ 無料説明会に申し込む',
+      ctaSub: '手数料0円・説明会は無料です',
+      ctaMsg: 'あなたのタイプに近い人には、手数料0円で留学前の英会話レッスンも無料のプランが向いています。',
+      url: null, a8Status: 'pending_review'
+    },
+    tabiken: {
+      label: 'タビケン留学', ctaText: '▶ 無料カウンセリングを予約する',
+      ctaSub: '相談は無料・18〜30歳が対象です',
+      ctaMsg: 'あなたのタイプに近い人には、実質0円のワーホリ・長期留学プランの無料カウンセリングが向いています。',
+      url: null, a8Status: 'pending_review'
+    },
+    sumaryu: {
+      label: 'スマ留', ctaText: '▶ 無料の個別カウンセリングを予約する',
+      ctaSub: '来館・オンラインどちらも選べます',
+      ctaMsg: 'あなたのタイプに近い人には、従来の最大半額の費用で行ける格安留学プランが向いています。',
+      url: null, a8Status: 'pending_review'
+    },
+    wish_international: {
+      label: 'ウィッシュインターナショナル', ctaText: '▶ 無料留学相談を申し込む',
+      ctaSub: '資料請求・留学フェア予約もOK',
+      ctaMsg: 'あなたのタイプに近い人には、旅行業第一種取得の安心・安全な留学エージェントが向いています。',
+      url: null, a8Status: 'pending_review'
+    },
+    sankei_human: {
+      label: '産経ヒューマン留学センター', ctaText: '▶ 無料留学相談会に申し込む',
+      ctaSub: '個別相談・お見積りも完全無料です',
+      ctaMsg: 'あなたのタイプに近い人には、大手3社共同運営の留学相談サービスが向いています。',
+      url: null, a8Status: 'pending_review'
+    }
+  };
+
+  // 診断結果9タイプ → 案件レジストリのキー。
+  // 現時点で実リンクを発行できているのはnativecamp_ryugakuのみのため、収益機会を逃さないよう
+  // 全タイプを暫定的にそこへ寄せている。他案件が承認されurlを埋めたら、タイプごとに振り分け直す
+  // （例: 'skill|high'は本格投資派なのでlast_resort等の中〜長期サポート型へ、など）。
+  const RESULT_PROGRAM = {
+    'skill|low': 'nativecamp_ryugaku', 'skill|mid': 'nativecamp_ryugaku', 'skill|high': 'nativecamp_ryugaku',
+    'life|low': 'nativecamp_ryugaku', 'life|mid': 'nativecamp_ryugaku', 'life|high': 'nativecamp_ryugaku',
+    'career|low': 'nativecamp_ryugaku', 'career|mid': 'nativecamp_ryugaku', 'career|high': 'nativecamp_ryugaku'
+  };
 
   const $ = id => document.getElementById(id);
   const form = { purpose: null, budget: null, duration: null, level: null };
 
-  function withUtm(url, content){
+  function withUtm(url, content, campaign){
     if(!url) return url;
     const sep = url.includes('?') ? '&' : '?';
-    return url + sep + 'utm_source=ryugaku_shindan&utm_medium=diagnostic_tool&utm_content=' + encodeURIComponent(content);
+    return url + sep + 'utm_source=ryugaku_shindan&utm_medium=diagnostic_tool'
+      + '&utm_campaign=' + encodeURIComponent(campaign)
+      + '&utm_content=' + encodeURIComponent(content);
   }
 
   function trackEvent(eventPath){
@@ -184,6 +251,23 @@
       window.goatcounter.count({path: eventPath, title: eventPath, event: true});
     }
   }
+
+  // GoatCounterの自動ページビュー計測（count.jsの読み込み時自動送信）が
+  // 環境によっては発火しないケースがあるため、明示的な訪問イベントとして
+  // 確実に記録する。count.jsはasync読み込みのため、window.goatcounterが
+  // まだ未定義な可能性を考慮し、最大2秒（100ms×20回）ポーリングして送信する。
+  (function trackPageviewReliably(){
+    let tries = 0;
+    const timer = setInterval(function(){
+      tries++;
+      if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+        clearInterval(timer);
+        trackEvent('ryugaku-shindan-pageview');
+      } else if(tries >= 20){
+        clearInterval(timer);
+      }
+    }, 100);
+  })();
 
   let hasTrackedStart = false;
   function trackStartOnce(){
@@ -226,6 +310,8 @@
   function diagnose(){
     const key = form.purpose + '|' + form.budget;
     const [title, msg] = TYPES[key] || TYPES['life|mid'];
+    const programId = RESULT_PROGRAM[key] || RESULT_PROGRAM['life|mid'];
+    const program = PROGRAMS[programId];
 
     $('resultType').textContent = 'あなたの診断結果';
     $('resultTitle').textContent = title;
@@ -251,10 +337,14 @@
 
     const ctaPanel = $('ctaPanel');
     const ctaBtn = $('ctaBtn');
-    ctaBtn.setAttribute('href', withUtm(CTA_URL_PENDING_REVIEW, key));
+    ctaBtn.setAttribute('href', withUtm(program.url, key, programId));
+    ctaBtn.textContent = program.ctaText;
+    $('ctaMsg').textContent = program.ctaMsg;
+    $('ctaSub').textContent = program.ctaSub;
+    ctaBtn.dataset.programId = programId;
     ctaPanel.classList.add('show');
 
-    trackEvent('ryugaku-shindan-completed-' + key);
+    trackEvent('ryugaku-shindan-completed-' + key + '-' + programId);
 
     $('resultPanel').scrollIntoView({behavior:'smooth', block:'start'});
   }
@@ -266,7 +356,8 @@
   });
 
   $('ctaBtn').addEventListener('click', function(){
-    trackEvent('ryugaku-shindan-cta-click');
+    const pid = this.dataset.programId || 'unknown';
+    trackEvent('ryugaku-shindan-cta-click-' + pid);
   });
 
   updateReadiness();
