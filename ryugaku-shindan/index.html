@@ -252,6 +252,23 @@
     }
   }
 
+  // GoatCounterの自動ページビュー計測（count.jsの読み込み時自動送信）が
+  // 環境によっては発火しないケースがあるため、明示的な訪問イベントとして
+  // 確実に記録する。count.jsはasync読み込みのため、window.goatcounterが
+  // まだ未定義な可能性を考慮し、最大2秒（100ms×20回）ポーリングして送信する。
+  (function trackPageviewReliably(){
+    let tries = 0;
+    const timer = setInterval(function(){
+      tries++;
+      if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+        clearInterval(timer);
+        trackEvent('ryugaku-shindan-pageview');
+      } else if(tries >= 20){
+        clearInterval(timer);
+      }
+    }, 100);
+  })();
+
   let hasTrackedStart = false;
   function trackStartOnce(){
     if(hasTrackedStart) return;
