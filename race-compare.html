@@ -90,6 +90,11 @@
   </div>
 
   <div class="panel" style="text-align:center;">
+    <p style="font-size:13px;margin:0 0 10px;">このシートの記録版が欲しい方へ。Google Sheetsテンプレートで、レースごとの入力を記録・蓄積できます。同じ計算式のまま、自分の予想の的中率を後から検証できるようになります。</p>
+    <a class="cta-btn" id="ctaBuySheetBtn">▶ 記録できるテンプレート版を見る（200円）</a>
+  </div>
+
+  <div class="panel" style="text-align:center;">
     <p style="font-size:13px;margin:0 0 10px;">1頭ずつではなく、レース全体の回収率傾向を46,378レースの実データで確認したい方へ。</p>
     <a class="cta-btn" id="ctaProBtn">▶ 買う・見送るの基準を全部見る（UMALAB PRO・800円）</a>
   </div>
@@ -103,6 +108,7 @@
 <script>
 (function(){
   const NOTE_PRO_URL = "https://note.com/umalab_ai/n/nc2fd5706d720";
+  const NOTE_BUYSHEET_URL = "https://note.com/umalab_ai/n/nc76a481f622c";
   const CHECKER_URL = "https://umalab-tools.github.io/recovery-rate-checker/";
 
   function withUtm(url, content){
@@ -111,9 +117,12 @@
     return url + sep + 'utm_source=race_compare&utm_medium=cta&utm_content=' + encodeURIComponent(content);
   }
   const ctaProBtn = document.getElementById('ctaProBtn');
+  const ctaBuySheetBtn = document.getElementById('ctaBuySheetBtn');
   const footerCheckerLink = document.getElementById('footerCheckerLink');
   ctaProBtn.setAttribute('href', withUtm(NOTE_PRO_URL, 'race_compare_cta'));
   ctaProBtn.setAttribute('target', '_blank'); ctaProBtn.setAttribute('rel', 'noopener noreferrer');
+  ctaBuySheetBtn.setAttribute('href', withUtm(NOTE_BUYSHEET_URL, 'race_compare_buysheet_cta'));
+  ctaBuySheetBtn.setAttribute('target', '_blank'); ctaBuySheetBtn.setAttribute('rel', 'noopener noreferrer');
   footerCheckerLink.setAttribute('href', withUtm(CHECKER_URL, 'race_compare_footer'));
   function track(el, path){
     el.addEventListener('click', () => {
@@ -123,6 +132,7 @@
     });
   }
   track(ctaProBtn, 'race-compare-click-cta-pro');
+  track(ctaBuySheetBtn, 'race-compare-click-cta-buysheet');
   track(footerCheckerLink, 'race-compare-click-checker');
 
   const ROWS = 8;
