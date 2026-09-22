@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UMALAB 検証実績（未来レースPaper Trading） | UMALAB</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8F%87</text></svg>">
+<meta name="description" content="UMALABが46,378レースの検証から固定した4つの条件について、実際に未来のレースで記録し続けているPaper Trading実績。負けも含めて全件公開。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://umalab-tools.github.io/recovery-rate-checker/track-record.html">
+<meta property="og:title" content="UMALAB 検証実績（未来レースPaper Trading）">
+<meta property="og:description" content="バックテストではなく、実際に迎えた未来のレースで記録した実績だけを公開。負けも除外していません。">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<!-- アクセス解析（無料、GoatCounter。サイトコード: umalab-checker、回収率チェッカーと共通） -->
+<script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;}
+  :root{
+    --bg:#f6f4ee; --surface:#ffffff; --surface-alt:#eeebe1;
+    --text:#1d2318; --text-muted:#5c6455; --border:#dcd5c5;
+    --accent:#2f6e4b; --accent-strong:#1f4d34; --accent-soft:#e3ede5;
+    --good:#2f6e4b; --good-soft:#e3ede5;
+    --warn:#a8761f; --warn-soft:#f5ecd8;
+    --bad:#af3a35; --bad-soft:#f6e3e0;
+    --shadow: 0 1px 2px rgba(30,35,25,0.06), 0 8px 24px -12px rgba(30,35,25,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12150f; --surface:#1a1f16; --surface-alt:#20261b;
+      --text:#eae7dc; --text-muted:#a4ac97; --border:#333c2b;
+      --accent:#71c191; --accent-strong:#93d8ac; --accent-soft:#1e3327;
+      --good:#71c191; --good-soft:#1e3327;
+      --warn:#dcb15a; --warn-soft:#332b16;
+      --bad:#e2867d; --bad-soft:#382019;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px -12px rgba(0,0,0,0.5);
+    }
+  }
+  body{background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
+  .wrap{max-width:640px;margin:0 auto;padding:32px 18px 72px;}
+  header{margin-bottom:26px;}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:10px;}
+  h1{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-weight:900;font-size:clamp(24px,7vw,34px);margin:0 0 10px;text-wrap:balance;letter-spacing:-0.01em;}
+  h2{font-family:"Zen Kaku Gothic New",sans-serif;font-size:16px;font-weight:700;margin:0 0 14px;}
+  .lede{color:var(--text-muted);font-size:14px;margin:0 0 14px;}
+  .disclaimer{padding:12px 14px;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text-muted);margin-bottom:14px;}
+  .header-link{display:inline-block;font-size:13px;color:var(--accent);font-weight:700;text-decoration:none;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px 20px;margin-bottom:18px;}
+  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-muted);text-align:right;margin:-6px 0 14px;}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;}
+  .stat{background:var(--surface-alt);border-radius:12px;padding:12px 14px;}
+  .stat-label{font-size:11.5px;color:var(--text-muted);margin-bottom:4px;}
+  .stat-value{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:19px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--border);}
+  th{color:var(--text-muted);font-weight:500;font-size:11.5px;}
+  td.num{font-family:"JetBrains Mono",monospace;text-align:right;}
+  .divider{border:none;border-top:1px solid var(--border);margin:22px 0;}
+  .cta-strong{background:linear-gradient(155deg, var(--accent-strong), var(--accent));border-radius:16px;padding:22px 20px;margin-bottom:18px;color:#f4fbf6;text-align:center;box-shadow:var(--shadow);}
+  .cta-strong p{font-size:13.5px;line-height:1.8;margin:0 0 14px;opacity:0.95;}
+  .cta-btn{display:block;width:100%;max-width:380px;margin:0 auto;text-align:center;text-decoration:none;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;padding:14px 18px;border-radius:12px;min-height:44px;background:#fff;color:var(--accent-strong);box-shadow:var(--shadow);}
+  footer{margin-top:24px;font-size:11.5px;color:var(--text-muted);text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">UMALAB LIVE TRACK RECORD</span>
+    <h1>検証実績（未来レースPaper Trading）</h1>
+    <p class="lede">これはPaper Trading（仮想購入・実際のお金ではありません）の記録です。レース結果が分かる前に自動保存された予測と、レース後の結果を突き合わせて集計しています。負けた記録も一切除外していません。</p>
+    <p class="disclaimer"><strong>バックテスト（過去データの検証）とこのページの数字は別物です。</strong>4つの条件は過去データの検証から選定・固定したものですが、このページに載っているのは条件を固定した「後」に実際に迎えた未来のレースの結果だけです。未来の成績を保証するものではありません。</p>
+    <a class="header-link" id="headerLink">回収率チェッカーに戻る →</a>
+  </header>
+
+  <div class="panel">
+    <p class="updated" id="updatedAt">最終更新: 2026-09-23</p>
+    <h2>全条件合算</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-label">検証件数</div><div class="stat-value" id="totalN">59件</div></div>
+      <div class="stat"><div class="stat-label">実施日数</div><div class="stat-value" id="totalDays">7日</div></div>
+      <div class="stat"><div class="stat-label">的中率</div><div class="stat-value" id="totalHitRate">40.7%</div></div>
+      <div class="stat"><div class="stat-label">回収率</div><div class="stat-value" id="totalRoi">85.6%</div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>10万円 仮想資金シミュレーション</h2>
+    <p style="font-size:12.5px;color:var(--text-muted);margin:0 0 12px;">実際のお金ではありません。1点100円で条件該当時に投資したと仮定した場合の推移です。</p>
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-label">開始資金</div><div class="stat-value">100,000円</div></div>
+      <div class="stat"><div class="stat-label">現在残高</div><div class="stat-value" id="balance">99,150円</div></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>固定条件別の実績</h2>
+    <table>
+      <thead><tr><th>条件</th><th class="num">件数</th><th class="num">的中率</th><th class="num">回収率</th></tr></thead>
+      <tbody id="conditionRows">
+        <tr><td>Tier A（単勝1.0-1.2倍・予測1位）</td><td class="num">23</td><td class="num">91.3%</td><td class="num">92.2%</td></tr>
+        <tr><td>EVルール（EV≧1.2）</td><td class="num">1</td><td class="num">0.0%</td><td class="num">0.0%</td></tr>
+        <tr><td>B候補（馬体重450-480kg×単勝16-18倍）</td><td class="num">18</td><td class="num">5.6%</td><td class="num">77.8%</td></tr>
+        <tr><td>新ルール（AI評価差-1×単勝4-10倍）</td><td class="num">17</td><td class="num">11.8%</td><td class="num">90.0%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cta-strong">
+    <p>この4条件の具体的な数値・買う基準・見送る基準・46,378レースのバックテスト詳細は、UMALAB PROにまとめています。</p>
+    <a class="cta-btn" id="ctaProBtn">▶ 条件の中身をすべて見る（UMALAB PRO・800円）</a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="panel">
+    <h2>このページの作り方</h2>
+    <p style="font-size:13px;color:var(--text-muted);margin:0;">レース開始前に自動保存された予測データ（結果を知る前に確定）と、レース後に自動取得した結果を突き合わせて算出しています。予測時点の記録は後から書き換えられない構造になっており、SHA-256ハッシュで改ざん検知もしています。件数がまだ少ない条件は、少ないとそのまま表示しています。</p>
+  </div>
+
+  <footer>
+    UMALAB｜地方競馬の実データで「買う・見送る」を検証しています。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const CHECKER_URL = "https://umalab-tools.github.io/recovery-rate-checker/";
+  const NOTE_PRO_URL = "https://note.com/umalab_ai/n/nc2fd5706d720";
+
+  function withUtm(url, content){
+    if(!url) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    return url + sep + 'utm_source=track_record&utm_medium=cta&utm_content=' + encodeURIComponent(content);
+  }
+  const $ = id => document.getElementById(id);
+  const headerLink = $('headerLink');
+  const ctaProBtn = $('ctaProBtn');
+  if(headerLink) headerLink.setAttribute('href', withUtm(CHECKER_URL, 'header'));
+  if(ctaProBtn){
+    ctaProBtn.setAttribute('href', withUtm(NOTE_PRO_URL, 'track_record_cta'));
+    ctaProBtn.setAttribute('target', '_blank');
+    ctaProBtn.setAttribute('rel', 'noopener noreferrer');
+  }
+  function trackClick(el, eventPath){
+    if(!el) return;
+    el.addEventListener('click', function(){
+      if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+        window.goatcounter.count({path: eventPath, title: eventPath, event: true});
+      }
+    });
+  }
+  trackClick(ctaProBtn, 'track-record-click-cta-pro');
+  trackClick(headerLink, 'track-record-click-header-checker');
+})();
+</script>
+</body>
+</html>
