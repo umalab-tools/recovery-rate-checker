@@ -82,6 +82,9 @@
   .result-msg{font-size:13.5px;text-align:left;margin:0 0 4px;color:var(--text);}
   .result-points{text-align:left;margin:14px 0 0;padding:0;list-style:none;display:grid;gap:8px;}
   .result-points li{font-size:12.5px;background:var(--surface);border-radius:10px;padding:10px 12px;border:1px solid var(--border);}
+  .share-btn{display:inline-flex;align-items:center;gap:6px;font-family:"Noto Sans JP",sans-serif;font-size:12.5px;font-weight:500;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:8px 14px;cursor:pointer;min-height:36px;margin-top:14px;}
+  .share-btn:active{opacity:0.8;}
+  .share-btn[hidden]{display:none;}
   .cta-strong{display:none;background:linear-gradient(155deg, var(--accent-strong), var(--accent));border-radius:16px;padding:22px 20px;margin-bottom:18px;color:#f6f4ff;text-align:center;box-shadow:var(--shadow);}
   .cta-strong.show{display:block;}
   .cta-strong .pr-badge{background:rgba(255,255,255,0.18);color:#fff;}
@@ -151,6 +154,7 @@
     <p class="result-title" id="resultTitle"></p>
     <p class="result-msg" id="resultMsg"></p>
     <ul class="result-points" id="resultPoints"></ul>
+    <button type="button" class="share-btn" id="shareBtn" hidden>🔗 診断結果をシェア</button>
   </div>
 
   <div class="cta-strong" id="ctaPanel">
@@ -311,6 +315,40 @@
   const btn = $('diagnoseBtn');
   const hint = $('hintText');
 
+  // 診断結果シェア機能（回収率チェッカーと同じパターンを流用）。
+  // 対応ブラウザのみボタン表示、未対応でもエラーにならないようfeature detectionで安全にガードする。
+  let lastShareText = '';
+  const shareBtn = $('shareBtn');
+  const shareBtnDefaultLabel = shareBtn ? shareBtn.textContent : '';
+  if(shareBtn){
+    shareBtn.addEventListener('click', () => {
+      if(typeof navigator.share === 'function'){
+        try{
+          navigator.share({ text: lastShareText, url: location.href }).catch(() => {});
+          trackEvent('ryugaku-shindan-share-native');
+          return;
+        }catch(e){
+          // navigator.shareが例外を投げた場合はコピーにフォールバックする
+        }
+      }
+      const textToCopy = lastShareText + '\n' + location.href;
+      const showCopied = () => {
+        shareBtn.textContent = '✅ コピーしました（Xに貼り付けできます）';
+        trackEvent('ryugaku-shindan-share-clipboard');
+        setTimeout(() => { shareBtn.textContent = shareBtnDefaultLabel; }, 2500);
+      };
+      if(navigator.clipboard && typeof navigator.clipboard.writeText === 'function'){
+        navigator.clipboard.writeText(textToCopy).then(showCopied).catch(() => {
+          shareBtn.textContent = '診断結果をシェア（コピー失敗、手動で選択してください）';
+          setTimeout(() => { shareBtn.textContent = shareBtnDefaultLabel; }, 2500);
+        });
+      } else {
+        shareBtn.textContent = '診断結果をシェア（このブラウザは非対応です）';
+        setTimeout(() => { shareBtn.textContent = shareBtnDefaultLabel; }, 2500);
+      }
+    });
+  }
+
   function updateReadiness(){
     const answered = Object.keys(form).filter(k => form[k]).length;
     btn.disabled = answered < 4;
@@ -366,6 +404,9 @@
     });
 
     $('resultPanel').classList.add('show');
+
+    lastShareText = `留学・ワーホリ診断やったら「${title}」タイプだった✈️\n目的・予算・期間・英語レベルで、あなたに合う行き方がわかります。`;
+    if(shareBtn) shareBtn.hidden = false;
 
     const ctaPanel = $('ctaPanel');
     const ctaBtn = $('ctaBtn');
