@@ -152,7 +152,7 @@
     <h2>留学・ワーホリの費用でよくある誤解</h2>
     <p>「留学は高い」というイメージの多くは、語学学校の授業料に加えて航空券・保険・滞在費を別々に見積もることで実際より高く感じてしまうケースです。反対に、渡航先の物価や滞在方法（ホームステイ／シェアハウス／学生寮）によって総額は大きく変わります。</p>
     <p>また、語学学校選びでは「日本人比率」も英語力の伸びに影響しやすいポイントです。同じ授業料でも、日本人の少ない環境を選べるかどうかで結果が変わることがあります。</p>
-    <p>この診断はあくまで一般的な傾向の目安です。実際の費用・プランは目的地や時期によって変動するため、具体的な見積もりは無料カウンセリングで確認することをおすすめします。</p>
+    <p>この診断はあくまで一般的な傾向の目安です。実際の費用・プランは目的地や時期によって変動するため、上の無料見積もり・無料相談で具体的な金額を確認することをおすすめします。</p>
   </div>
 
   <footer>
@@ -235,6 +235,24 @@
     'skill|low': 'nativecamp_ryugaku', 'skill|mid': 'nativecamp_ryugaku', 'skill|high': 'nativecamp_ryugaku',
     'life|low': 'nativecamp_ryugaku', 'life|mid': 'nativecamp_ryugaku', 'life|high': 'nativecamp_ryugaku',
     'career|low': 'nativecamp_ryugaku', 'career|mid': 'nativecamp_ryugaku', 'career|high': 'nativecamp_ryugaku'
+  };
+
+  // CTAメッセージのタイプ別上書き（任意）。
+  // リンク先・成果条件・広告主の表記は一切変えず、実際にネイティブキャンプ留学が
+  // 持つ特徴（最低価格保証／留学前英会話無料／留学中〜帰国後サポート）の中から、
+  // ユーザーが選んだ優先軸に近い切り口を選んで見せるだけ。全タイプ同じ「最低価格保証」
+  // 一辺倒だと、budget=high（費用より質を優先）層には響きにくいミスマッチがあったため、
+  // 予算軸ごとにメッセージを分けて訴求力を上げる。
+  const CTA_MSG_OVERRIDE = {
+    'skill|low': 'コスパ重視で本気で英語力を伸ばしたいあなたには、業界最低価格保証で留学前の英会話も無料になるプランが向いています。',
+    'skill|mid': '確実に英語力を伸ばしたいあなたには、留学前からオンライン英会話が無料で使えるプランが向いています。',
+    'skill|high': '本気で語学力を仕上げたいあなたには、渡航前から留学中まで一貫した英会話サポートが付くプランが向いています。',
+    'life|low': 'まずは海外生活を安く体験したいあなたには、業界最低価格保証のプランが向いています。',
+    'life|mid': '無理のない予算で海外生活を味わいたいあなたには、最低価格保証＋留学前の英会話無料のプランが向いています。',
+    'life|high': 'じっくり海外生活を楽しみたいあなたには、渡航前から帰国後まで一貫サポートが付くプランが向いています。',
+    'career|low': '費用を抑えてキャリアにつなげたいあなたには、業界最低価格保証のプランが向いています。',
+    'career|mid': 'キャリア形成を意識した留学を考えるあなたには、最低価格保証＋英会話サポート付きのプランが向いています。',
+    'career|high': '本格的にキャリアチェンジを狙うあなたには、渡航前準備から帰国後まで一貫サポートが付くプランが向いています。'
   };
 
   const $ = id => document.getElementById(id);
@@ -341,7 +359,7 @@
     const ctaBtn = $('ctaBtn');
     ctaBtn.setAttribute('href', withUtm(program.url, key, programId));
     ctaBtn.textContent = program.ctaText;
-    $('ctaMsg').textContent = program.ctaMsg;
+    $('ctaMsg').textContent = CTA_MSG_OVERRIDE[key] || program.ctaMsg;
     $('ctaSub').textContent = program.ctaSub;
     ctaBtn.dataset.programId = programId;
     ctaPanel.classList.add('show');
