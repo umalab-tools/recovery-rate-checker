@@ -338,10 +338,17 @@
         setTimeout(() => { shareBtn.textContent = shareBtnDefaultLabel; }, 2500);
       };
       if(navigator.clipboard && typeof navigator.clipboard.writeText === 'function'){
-        navigator.clipboard.writeText(textToCopy).then(showCopied).catch(() => {
+        // clipboard.writeText()は権限プロンプトがブロックされる等の環境で
+        // resolve・rejectのどちらもされずハングし、ボタンが無反応に見えることがある。
+        // 3秒でタイムアウトさせ、必ず何らかのフィードバックを返す。
+        const showFailed = () => {
           shareBtn.textContent = '診断結果をシェア（コピー失敗、手動で選択してください）';
           setTimeout(() => { shareBtn.textContent = shareBtnDefaultLabel; }, 2500);
-        });
+        };
+        Promise.race([
+          navigator.clipboard.writeText(textToCopy),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('clipboard-timeout')), 3000))
+        ]).then(showCopied).catch(showFailed);
       } else {
         shareBtn.textContent = '診断結果をシェア（このブラウザは非対応です）';
         setTimeout(() => { shareBtn.textContent = shareBtnDefaultLabel; }, 2500);
