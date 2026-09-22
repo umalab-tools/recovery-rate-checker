@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>移動中...</title>
+<script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+  body{font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#fafafa;color:#333;}
+</style>
+</head>
+<body>
+<p>移動しています...</p>
+<script>
+(function(){
+  var DEST = "https://r.8to.jp/pEkDCkUAP9kB";
+  var redirected = false;
+  function go(){
+    if (redirected) return;
+    redirected = true;
+    window.location.replace(DEST);
+  }
+  function trackAndGo(){
+    try {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({
+          path: "mpn-go-threads-click",
+          title: "MPNプロテイン Threads経由クリック",
+          event: true
+        });
+      }
+    } catch (e) {}
+    go();
+  }
+  // GoatCounterの読み込みを最大800ms待ってから遷移（未読込でも必ず遷移する）
+  var waited = 0;
+  var iv = setInterval(function(){
+    waited += 50;
+    if (window.goatcounter && window.goatcounter.count) {
+      clearInterval(iv);
+      trackAndGo();
+    } else if (waited >= 800) {
+      clearInterval(iv);
+      trackAndGo();
+    }
+  }, 50);
+})();
+</script>
+</body>
+</html>
