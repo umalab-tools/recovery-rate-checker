@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>競馬 出走馬比較シート | UMALAB PREMIUM</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8F%87</text></svg>">
+<meta name="description" content="1レースの出走馬を横に並べて、的中率×オッズの期待回収率で比較・順位づけできる無料ツール。どの馬を買うか、感覚ではなく数字で決められます。">
+<script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  body{margin:0;}
+  :root{
+    --bg:#f6f4ee; --surface:#ffffff; --surface-alt:#eeebe1;
+    --text:#1d2318; --text-muted:#5c6455; --border:#dcd5c5;
+    --accent:#2f6e4b; --accent-strong:#1f4d34; --accent-soft:#e3ede5;
+    --good:#2f6e4b; --good-soft:#e3ede5; --warn:#a8761f; --warn-soft:#f5ecd8;
+    --bad:#af3a35; --bad-soft:#f6e3e0;
+    --shadow: 0 1px 2px rgba(30,35,25,0.06), 0 8px 24px -12px rgba(30,35,25,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12150f; --surface:#1a1f16; --surface-alt:#20261b;
+      --text:#eae7dc; --text-muted:#a4ac97; --border:#333c2b;
+      --accent:#71c191; --accent-strong:#93d8ac; --accent-soft:#1e3327;
+      --good:#71c191; --good-soft:#1e3327; --warn:#dcb15a; --warn-soft:#332b16;
+      --bad:#e2867d; --bad-soft:#382019;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px -12px rgba(0,0,0,0.5);
+    }
+  }
+  body{background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
+  .wrap{max-width:720px;margin:0 auto;padding:32px 18px 72px;}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,6.5vw,30px);margin:10px 0;text-wrap:balance;}
+  .lede{color:var(--text-muted);font-size:14px;margin:0 0 14px;}
+  .disclaimer{padding:12px 14px;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text-muted);margin-bottom:18px;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:20px;margin-bottom:18px;}
+  .panel h2{font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;margin:0 0 14px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{padding:8px 6px;border-bottom:1px solid var(--border);text-align:center;}
+  th{font-size:11px;color:var(--text-muted);font-weight:500;}
+  input[type="text"],input[type="number"]{
+    width:100%;padding:8px 4px;font-family:"JetBrains Mono",monospace;font-size:13px;
+    background:var(--surface-alt);border:1px solid var(--border);border-radius:6px;color:var(--text);text-align:center;
+  }
+  td:first-child input{text-align:left;font-family:"Noto Sans JP",sans-serif;}
+  .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700;}
+  .badge.buy{background:var(--good-soft);color:var(--good);}
+  .badge.watch{background:var(--warn-soft);color:var(--warn);}
+  .badge.skip{background:var(--bad-soft);color:var(--bad);}
+  .rank{font-family:"JetBrains Mono",monospace;font-weight:700;}
+  .row-actions{margin-top:10px;display:flex;gap:8px;}
+  .btn{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--surface-alt);color:var(--text);font-size:13px;font-weight:700;cursor:pointer;}
+  .cta-btn{display:block;width:100%;text-align:center;text-decoration:none;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;padding:14px 18px;border-radius:12px;margin-top:10px;background:var(--accent);color:#fff;box-shadow:var(--shadow);}
+  footer{margin-top:24px;font-size:11.5px;color:var(--text-muted);text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">UMALAB DATA TOOL</span>
+    <h1>出走馬比較シート</h1>
+    <p class="lede">1レースの出走馬を横に並べて、自分の予想した的中率とオッズから期待回収率を計算し、自動で順位づけします。「どの馬を買うか」を感覚ではなく数字で比較できます。</p>
+    <p class="disclaimer"><strong>これは入力値をそのまま計算する診断ツールです。</strong>的中率はご自身の予想（主観）を入力する前提のため、入力精度がそのまま結果の精度になります。将来の的中・利益を保証するものではありません。</p>
+  </header>
+
+  <div class="panel">
+    <h2>出走馬を入力（最大8頭、空欄の行は無視されます）</h2>
+    <div style="overflow-x:auto;">
+      <table id="raceTable">
+        <thead><tr><th>馬名</th><th>自分の的中率%</th><th>オッズ</th><th>期待回収率</th><th>判定</th><th>順位</th></tr></thead>
+        <tbody id="raceBody"></tbody>
+      </table>
+    </div>
+    <div class="row-actions">
+      <button class="btn" id="clearBtn" type="button">全てクリア</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>使い方</h2>
+    <p style="font-size:13px;color:var(--text-muted);margin:0;">
+      各馬について「自分が思う的中率(%)」と「単勝または複勝オッズ」を入れると、
+      期待回収率(的中率×オッズ)を自動計算し、高い順に「1位」から順位が付きます。
+      期待回収率100%を境に、緑(BUY)・黄(WATCH)・赤(SKIP)で色分けします。
+    </p>
+  </div>
+
+  <div class="panel" style="text-align:center;">
+    <p style="font-size:13px;margin:0 0 10px;">1頭ずつではなく、レース全体の回収率傾向を46,378レースの実データで確認したい方へ。</p>
+    <a class="cta-btn" id="ctaProBtn">▶ 買う・見送るの基準を全部見る（UMALAB PRO・800円）</a>
+  </div>
+
+  <footer>
+    UMALABは46,378レースの実データから「買う・見送る」を数字で判断する検証を続けています。<br>
+    <a id="footerCheckerLink">無料の回収率チェッカー</a>も、あわせてどうぞ。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const NOTE_PRO_URL = "https://note.com/umalab_ai/n/nc2fd5706d720";
+  const CHECKER_URL = "https://umalab-tools.github.io/recovery-rate-checker/";
+
+  function withUtm(url, content){
+    if(!url) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    return url + sep + 'utm_source=race_compare&utm_medium=cta&utm_content=' + encodeURIComponent(content);
+  }
+  const ctaProBtn = document.getElementById('ctaProBtn');
+  const footerCheckerLink = document.getElementById('footerCheckerLink');
+  ctaProBtn.setAttribute('href', withUtm(NOTE_PRO_URL, 'race_compare_cta'));
+  ctaProBtn.setAttribute('target', '_blank'); ctaProBtn.setAttribute('rel', 'noopener noreferrer');
+  footerCheckerLink.setAttribute('href', withUtm(CHECKER_URL, 'race_compare_footer'));
+  function track(el, path){
+    el.addEventListener('click', () => {
+      if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+        window.goatcounter.count({path: path, title: path, event: true});
+      }
+    });
+  }
+  track(ctaProBtn, 'race-compare-click-cta-pro');
+  track(footerCheckerLink, 'race-compare-click-checker');
+
+  const ROWS = 8;
+  const tbody = document.getElementById('raceBody');
+  for(let i=0;i<ROWS;i++){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><input type="text" class="nameInput" placeholder="馬${i+1}"></td>
+      <td><input type="number" class="hitInput" min="0" max="100" step="1"></td>
+      <td><input type="number" class="oddsInput" min="1" step="0.1"></td>
+      <td class="evCell">-</td>
+      <td class="badgeCell">-</td>
+      <td class="rankCell rank">-</td>
+    `;
+    tbody.appendChild(tr);
+  }
+
+  function compute(){
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const data = rows.map(tr => {
+      const hit = parseFloat(tr.querySelector('.hitInput').value);
+      const odds = parseFloat(tr.querySelector('.oddsInput').value);
+      const valid = !isNaN(hit) && !isNaN(odds) && hit > 0 && odds > 0;
+      const ev = valid ? (hit/100) * odds * 100 : null;
+      return {tr, valid, ev};
+    });
+    const validData = data.filter(d => d.valid).sort((a,b) => b.ev - a.ev);
+    validData.forEach((d, idx) => { d.rank = idx + 1; });
+
+    data.forEach(d => {
+      const evCell = d.tr.querySelector('.evCell');
+      const badgeCell = d.tr.querySelector('.badgeCell');
+      const rankCell = d.tr.querySelector('.rankCell');
+      if(!d.valid){
+        evCell.textContent = '-'; badgeCell.innerHTML = '-'; rankCell.textContent = '-';
+        return;
+      }
+      evCell.textContent = d.ev.toFixed(1) + '%';
+      let cls, label;
+      if(d.ev >= 100){ cls='buy'; label='BUY'; }
+      else if(d.ev >= 90){ cls='watch'; label='WATCH'; }
+      else { cls='skip'; label='SKIP'; }
+      badgeCell.innerHTML = `<span class="badge ${cls}">${label}</span>`;
+      rankCell.textContent = d.rank + '位';
+    });
+  }
+
+  tbody.addEventListener('input', compute);
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    tbody.querySelectorAll('input').forEach(el => el.value = '');
+    compute();
+  });
+  compute();
+})();
+</script>
+</body>
+</html>
