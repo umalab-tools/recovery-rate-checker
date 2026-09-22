@@ -101,7 +101,8 @@
 
   <footer>
     UMALABは46,378レースの実データから「買う・見送る」を数字で判断する検証を続けています。<br>
-    <a id="footerCheckerLink">無料の回収率チェッカー</a>も、あわせてどうぞ。
+    <a id="footerCheckerLink">無料の回収率チェッカー</a>も、あわせてどうぞ。<br>
+    「本当に検証を続けているのか」が気になる方は、<a id="footerTrackRecordLink" href="./track-record.html">未来レースでの検証実績（負けも公開）</a>もご覧ください。
   </footer>
 </div>
 
@@ -134,6 +135,7 @@
   track(ctaProBtn, 'race-compare-click-cta-pro');
   track(ctaBuySheetBtn, 'race-compare-click-cta-buysheet');
   track(footerCheckerLink, 'race-compare-click-checker');
+  track(document.getElementById('footerTrackRecordLink'), 'race-compare-click-track-record-footer');
 
   const ROWS = 8;
   const tbody = document.getElementById('raceBody');

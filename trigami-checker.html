@@ -149,7 +149,8 @@
   <footer>
     UMALABは46,378レースの実データから「買う・見送る」を数字で判断する検証を続けています。<br>
     詳しい検証プロセスは <a id="footerMagazineLink" target="_blank" rel="noopener noreferrer">noteマガジン「UMALAB｜AI競馬解析」</a>で公開しています。<br>
-    同じレースの出走馬を横に並べて比較したい方は、<a id="footerRaceCompareLink" href="./race-compare.html">出走馬比較シート</a>もどうぞ。
+    同じレースの出走馬を横に並べて比較したい方は、<a id="footerRaceCompareLink" href="./race-compare.html">出走馬比較シート</a>もどうぞ。<br>
+    「本当に検証を続けているのか」が気になる方は、<a id="footerTrackRecordLink" href="./track-record.html">未来レースでの検証実績（負けも公開）</a>もご覧ください。
   </footer>
 </div>
 
@@ -171,6 +172,7 @@
   const ctaCheckerLink = $('ctaCheckerLink');
   const footerMagazineLink = $('footerMagazineLink');
   const footerRaceCompareLink = $('footerRaceCompareLink');
+  const footerTrackRecordLink = $('footerTrackRecordLink');
 
   if(headerLink){
     headerLink.setAttribute('href', withUtm(CHECKER_URL, 'header'));
@@ -200,6 +202,7 @@
   trackClick(headerLink, 'trigami-click-header-checker');
   trackClick(footerMagazineLink, 'trigami-click-magazine-footer');
   trackClick(footerRaceCompareLink, 'trigami-click-race-compare-footer');
+  trackClick(footerTrackRecordLink, 'trigami-click-track-record-footer');
 
   const pointsEl = $('points'), stakeEl = $('stake'), hitOddsEl = $('hitOdds');
 

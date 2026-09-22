@@ -847,7 +847,8 @@
     UMALABの検証では、単一の点推定（1回計算しただけの回収率）は信頼区間・サンプル数とあわせて確認しています。<br>
     詳しい検証プロセスは <a id="footerMagazineLink" target="_blank" rel="noopener noreferrer">noteマガジン「UMALAB｜AI競馬解析」</a>で公開しています。<br>
     複数点買いをすることが多い方は、<a id="footerTrigamiLink" href="./trigami-checker.html">トリガミ判定ツール</a>もあわせてどうぞ。<br>
-    同じレースの出走馬を横に並べて比較したい方は、<a id="footerRaceCompareLink" href="./race-compare.html">出走馬比較シート</a>もどうぞ。
+    同じレースの出走馬を横に並べて比較したい方は、<a id="footerRaceCompareLink" href="./race-compare.html">出走馬比較シート</a>もどうぞ。<br>
+    「本当に検証を続けているのか」が気になる方は、<a id="footerTrackRecordLink" href="./track-record.html">未来レースでの検証実績（負けも公開）</a>もご覧ください。
   </footer>
 </div>
 
@@ -925,6 +926,7 @@
   trackClick(footerMagazineLink, 'click-cta-magazine-footer');
   trackClick(document.getElementById('footerTrigamiLink'), 'click-cta-trigami-footer');
   trackClick(document.getElementById('footerRaceCompareLink'), 'click-cta-race-compare-footer');
+  trackClick(document.getElementById('footerTrackRecordLink'), 'click-cta-track-record-footer');
 
   const $ = id => document.getElementById(id);
   const hitRateEl = $('hitRate'), oddsEl = $('odds'), stakeEl = $('stake'), racesEl = $('races');
