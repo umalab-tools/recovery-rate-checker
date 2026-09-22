@@ -4,24 +4,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>移動中...</title>
+<title>WHEY PROTEIN NEO</title>
 <script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
-  body{font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#fafafa;color:#333;}
+  *{box-sizing:border-box;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+    display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;
+    background:#fafafa;color:#222;padding:24px;
+  }
+  .card{
+    max-width:420px;width:100%;background:#fff;border-radius:16px;
+    padding:28px 24px;box-shadow:0 2px 12px rgba(0,0,0,0.08);text-align:center;
+  }
+  .pr-badge{
+    display:inline-block;font-size:11px;font-weight:700;color:#888;
+    border:1px solid #ccc;border-radius:4px;padding:2px 8px;margin-bottom:14px;letter-spacing:.05em;
+  }
+  h1{font-size:18px;line-height:1.5;margin:0 0 14px;color:#333;}
+  p{font-size:14px;line-height:1.7;color:#555;margin:0 0 22px;}
+  .cta{
+    display:block;width:100%;padding:14px;border:none;border-radius:10px;
+    background:#222;color:#fff;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;
+  }
+  .cta:active{opacity:.8;}
+  .note{font-size:11px;color:#aaa;margin-top:14px;}
 </style>
 </head>
 <body>
-<p>移動しています...</p>
+<div class="card">
+  <span class="pr-badge">PR</span>
+  <h1>投稿で話してたプロテインはこちら</h1>
+  <p>
+    水だけで美味しく飲めて、ビタミンもまとめて摂れるWHEY PROTEIN NEO。<br>
+    今なら最大18%オフ中。
+  </p>
+  <a class="cta" id="ctaBtn" href="#">WHEY PROTEIN NEOをチェック</a>
+  <p class="note">自動的に商品ページへ移動します</p>
+</div>
 <script>
 (function(){
   var DEST = "https://r.8to.jp/K6CSVHnn6YgU";
+  var tracked = false;
   var redirected = false;
-  function go(){
-    if (redirected) return;
-    redirected = true;
-    window.location.replace(DEST);
-  }
-  function trackAndGo(){
+
+  function track(){
+    if (tracked) return;
+    tracked = true;
     try {
       if (window.goatcounter && window.goatcounter.count) {
         window.goatcounter.count({
@@ -31,20 +60,35 @@
         });
       }
     } catch (e) {}
-    go();
   }
-  // GoatCounterの読み込みを最大800ms待ってから遷移（未読込でも必ず遷移する）
+
+  function go(){
+    if (redirected) return;
+    redirected = true;
+    window.location.replace(DEST);
+  }
+
+  // ページ読み込み時に計測（従来と同じタイミング・イベント名を維持）
   var waited = 0;
-  var iv = setInterval(function(){
+  var trackIv = setInterval(function(){
     waited += 50;
     if (window.goatcounter && window.goatcounter.count) {
-      clearInterval(iv);
-      trackAndGo();
+      clearInterval(trackIv);
+      track();
     } else if (waited >= 800) {
-      clearInterval(iv);
-      trackAndGo();
+      clearInterval(trackIv);
+      track();
     }
   }, 50);
+
+  // CTAボタン: 即座に遷移
+  document.getElementById('ctaBtn').addEventListener('click', function(e){
+    e.preventDefault();
+    go();
+  });
+
+  // 未クリックでも4秒後に自動遷移（読む時間を確保しつつ離脱を防ぐ）
+  setTimeout(go, 4000);
 })();
 </script>
 </body>
