@@ -192,7 +192,15 @@
     });
   }
 
-  tbody.addEventListener('input', compute);
+  let hasTrackedUsage = false;
+  function trackUsageOnce(){
+    if(hasTrackedUsage) return;
+    hasTrackedUsage = true;
+    if(window.goatcounter && typeof window.goatcounter.count === 'function'){
+      window.goatcounter.count({path: 'race-compare-tool-used-first-input', title: 'race-compare-tool-used-first-input', event: true});
+    }
+  }
+  tbody.addEventListener('input', () => { compute(); trackUsageOnce(); });
   document.getElementById('clearBtn').addEventListener('click', () => {
     tbody.querySelectorAll('input').forEach(el => el.value = '');
     compute();
