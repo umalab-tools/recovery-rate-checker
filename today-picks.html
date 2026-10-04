@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>競馬 今日の解析結果 | UMALAB</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8F%87</text></svg>">
+<meta name="description" content="UMALAB（馬ラボ）が本日解析した地方競馬の候補レースを、S/A/B/Cランクでそのまま公開。見送りレースも隠さず掲載。">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://umalab-tools.github.io/recovery-rate-checker/today-picks.html">
+<meta property="og:url" content="https://umalab-tools.github.io/recovery-rate-checker/today-picks.html">
+<meta property="og:title" content="競馬 今日の解析結果 | UMALAB">
+<meta property="og:description" content="UMALAB（馬ラボ）が本日解析した地方競馬の候補レースを、S/A/B/Cランクでそのまま公開。見送りレースも隠さず掲載。">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="競馬 今日の解析結果 | UMALAB">
+<meta name="twitter:description" content="UMALAB（馬ラボ）が本日解析した地方競馬の候補レースを、S/A/B/Cランクでそのまま公開。見送りレースも隠さず掲載。">
+<!-- アクセス解析（無料、GoatCounter。サイトコード: umalab-checker、既存ページと共通） -->
+<script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;}
+  :root{
+    --bg:#f6f4ee; --surface:#ffffff; --surface-alt:#eeebe1;
+    --text:#1d2318; --text-muted:#5c6455; --border:#dcd5c5;
+    --accent:#2f6e4b; --accent-strong:#1f4d34; --accent-soft:#e3ede5;
+    --good:#2f6e4b; --good-soft:#e3ede5;
+    --warn:#a8761f; --warn-soft:#f5ecd8;
+    --bad:#af3a35; --bad-soft:#f6e3e0;
+    --s-rank:#1f4d34; --s-rank-soft:#e3ede5;
+    --a-rank:#2f6e4b; --a-rank-soft:#eaf3ed;
+    --b-rank:#a8761f; --b-rank-soft:#f5ecd8;
+    --c-rank:#7a7368; --c-rank-soft:#eeebe1;
+    --shadow: 0 1px 2px rgba(30,35,25,0.06), 0 8px 24px -12px rgba(30,35,25,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#12150f; --surface:#1a1f16; --surface-alt:#20261b;
+      --text:#eae7dc; --text-muted:#a4ac97; --border:#333c2b;
+      --accent:#71c191; --accent-strong:#93d8ac; --accent-soft:#1e3327;
+      --good:#71c191; --good-soft:#1e3327;
+      --warn:#dcb15a; --warn-soft:#332b16;
+      --bad:#e2867d; --bad-soft:#382019;
+      --s-rank:#93d8ac; --s-rank-soft:#1e3327;
+      --a-rank:#71c191; --a-rank-soft:#1b2a1f;
+      --b-rank:#dcb15a; --b-rank-soft:#332b16;
+      --c-rank:#8f9686; --c-rank-soft:#20261b;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px -12px rgba(0,0,0,0.5);
+    }
+  }
+  body{background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
+  .wrap{max-width:640px;margin:0 auto;padding:32px 18px 72px;}
+  header{margin-bottom:26px;}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:10px;}
+  h1{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-weight:900;font-size:clamp(24px,7vw,34px);margin:0 0 10px;text-wrap:balance;letter-spacing:-0.01em;}
+  h2{font-family:"Zen Kaku Gothic New",sans-serif;font-size:16px;font-weight:700;margin:0 0 14px;}
+  .lede{color:var(--text-muted);font-size:14px;margin:0 0 14px;}
+  .disclaimer{padding:12px 14px;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text-muted);margin-bottom:14px;}
+  .header-link{display:inline-block;font-size:13px;color:var(--accent);font-weight:700;text-decoration:none;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px 20px;margin-bottom:18px;}
+  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-muted);text-align:right;margin:-6px 0 14px;}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;}
+  .stat{background:var(--surface-alt);border-radius:12px;padding:12px 14px;}
+  .stat-label{font-size:11.5px;color:var(--text-muted);margin-bottom:4px;}
+  .stat-value{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:19px;}
+  .divider{border:none;border-top:1px solid var(--border);margin:22px 0;}
+  footer{margin-top:24px;font-size:11.5px;color:var(--text-muted);text-align:center;}
+
+  .rank-section-title{display:flex;align-items:center;gap:8px;margin:28px 0 12px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:18px;}
+  .rank-badge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:8px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:15px;padding:0 8px;}
+  .rank-S .rank-badge{background:var(--s-rank-soft);color:var(--s-rank);}
+  .rank-A .rank-badge{background:var(--a-rank-soft);color:var(--a-rank);}
+  .rank-B .rank-badge{background:var(--b-rank-soft);color:var(--b-rank);}
+  .rank-C .rank-badge{background:var(--c-rank-soft);color:var(--c-rank);}
+  .race-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:16px 16px;margin-bottom:12px;}
+  .race-card.rank-S{border-left:4px solid var(--s-rank);}
+  .race-card.rank-A{border-left:4px solid var(--a-rank);}
+  .race-card.rank-B{border-left:4px solid var(--b-rank);}
+  .race-card.rank-C{border-left:4px solid var(--c-rank);opacity:0.75;}
+  .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px;}
+  .race-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;}
+  .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-muted);white-space:nowrap;}
+  .race-horses{font-size:13px;margin:6px 0;}
+  .race-horses .label{color:var(--text-muted);font-size:11px;margin-right:4px;}
+  .wide-pick{display:inline-block;background:var(--accent-soft);color:var(--accent-strong);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px;margin:4px 6px 0 0;}
+  .race-reason{font-size:12.5px;color:var(--text-muted);margin-top:8px;}
+  .confidence-tag{display:inline-block;font-size:11px;color:var(--text-muted);background:var(--surface-alt);padding:2px 8px;border-radius:6px;margin-left:6px;}
+  #loading{text-align:center;color:var(--text-muted);font-size:13px;padding:40px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">UMALAB 馬ラボ・本日の解析結果</span>
+    <h1>今日の解析結果（S/A/B/C）</h1>
+    <p class="lede">UMALAB（馬ラボ）が本日取得できたオッズ・過去成績から解析した候補レースを、見送り（Cランク）も含めてそのまま公開しています。買う・買わないの判断材料としてご利用ください。</p>
+    <p class="disclaimer">これは参考情報であり、的中・利益を保証するものではありません。ワイドの期待値は、過去成績ベースの近似計算（独立仮定）であり、UMALABの検証済みトラックレコードとは別系統です。</p>
+    <a class="header-link" id="headerLink">UMALAB検証実績ページへ →</a>
+  </header>
+
+  <div id="loading">読み込み中...</div>
+
+  <div class="panel" id="summaryPanel" style="display:none;">
+    <p class="updated" id="updatedAt"></p>
+    <h2>本日のサマリー</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-label">解析レース数</div><div class="stat-value" id="totalRaces">-</div></div>
+      <div class="stat"><div class="stat-label">S/Aランク</div><div class="stat-value" id="buyCount">-</div></div>
+    </div>
+  </div>
+
+  <div id="raceSections"></div>
+
+  <footer>
+    UMALAB｜地方競馬の実データで「買う・見送る」を検証しています。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const CHECKER_URL = "https://umalab-tools.github.io/recovery-rate-checker/track-record.html";
+  const $ = id => document.getElementById(id);
+
+  function withUtm(url, content){
+    if(!url) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    return url + sep + 'utm_source=today_picks&utm_medium=cta&utm_content=' + encodeURIComponent(content);
+  }
+  const headerLink = $('headerLink');
+  if(headerLink) headerLink.setAttribute('href', withUtm(CHECKER_URL, 'header'));
+
+  const RANK_ORDER = ['S', 'A', 'B', 'C'];
+  const RANK_LABEL = {S: 'Sランク（かなり買いたい）', A: 'Aランク（買う価値あり）', B: 'Bランク（条件次第）', C: 'Cランク（見送り）'};
+
+  function renderRace(r){
+    const el = document.createElement('div');
+    el.className = 'race-card rank-' + r.rank;
+    let picksHtml = '';
+    if(r.wide_picks && r.wide_picks.length){
+      picksHtml = r.wide_picks.map(function(p){
+        return '<span class="wide-pick">ワイド' + p.combo + '　' + p.odds_low + '〜' + p.odds_high + '倍　' + p.amount.toLocaleString() + '円</span>';
+      }).join('');
+    }
+    const horsesHtml = r.axis ? (
+      '<div class="race-horses"><span class="label">軸</span>' + r.axis.no + '番 ' + r.axis.name +
+      '（' + Math.round(r.axis.prob * 1000) / 10 + '%）' +
+      (r.partner ? '　<span class="label">相手</span>' + r.partner.no + '番 ' + r.partner.name +
+        '（' + Math.round(r.partner.prob * 1000) / 10 + '%）' : '') +
+      '</div>'
+    ) : '';
+    const reasonText = r.reason || r.skip_reason || '';
+    el.innerHTML =
+      '<div class="race-head">' +
+        '<span class="race-title">' + r.track + r.race_no + 'R' +
+          (r.confidence ? '<span class="confidence-tag">自信度: ' + r.confidence + '</span>' : '') +
+        '</span>' +
+        '<span class="race-time">' + r.post_time + '発走</span>' +
+      '</div>' +
+      horsesHtml +
+      '<div>' + picksHtml + '</div>' +
+      (reasonText ? '<div class="race-reason">' + reasonText + '</div>' : '');
+    return el;
+  }
+
+  fetch('today_picks.json', {cache: 'no-store'})
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      $('loading').style.display = 'none';
+      $('summaryPanel').style.display = 'block';
+      $('updatedAt').textContent = '最終更新: ' + data.updated_at;
+      $('totalRaces').textContent = data.total_races_analyzed + '件';
+      const buyCount = data.races.filter(function(r){ return r.rank === 'S' || r.rank === 'A'; }).length;
+      $('buyCount').textContent = buyCount + '件';
+
+      const container = $('raceSections');
+      RANK_ORDER.forEach(function(rank){
+        const races = data.races.filter(function(r){ return r.rank === rank; });
+        if(!races.length) return;
+        const title = document.createElement('div');
+        title.className = 'rank-section-title rank-' + rank;
+        title.innerHTML = '<span class="rank-badge">' + rank + '</span>' + RANK_LABEL[rank];
+        container.appendChild(title);
+        races.forEach(function(r){ container.appendChild(renderRace(r)); });
+      });
+    })
+    .catch(function(err){
+      $('loading').textContent = 'データの読み込みに失敗しました。';
+    });
+})();
+</script>
+</body>
+</html>
