@@ -62,7 +62,11 @@
   .disclaimer{padding:12px 14px;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text-muted);margin-bottom:14px;}
   .header-link{display:inline-block;font-size:13px;color:var(--accent);font-weight:700;text-decoration:none;}
   .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px 20px;margin-bottom:18px;}
-  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-muted);text-align:right;margin:-6px 0 14px;}
+  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-muted);}
+  .refresh-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:-6px 0 14px;}
+  .refresh-btn{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:#fff;background:var(--accent);border:none;border-radius:8px;padding:7px 14px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+  .refresh-btn:active{opacity:0.75;}
+  .refresh-btn[disabled]{opacity:0.6;}
   .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;}
   .stat{background:var(--surface-alt);border-radius:12px;padding:12px 14px;}
   .stat-label{font-size:11.5px;color:var(--text-muted);margin-bottom:4px;}
@@ -105,7 +109,10 @@
   <div id="loading">読み込み中...</div>
 
   <div class="panel" id="summaryPanel" style="display:none;">
-    <p class="updated" id="updatedAt"></p>
+    <div class="refresh-row">
+      <span class="updated" id="updatedAt"></span>
+      <button type="button" class="refresh-btn" id="refreshBtn">最新データに更新</button>
+    </div>
     <h2>本日のサマリー</h2>
     <div class="stat-grid">
       <div class="stat"><div class="stat-label">解析レース数</div><div class="stat-value" id="totalRaces">-</div></div>
@@ -132,6 +139,15 @@
   }
   const headerLink = $('headerLink');
   if(headerLink) headerLink.setAttribute('href', withUtm(CHECKER_URL, 'header'));
+
+  const refreshBtn = $('refreshBtn');
+  if(refreshBtn){
+    refreshBtn.addEventListener('click', function(){
+      refreshBtn.disabled = true;
+      refreshBtn.textContent = '更新中...';
+      location.href = location.pathname + '?nocache=' + Date.now();
+    });
+  }
 
   const RANK_ORDER = ['S', 'A', 'B', 'C'];
   const RANK_LABEL = {S: 'Sランク（かなり買いたい）', A: 'Aランク（買う価値あり）', B: 'Bランク（条件次第）', C: 'Cランク（見送り）'};
@@ -166,7 +182,7 @@
     return el;
   }
 
-  fetch('today_picks.json', {cache: 'no-store'})
+  fetch('today_picks.json?t=' + Date.now(), {cache: 'no-store'})
     .then(function(res){ return res.json(); })
     .then(function(data){
       $('loading').style.display = 'none';
