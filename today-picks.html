@@ -110,7 +110,10 @@
 
   <div class="panel" id="summaryPanel" style="display:none;">
     <div class="refresh-row">
-      <span class="updated" id="updatedAt"></span>
+      <div>
+        <div class="updated" id="updatedAt"></div>
+        <div class="updated" id="nextUpdateAt" style="margin-top:3px;"></div>
+      </div>
       <button type="button" class="refresh-btn" id="refreshBtn">最新データに更新</button>
     </div>
     <h2>本日のサマリー</h2>
@@ -188,6 +191,7 @@
       $('loading').style.display = 'none';
       $('summaryPanel').style.display = 'block';
       $('updatedAt').textContent = '最終更新: ' + data.updated_at;
+      $('nextUpdateAt').textContent = data.next_update_at ? ('次回自動更新予定: ' + data.next_update_at) : '';
       $('totalRaces').textContent = data.total_races_analyzed + '件';
       const buyCount = data.races.filter(function(r){ return r.rank === 'S' || r.rank === 'A'; }).length;
       $('buyCount').textContent = buyCount + '件';
