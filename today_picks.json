@@ -1,23 +1,34 @@
 {
-  "updated_at": "2026-10-05 16:12",
+  "updated_at": "2026-10-05 16:22",
   "date": "20261005",
-  "total_races_analyzed": 17,
+  "total_races_analyzed": 16,
   "races": [
     {
-      "track": "大井",
-      "race_no": 2,
-      "post_time": "16:07",
-      "rank": "C",
+      "track": "盛岡",
+      "race_no": 9,
+      "post_time": "16:20",
+      "rank": "A",
       "axis": {
         "no": 6,
-        "name": "レッドフローガ",
-        "prob": 0.447
+        "name": "リケアサブル",
+        "prob": 0.759
       },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.19と基準(1.5)未満のため見送り。"
+      "partner": {
+        "no": 2,
+        "name": "サンマルセレッソ",
+        "prob": 0.296
+      },
+      "wide_picks": [
+        {
+          "combo": "2-4",
+          "odds_low": 15.6,
+          "odds_high": 17.1,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率29.6%・41.0%、近似EV1.89〜2.07。",
+      "skip_reason": null
     },
     {
       "track": "大井",
@@ -37,13 +48,13 @@
       "wide_picks": [
         {
           "combo": "2-4",
-          "odds_low": 5.2,
-          "odds_high": 6.8,
+          "odds_low": 3.9,
+          "odds_high": 5.0,
           "amount": 1000
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（Tier A・EVルール）に該当。両馬の3着内確率63.5%・62.7%、近似EV2.07〜2.71。",
+      "reason": "根拠条件（Tier A・EVルール）に該当。両馬の3着内確率63.5%・62.7%、近似EV1.55〜1.99。",
       "skip_reason": null
     },
     {
@@ -52,25 +63,25 @@
       "post_time": "16:50",
       "rank": "A",
       "axis": {
+        "no": 4,
+        "name": "クリスタルオリオン",
+        "prob": 0.757
+      },
+      "partner": {
         "no": 8,
         "name": "キングゴルシ",
         "prob": 0.65
       },
-      "partner": {
-        "no": 4,
-        "name": "クリスタルオリオン",
-        "prob": 0.441
-      },
       "wide_picks": [
         {
           "combo": "4-8",
-          "odds_low": 7.1,
-          "odds_high": 7.9,
+          "odds_low": 7.5,
+          "odds_high": 8.3,
           "amount": 1000
         }
       ],
-      "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率44.1%・65.0%、近似EV2.04〜2.27。",
+      "confidence": "高",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率75.7%・65.0%、近似EV3.69〜4.08。",
       "skip_reason": null
     },
     {
@@ -79,25 +90,25 @@
       "post_time": "16:55",
       "rank": "A",
       "axis": {
-        "no": 6,
-        "name": "リトゥリア",
-        "prob": 0.231
+        "no": 11,
+        "name": "タイセイゴッシュ",
+        "prob": 0.761
       },
       "partner": {
         "no": 5,
         "name": "ライコウノヒカリ",
-        "prob": 0.626
+        "prob": 0.501
       },
       "wide_picks": [
         {
-          "combo": "5-8",
-          "odds_low": 6.2,
-          "odds_high": 6.9,
+          "combo": "5-11",
+          "odds_low": 7.6,
+          "odds_high": 8.5,
           "amount": 1000
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率62.6%・48.2%、近似EV1.87〜2.08。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率50.1%・76.1%、近似EV2.90〜3.24。",
       "skip_reason": null
     },
     {
@@ -118,13 +129,13 @@
       "wide_picks": [
         {
           "combo": "4-7",
-          "odds_low": 9.7,
-          "odds_high": 11.5,
+          "odds_low": 8.6,
+          "odds_high": 10.1,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率30.8%・67.2%、近似EV2.01〜2.38。",
+      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率30.8%・67.2%、近似EV1.78〜2.09。",
       "skip_reason": null
     },
     {
@@ -145,13 +156,13 @@
       "wide_picks": [
         {
           "combo": "1-8",
-          "odds_low": 47.1,
-          "odds_high": 53.9,
+          "odds_low": 47.2,
+          "odds_high": 54.1,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率22.5%・47.3%、近似EV5.00〜5.72。",
+      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率22.5%・47.3%、近似EV5.01〜5.74。",
       "skip_reason": null
     },
     {
@@ -165,47 +176,20 @@
         "prob": 0.606
       },
       "partner": {
-        "no": 5,
-        "name": "サスケベラ",
-        "prob": 0.439
+        "no": 2,
+        "name": "サクラトップマンボ",
+        "prob": 0.21
       },
       "wide_picks": [
         {
-          "combo": "5-9",
-          "odds_low": 18.9,
-          "odds_high": 21.3,
+          "combo": "2-5",
+          "odds_low": 34.5,
+          "odds_high": 37.2,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率43.9%・44.4%、近似EV3.68〜4.15。",
-      "skip_reason": null
-    },
-    {
-      "track": "大井",
-      "race_no": 5,
-      "post_time": "17:45",
-      "rank": "A",
-      "axis": {
-        "no": 5,
-        "name": "サンバフレイバー",
-        "prob": 0.259
-      },
-      "partner": {
-        "no": 4,
-        "name": "ポンペルモ",
-        "prob": 0.248
-      },
-      "wide_picks": [
-        {
-          "combo": "4-11",
-          "odds_low": 35.0,
-          "odds_high": 36.8,
-          "amount": 1000
-        }
-      ],
-      "confidence": "中",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率24.8%・40.8%、近似EV3.54〜3.72。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率21.0%・34.8%、近似EV2.53〜2.73。",
       "skip_reason": null
     },
     {
@@ -226,13 +210,13 @@
       "wide_picks": [
         {
           "combo": "3-8",
-          "odds_low": 26.2,
-          "odds_high": 29.5,
+          "odds_low": 28.1,
+          "odds_high": 31.4,
           "amount": 1000
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率54.1%・63.4%、近似EV8.99〜10.12。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率54.1%・63.4%、近似EV9.64〜10.77。",
       "skip_reason": null
     },
     {
@@ -253,13 +237,13 @@
       "wide_picks": [
         {
           "combo": "1-6",
-          "odds_low": 15.4,
-          "odds_high": 16.8,
+          "odds_low": 16.2,
+          "odds_high": 17.7,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率34.8%・64.7%、近似EV3.47〜3.79。",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率34.8%・64.7%、近似EV3.65〜3.99。",
       "skip_reason": null
     },
     {
@@ -279,14 +263,14 @@
       },
       "wide_picks": [
         {
-          "combo": "1-4",
-          "odds_low": 38.5,
-          "odds_high": 41.7,
+          "combo": "1-5",
+          "odds_low": 39.6,
+          "odds_high": 43.2,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率32.5%・55.6%、近似EV6.95〜7.53。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率32.5%・39.8%、近似EV5.13〜5.59。",
       "skip_reason": null
     },
     {
@@ -307,20 +291,20 @@
       "wide_picks": [
         {
           "combo": "2-4",
-          "odds_low": 46.3,
-          "odds_high": 49.1,
+          "odds_low": 47.5,
+          "odds_high": 50.5,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率26.2%・61.4%、近似EV7.45〜7.91。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率26.2%・61.4%、近似EV7.65〜8.13。",
       "skip_reason": null
     },
     {
       "track": "大井",
       "race_no": 8,
       "post_time": "19:30",
-      "rank": "S",
+      "rank": "A",
       "axis": {
         "no": 7,
         "name": "イモノソーダワリデ",
@@ -334,13 +318,13 @@
       "wide_picks": [
         {
           "combo": "5-7",
-          "odds_low": 29.0,
-          "odds_high": 31.6,
+          "odds_low": 27.9,
+          "odds_high": 30.2,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率21.6%・64.5%、近似EV4.04〜4.40。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率21.6%・64.5%、近似EV3.89〜4.21。",
       "skip_reason": null
     },
     {
@@ -360,14 +344,14 @@
       },
       "wide_picks": [
         {
-          "combo": "4-9",
-          "odds_low": 50.0,
-          "odds_high": 51.6,
+          "combo": "3-4",
+          "odds_low": 24.7,
+          "odds_high": 26.2,
           "amount": 1000
         }
       ],
-      "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率57.9%・33.9%、近似EV9.82〜10.13。",
+      "confidence": "高",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率64.4%・57.9%、近似EV9.21〜9.77。",
       "skip_reason": null
     },
     {
@@ -388,13 +372,13 @@
       "wide_picks": [
         {
           "combo": "6-9",
-          "odds_low": 8.4,
-          "odds_high": 9.5,
+          "odds_low": 8.5,
+          "odds_high": 9.6,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率33.6%・66.4%、近似EV1.87〜2.12。",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率33.6%・66.4%、近似EV1.90〜2.14。",
       "skip_reason": null
     },
     {
@@ -416,12 +400,12 @@
         {
           "combo": "4-5",
           "odds_low": 20.7,
-          "odds_high": 24.0,
+          "odds_high": 23.8,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率40.5%・57.8%、近似EV4.85〜5.62。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率40.5%・57.8%、近似EV4.85〜5.58。",
       "skip_reason": null
     },
     {
@@ -442,13 +426,13 @@
       "wide_picks": [
         {
           "combo": "11-14",
-          "odds_low": 26.8,
-          "odds_high": 28.9,
+          "odds_low": 27.3,
+          "odds_high": 29.4,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率44.5%・24.2%、近似EV2.88〜3.11。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率44.5%・24.2%、近似EV2.93〜3.16。",
       "skip_reason": null
     }
   ],
