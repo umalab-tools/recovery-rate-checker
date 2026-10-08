@@ -94,6 +94,24 @@
   .race-reason{font-size:12.5px;color:var(--text-muted);margin-top:8px;}
   .confidence-tag{display:inline-block;font-size:11px;color:var(--text-muted);background:var(--surface-alt);padding:2px 8px;border-radius:6px;margin-left:6px;}
   #loading{text-align:center;color:var(--text-muted);font-size:13px;padding:40px 0;}
+
+  .cand-section-title{margin:34px 0 12px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:18px;}
+  .cand-waiting{background:var(--surface-alt);border:1px solid var(--border);border-radius:12px;padding:18px 16px;text-align:center;color:var(--text-muted);font-size:13.5px;}
+  .cand-provisional{display:inline-block;font-size:11px;color:var(--warn);background:var(--warn-soft);padding:2px 8px;border-radius:6px;margin-left:6px;}
+  .cand-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-bottom:12px;}
+  .cand-card.conf-A{border-left:4px solid var(--s-rank);}
+  .cand-card.conf-B{border-left:4px solid var(--a-rank);}
+  .cand-card.conf-C{border-left:4px solid var(--c-rank);opacity:0.75;}
+  .cand-conf-badge{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;border-radius:7px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:0 7px;margin-left:6px;}
+  .conf-A .cand-conf-badge{background:var(--s-rank-soft);color:var(--s-rank);}
+  .conf-B .cand-conf-badge{background:var(--a-rank-soft);color:var(--a-rank);}
+  .conf-C .cand-conf-badge{background:var(--c-rank-soft);color:var(--c-rank);}
+  .cand-meta{font-size:12.5px;color:var(--text-muted);margin:4px 0;}
+  .cand-reason{font-size:12.5px;color:var(--text-muted);margin-top:8px;}
+  .cand-skip{font-size:11.5px;color:var(--text-muted);margin-top:4px;padding-top:8px;border-top:1px dashed var(--border);}
+  .top3-box{background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:16px;margin-bottom:16px;}
+  .top3-box h3{margin:0 0 8px;font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;color:var(--accent-strong);}
+  .top3-item{font-size:13.5px;margin:4px 0;}
 </style>
 </head>
 <body>
@@ -124,6 +142,12 @@
   </div>
 
   <div id="raceSections"></div>
+
+  <div id="candSection">
+    <div class="cand-section-title">翌日の実戦候補（研究・参考情報）</div>
+    <p class="disclaimer" style="margin-bottom:12px;">today-picks本番の解析とは別の、研究段階の参考候補です。信頼度Aでも100%の回収率は確認できていません。実際の購入判断はご自身でお願いします。</p>
+    <div id="candContent"><div class="cand-waiting">読み込み中...</div></div>
+  </div>
 
   <footer>
     UMALAB｜地方競馬の実データで「買う・見送る」を検証しています。
@@ -209,6 +233,72 @@
     })
     .catch(function(err){
       $('loading').textContent = 'データの読み込みに失敗しました。';
+    });
+
+  function renderCandidate(c){
+    const el = document.createElement('div');
+    el.className = 'cand-card conf-' + c.confidence;
+    el.innerHTML =
+      '<div class="race-head">' +
+        '<span class="race-title">' + c.track + c.race_no + 'R' +
+          '<span class="cand-conf-badge">' + c.confidence + '</span>' +
+        '</span>' +
+        '<span class="race-time">' + c.post_time + '発走</span>' +
+      '</div>' +
+      '<div class="cand-meta">' + c.umaban + '番 ' + c.horse + '　想定オッズ: ' + c.odds_band + '</div>' +
+      '<div class="cand-meta">推奨: ' + c.bet_type + '　' + c.amount.toLocaleString() + '円</div>' +
+      '<div class="cand-reason">' + c.reason + '</div>' +
+      '<div class="cand-skip">見送り条件: ' + c.skip_condition + '</div>';
+    return el;
+  }
+
+  fetch('research_candidates.json?t=' + Date.now(), {cache: 'no-store'})
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      const container = $('candContent');
+      container.innerHTML = '';
+
+      if(data.status === 'waiting'){
+        container.innerHTML = '<div class="cand-waiting">まだ予想データ待ちです。対象日のレース情報が公開され次第、自動的に表示されます。</div>';
+        return;
+      }
+
+      const updatedLine = document.createElement('p');
+      updatedLine.className = 'updated';
+      updatedLine.style.marginBottom = '12px';
+      updatedLine.textContent = '更新日時: ' + data.generated_at + '（対象日: ' + data.target_date + '）';
+      if(data.provisional){
+        const tag = document.createElement('span');
+        tag.className = 'cand-provisional';
+        tag.textContent = '暫定（オッズ未確定分あり）';
+        updatedLine.appendChild(tag);
+      }
+      container.appendChild(updatedLine);
+
+      if(data.status === 'no_candidates' || !data.candidates || !data.candidates.length){
+        const div = document.createElement('div');
+        div.className = 'cand-waiting';
+        div.textContent = '本日の条件に該当する候補はありませんでした。見送りを推奨します。';
+        container.appendChild(div);
+        return;
+      }
+
+      if(data.top3 && data.top3.length){
+        const box = document.createElement('div');
+        box.className = 'top3-box';
+        box.innerHTML = '<h3>明日買うならこの順（最大3レース）</h3>' +
+          data.top3.map(function(c){
+            return '<div class="top3-item">' + c.rank + '. ' + c.track + c.race_no + 'R　' +
+              c.umaban + '番 ' + c.horse + '（' + c.bet_type + ' ' + c.amount.toLocaleString() + '円、信頼度' + c.confidence + '）</div>';
+          }).join('') +
+          '<div class="top3-item" style="margin-top:8px;font-weight:700;">合計購入額: ' + data.total_amount.toLocaleString() + '円</div>';
+        container.appendChild(box);
+      }
+
+      data.candidates.forEach(function(c){ container.appendChild(renderCandidate(c)); });
+    })
+    .catch(function(err){
+      $('candContent').innerHTML = '<div class="cand-waiting">候補データの読み込みに失敗しました。</div>';
     });
 })();
 </script>
