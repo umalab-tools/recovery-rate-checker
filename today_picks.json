@@ -1,23 +1,61 @@
 {
-  "updated_at": "2026-10-10 19:27",
+  "updated_at": "2026-10-10 19:43",
   "date": "20261010",
-  "total_races_analyzed": 2,
+  "total_races_analyzed": 3,
   "races": [
     {
-      "track": "高知",
-      "race_no": 9,
-      "post_time": "19:50",
-      "rank": "C",
+      "track": "佐賀",
+      "race_no": 10,
+      "post_time": "19:35",
+      "rank": "A",
       "axis": {
         "no": 9,
-        "name": "デルマアズラエル",
-        "prob": 0.709
+        "name": "イントゥゴールデン",
+        "prob": 0.26
       },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.32と基準(1.5)未満のため見送り。"
+      "partner": {
+        "no": 5,
+        "name": "ウタカタ",
+        "prob": 0.235
+      },
+      "wide_picks": [
+        {
+          "combo": "5-10",
+          "odds_low": 14.3,
+          "odds_high": 16.3,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率23.5%・45.4%、近似EV1.52〜1.74。",
+      "skip_reason": null
+    },
+    {
+      "track": "帯広ば",
+      "race_no": 11,
+      "post_time": "20:00",
+      "rank": "A",
+      "axis": {
+        "no": 1,
+        "name": "ヤマノキング",
+        "prob": 0.612
+      },
+      "partner": {
+        "no": 2,
+        "name": "レッドウンカイ",
+        "prob": 0.482
+      },
+      "wide_picks": [
+        {
+          "combo": "2-3",
+          "odds_low": 18.4,
+          "odds_high": 20.9,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率48.2%・29.5%、近似EV2.61〜2.97。",
+      "skip_reason": null
     },
     {
       "track": "高知",
@@ -37,13 +75,13 @@
       "wide_picks": [
         {
           "combo": "10-11",
-          "odds_low": 10.6,
-          "odds_high": 11.5,
+          "odds_low": 11.4,
+          "odds_high": 12.3,
           "amount": 1000
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率49.0%・70.7%、近似EV3.67〜3.99。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率49.0%・70.7%、近似EV3.95〜4.26。",
       "skip_reason": null
     }
   ],
