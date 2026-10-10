@@ -112,6 +112,7 @@
   .top3-box{background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:16px;margin-bottom:16px;}
   .top3-box h3{margin:0 0 8px;font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;color:var(--accent-strong);}
   .top3-item{font-size:13.5px;margin:4px 0;}
+  .stale-banner{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad);border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:700;margin-bottom:14px;}
 </style>
 </head>
 <body>
@@ -176,6 +177,18 @@
     });
   }
 
+  function todayStr(){
+    const d = new Date();
+    return '' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+  }
+
+  function staleBanner(labelDate){
+    const el = document.createElement('div');
+    el.className = 'stale-banner';
+    el.textContent = 'この予想は本日（' + todayStr() + '）更新分ではありません（データ日付: ' + labelDate + '）。自動更新が止まっている可能性があります。';
+    return el;
+  }
+
   const RANK_ORDER = ['S', 'A', 'B', 'C'];
   const RANK_LABEL = {S: 'Sランク（かなり買いたい）', A: 'Aランク（買う価値あり）', B: 'Bランク（条件次第）', C: 'Cランク（見送り）'};
 
@@ -214,6 +227,9 @@
     .then(function(data){
       $('loading').style.display = 'none';
       $('summaryPanel').style.display = 'block';
+      if(data.date && data.date !== todayStr()){
+        $('raceSections').parentNode.insertBefore(staleBanner(data.date), $('raceSections'));
+      }
       $('updatedAt').textContent = '最終更新: ' + data.updated_at;
       $('nextUpdateAt').textContent = data.next_update_at ? ('次回自動更新予定: ' + data.next_update_at) : '';
       $('totalRaces').textContent = data.total_races_analyzed + '件';
@@ -261,6 +277,10 @@
       if(data.status === 'waiting'){
         container.innerHTML = '<div class="cand-waiting">まだ予想データ待ちです。対象日のレース情報が公開され次第、自動的に表示されます。</div>';
         return;
+      }
+
+      if(data.target_date && data.target_date !== todayStr()){
+        container.appendChild(staleBanner(data.target_date));
       }
 
       const updatedLine = document.createElement('p');
