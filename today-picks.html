@@ -185,7 +185,7 @@
   function staleBanner(labelDate){
     const el = document.createElement('div');
     el.className = 'stale-banner';
-    el.textContent = 'この予想は本日（' + todayStr() + '）更新分ではありません（データ日付: ' + labelDate + '）。自動更新が止まっている可能性があります。';
+    el.textContent = 'この予想は本日（' + todayStr() + '）更新分ではないため、予想は表示していません（データ日付: ' + labelDate + '）。自動更新が止まっている可能性があります。「最新データに更新」で再確認できます。';
     return el;
   }
 
@@ -227,10 +227,15 @@
     .then(function(data){
       $('loading').style.display = 'none';
       $('summaryPanel').style.display = 'block';
-      if(data.date && data.date !== todayStr()){
-        $('raceSections').parentNode.insertBefore(staleBanner(data.date), $('raceSections'));
-      }
       $('updatedAt').textContent = '最終更新: ' + data.updated_at;
+      if(!data.date || data.date !== todayStr()){
+        // 本日分でないデータは予想として表示しない（古い予想の流用防止）
+        $('raceSections').parentNode.insertBefore(staleBanner(data.date || '不明'), $('raceSections'));
+        $('nextUpdateAt').textContent = '';
+        $('totalRaces').textContent = '—';
+        $('buyCount').textContent = '—';
+        return;
+      }
       $('nextUpdateAt').textContent = data.next_update_at ? ('次回自動更新予定: ' + data.next_update_at) : '';
       $('totalRaces').textContent = data.total_races_analyzed + '件';
       const buyCount = data.races.filter(function(r){ return r.rank === 'S' || r.rank === 'A'; }).length;
@@ -279,8 +284,10 @@
         return;
       }
 
-      if(data.target_date && data.target_date !== todayStr()){
-        container.appendChild(staleBanner(data.target_date));
+      if(!data.target_date || data.target_date < todayStr()){
+        // 過去日の候補は表示しない（古い予想の流用防止）
+        container.appendChild(staleBanner(data.target_date || '不明'));
+        return;
       }
 
       const updatedLine = document.createElement('p');
