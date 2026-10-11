@@ -1,21 +1,32 @@
 {
-  "updated_at": "2026-10-11 22:23:43",
+  "updated_at": "2026-10-11 22:25:51",
   "fixed_condition": "単勝オッズ1.0〜1.2倍 × Model E予測1位(変更禁止)",
+  "confirm_n_threshold": 100,
   "place_side": {
     "n": 3,
     "hit_rate": 100.0,
     "roi": 146.67,
     "max_streak": 0,
-    "max_dd_pct": 0.0
+    "max_dd_pct": 0.0,
+    "confirmed": false,
+    "ci95": [
+      118.2,
+      175.1
+    ]
   },
   "wide_side": {
     "n": 3,
     "hit_rate": 0.0,
     "roi": 0.0,
     "max_streak": 3,
-    "max_dd_pct": -2.02
+    "max_dd_pct": -2.02,
+    "confirmed": false,
+    "ci95": [
+      0.0,
+      0.0
+    ]
   },
   "skipped_races_logged": 3,
   "early_vs_late_odds_qualification_mismatch": 0,
-  "note": "これは研究用の前向き記録です。実際の馬券購入は行っていません。回収率100%超えが未確認の間、実戦購入推奨は行いません。"
+  "note": "これは研究用の前向き記録です。実際の馬券購入は行っていません。件数が100件に達するまで的中率・回収率は確定評価とせず参考値として扱います。回収率100%超えが未確認の間、実戦購入推奨は行いません。改善案は既存ロジックとは別に検証します。"
 }

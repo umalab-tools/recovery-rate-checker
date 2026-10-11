@@ -15,26 +15,32 @@ h1{font-size:18px}h2{font-size:15px;color:#9ad}
 <p class="note">固定条件: 単勝オッズ1.0〜1.2倍×予測1位。研究用の前向き記録です。
 実際の馬券購入は行っていません。回収率100%超えが未確認の間、実戦購入推奨は行いません。</p>
 <script>
+function sideCard(title, s, threshold){
+  const tag = s.confirmed ? '【確定評価】' : `【参考値・未確定 N<${threshold}】`;
+  let extra = '';
+  if (s.confirmed) {
+    extra = `<div class="stat"><span>95%信頼区間</span><span>${s.ci95}</span></div>`;
+    if (s.high_risk_conditions && s.high_risk_conditions.length) {
+      extra += `<div class="stat"><span>⚠️高リスク条件</span><span>${JSON.stringify(s.high_risk_conditions)}</span></div>`;
+    }
+  }
+  return `<div class="card"><h2>${title} ${tag}</h2>
+      <div class="stat"><span>件数</span><span>${s.n}</span></div>
+      <div class="stat"><span>的中率</span><span>${s.hit_rate ?? '-'}%</span></div>
+      <div class="stat"><span>回収率</span><span>${s.roi ?? '-'}%</span></div>
+      <div class="stat"><span>最大連敗</span><span>${s.max_streak}</span></div>
+      <div class="stat"><span>最大資金減少率</span><span>${s.max_dd_pct}%</span></div>
+      ${extra}
+    </div>`;
+}
 async function load(force){
   const url = 'tierA_placewide_check.json' + (force ? ('?t='+Date.now()) : '');
   const r = await fetch(url, {cache: force ? 'no-store' : 'default'});
   const d = await r.json();
   document.getElementById('content').innerHTML = `
     <div class="card"><h2>最終更新: ${d.updated_at}</h2><p>${d.fixed_condition}</p></div>
-    <div class="card"><h2>複勝</h2>
-      <div class="stat"><span>件数</span><span>${d.place_side.n}</span></div>
-      <div class="stat"><span>的中率</span><span>${d.place_side.hit_rate ?? '-'}%</span></div>
-      <div class="stat"><span>回収率</span><span>${d.place_side.roi ?? '-'}%</span></div>
-      <div class="stat"><span>最大連敗</span><span>${d.place_side.max_streak}</span></div>
-      <div class="stat"><span>最大資金減少率</span><span>${d.place_side.max_dd_pct}%</span></div>
-    </div>
-    <div class="card"><h2>ワイド</h2>
-      <div class="stat"><span>件数</span><span>${d.wide_side.n}</span></div>
-      <div class="stat"><span>的中率</span><span>${d.wide_side.hit_rate ?? '-'}%</span></div>
-      <div class="stat"><span>回収率</span><span>${d.wide_side.roi ?? '-'}%</span></div>
-      <div class="stat"><span>最大連敗</span><span>${d.wide_side.max_streak}</span></div>
-      <div class="stat"><span>最大資金減少率</span><span>${d.wide_side.max_dd_pct}%</span></div>
-    </div>
+    ${sideCard('複勝', d.place_side, d.confirm_n_threshold)}
+    ${sideCard('ワイド', d.wide_side, d.confirm_n_threshold)}
     <div class="card"><h2>タイミング整合性</h2>
       <div class="stat"><span>見送り記録件数</span><span>${d.skipped_races_logged}</span></div>
       <div class="stat"><span>早期/直前オッズでの該当食い違い</span><span>${d.early_vs_late_odds_qualification_mismatch}</span></div>
