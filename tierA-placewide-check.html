@@ -1,0 +1,46 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tier A 複勝 vs ワイド 前向き検証</title>
+<style>
+body{font-family:-apple-system,sans-serif;max-width:480px;margin:0 auto;padding:16px;background:#111;color:#eee}
+.card{background:#1c1c1e;border-radius:12px;padding:16px;margin-bottom:12px}
+h1{font-size:18px}h2{font-size:15px;color:#9ad}
+.stat{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #333}
+.note{font-size:12px;color:#999;margin-top:16px}
+.refresh{display:block;width:100%;padding:10px;background:#2a6;color:#fff;border:none;border-radius:8px;margin-top:8px}
+</style></head><body>
+<h1>Tier A: 複勝 vs ワイド（前向き検証）</h1>
+<div id="content">読み込み中...</div>
+<button class="refresh" onclick="load(true)">更新</button>
+<p class="note">固定条件: 単勝オッズ1.0〜1.2倍×予測1位。研究用の前向き記録です。
+実際の馬券購入は行っていません。回収率100%超えが未確認の間、実戦購入推奨は行いません。</p>
+<script>
+async function load(force){
+  const url = 'tierA_placewide_check.json' + (force ? ('?t='+Date.now()) : '');
+  const r = await fetch(url, {cache: force ? 'no-store' : 'default'});
+  const d = await r.json();
+  document.getElementById('content').innerHTML = `
+    <div class="card"><h2>最終更新: ${d.updated_at}</h2><p>${d.fixed_condition}</p></div>
+    <div class="card"><h2>複勝</h2>
+      <div class="stat"><span>件数</span><span>${d.place_side.n}</span></div>
+      <div class="stat"><span>的中率</span><span>${d.place_side.hit_rate ?? '-'}%</span></div>
+      <div class="stat"><span>回収率</span><span>${d.place_side.roi ?? '-'}%</span></div>
+      <div class="stat"><span>最大連敗</span><span>${d.place_side.max_streak}</span></div>
+      <div class="stat"><span>最大資金減少率</span><span>${d.place_side.max_dd_pct}%</span></div>
+    </div>
+    <div class="card"><h2>ワイド</h2>
+      <div class="stat"><span>件数</span><span>${d.wide_side.n}</span></div>
+      <div class="stat"><span>的中率</span><span>${d.wide_side.hit_rate ?? '-'}%</span></div>
+      <div class="stat"><span>回収率</span><span>${d.wide_side.roi ?? '-'}%</span></div>
+      <div class="stat"><span>最大連敗</span><span>${d.wide_side.max_streak}</span></div>
+      <div class="stat"><span>最大資金減少率</span><span>${d.wide_side.max_dd_pct}%</span></div>
+    </div>
+    <div class="card"><h2>タイミング整合性</h2>
+      <div class="stat"><span>見送り記録件数</span><span>${d.skipped_races_logged}</span></div>
+      <div class="stat"><span>早期/直前オッズでの該当食い違い</span><span>${d.early_vs_late_odds_qualification_mismatch}</span></div>
+    </div>
+    <p class="note">${d.note}</p>
+  `;
+}
+load(false);
+</script></body></html>
