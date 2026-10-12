@@ -1,40 +1,56 @@
 {
-  "updated_at": "2026-10-12 17:54",
+  "updated_at": "2026-10-12 18:02",
   "date": "20261012",
-  "total_races_analyzed": 10,
+  "total_races_analyzed": 11,
   "races": [
     {
-      "track": "帯広ば",
-      "race_no": 8,
-      "post_time": "18:10",
+      "track": "川崎",
+      "race_no": 7,
+      "post_time": "18:00",
       "rank": "A",
       "axis": {
-        "no": 3,
-        "name": "ワールドジパング",
-        "prob": 0.77
+        "no": 2,
+        "name": "ジンガブリッツ",
+        "prob": 0.349
       },
       "partner": {
-        "no": 8,
-        "name": "ドウナンリュウホオ",
-        "prob": 0.403
+        "no": 9,
+        "name": "セレブウマザンマイ",
+        "prob": 0.264
       },
       "wide_picks": [
         {
-          "combo": "3-8",
-          "odds_low": 8.2,
-          "odds_high": 9.5,
+          "combo": "2-9",
+          "odds_low": 16.5,
+          "odds_high": 18.9,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率77.0%・40.3%、近似EV2.54〜2.94。",
+      "reason": "根拠条件（B候補）に該当。両馬の3着内確率34.9%・26.4%、近似EV1.52〜1.74。",
       "skip_reason": null
+    },
+    {
+      "track": "帯広ば",
+      "race_no": 8,
+      "post_time": "18:10",
+      "rank": "C",
+      "axis": {
+        "no": 7,
+        "name": "ホクセイワッショイ",
+        "prob": 0.423
+      },
+      "partner": null,
+      "wide_picks": [],
+      "confidence": null,
+      "reason": null,
+      "skip_reason": "最良の組み合わせでも近似EVが1.10と基準(1.5)未満のため見送り。"
     },
     {
       "track": "佐賀",
       "race_no": 7,
       "post_time": "18:25",
-      "rank": "S",
+      "rank": "A",
       "axis": {
         "no": 12,
         "name": "ブレイブシュガー",
@@ -48,14 +64,30 @@
       "wide_picks": [
         {
           "combo": "3-12",
-          "odds_low": 19.7,
-          "odds_high": 27.0,
+          "odds_low": 9.0,
+          "odds_high": 11.8,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率28.6%・76.4%、近似EV4.29〜5.89。",
+      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率28.6%・76.4%、近似EV1.96〜2.57。",
       "skip_reason": null
+    },
+    {
+      "track": "川崎",
+      "race_no": 8,
+      "post_time": "18:30",
+      "rank": "C",
+      "axis": {
+        "no": 8,
+        "name": "ハマノヒカリ",
+        "prob": 0.129
+      },
+      "partner": null,
+      "wide_picks": [],
+      "confidence": null,
+      "reason": null,
+      "skip_reason": "根拠条件（B候補）には該当したが、信頼できるワイドの組み合わせが見つからなかったため見送り。"
     },
     {
       "track": "帯広ば",
@@ -65,40 +97,51 @@
       "axis": {
         "no": 8,
         "name": "ハゴロモグルービー",
-        "prob": 0.279
+        "prob": 0.253
       },
       "partner": {
         "no": 5,
         "name": "リアンドノール",
-        "prob": 0.548
+        "prob": 0.443
       },
       "wide_picks": [
         {
           "combo": "5-8",
-          "odds_low": 19.9,
-          "odds_high": 20.9,
+          "odds_low": 19.4,
+          "odds_high": 20.3,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率54.8%・27.9%、近似EV3.04〜3.19。",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率44.3%・25.3%、近似EV2.17〜2.27。",
       "skip_reason": null
     },
     {
       "track": "佐賀",
       "race_no": 8,
       "post_time": "18:55",
-      "rank": "C",
+      "rank": "A",
       "axis": {
         "no": 2,
         "name": "ノースグロリア",
         "prob": 0.601
       },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.37と基準(1.5)未満のため見送り。"
+      "partner": {
+        "no": 4,
+        "name": "スマイルフォレスト",
+        "prob": 0.445
+      },
+      "wide_picks": [
+        {
+          "combo": "2-4",
+          "odds_low": 7.9,
+          "odds_high": 9.6,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率60.1%・44.5%、近似EV2.11〜2.57。",
+      "skip_reason": null
     },
     {
       "track": "佐賀",
@@ -118,13 +161,13 @@
       "wide_picks": [
         {
           "combo": "8-9",
-          "odds_low": 44.0,
-          "odds_high": 51.6,
+          "odds_low": 45.0,
+          "odds_high": 52.6,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率27.2%・85.4%、近似EV10.20〜11.97。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率27.2%・85.4%、近似EV10.43〜12.20。",
       "skip_reason": null
     },
     {
@@ -145,30 +188,14 @@
       "wide_picks": [
         {
           "combo": "2-9",
-          "odds_low": 6.9,
-          "odds_high": 7.7,
+          "odds_low": 7.2,
+          "odds_high": 7.9,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率36.7%・84.3%、近似EV2.14〜2.38。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率36.7%・84.3%、近似EV2.23〜2.45。",
       "skip_reason": null
-    },
-    {
-      "track": "帯広ば",
-      "race_no": 11,
-      "post_time": "19:55",
-      "rank": "C",
-      "axis": {
-        "no": 4,
-        "name": "メムロボブサップ",
-        "prob": 0.824
-      },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.46と基準(1.5)未満のため見送り。"
     },
     {
       "track": "川崎",
@@ -189,39 +216,39 @@
         {
           "combo": "2-7",
           "odds_low": 7.1,
-          "odds_high": 9.2,
+          "odds_high": 9.1,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率72.3%・35.0%、近似EV1.80〜2.33。",
+      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率72.3%・35.0%、近似EV1.80〜2.30。",
       "skip_reason": null
     },
     {
       "track": "帯広ば",
       "race_no": 12,
       "post_time": "20:30",
-      "rank": "S",
+      "rank": "A",
       "axis": {
         "no": 6,
         "name": "クロコトブキ",
         "prob": 0.639
       },
       "partner": {
-        "no": 4,
-        "name": "ウチュウジン",
-        "prob": 0.258
+        "no": 5,
+        "name": "トム",
+        "prob": 0.358
       },
       "wide_picks": [
         {
-          "combo": "4-6",
-          "odds_low": 27.2,
-          "odds_high": 30.4,
+          "combo": "5-6",
+          "odds_low": 11.0,
+          "odds_high": 12.5,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（Tier A・EVルール）に該当。両馬の3着内確率25.8%・63.9%、近似EV4.48〜5.01。",
+      "reason": "根拠条件（Tier A・EVルール）に該当。両馬の3着内確率35.8%・63.9%、近似EV2.52〜2.86。",
       "skip_reason": null
     },
     {
@@ -235,20 +262,20 @@
         "prob": 0.614
       },
       "partner": {
-        "no": 7,
-        "name": "エルガー",
-        "prob": 0.56
+        "no": 5,
+        "name": "ブライティアブエナ",
+        "prob": 0.215
       },
       "wide_picks": [
         {
-          "combo": "1-7",
-          "odds_low": 9.4,
-          "odds_high": 10.5,
+          "combo": "1-5",
+          "odds_low": 30.3,
+          "odds_high": 31.8,
           "amount": 1000
         }
       ],
-      "confidence": "高",
-      "reason": "根拠条件（EVルール・新ルール）に該当。両馬の3着内確率61.4%・56.0%、近似EV3.23〜3.61。",
+      "confidence": "中",
+      "reason": "根拠条件（EVルール・新ルール）に該当。両馬の3着内確率61.4%・21.5%、近似EV4.00〜4.20。",
       "skip_reason": null
     }
   ],
