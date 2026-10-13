@@ -1,39 +1,34 @@
 {
-  "updated_at": "2026-10-13 18:15",
+  "updated_at": "2026-10-13 18:20",
   "date": "20261013",
   "total_races_analyzed": 5,
   "races": [
     {
-      "track": "名古屋",
-      "race_no": 11,
-      "post_time": "18:10",
-      "rank": "C",
+      "track": "盛岡",
+      "race_no": 12,
+      "post_time": "18:15",
+      "rank": "A",
       "axis": {
         "no": 10,
-        "name": "ブルースバローズ",
-        "prob": 0.793
+        "name": "エメラルドビーチ",
+        "prob": 0.39
       },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.01と基準(1.5)未満のため見送り。"
-    },
-    {
-      "track": "門別",
-      "race_no": 8,
-      "post_time": "18:25",
-      "rank": "C",
-      "axis": {
-        "no": 6,
-        "name": "クリアーゲイル",
-        "prob": 0.205
+      "partner": {
+        "no": 4,
+        "name": "エアロストリーム",
+        "prob": 0.575
       },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが0.82と基準(1.5)未満のため見送り。"
+      "wide_picks": [
+        {
+          "combo": "4-10",
+          "odds_low": 17.1,
+          "odds_high": 19.7,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率57.5%・39.0%、近似EV3.83〜4.41。",
+      "skip_reason": null
     },
     {
       "track": "名古屋",
@@ -43,7 +38,7 @@
       "axis": {
         "no": 9,
         "name": "リュウノバモス",
-        "prob": 0.497
+        "prob": 0.397
       },
       "partner": {
         "no": 4,
@@ -53,13 +48,40 @@
       "wide_picks": [
         {
           "combo": "4-9",
-          "odds_low": 11.0,
-          "odds_high": 12.0,
+          "odds_low": 9.7,
+          "odds_high": 10.6,
           "amount": 1000
         }
       ],
-      "confidence": "高",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率48.0%・49.7%、近似EV2.62〜2.86。",
+      "confidence": "中",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率48.0%・39.7%、近似EV1.85〜2.02。",
+      "skip_reason": null
+    },
+    {
+      "track": "川崎",
+      "race_no": 9,
+      "post_time": "19:05",
+      "rank": "S",
+      "axis": {
+        "no": 10,
+        "name": "デルマネコダマシ",
+        "prob": 0.251
+      },
+      "partner": {
+        "no": 2,
+        "name": "ノーブルウィスパー",
+        "prob": 0.42
+      },
+      "wide_picks": [
+        {
+          "combo": "2-10",
+          "odds_low": 44.7,
+          "odds_high": 46.2,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（B候補）に該当。両馬の3着内確率42.0%・25.1%、近似EV4.72〜4.88。",
       "skip_reason": null
     },
     {
@@ -107,15 +129,15 @@
       "wide_picks": [
         {
           "combo": "7-8",
-          "odds_low": 38.9,
-          "odds_high": 47.2,
+          "odds_low": 40.7,
+          "odds_high": 49.4,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率24.3%・57.5%、近似EV5.42〜6.58。",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率24.3%・57.5%、近似EV5.67〜6.88。",
       "skip_reason": null
     }
   ],
-  "next_update_at": "2026-10-13 18:10"
+  "next_update_at": "2026-10-13 18:15"
 }
