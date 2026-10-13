@@ -88,6 +88,7 @@
   .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px;}
   .race-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;}
   .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-muted);white-space:nowrap;}
+  .race-odds-check{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--text-muted);margin-top:2px;}
   .race-horses{font-size:13px;margin:6px 0;}
   .race-horses .label{color:var(--text-muted);font-size:11px;margin-right:4px;}
   .wide-pick{display:inline-block;background:var(--accent-soft);color:var(--accent-strong);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px;margin:4px 6px 0 0;}
@@ -192,7 +193,7 @@
   const RANK_ORDER = ['S', 'A', 'B', 'C'];
   const RANK_LABEL = {S: 'Sランク（かなり買いたい）', A: 'Aランク（買う価値あり）', B: 'Bランク（条件次第）', C: 'Cランク（見送り）'};
 
-  function renderRace(r){
+  function renderRace(r, updatedAt){
     const el = document.createElement('div');
     el.className = 'race-card rank-' + r.rank;
     let picksHtml = '';
@@ -216,6 +217,7 @@
         '</span>' +
         '<span class="race-time">' + r.post_time + '発走</span>' +
       '</div>' +
+      (updatedAt ? '<div class="race-odds-check">オッズ確認: ' + updatedAt + '時点</div>' : '') +
       horsesHtml +
       '<div>' + picksHtml + '</div>' +
       (reasonText ? '<div class="race-reason">' + reasonText + '</div>' : '');
@@ -249,7 +251,7 @@
         title.className = 'rank-section-title rank-' + rank;
         title.innerHTML = '<span class="rank-badge">' + rank + '</span>' + RANK_LABEL[rank];
         container.appendChild(title);
-        races.forEach(function(r){ container.appendChild(renderRace(r)); });
+        races.forEach(function(r){ container.appendChild(renderRace(r, data.updated_at)); });
       });
     })
     .catch(function(err){
