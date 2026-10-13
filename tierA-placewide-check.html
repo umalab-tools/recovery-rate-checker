@@ -39,8 +39,9 @@ async function load(force){
   const d = await r.json();
   document.getElementById('content').innerHTML = `
     <div class="card"><h2>最終更新: ${d.updated_at}</h2><p>${d.fixed_condition}</p></div>
-    ${sideCard('複勝', d.place_side, d.confirm_n_threshold)}
+    ${sideCard('複勝(旧Tier A)', d.place_side, d.confirm_n_threshold)}
     ${sideCard('ワイド', d.wide_side, d.confirm_n_threshold)}
+    ${sideCard('Tier A+(新候補・人気1位限定)', d.tierA_plus_side, d.confirm_n_threshold)}
     <div class="card"><h2>タイミング整合性</h2>
       <div class="stat"><span>見送り記録件数</span><span>${d.skipped_races_logged}</span></div>
       <div class="stat"><span>早期/直前オッズでの該当食い違い</span><span>${d.early_vs_late_odds_qualification_mismatch}</span></div>
