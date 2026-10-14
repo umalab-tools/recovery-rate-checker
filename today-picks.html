@@ -190,6 +190,13 @@
     return el;
   }
 
+  function oddsStaleBanner(ageMinutes){
+    const el = document.createElement('div');
+    el.className = 'stale-banner';
+    el.textContent = '買い目は本日分ですが、元になっているオッズが約' + ageMinutes + '分前から更新できていません（外部データ取得が一時的に止まっている可能性があります）。最新のオッズではない可能性があるため、購入前に必ずご自身でオッズをご確認ください。';
+    return el;
+  }
+
   const RANK_ORDER = ['S', 'A', 'B', 'C'];
   const RANK_LABEL = {S: 'Sランク（かなり買いたい）', A: 'Aランク（買う価値あり）', B: 'Bランク（条件次第）', C: 'Cランク（見送り）'};
 
@@ -237,6 +244,9 @@
         $('totalRaces').textContent = '—';
         $('buyCount').textContent = '—';
         return;
+      }
+      if(data.odds_stale){
+        $('raceSections').parentNode.insertBefore(oddsStaleBanner(data.odds_age_minutes), $('raceSections'));
       }
       $('nextUpdateAt').textContent = data.next_update_at ? ('次回自動更新予定: ' + data.next_update_at) : '';
       $('totalRaces').textContent = data.total_races_analyzed + '件';
