@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-10-16 18:14",
+  "updated_at": "2026-10-16 18:21",
   "date": "20261016",
-  "total_races_analyzed": 6,
+  "total_races_analyzed": 7,
   "races": [
     {
       "track": "川崎",
@@ -11,29 +11,56 @@
       "axis": {
         "no": 3,
         "name": "ダンガリー",
-        "prob": 0.338
+        "prob": 0.452
       },
       "partner": null,
       "wide_picks": [],
       "confidence": null,
       "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.13と基準(1.5)未満のため見送り。"
+      "skip_reason": "最良の組み合わせでも近似EVが1.34と基準(1.5)未満のため見送り。"
     },
     {
-      "track": "川崎",
-      "race_no": 9,
-      "post_time": "19:05",
+      "track": "名古屋",
+      "race_no": 12,
+      "post_time": "18:40",
       "rank": "C",
       "axis": {
-        "no": 8,
-        "name": "マイカラー",
-        "prob": 0.393
+        "no": 3,
+        "name": "サイコロチャン",
+        "prob": 0.165
       },
       "partner": null,
       "wide_picks": [],
       "confidence": null,
       "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.39と基準(1.5)未満のため見送り。"
+      "skip_reason": "根拠条件（B候補）には該当したが、信頼できるワイドの組み合わせが見つからなかったため見送り。"
+    },
+    {
+      "track": "園田",
+      "race_no": 9,
+      "post_time": "18:55",
+      "rank": "A",
+      "axis": {
+        "no": 9,
+        "name": "ベラジオアブロード",
+        "prob": 0.815
+      },
+      "partner": {
+        "no": 8,
+        "name": "スパイウェア",
+        "prob": 0.508
+      },
+      "wide_picks": [
+        {
+          "combo": "8-9",
+          "odds_low": 3.8,
+          "odds_high": 4.3,
+          "amount": 1000
+        }
+      ],
+      "confidence": "高",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率50.8%・81.5%、近似EV1.57〜1.78。",
+      "skip_reason": null
     },
     {
       "track": "園田",
@@ -80,13 +107,13 @@
       "wide_picks": [
         {
           "combo": "4-7",
-          "odds_low": 13.7,
-          "odds_high": 14.3,
+          "odds_low": 14.6,
+          "odds_high": 15.2,
           "amount": 1000
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率59.1%・53.2%、近似EV4.31〜4.49。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率59.1%・53.2%、近似EV4.59〜4.78。",
       "skip_reason": null
     },
     {
@@ -102,18 +129,18 @@
       "partner": {
         "no": 9,
         "name": "ピンクマルガリータ",
-        "prob": 0.533
+        "prob": 0.428
       },
       "wide_picks": [
         {
           "combo": "7-9",
-          "odds_low": 8.0,
-          "odds_high": 9.9,
+          "odds_low": 8.2,
+          "odds_high": 10.0,
           "amount": 1000
         }
       ],
-      "confidence": "高",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率66.3%・53.3%、近似EV2.83〜3.50。",
+      "confidence": "中",
+      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率66.3%・42.8%、近似EV2.33〜2.84。",
       "skip_reason": null
     },
     {
@@ -129,22 +156,22 @@
       "partner": {
         "no": 7,
         "name": "シトロンヴェール",
-        "prob": 0.328
+        "prob": 0.422
       },
       "wide_picks": [
         {
           "combo": "4-7",
-          "odds_low": 9.1,
-          "odds_high": 9.7,
+          "odds_low": 9.2,
+          "odds_high": 9.8,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率66.3%・32.8%、近似EV1.98〜2.11。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率66.3%・42.2%、近似EV2.57〜2.74。",
       "skip_reason": null
     }
   ],
-  "odds_age_minutes": 0.9,
+  "odds_age_minutes": 2.3,
   "odds_stale": false,
   "next_update_at": "2026-10-16 18:20"
 }
