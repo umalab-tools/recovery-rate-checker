@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-16 15:48",
+  "updated_at": "2026-10-16 15:57",
   "date": "20261016",
   "total_races_analyzed": 13,
   "races": [
@@ -17,23 +17,34 @@
       "wide_picks": [],
       "confidence": null,
       "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.13と基準(1.5)未満のため見送り。"
+      "skip_reason": "最良の組み合わせでも近似EVが0.93と基準(1.5)未満のため見送り。"
     },
     {
       "track": "名古屋",
       "race_no": 8,
       "post_time": "16:20",
-      "rank": "C",
+      "rank": "S",
       "axis": {
-        "no": 9,
-        "name": "ロクスマリアンヌ",
-        "prob": 0.099
+        "no": 11,
+        "name": "エイシンメリダ",
+        "prob": 0.401
       },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "根拠条件（B候補）には該当したが、信頼できるワイドの組み合わせが見つからなかったため見送り。"
+      "partner": {
+        "no": 2,
+        "name": "リョウライライ",
+        "prob": 0.693
+      },
+      "wide_picks": [
+        {
+          "combo": "2-11",
+          "odds_low": 15.6,
+          "odds_high": 18.2,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率69.3%・40.1%、近似EV4.33〜5.06。",
+      "skip_reason": null
     },
     {
       "track": "川崎",
@@ -55,28 +66,17 @@
       "track": "園田",
       "race_no": 5,
       "post_time": "16:30",
-      "rank": "A",
+      "rank": "C",
       "axis": {
         "no": 4,
         "name": "アカネノソラ",
         "prob": 0.698
       },
-      "partner": {
-        "no": 8,
-        "name": "エイシンフルビーム",
-        "prob": 0.257
-      },
-      "wide_picks": [
-        {
-          "combo": "4-8",
-          "odds_low": 8.9,
-          "odds_high": 10.4,
-          "amount": 1000
-        }
-      ],
-      "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率69.8%・25.7%、近似EV1.60〜1.87。",
-      "skip_reason": null
+      "partner": null,
+      "wide_picks": [],
+      "confidence": null,
+      "reason": null,
+      "skip_reason": "最良の組み合わせでも近似EVが1.26と基準(1.5)未満のため見送り。"
     },
     {
       "track": "名古屋",
@@ -92,7 +92,7 @@
       "wide_picks": [],
       "confidence": null,
       "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.11と基準(1.5)未満のため見送り。"
+      "skip_reason": "最良の組み合わせでも近似EVが1.26と基準(1.5)未満のため見送り。"
     },
     {
       "track": "川崎",
@@ -112,13 +112,13 @@
       "wide_picks": [
         {
           "combo": "3-8",
-          "odds_low": 10.3,
-          "odds_high": 11.5,
+          "odds_low": 10.8,
+          "odds_high": 12.0,
           "amount": 1000
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率71.2%・48.1%、近似EV3.53〜3.94。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率71.2%・48.1%、近似EV3.70〜4.11。",
       "skip_reason": null
     },
     {
@@ -127,25 +127,25 @@
       "post_time": "18:30",
       "rank": "A",
       "axis": {
-        "no": 3,
-        "name": "ダンガリー",
-        "prob": 0.427
+        "no": 10,
+        "name": "クォリティショコラ",
+        "prob": 0.688
       },
       "partner": {
         "no": 4,
         "name": "ホーススピリット",
-        "prob": 0.241
+        "prob": 0.379
       },
       "wide_picks": [
         {
-          "combo": "3-4",
-          "odds_low": 15.9,
-          "odds_high": 17.4,
+          "combo": "4-10",
+          "odds_low": 10.3,
+          "odds_high": 11.9,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率42.7%・24.1%、近似EV1.63〜1.79。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率37.9%・68.8%、近似EV2.68〜3.10。",
       "skip_reason": null
     },
     {
@@ -159,20 +159,20 @@
         "prob": 0.738
       },
       "partner": {
-        "no": 1,
-        "name": "タマモキャロル",
-        "prob": 0.289
+        "no": 8,
+        "name": "スパイウェア",
+        "prob": 0.645
       },
       "wide_picks": [
         {
-          "combo": "1-10",
-          "odds_low": 18.3,
-          "odds_high": 22.7,
+          "combo": "8-10",
+          "odds_low": 3.4,
+          "odds_high": 4.2,
           "amount": 1000
         }
       ],
-      "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率28.9%・73.8%、近似EV3.90〜4.84。",
+      "confidence": "高",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率64.5%・73.8%、近似EV1.62〜2.00。",
       "skip_reason": null
     },
     {
@@ -193,13 +193,13 @@
       "wide_picks": [
         {
           "combo": "6-7",
-          "odds_low": 13.8,
-          "odds_high": 15.8,
+          "odds_low": 16.1,
+          "odds_high": 18.1,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率74.6%・32.2%、近似EV3.32〜3.80。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率74.6%・32.2%、近似EV3.87〜4.35。",
       "skip_reason": null
     },
     {
@@ -220,13 +220,13 @@
       "wide_picks": [
         {
           "combo": "3-4",
-          "odds_low": 21.0,
-          "odds_high": 22.5,
+          "odds_low": 22.2,
+          "odds_high": 23.8,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率37.5%・59.1%、近似EV4.65〜4.98。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率37.5%・59.1%、近似EV4.92〜5.27。",
       "skip_reason": null
     },
     {
@@ -247,13 +247,13 @@
       "wide_picks": [
         {
           "combo": "8-10",
-          "odds_low": 11.8,
-          "odds_high": 13.4,
+          "odds_low": 12.0,
+          "odds_high": 13.6,
           "amount": 1000
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率79.1%・45.7%、近似EV4.27〜4.85。",
+      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率79.1%・45.7%、近似EV4.34〜4.92。",
       "skip_reason": null
     },
     {
@@ -275,12 +275,12 @@
         {
           "combo": "7-12",
           "odds_low": 21.3,
-          "odds_high": 28.8,
+          "odds_high": 28.9,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率66.3%・27.2%、近似EV3.84〜5.20。",
+      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率66.3%・27.2%、近似EV3.84〜5.21。",
       "skip_reason": null
     },
     {
@@ -311,7 +311,7 @@
       "skip_reason": null
     }
   ],
-  "odds_age_minutes": 2.5,
+  "odds_age_minutes": 1.4,
   "odds_stale": false,
-  "next_update_at": "2026-10-16 15:45"
+  "next_update_at": "2026-10-16 15:50"
 }
