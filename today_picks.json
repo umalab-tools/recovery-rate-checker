@@ -1,37 +1,53 @@
 {
-  "updated_at": "2026-10-17 20:13",
+  "updated_at": "2026-10-17 20:23",
   "date": "20261017",
-  "total_races_analyzed": 1,
+  "total_races_analyzed": 2,
   "races": [
     {
       "track": "高知",
       "race_no": 10,
       "post_time": "20:20",
-      "rank": "A",
+      "rank": "C",
       "axis": {
         "no": 7,
         "name": "グランオルカ",
         "prob": 0.797
       },
+      "partner": null,
+      "wide_picks": [],
+      "confidence": null,
+      "reason": null,
+      "skip_reason": "最良の組み合わせでも近似EVが1.21と基準(1.5)未満のため見送り。"
+    },
+    {
+      "track": "高知",
+      "race_no": 11,
+      "post_time": "20:50",
+      "rank": "A",
+      "axis": {
+        "no": 8,
+        "name": "カズラポニアン",
+        "prob": 0.413
+      },
       "partner": {
-        "no": 10,
-        "name": "アイアンサイズ",
-        "prob": 0.386
+        "no": 12,
+        "name": "トドイワウィンド",
+        "prob": 0.593
       },
       "wide_picks": [
         {
-          "combo": "7-10",
-          "odds_low": 5.4,
-          "odds_high": 8.6,
+          "combo": "8-12",
+          "odds_low": 12.9,
+          "odds_high": 13.9,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率79.7%・38.6%、近似EV1.66〜2.65。",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率41.3%・59.3%、近似EV3.16〜3.41。",
       "skip_reason": null
     }
   ],
-  "odds_age_minutes": 0.1,
+  "odds_age_minutes": 0.7,
   "odds_stale": false,
   "next_update_at": "2026-10-17 20:20"
 }
