@@ -190,6 +190,25 @@
     return el;
   }
 
+  function preparingBanner(nextUpdateAt){
+    const el = document.createElement('div');
+    el.className = 'stale-banner';
+    el.style.background = 'var(--warn-soft)';
+    el.style.color = 'var(--warn)';
+    el.style.borderColor = 'var(--warn)';
+    el.textContent = '本日（' + todayStr() + '）分の買い目は準備中です。最初のレースの発走10分前（予定: ' +
+      nextUpdateAt + '）に自動で生成されます。しばらくしてから再度ご確認ください。';
+    return el;
+  }
+
+  function isUpcomingToday(nextUpdateAt){
+    if(!nextUpdateAt) return false;
+    const dt = new Date(nextUpdateAt.replace(' ', 'T'));
+    if(isNaN(dt.getTime())) return false;
+    const dateStr = '' + dt.getFullYear() + String(dt.getMonth()+1).padStart(2,'0') + String(dt.getDate()).padStart(2,'0');
+    return dateStr === todayStr();
+  }
+
   function oddsStaleBanner(ageMinutes){
     const el = document.createElement('div');
     el.className = 'stale-banner';
@@ -238,9 +257,15 @@
       $('summaryPanel').style.display = 'block';
       $('updatedAt').textContent = '最終更新: ' + data.updated_at;
       if(!data.date || data.date !== todayStr()){
-        // 本日分でないデータは予想として表示しない（古い予想の流用防止）
-        $('raceSections').parentNode.insertBefore(staleBanner(data.date || '不明'), $('raceSections'));
-        $('nextUpdateAt').textContent = '';
+        // 本日分でないデータは予想として表示しない（古い予想の流用防止）。
+        // ただし、次回更新予定が本日の未来時刻であれば「準備中」(正常な待機)として案内する。
+        if(isUpcomingToday(data.next_update_at)){
+          $('raceSections').parentNode.insertBefore(preparingBanner(data.next_update_at), $('raceSections'));
+          $('nextUpdateAt').textContent = '次回自動更新予定: ' + data.next_update_at;
+        } else {
+          $('raceSections').parentNode.insertBefore(staleBanner(data.date || '不明'), $('raceSections'));
+          $('nextUpdateAt').textContent = '';
+        }
         $('totalRaces').textContent = '—';
         $('buyCount').textContent = '—';
         return;
