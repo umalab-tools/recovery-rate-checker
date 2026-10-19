@@ -1,8 +1,24 @@
 {
-  "updated_at": "2026-10-19 19:23",
+  "updated_at": "2026-10-19 19:33",
   "date": "20261019",
-  "total_races_analyzed": 3,
+  "total_races_analyzed": 4,
   "races": [
+    {
+      "track": "名古屋",
+      "race_no": 10,
+      "post_time": "19:40",
+      "rank": "C",
+      "axis": {
+        "no": 9,
+        "name": "メディアプンタ",
+        "prob": 0.211
+      },
+      "partner": null,
+      "wide_picks": [],
+      "confidence": null,
+      "reason": null,
+      "skip_reason": "最良の組み合わせでも近似EVが1.16と基準(1.5)未満のため見送り。"
+    },
     {
       "track": "帯広ば",
       "race_no": 11,
@@ -17,64 +33,64 @@
       "wide_picks": [],
       "confidence": null,
       "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.19と基準(1.5)未満のため見送り。"
-    },
-    {
-      "track": "名古屋",
-      "race_no": 11,
-      "post_time": "20:15",
-      "rank": "A",
-      "axis": {
-        "no": 6,
-        "name": "ナンゴクドリーム",
-        "prob": 0.423
-      },
-      "partner": {
-        "no": 8,
-        "name": "アーキハッカー",
-        "prob": 0.407
-      },
-      "wide_picks": [
-        {
-          "combo": "6-8",
-          "odds_low": 17.8,
-          "odds_high": 20.6,
-          "amount": 1000
-        }
-      ],
-      "confidence": "中",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率42.3%・40.7%、近似EV3.06〜3.54。",
-      "skip_reason": null
+      "skip_reason": "最良の組み合わせでも近似EVが1.24と基準(1.5)未満のため見送り。"
     },
     {
       "track": "帯広ば",
       "race_no": 12,
       "post_time": "20:35",
-      "rank": "S",
+      "rank": "A",
       "axis": {
-        "no": 2,
-        "name": "キタノミネ",
-        "prob": 0.395
+        "no": 9,
+        "name": "アソワールド",
+        "prob": 0.687
       },
       "partner": {
         "no": 10,
         "name": "ゴールデンペガサス",
-        "prob": 0.552
+        "prob": 0.445
       },
       "wide_picks": [
         {
-          "combo": "2-10",
-          "odds_low": 22.7,
-          "odds_high": 26.0,
+          "combo": "9-10",
+          "odds_low": 10.3,
+          "odds_high": 11.7,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率39.5%・55.2%、近似EV4.96〜5.68。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率68.7%・44.5%、近似EV3.15〜3.58。",
+      "skip_reason": null
+    },
+    {
+      "track": "名古屋",
+      "race_no": 12,
+      "post_time": "20:50",
+      "rank": "S",
+      "axis": {
+        "no": 8,
+        "name": "グレースシャルマン",
+        "prob": 0.708
+      },
+      "partner": {
+        "no": 11,
+        "name": "ホウオウブライツ",
+        "prob": 0.454
+      },
+      "wide_picks": [
+        {
+          "combo": "8-11",
+          "odds_low": 26.0,
+          "odds_high": 27.1,
+          "amount": 1000
+        }
+      ],
+      "confidence": "高",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率70.8%・45.4%、近似EV8.35〜8.70。",
       "skip_reason": null
     }
   ],
-  "odds_age_minutes": 0.1,
+  "odds_age_minutes": 0.9,
   "odds_stale": false,
   "next_update_at": "2026-10-19 19:30"
 }
