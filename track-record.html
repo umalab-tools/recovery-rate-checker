@@ -77,19 +77,25 @@
     <h1>検証実績（未来レースPaper Trading）</h1>
     <p class="lede">これはPaper Trading（仮想購入・実際のお金ではありません）の記録です。レース結果が分かる前に自動保存された予測と、レース後の結果を突き合わせて集計しています。負けた記録も一切除外していません。</p>
     <p class="disclaimer"><strong>バックテスト（過去データの検証）とこのページの数字は別物です。</strong>4つの条件は過去データの検証から選定・固定したものですが、このページに載っているのは条件を固定した「後」に実際に迎えた未来のレースの結果だけです。未来の成績を保証するものではありません。</p>
+    <p class="disclaimer" style="background:var(--bad-soft);border-color:var(--bad);color:var(--bad);font-weight:700;">
+      【訂正】2026-10-19、集計の不具合を2件発見・修正しました（①レース結果の自動取得が実施日の朝に限られ、終了後の結果が反映されない設計だった、②記録更新時のタイムスタンプ処理により新しい確定結果が古い未確定記録で上書きされる場合があった）。
+      下表はすべて修正後の再集計値です。特にEVルールは従来「判断保留」としていましたが、修正の結果N=91件で回収率75.27%と、回収率が低いことが判明しました。
+      なお125件は依然未確定（公式データの元の欠損2日分を含む）で、見送り・再検証中として扱っています。古いデータは表示していません。
+    </p>
     <a class="header-link" id="headerLink">回収率チェッカーに戻る →</a>
     　<a class="header-link" href="today-picks.html">本日の買い目へ →</a>
   </header>
 
   <div class="panel">
-    <p class="updated" id="updatedAt">最終更新: 2026-10-01</p>
-    <h2>全条件合算</h2>
+    <p class="updated" id="updatedAt">最終更新: 2026-10-20（集計不具合の修正を反映）</p>
+    <h2>全条件合算（Tier A・EVルール・新ルール、確定済みのみ）</h2>
     <div class="stat-grid">
-      <div class="stat"><div class="stat-label">検証件数</div><div class="stat-value" id="totalN">107件</div></div>
-      <div class="stat"><div class="stat-label">実施日数</div><div class="stat-value" id="totalDays">12日</div></div>
-      <div class="stat"><div class="stat-label">的中率</div><div class="stat-value" id="totalHitRate">39.3%</div></div>
-      <div class="stat"><div class="stat-label">回収率</div><div class="stat-value" id="totalRoi">72.4%</div></div>
+      <div class="stat"><div class="stat-label">検証件数</div><div class="stat-value" id="totalN">348件</div></div>
+      <div class="stat"><div class="stat-label">実施日数</div><div class="stat-value" id="totalDays">32日</div></div>
+      <div class="stat"><div class="stat-label">的中率</div><div class="stat-value" id="totalHitRate">55.5%</div></div>
+      <div class="stat"><div class="stat-label">回収率</div><div class="stat-value" id="totalRoi">88.59%</div></div>
     </div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">未確定125件（公式結果が未確認、または元データ欠損）は上記に含めていません。B候補は別形式の記録のため今回の修正対象外・数値未更新です。</p>
   </div>
 
   <div class="panel">
@@ -97,28 +103,36 @@
     <p style="font-size:12.5px;color:var(--text-muted);margin:0 0 12px;">実際のお金ではありません。1点100円で条件該当時に投資したと仮定した場合の推移です。</p>
     <div class="stat-grid">
       <div class="stat"><div class="stat-label">開始資金</div><div class="stat-value">100,000円</div></div>
-      <div class="stat"><div class="stat-label">現在残高</div><div class="stat-value" id="balance">97,050円</div></div>
+      <div class="stat"><div class="stat-label">現在残高</div><div class="stat-value" id="balance">96,030円</div></div>
     </div>
   </div>
 
   <div class="panel">
-    <h2>固定条件別の実績</h2>
+    <h2>固定条件別の実績（修正後）</h2>
     <div style="overflow-x:auto;">
       <table>
-        <thead><tr><th>条件</th><th class="num">件数</th><th class="num">的中率</th><th class="num">回収率</th></tr></thead>
+        <thead><tr><th>条件</th><th class="num">確定件数</th><th class="num">的中率</th><th class="num">回収率</th><th class="num">最大連敗</th></tr></thead>
         <tbody id="conditionRows">
-          <tr><td>Tier A（単勝1.0-1.2倍・予測1位）</td><td class="num">42</td><td class="num">90.5%</td><td class="num">92.6%</td></tr>
-          <tr><td>EVルール（EV≧1.2）</td><td class="num">1</td><td class="num">0.0%</td><td class="num">0.0%</td></tr>
-          <tr><td>B候補（馬体重450-480kg×単勝16-18倍）</td><td class="num">33</td><td class="num">3.0%</td><td class="num">42.4%</td></tr>
-          <tr><td>新ルール（AI評価差-1×単勝4-10倍）</td><td class="num">31</td><td class="num">9.7%</td><td class="num">79.4%</td></tr>
+          <tr><td>Tier A（単勝1.0-1.2倍・予測1位）</td><td class="num">140</td><td class="num">92.9%</td><td class="num">96.57%</td><td class="num">1</td></tr>
+          <tr><td>EVルール（EV≧1.2）</td><td class="num">91</td><td class="num">50.5%</td><td class="num">75.27%</td><td class="num">6</td></tr>
+          <tr><td>新ルール（AI評価差-1×単勝4-10倍）</td><td class="num">117</td><td class="num">14.5%</td><td class="num">89.40%</td><td class="num">31</td></tr>
+          <tr><td>B候補（馬体重450-480kg×単勝16-18倍）</td><td class="num" colspan="3" style="text-align:left;">別形式の記録のため今回未更新（要再検証）</td></tr>
         </tbody>
       </table>
     </div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">未確定件数（上表に含めない）: Tier A 18件／EVルール80件／新ルール27件。いずれも「見送り・再検証中」として扱っています。</p>
   </div>
 
-  <div class="cta-strong">
-    <p>この4条件の具体的な数値・買う基準・見送る基準・46,378レースのバックテスト詳細は、UMALAB PROにまとめています。</p>
-    <a class="cta-btn" id="ctaProBtn">▶ 条件の中身をすべて見る（UMALAB PRO・800円）</a>
+  <div class="panel">
+    <h2>訂正履歴</h2>
+    <p style="font-size:12.5px;color:var(--text-muted);margin:0;">
+      2026-10-20: 集計不具合2件（結果取得が実施当日の朝に限られ事後の結果が反映されない設計／記録更新時のタイムスタンプ処理で新しい確定結果が上書きされる場合がある不具合）を発見・修正。
+      公式データで再確認できる分（11,414件）を結果ログに反映し、Tier A・EVルール・新ルールの数値を全面的に更新しました。古い数値（Tier A N=42/92.6%、EVルール N=1/0.0%、新ルール N=31/79.4%、全条件合算N=107/72.4%）は不完全なデータに基づくものでした。
+    </p>
+  </div>
+
+  <div class="cta-strong" style="background:var(--surface-alt);">
+    <p style="font-weight:700;color:var(--bad);">集計修正・再検証のため、UMALAB PROの新規販売ご案内は一時停止しています。再開できる場合は改めてこちらでお知らせします。</p>
   </div>
 
   <hr class="divider">
