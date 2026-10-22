@@ -1,26 +1,37 @@
 {
-  "updated_at": "2026-10-22 19:30",
+  "updated_at": "2026-10-22 20:07",
   "date": "20261022",
   "total_races_analyzed": 1,
   "races": [
     {
       "track": "門別",
-      "race_no": 11,
-      "post_time": "20:15",
-      "rank": "C",
+      "race_no": 12,
+      "post_time": "20:50",
+      "rank": "A",
       "axis": {
-        "no": 7,
-        "name": "トレヴェナ",
+        "no": 9,
+        "name": "ダバイクリスタル",
         "prob": 0.505
       },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.35と基準(1.5)未満のため見送り。"
+      "partner": {
+        "no": 4,
+        "name": "シリントーン",
+        "prob": 0.29
+      },
+      "wide_picks": [
+        {
+          "combo": "4-9",
+          "odds_low": 11.1,
+          "odds_high": 13.0,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率29.0%・50.5%、近似EV1.63〜1.90。",
+      "skip_reason": null
     }
   ],
-  "odds_age_minutes": 0.7,
+  "odds_age_minutes": 1.0,
   "odds_stale": false,
   "next_update_at": "2026-10-22 20:05"
 }
