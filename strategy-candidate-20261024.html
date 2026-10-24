@@ -1,0 +1,123 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>改善候補の検証（2026-10-24）| UMALAB</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  body{margin:0;background:#f6f4ee;color:#1d2318;font-family:-apple-system,"Hiragino Sans",sans-serif;line-height:1.6;}
+  @media (prefers-color-scheme: dark){body{background:#12150f;color:#eae7dc;}}
+  .wrap{max-width:640px;margin:0 auto;padding:24px 16px 64px;}
+  h1{font-size:19px;margin:0 0 8px;}
+  .lede{font-size:13px;color:#5c6455;margin:0 0 12px;}
+  @media (prefers-color-scheme: dark){.lede{color:#a4ac97;}}
+  .alert{background:#f6e3e0;border:1px solid #af3a35;color:#af3a35;border-radius:10px;padding:12px 14px;font-size:12.5px;font-weight:700;margin-bottom:16px;}
+  @media (prefers-color-scheme: dark){.alert{background:#382019;border-color:#e2867d;color:#e2867d;}}
+  .panel{background:#fff;border:1px solid #dcd5c5;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  @media (prefers-color-scheme: dark){.panel{background:#1a1f16;border-color:#333c2b;}}
+  h2{font-size:15px;margin:0 0 10px;}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
+  .stat{background:#eeebe1;border-radius:10px;padding:10px 12px;}
+  @media (prefers-color-scheme: dark){.stat{background:#20261b;}}
+  .stat-label{font-size:11px;color:#5c6455;}
+  @media (prefers-color-scheme: dark){.stat-label{color:#a4ac97;}}
+  .stat-value{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:17px;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px;}
+  th,td{text-align:left;padding:6px 4px;border-bottom:1px solid #dcd5c5;}
+  @media (prefers-color-scheme: dark){th,td{border-color:#333c2b;}}
+  th{font-size:10.5px;color:#5c6455;font-weight:500;}
+  @media (prefers-color-scheme: dark){th{color:#a4ac97;}}
+  td.num{font-family:"JetBrains Mono",monospace;text-align:right;}
+  .tag-current{display:inline-block;font-size:10px;background:#eaf3ed;color:#2f6e4b;padding:1px 6px;border-radius:5px;}
+  .tag-excluded{display:inline-block;font-size:10px;background:#f5ecd8;color:#a8761f;padding:1px 6px;border-radius:5px;}
+  @media (prefers-color-scheme: dark){
+    .tag-current{background:#1b2a1f;color:#71c191;}
+    .tag-excluded{background:#332b16;color:#dcb15a;}
+  }
+  .note{font-size:11.5px;color:#5c6455;margin-top:10px;}
+  @media (prefers-color-scheme: dark){.note{color:#a4ac97;}}
+  .hit{color:#2f6e4b;font-weight:700;}
+  .miss{color:#af3a35;}
+  @media (prefers-color-scheme: dark){.hit{color:#71c191;}.miss{color:#e2867d;}}
+  a{color:#2f6e4b;}
+  @media (prefers-color-scheme: dark){a{color:#71c191;}}
+</style>
+</head><body>
+<div class="wrap">
+  <h1>改善候補の検証：2026年10月24日の振り返り</h1>
+  <p class="lede">現行戦略（Tier A・EVルール・新ルール、本番採用中）と、検証中の改善候補
+    （頭数12頭以上を除外するフィルタ、本番未採用）を同じ日の買い目で比較しています。</p>
+
+  <div class="alert">
+    【本日は振り返りです】確認時点で本日(10/24)の対象36レースはすべて終了していました。
+    これは「これから買う予想」ではなく、本日発走前に記録された予測と、レース後の結果を
+    突き合わせた事後の記録です。明日以降、新しいレースの発走前に同じ形式で更新します。
+  </div>
+
+  <div class="panel">
+    <h2>本日の件数・回収率（仮想購入、1点100円）</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="stat-label">現行戦略（全18件）</div><div class="stat-value">回収率153.89%</div></div>
+      <div class="stat"><div class="stat-label">改善候補（15件）</div><div class="stat-value">回収率174.00%</div></div>
+    </div>
+    <p class="note">本日1日・件数10〜20件程度のため、この日だけの結果で優劣は判断できません。
+      統計的な比較は <a href="track-record.html">検証実績ページ</a> の複数日・500件以上のデータを
+      ご覧ください（そちらも改善候補は信頼区間が重なり、まだ統計的に未確定です）。</p>
+  </div>
+
+  <div class="panel">
+    <h2>本日の買い目一覧（発走前に記録・仮想購入のみ）</h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead><tr><th>発走</th><th>競馬場R</th><th>頭数</th><th>馬番/馬名</th><th>券種</th><th>オッズ</th><th>戦略</th><th>結果</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="note">
+      <span class="tag-current">現行</span> 現行戦略で該当（本番と同一条件）
+      <span class="tag-excluded">候補除外</span> 改善候補では頭数12頭以上のため見送り対象
+    </p>
+  </div>
+
+  <div class="panel">
+    <h2>注意書き</h2>
+    <p class="note" style="margin:0;">
+      ・全件Paper Trading（仮想購入）です。実際の馬券は一切購入していません。<br>
+      ・改善候補（頭数12頭以上除外）は検証段階であり、本番戦略には採用していません。<br>
+      ・予測は発走前に自動記録されたデータのみを使用し、結果を見てから作成した予測はありません。<br>
+      ・期待値が基準未満のレースはそもそも各条件の対象外（見送り）として扱っています。<br>
+      ・回収率100%超えを保証するものではありません。
+    </p>
+  </div>
+
+  <p class="note"><a href="today-picks.html">本日の解析結果へ →</a>　<a href="track-record.html">検証実績ページへ →</a></p>
+</div>
+<script>
+const rows = [
+  {post:"15:05",race:"高知1R",field:9,uma:"2 ランツェンライター",bet:"複勝",odds:"1.1倍",strategy:"current",result:"hit",payout:"100円"},
+  {post:"15:50",race:"帯広ば3R",field:9,uma:"8 キラキラトレイン",bet:"単勝",odds:"9.0倍",strategy:"current",result:"miss",payout:"0円"},
+  {post:"16:10",race:"高知3R",field:11,uma:"8 ビップマリク",bet:"複勝",odds:"1.0倍",strategy:"current",result:"hit",payout:"100円"},
+  {post:"16:20",race:"帯広ば4R",field:8,uma:"8 ホクセイヒビキ",bet:"単勝",odds:"8.0倍",strategy:"current",result:"hit",payout:"800円"},
+  {post:"17:00",race:"佐賀5R",field:12,uma:"7 ゴイゴイスー",bet:"単勝",odds:"6.8倍",strategy:"excluded",result:"miss",payout:"0円"},
+  {post:"17:25",race:"帯広ば6R",field:10,uma:"9 ストロングダッシュ",bet:"単勝",odds:"4.6倍",strategy:"current",result:"miss",payout:"0円"},
+  {post:"17:55",race:"帯広ば7R",field:10,uma:"9 ビクトリーイサム",bet:"単勝",odds:"7.2倍",strategy:"current",result:"miss",payout:"0円"},
+  {post:"18:05",race:"佐賀7R",field:11,uma:"8 ヴァイスウィッチ",bet:"単勝",odds:"7.8倍",strategy:"current",result:"hit",payout:"780円"},
+  {post:"18:25",race:"帯広ば8R",field:10,uma:"10 エレジー",bet:"単勝",odds:"6.5倍",strategy:"current",result:"hit",payout:"540円"},
+  {post:"18:25",race:"帯広ば8R",field:10,uma:"10 エレジー",bet:"複勝",odds:"6.5倍",strategy:"current",result:"hit",payout:"180円"},
+  {post:"18:45",race:"高知8R",field:11,uma:"1 ゲクウ",bet:"複勝",odds:"2.1倍",strategy:"current",result:"miss",payout:"0円"},
+  {post:"19:05",race:"佐賀9R",field:11,uma:"6 ジーティーレイナ",bet:"複勝",odds:"1.4倍",strategy:"current",result:"hit",payout:"110円"},
+  {post:"19:35",race:"佐賀10R",field:11,uma:"10 タガノラヴズワン",bet:"複勝",odds:"2.7倍",strategy:"current",result:"miss",payout:"0円"},
+  {post:"19:45",race:"高知10R",field:11,uma:"3 コパノハンプトン",bet:"複勝",odds:"1.2倍",strategy:"current",result:"miss",payout:"0円"},
+  {post:"20:00",race:"帯広ば11R",field:10,uma:"10 ホクセイレクサス",bet:"複勝",odds:"1.2倍",strategy:"current",result:"miss",payout:"0円"},
+  {post:"20:30",race:"帯広ば12R",field:10,uma:"4 ホクトノユメ",bet:"複勝",odds:"2.4倍",strategy:"current",result:"miss",payout:"0円"},
+  {post:"20:40",race:"佐賀12R",field:14,uma:"8 イントゥゴールデン",bet:"複勝",odds:"1.7倍",strategy:"excluded",result:"hit",payout:"160円"},
+  {post:"20:50",race:"高知12R",field:12,uma:"6 シデンイッセン",bet:"複勝",odds:"4.8倍",strategy:"excluded",result:"miss",payout:"0円"},
+];
+const tbody = document.getElementById('rows');
+rows.forEach(r=>{
+  const tr = document.createElement('tr');
+  const tag = r.strategy==="current" ? '<span class="tag-current">現行</span>' : '<span class="tag-excluded">候補除外</span>';
+  const res = r.result==="hit" ? `<span class="hit">的中 ${r.payout}</span>` : '<span class="miss">不的中</span>';
+  tr.innerHTML = `<td>${r.post}</td><td>${r.race}</td><td class="num">${r.field}頭</td><td>${r.uma}</td><td>${r.bet}</td><td class="num">${r.odds}</td><td>${tag}</td><td>${res}</td>`;
+  tbody.appendChild(tr);
+});
+</script>
+</body></html>
