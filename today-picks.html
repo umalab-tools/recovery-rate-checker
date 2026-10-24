@@ -114,6 +114,15 @@
   .top3-box h3{margin:0 0 8px;font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;color:var(--accent-strong);}
   .top3-item{font-size:13.5px;margin:4px 0;}
   .stale-banner{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad);border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:700;margin-bottom:14px;}
+
+  .fsc-box{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);}
+  .fsc-label{display:inline-block;font-size:10.5px;font-weight:700;background:var(--surface-alt);color:var(--text-muted);padding:2px 8px;border-radius:6px;margin-right:6px;}
+  .fsc-included .fsc-label{background:var(--accent-soft);color:var(--accent-strong);}
+  .fsc-excluded .fsc-label{background:var(--warn-soft);color:var(--warn);}
+  .fsc-detail{font-size:12.5px;}
+  .fsc-detail .label{color:var(--text-muted);font-size:11px;margin-right:4px;}
+  .fsc-note{font-size:11.5px;color:var(--text-muted);margin-top:4px;}
+  .fsc-info{background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:11.5px;color:var(--text-muted);margin-bottom:14px;}
 </style>
 </head>
 <body>
@@ -249,8 +258,40 @@
       (updatedAt ? '<div class="race-odds-check">オッズ確認: ' + updatedAt + '時点</div>' : '') +
       horsesHtml +
       '<div>' + picksHtml + '</div>' +
-      (reasonText ? '<div class="race-reason">' + reasonText + '</div>' : '');
+      (reasonText ? '<div class="race-reason">' + reasonText + '</div>' : '') +
+      renderFieldSizeCandidateHtml(r, updatedAt);
     return el;
+  }
+
+  function renderFieldSizeCandidateHtml(r, updatedAt){
+    const fsc = r.field_size_candidate;
+    if(!fsc) return '';
+    const included = fsc.included;
+    const boxClass = included ? 'fsc-included' : 'fsc-excluded';
+    const label = included ? '改善候補: 採用（検証段階）' : '改善候補: 見送り（検証段階）';
+    let detail = '';
+    if(included){
+      // 採用時は現行戦略と同じ買い目(馬番・馬名・券種・オッズ・予想時刻)を、
+      // 改善候補の扱いとして明示的に再掲する。
+      let betLine = '';
+      if(r.wide_picks && r.wide_picks.length){
+        betLine = r.wide_picks.map(function(p){
+          return 'ワイド' + p.combo + '　' + p.odds_low + '〜' + p.odds_high + '倍';
+        }).join('、');
+      }
+      const axisLine = r.axis ? (r.axis.no + '番 ' + r.axis.name +
+        (r.partner ? '　/　' + r.partner.no + '番 ' + r.partner.name : '')) : '';
+      detail =
+        '<div class="fsc-detail"><span class="label">馬番/馬名</span>' + (axisLine || '—') + '</div>' +
+        '<div class="fsc-detail"><span class="label">券種/買い目/オッズ</span>' + (betLine || '該当なし') + '</div>' +
+        '<div class="fsc-detail"><span class="label">予想時刻</span>' + (updatedAt || '') + '　' +
+          '<span class="label">発走</span>' + r.post_time + '</div>';
+    }
+    return '<div class="fsc-box ' + boxClass + '">' +
+      '<span class="fsc-label">' + label + '</span>' +
+      detail +
+      '<div class="fsc-note">' + fsc.note + '</div>' +
+      '</div>';
   }
 
   fetch('today_picks.json?t=' + Date.now(), {cache: 'no-store'})
@@ -280,6 +321,16 @@
       $('totalRaces').textContent = data.total_races_analyzed + '件';
       const buyCount = data.races.filter(function(r){ return r.rank === 'S' || r.rank === 'A'; }).length;
       $('buyCount').textContent = buyCount + '件';
+
+      if(data.field_size_candidate_info){
+        const info = data.field_size_candidate_info;
+        const box = document.createElement('div');
+        box.className = 'fsc-info';
+        box.innerHTML = '<strong>改善候補（頭数' + info.threshold + '頭以上の除外、' + info.status + '）</strong>について：' +
+          '単勝/複勝のPaper Trading実績でN=' + info.verified_n + '・回収率' + info.verified_roi_percent + '%（' + info.verified_basis + '）。' +
+          info.caveat + ' 各レースの「改善候補」表示で、採用/見送りをご確認いただけます。';
+        $('summaryPanel').appendChild(box);
+      }
 
       const container = $('raceSections');
       RANK_ORDER.forEach(function(rank){
