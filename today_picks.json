@@ -1,24 +1,8 @@
 {
-  "updated_at": "2026-10-24 19:28",
+  "updated_at": "2026-10-24 19:36",
   "date": "20261024",
   "total_races_analyzed": 6,
   "races": [
-    {
-      "track": "帯広ば",
-      "race_no": 10,
-      "post_time": "19:25",
-      "rank": "C",
-      "axis": {
-        "no": 1,
-        "name": "ツカサセンター",
-        "prob": 0.548
-      },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.35と基準(1.5)未満のため見送り。"
-    },
     {
       "track": "高知",
       "race_no": 10,
@@ -37,46 +21,84 @@
       "wide_picks": [
         {
           "combo": "3-8",
-          "odds_low": 6.7,
-          "odds_high": 7.4,
+          "odds_low": 7.7,
+          "odds_high": 9.0,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率84.8%・29.0%、近似EV1.65〜1.82。",
+      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率84.8%・29.0%、近似EV1.89〜2.21。",
       "skip_reason": null
     },
     {
       "track": "佐賀",
       "race_no": 11,
       "post_time": "20:10",
-      "rank": "C",
+      "rank": "A",
       "axis": {
         "no": 6,
         "name": "ダノンクラウディア",
         "prob": 0.648
       },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.48と基準(1.5)未満のため見送り。"
+      "partner": {
+        "no": 2,
+        "name": "テイエムリチャード",
+        "prob": 0.351
+      },
+      "wide_picks": [
+        {
+          "combo": "2-6",
+          "odds_low": 7.2,
+          "odds_high": 8.3,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率35.1%・64.8%、近似EV1.64〜1.89。",
+      "skip_reason": null
     },
     {
-      "track": "帯広ば",
-      "race_no": 12,
-      "post_time": "20:30",
+      "track": "高知",
+      "race_no": 11,
+      "post_time": "20:20",
       "rank": "C",
       "axis": {
-        "no": 10,
-        "name": "サクラタユウ",
-        "prob": 0.411
+        "no": 7,
+        "name": "モズリッキー",
+        "prob": 0.787
       },
       "partner": null,
       "wide_picks": [],
       "confidence": null,
       "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.49と基準(1.5)未満のため見送り。"
+      "skip_reason": "最良の組み合わせでも近似EVが1.14と基準(1.5)未満のため見送り。"
+    },
+    {
+      "track": "帯広ば",
+      "race_no": 12,
+      "post_time": "20:30",
+      "rank": "A",
+      "axis": {
+        "no": 10,
+        "name": "サクラタユウ",
+        "prob": 0.411
+      },
+      "partner": {
+        "no": 4,
+        "name": "ホクトノユメ",
+        "prob": 0.567
+      },
+      "wide_picks": [
+        {
+          "combo": "4-10",
+          "odds_low": 6.5,
+          "odds_high": 7.4,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率56.7%・41.1%、近似EV1.52〜1.73。",
+      "skip_reason": null
     },
     {
       "track": "佐賀",
@@ -96,13 +118,13 @@
       "wide_picks": [
         {
           "combo": "5-8",
-          "odds_low": 28.4,
-          "odds_high": 31.5,
+          "odds_low": 27.2,
+          "odds_high": 30.0,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率23.8%・68.1%、近似EV4.61〜5.11。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率23.8%・68.1%、近似EV4.41〜4.87。",
       "skip_reason": null
     },
     {
@@ -123,17 +145,17 @@
       "wide_picks": [
         {
           "combo": "3-11",
-          "odds_low": 21.9,
-          "odds_high": 22.9,
+          "odds_low": 21.7,
+          "odds_high": 22.7,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率22.4%・64.5%、近似EV3.17〜3.31。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率22.4%・64.5%、近似EV3.14〜3.28。",
       "skip_reason": null
     }
   ],
-  "odds_age_minutes": 0.8,
+  "odds_age_minutes": 1.9,
   "odds_stale": false,
   "next_update_at": "2026-10-24 19:35"
 }
