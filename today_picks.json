@@ -1,23 +1,23 @@
 {
-  "updated_at": "2026-10-25 16:40",
+  "updated_at": "2026-10-25 16:50",
   "date": "20261025",
   "total_races_analyzed": 16,
   "races": [
     {
-      "track": "帯広ば",
-      "race_no": 5,
-      "post_time": "16:30",
+      "track": "高知",
+      "race_no": 3,
+      "post_time": "16:35",
       "rank": "C",
       "axis": {
-        "no": 1,
-        "name": "メイコウブラック",
-        "prob": 0.742
+        "no": 6,
+        "name": "ダノンタッチダウン",
+        "prob": 0.685
       },
       "partner": null,
       "wide_picks": [],
       "confidence": null,
       "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.47と基準(1.5)未満のため見送り。",
+      "skip_reason": "最良の組み合わせでも近似EVが0.83と基準(1.5)未満のため見送り。",
       "field_size_candidate": {
         "field_size": 10,
         "verdict": "採用",
@@ -26,80 +26,69 @@
       }
     },
     {
-      "track": "金沢",
-      "race_no": 5,
-      "post_time": "16:40",
-      "rank": "C",
-      "axis": {
-        "no": 3,
-        "name": "エースオブゴールド",
-        "prob": 0.84
-      },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.41と基準(1.5)未満のため見送り。",
-      "field_size_candidate": {
-        "field_size": 9,
-        "verdict": "採用",
-        "included": true,
-        "note": "出走9頭のため、改善候補（検証段階）でも現行戦略と同じ買い目です。"
-      }
-    },
-    {
       "track": "盛岡",
       "race_no": 10,
       "post_time": "17:00",
-      "rank": "C",
-      "axis": {
-        "no": 7,
-        "name": "ノーブルミステリー",
-        "prob": 0.617
-      },
-      "partner": null,
-      "wide_picks": [],
-      "confidence": null,
-      "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.34と基準(1.5)未満のため見送り。",
-      "field_size_candidate": {
-        "field_size": 12,
-        "verdict": "見送り",
-        "included": false,
-        "note": "出走12頭のため、改善候補（検証段階）では見送り対象です。"
-      }
-    },
-    {
-      "track": "高知",
-      "race_no": 4,
-      "post_time": "17:05",
-      "rank": "A",
+      "rank": "S",
       "axis": {
         "no": 3,
-        "name": "ヴィーラー",
-        "prob": 0.764
+        "name": "ゴールドクロス",
+        "prob": 0.622
       },
       "partner": {
         "no": 2,
-        "name": "トーアイクタチ",
-        "prob": 0.615
+        "name": "テーオーカバリエ",
+        "prob": 0.344
       },
       "wide_picks": [
         {
           "combo": "2-3",
-          "odds_low": 4.2,
-          "odds_high": 5.1,
+          "odds_low": 26.5,
+          "odds_high": 29.2,
           "amount": 1000
         }
       ],
-      "confidence": "高",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率61.5%・76.4%、近似EV1.97〜2.39。",
+      "confidence": "中",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率34.4%・62.2%、近似EV5.67〜6.25。",
       "skip_reason": null,
       "field_size_candidate": {
         "field_size": 12,
         "verdict": "見送り",
         "included": false,
         "note": "出走12頭のため、改善候補（検証段階）では見送り対象です。"
+      }
+    },
+    {
+      "track": "佐賀",
+      "race_no": 4,
+      "post_time": "17:30",
+      "rank": "A",
+      "axis": {
+        "no": 8,
+        "name": "ディグニダドレアル",
+        "prob": 0.698
+      },
+      "partner": {
+        "no": 10,
+        "name": "スカイアクセル",
+        "prob": 0.434
+      },
+      "wide_picks": [
+        {
+          "combo": "8-10",
+          "odds_low": 5.9,
+          "odds_high": 7.0,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率69.8%・43.4%、近似EV1.79〜2.12。",
+      "skip_reason": null,
+      "field_size_candidate": {
+        "field_size": 10,
+        "verdict": "採用",
+        "included": true,
+        "note": "出走10頭のため、改善候補（検証段階）でも現行戦略と同じ買い目です。"
       }
     },
     {
@@ -115,24 +104,57 @@
       "partner": {
         "no": 5,
         "name": "メイショウユフイン",
-        "prob": 0.314
+        "prob": 0.393
       },
       "wide_picks": [
         {
           "combo": "1-5",
-          "odds_low": 11.7,
-          "odds_high": 12.4,
+          "odds_low": 10.0,
+          "odds_high": 11.2,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率78.8%・31.4%、近似EV2.89〜3.07。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率78.8%・39.3%、近似EV3.09〜3.46。",
       "skip_reason": null,
       "field_size_candidate": {
         "field_size": 12,
         "verdict": "見送り",
         "included": false,
         "note": "出走12頭のため、改善候補（検証段階）では見送り対象です。"
+      }
+    },
+    {
+      "track": "帯広ば",
+      "race_no": 7,
+      "post_time": "17:45",
+      "rank": "A",
+      "axis": {
+        "no": 9,
+        "name": "ハゴロモトレジャー",
+        "prob": 0.409
+      },
+      "partner": {
+        "no": 1,
+        "name": "サカノダンスクイン",
+        "prob": 0.272
+      },
+      "wide_picks": [
+        {
+          "combo": "1-9",
+          "odds_low": 25.8,
+          "odds_high": 27.9,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（新ルール）に該当。両馬の3着内確率27.2%・40.9%、近似EV2.87〜3.11。",
+      "skip_reason": null,
+      "field_size_candidate": {
+        "field_size": 10,
+        "verdict": "採用",
+        "included": true,
+        "note": "出走10頭のため、改善候補（検証段階）でも現行戦略と同じ買い目です。"
       }
     },
     {
@@ -143,51 +165,18 @@
       "axis": {
         "no": 7,
         "name": "テイコク",
-        "prob": 0.456
+        "prob": 0.358
       },
       "partner": null,
       "wide_picks": [],
       "confidence": null,
       "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが1.47と基準(1.5)未満のため見送り。",
+      "skip_reason": "最良の組み合わせでも近似EVが1.33と基準(1.5)未満のため見送り。",
       "field_size_candidate": {
         "field_size": 10,
         "verdict": "採用",
         "included": true,
         "note": "出走10頭のため、改善候補（検証段階）でも現行戦略と同じ買い目です。"
-      }
-    },
-    {
-      "track": "高知",
-      "race_no": 6,
-      "post_time": "18:05",
-      "rank": "A",
-      "axis": {
-        "no": 12,
-        "name": "リケアボレロ",
-        "prob": 0.756
-      },
-      "partner": {
-        "no": 5,
-        "name": "アルタモジアナ",
-        "prob": 0.303
-      },
-      "wide_picks": [
-        {
-          "combo": "5-12",
-          "odds_low": 10.0,
-          "odds_high": 12.4,
-          "amount": 1000
-        }
-      ],
-      "confidence": "中",
-      "reason": "根拠条件（Tier A）に該当。両馬の3着内確率30.3%・75.6%、近似EV2.29〜2.84。",
-      "skip_reason": null,
-      "field_size_candidate": {
-        "field_size": 12,
-        "verdict": "見送り",
-        "included": false,
-        "note": "出走12頭のため、改善候補（検証段階）では見送り対象です。"
       }
     },
     {
@@ -208,13 +197,13 @@
       "wide_picks": [
         {
           "combo": "4-5",
-          "odds_low": 30.0,
-          "odds_high": 32.6,
+          "odds_low": 25.6,
+          "odds_high": 28.3,
           "amount": 1000
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率54.3%・61.1%、近似EV9.96〜10.82。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率54.3%・61.1%、近似EV8.50〜9.40。",
       "skip_reason": null,
       "field_size_candidate": {
         "field_size": 10,
@@ -236,18 +225,18 @@
       "partner": {
         "no": 2,
         "name": "イモータルソウル",
-        "prob": 0.44
+        "prob": 0.401
       },
       "wide_picks": [
         {
           "combo": "2-7",
-          "odds_low": 13.2,
-          "odds_high": 14.8,
+          "odds_low": 16.0,
+          "odds_high": 17.6,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率44.0%・62.4%、近似EV3.62〜4.06。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率40.1%・62.4%、近似EV4.00〜4.40。",
       "skip_reason": null,
       "field_size_candidate": {
         "field_size": 10,
@@ -274,19 +263,52 @@
       "wide_picks": [
         {
           "combo": "4-8",
-          "odds_low": 11.8,
-          "odds_high": 13.1,
+          "odds_low": 13.1,
+          "odds_high": 14.5,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率38.0%・62.5%、近似EV2.80〜3.11。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率38.0%・62.5%、近似EV3.11〜3.45。",
       "skip_reason": null,
       "field_size_candidate": {
         "field_size": 10,
         "verdict": "採用",
         "included": true,
         "note": "出走10頭のため、改善候補（検証段階）でも現行戦略と同じ買い目です。"
+      }
+    },
+    {
+      "track": "高知",
+      "race_no": 8,
+      "post_time": "19:10",
+      "rank": "A",
+      "axis": {
+        "no": 7,
+        "name": "メイショウヒューマ",
+        "prob": 0.706
+      },
+      "partner": {
+        "no": 2,
+        "name": "ラプラス",
+        "prob": 0.3
+      },
+      "wide_picks": [
+        {
+          "combo": "2-7",
+          "odds_low": 14.5,
+          "odds_high": 16.4,
+          "amount": 1000
+        }
+      ],
+      "confidence": "中",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率30.0%・70.6%、近似EV3.08〜3.48。",
+      "skip_reason": null,
+      "field_size_candidate": {
+        "field_size": 8,
+        "verdict": "採用",
+        "included": true,
+        "note": "出走8頭のため、改善候補（検証段階）でも現行戦略と同じ買い目です。"
       }
     },
     {
@@ -302,18 +324,18 @@
       "partner": {
         "no": 7,
         "name": "ツガルノセンショウ",
-        "prob": 0.31
+        "prob": 0.231
       },
       "wide_picks": [
         {
           "combo": "2-7",
-          "odds_low": 12.3,
-          "odds_high": 13.8,
+          "odds_low": 13.1,
+          "odds_high": 15.0,
           "amount": 1000
         }
       ],
       "confidence": "中",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率62.9%・31.0%、近似EV2.39〜2.69。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率62.9%・23.1%、近似EV1.90〜2.18。",
       "skip_reason": null,
       "field_size_candidate": {
         "field_size": 9,
@@ -330,12 +352,12 @@
       "axis": {
         "no": 2,
         "name": "サブノレインボー",
-        "prob": 0.689
+        "prob": 0.675
       },
       "partner": {
         "no": 10,
         "name": "ドナカサミエント",
-        "prob": 0.507
+        "prob": 0.505
       },
       "wide_picks": [
         {
@@ -346,40 +368,40 @@
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率68.9%・50.7%、近似EV4.96〜5.45。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率67.5%・50.5%、近似EV4.84〜5.32。",
       "skip_reason": null,
       "field_size_candidate": {
-        "field_size": 10,
+        "field_size": 11,
         "verdict": "採用",
         "included": true,
-        "note": "出走10頭のため、改善候補（検証段階）でも現行戦略と同じ買い目です。"
+        "note": "出走11頭のため、改善候補（検証段階）でも現行戦略と同じ買い目です。"
       }
     },
     {
       "track": "高知",
       "race_no": 9,
       "post_time": "19:50",
-      "rank": "S",
+      "rank": "A",
       "axis": {
         "no": 3,
         "name": "ブルーシンフォニー",
         "prob": 0.694
       },
       "partner": {
-        "no": 4,
-        "name": "ウインヴェルデ",
-        "prob": 0.614
+        "no": 5,
+        "name": "フクノユリディズ",
+        "prob": 0.445
       },
       "wide_picks": [
         {
-          "combo": "3-4",
-          "odds_low": 12.2,
-          "odds_high": 13.1,
+          "combo": "3-5",
+          "odds_low": 10.8,
+          "odds_high": 11.8,
           "amount": 1000
         }
       ],
-      "confidence": "高",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率69.4%・61.4%、近似EV5.20〜5.58。",
+      "confidence": "中",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率69.4%・44.5%、近似EV3.33〜3.64。",
       "skip_reason": null,
       "field_size_candidate": {
         "field_size": 9,
@@ -402,7 +424,7 @@
       "wide_picks": [],
       "confidence": null,
       "reason": null,
-      "skip_reason": "最良の組み合わせでも近似EVが0.77と基準(1.5)未満のため見送り。",
+      "skip_reason": "最良の組み合わせでも近似EVが0.72と基準(1.5)未満のため見送り。",
       "field_size_candidate": {
         "field_size": 6,
         "verdict": "採用",
@@ -445,18 +467,18 @@
       "partner": {
         "no": 9,
         "name": "ホクショウムサシ",
-        "prob": 0.551
+        "prob": 0.479
       },
       "wide_picks": [
         {
           "combo": "2-9",
-          "odds_low": 8.3,
+          "odds_low": 8.1,
           "odds_high": 9.0,
           "amount": 1000
         }
       ],
       "confidence": "高",
-      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率69.7%・55.1%、近似EV3.19〜3.46。",
+      "reason": "根拠条件（EVルール）に該当。両馬の3着内確率69.7%・47.9%、近似EV2.70〜3.00。",
       "skip_reason": null,
       "field_size_candidate": {
         "field_size": 10,
@@ -466,7 +488,7 @@
       }
     }
   ],
-  "odds_age_minutes": 1.3,
+  "odds_age_minutes": 1.6,
   "odds_stale": false,
   "field_size_candidate_info": {
     "threshold": 12,
@@ -476,5 +498,5 @@
     "verified_basis": "Tier A・EVルール・新ルールの単勝/複勝Paper Trading実績（頭数12頭以上を除外した場合）",
     "caveat": "この回収率は単勝/複勝ベースの実績です。本ページのワイド買い目に適用した場合の回収率は別途検証していません。頭数による該当・見送りの判定のみを参考情報として表示しています。"
   },
-  "next_update_at": "2026-10-25 16:20"
+  "next_update_at": "2026-10-25 16:30"
 }
