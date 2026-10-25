@@ -129,39 +129,36 @@
 <div class="wrap">
   <header>
     <span class="eyebrow">UMALAB 馬ラボ・本日の解析結果</span>
-    <h1>今日の解析結果（S/A/B/C）</h1>
-    <p class="lede">UMALAB（馬ラボ）が本日取得できたオッズ・過去成績から解析した候補レースを、見送り（Cランク）も含めてそのまま公開しています。買う・買わないの判断材料としてご利用ください。</p>
-    <p class="disclaimer">これは参考情報であり、的中・利益を保証するものではありません。ワイドの期待値は、過去成績ベースの近似計算（独立仮定）であり、UMALABの検証済みトラックレコードとは別系統です。</p>
-    <p class="disclaimer" style="background:var(--warn-soft);border-color:var(--warn);color:var(--warn);">
-      【検証中】集計の不具合を発見したため、固定4条件の実績を2026-10-21〜22に全件再確認しました。訂正後の実績（回収率・最大連敗を含む）は下記の検証実績ページでご確認いただけます。優位性が確認できるまで、有料案内は一時停止しています。
+    <h1>今日の解析結果（品質監査のため一時停止中）</h1>
+    <p class="disclaimer" style="background:var(--bad-soft);border-color:var(--bad);color:var(--bad);font-weight:700;">
+      【2026-10-25 緊急停止】このページのワイド推奨・実戦候補の新規生成を停止しました。
+      実測調査の結果、公開していたワイド推奨の的中率は約9.5%、回収率は約67.9%、
+      最大連敗43回であることが判明しました（詳細は検証実績ページをご確認ください）。
+      品質監査が完了し、改善が確認できるまで、新しい買い目の推奨は行いません。
+      既に表示されていた古い買い目は参考にしないでください。
     </p>
-    <a class="header-link" id="headerLink">UMALAB検証実績ページ（訂正後の実績）へ →</a>
+    <p class="disclaimer">これは参考情報であり、的中・利益を保証するものではありません。実際の購入判断・損失について、UMALABは責任を負いません。</p>
+    <a class="header-link" id="headerLink">UMALAB検証実績ページ（Tier A・EVルール・新ルールの確定実績）へ →</a>
   </header>
 
-  <div id="loading">読み込み中...</div>
+  <div id="loading" style="display:none;"></div>
 
-  <div class="panel" id="summaryPanel" style="display:none;">
-    <div class="refresh-row">
-      <div>
-        <div class="updated" id="updatedAt"></div>
-        <div class="updated" id="nextUpdateAt" style="margin-top:3px;"></div>
-      </div>
-      <button type="button" class="refresh-btn" id="refreshBtn">最新データに更新</button>
-    </div>
-    <h2>本日のサマリー</h2>
-    <div class="stat-grid">
-      <div class="stat"><div class="stat-label">解析レース数</div><div class="stat-value" id="totalRaces">-</div></div>
-      <div class="stat"><div class="stat-label">S/Aランク</div><div class="stat-value" id="buyCount">-</div></div>
-    </div>
-  </div>
+  <div class="panel" id="summaryPanel" style="display:none;"></div>
 
   <div id="raceSections"></div>
 
-  <div id="candSection">
-    <div class="cand-section-title">翌日の実戦候補（研究・参考情報）</div>
-    <p class="disclaimer" style="margin-bottom:12px;">today-picks本番の解析とは別の、研究段階の参考候補です。信頼度Aでも100%の回収率は確認できていません。実際の購入判断はご自身でお願いします。</p>
-    <div id="candContent"><div class="cand-waiting">読み込み中...</div></div>
+  <div class="panel">
+    <h2>停止までの実測データ（検証用）</h2>
+    <p class="disclaimer" style="margin:0;">
+      2026-10-04〜10-25に実際に公開されていたワイド推奨558件を、確定着順・払戻と
+      全件照合した結果です。的中率9.5%・回収率67.89%・損益-179,200円・最大連敗43。
+      バグ修正（2026-10-11）後の425件のみでも的中率9.6%・回収率77.29%と改善は
+      確認できませんでした。原因の調査・修正・未使用データでの再検証が完了するまで、
+      このページでの新しい推奨は行いません。
+    </p>
   </div>
+
+  <div id="candSection" style="display:none;"></div>
 
   <footer>
     UMALAB｜地方競馬の実データで「買う・見送る」を検証しています。
@@ -180,244 +177,8 @@
   }
   const headerLink = $('headerLink');
   if(headerLink) headerLink.setAttribute('href', withUtm(CHECKER_URL, 'header'));
-
-  const refreshBtn = $('refreshBtn');
-  if(refreshBtn){
-    refreshBtn.addEventListener('click', function(){
-      refreshBtn.disabled = true;
-      refreshBtn.textContent = '更新中...';
-      location.href = location.pathname + '?nocache=' + Date.now();
-    });
-  }
-
-  function todayStr(){
-    const d = new Date();
-    return '' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
-  }
-
-  function staleBanner(labelDate){
-    const el = document.createElement('div');
-    el.className = 'stale-banner';
-    el.textContent = 'この予想は本日（' + todayStr() + '）更新分ではないため、予想は表示していません（データ日付: ' + labelDate + '）。自動更新が止まっている可能性があります。「最新データに更新」で再確認できます。';
-    return el;
-  }
-
-  function preparingBanner(nextUpdateAt){
-    const el = document.createElement('div');
-    el.className = 'stale-banner';
-    el.style.background = 'var(--warn-soft)';
-    el.style.color = 'var(--warn)';
-    el.style.borderColor = 'var(--warn)';
-    el.textContent = '本日（' + todayStr() + '）分の買い目は準備中です。最初のレースの発走10分前（予定: ' +
-      nextUpdateAt + '）に自動で生成されます。しばらくしてから再度ご確認ください。';
-    return el;
-  }
-
-  function isUpcomingToday(nextUpdateAt){
-    if(!nextUpdateAt) return false;
-    const dt = new Date(nextUpdateAt.replace(' ', 'T'));
-    if(isNaN(dt.getTime())) return false;
-    const dateStr = '' + dt.getFullYear() + String(dt.getMonth()+1).padStart(2,'0') + String(dt.getDate()).padStart(2,'0');
-    return dateStr === todayStr();
-  }
-
-  function oddsStaleBanner(ageMinutes){
-    const el = document.createElement('div');
-    el.className = 'stale-banner';
-    el.textContent = '買い目は本日分ですが、元になっているオッズが約' + ageMinutes + '分前から更新できていません（外部データ取得が一時的に止まっている可能性があります）。最新のオッズではない可能性があるため、購入前に必ずご自身でオッズをご確認ください。';
-    return el;
-  }
-
-  const RANK_ORDER = ['S', 'A', 'B', 'C'];
-  const RANK_LABEL = {S: 'Sランク（かなり買いたい）', A: 'Aランク（買う価値あり）', B: 'Bランク（条件次第）', C: 'Cランク（見送り）'};
-
-  function renderRace(r, updatedAt){
-    const el = document.createElement('div');
-    el.className = 'race-card rank-' + r.rank;
-    let picksHtml = '';
-    if(r.wide_picks && r.wide_picks.length){
-      picksHtml = r.wide_picks.map(function(p){
-        return '<span class="wide-pick">ワイド' + p.combo + '　' + p.odds_low + '〜' + p.odds_high + '倍　' + p.amount.toLocaleString() + '円</span>';
-      }).join('');
-    }
-    const horsesHtml = r.axis ? (
-      '<div class="race-horses"><span class="label">軸</span>' + r.axis.no + '番 ' + r.axis.name +
-      '（' + Math.round(r.axis.prob * 1000) / 10 + '%）' +
-      (r.partner ? '　<span class="label">相手</span>' + r.partner.no + '番 ' + r.partner.name +
-        '（' + Math.round(r.partner.prob * 1000) / 10 + '%）' : '') +
-      '</div>'
-    ) : '';
-    const reasonText = r.reason || r.skip_reason || '';
-    el.innerHTML =
-      '<div class="race-head">' +
-        '<span class="race-title">' + r.track + r.race_no + 'R' +
-          (r.confidence ? '<span class="confidence-tag">自信度: ' + r.confidence + '</span>' : '') +
-        '</span>' +
-        '<span class="race-time">' + r.post_time + '発走</span>' +
-      '</div>' +
-      (updatedAt ? '<div class="race-odds-check">オッズ確認: ' + updatedAt + '時点</div>' : '') +
-      horsesHtml +
-      '<div>' + picksHtml + '</div>' +
-      (reasonText ? '<div class="race-reason">' + reasonText + '</div>' : '') +
-      renderFieldSizeCandidateHtml(r, updatedAt);
-    return el;
-  }
-
-  function renderFieldSizeCandidateHtml(r, updatedAt){
-    const fsc = r.field_size_candidate;
-    if(!fsc) return '';
-    const included = fsc.included;
-    const boxClass = included ? 'fsc-included' : 'fsc-excluded';
-    const label = included ? '改善候補: 採用（検証段階）' : '改善候補: 見送り（検証段階）';
-    let detail = '';
-    if(included){
-      // 採用時は現行戦略と同じ買い目(馬番・馬名・券種・オッズ・予想時刻)を、
-      // 改善候補の扱いとして明示的に再掲する。
-      let betLine = '';
-      if(r.wide_picks && r.wide_picks.length){
-        betLine = r.wide_picks.map(function(p){
-          return 'ワイド' + p.combo + '　' + p.odds_low + '〜' + p.odds_high + '倍';
-        }).join('、');
-      }
-      const axisLine = r.axis ? (r.axis.no + '番 ' + r.axis.name +
-        (r.partner ? '　/　' + r.partner.no + '番 ' + r.partner.name : '')) : '';
-      detail =
-        '<div class="fsc-detail"><span class="label">馬番/馬名</span>' + (axisLine || '—') + '</div>' +
-        '<div class="fsc-detail"><span class="label">券種/買い目/オッズ</span>' + (betLine || '該当なし') + '</div>' +
-        '<div class="fsc-detail"><span class="label">予想時刻</span>' + (updatedAt || '') + '　' +
-          '<span class="label">発走</span>' + r.post_time + '</div>';
-    }
-    return '<div class="fsc-box ' + boxClass + '">' +
-      '<span class="fsc-label">' + label + '</span>' +
-      detail +
-      '<div class="fsc-note">' + fsc.note + '</div>' +
-      '</div>';
-  }
-
-  fetch('today_picks.json?t=' + Date.now(), {cache: 'no-store'})
-    .then(function(res){ return res.json(); })
-    .then(function(data){
-      $('loading').style.display = 'none';
-      $('summaryPanel').style.display = 'block';
-      $('updatedAt').textContent = '最終更新: ' + data.updated_at;
-      if(!data.date || data.date !== todayStr()){
-        // 本日分でないデータは予想として表示しない（古い予想の流用防止）。
-        // ただし、次回更新予定が本日の未来時刻であれば「準備中」(正常な待機)として案内する。
-        if(isUpcomingToday(data.next_update_at)){
-          $('raceSections').parentNode.insertBefore(preparingBanner(data.next_update_at), $('raceSections'));
-          $('nextUpdateAt').textContent = '次回自動更新予定: ' + data.next_update_at;
-        } else {
-          $('raceSections').parentNode.insertBefore(staleBanner(data.date || '不明'), $('raceSections'));
-          $('nextUpdateAt').textContent = '';
-        }
-        $('totalRaces').textContent = '—';
-        $('buyCount').textContent = '—';
-        return;
-      }
-      if(data.odds_stale){
-        $('raceSections').parentNode.insertBefore(oddsStaleBanner(data.odds_age_minutes), $('raceSections'));
-      }
-      $('nextUpdateAt').textContent = data.next_update_at ? ('次回自動更新予定: ' + data.next_update_at) : '';
-      $('totalRaces').textContent = data.total_races_analyzed + '件';
-      const buyCount = data.races.filter(function(r){ return r.rank === 'S' || r.rank === 'A'; }).length;
-      $('buyCount').textContent = buyCount + '件';
-
-      if(data.field_size_candidate_info){
-        const info = data.field_size_candidate_info;
-        const box = document.createElement('div');
-        box.className = 'fsc-info';
-        box.innerHTML = '<strong>改善候補（頭数' + info.threshold + '頭以上の除外、' + info.status + '）</strong>について：' +
-          '単勝/複勝のPaper Trading実績でN=' + info.verified_n + '・回収率' + info.verified_roi_percent + '%（' + info.verified_basis + '）。' +
-          info.caveat + ' 各レースの「改善候補」表示で、採用/見送りをご確認いただけます。';
-        $('summaryPanel').appendChild(box);
-      }
-
-      const container = $('raceSections');
-      RANK_ORDER.forEach(function(rank){
-        const races = data.races.filter(function(r){ return r.rank === rank; });
-        if(!races.length) return;
-        const title = document.createElement('div');
-        title.className = 'rank-section-title rank-' + rank;
-        title.innerHTML = '<span class="rank-badge">' + rank + '</span>' + RANK_LABEL[rank];
-        container.appendChild(title);
-        races.forEach(function(r){ container.appendChild(renderRace(r, data.updated_at)); });
-      });
-    })
-    .catch(function(err){
-      $('loading').textContent = 'データの読み込みに失敗しました。';
-    });
-
-  function renderCandidate(c){
-    const el = document.createElement('div');
-    el.className = 'cand-card conf-' + c.confidence;
-    el.innerHTML =
-      '<div class="race-head">' +
-        '<span class="race-title">' + c.track + c.race_no + 'R' +
-          '<span class="cand-conf-badge">' + c.confidence + '</span>' +
-        '</span>' +
-        '<span class="race-time">' + c.post_time + '発走</span>' +
-      '</div>' +
-      '<div class="cand-meta">' + c.umaban + '番 ' + c.horse + '　想定オッズ: ' + c.odds_band + '</div>' +
-      '<div class="cand-meta">推奨: ' + c.bet_type + '　' + c.amount.toLocaleString() + '円</div>' +
-      '<div class="cand-reason">' + c.reason + '</div>' +
-      '<div class="cand-skip">見送り条件: ' + c.skip_condition + '</div>';
-    return el;
-  }
-
-  fetch('research_candidates.json?t=' + Date.now(), {cache: 'no-store'})
-    .then(function(res){ return res.json(); })
-    .then(function(data){
-      const container = $('candContent');
-      container.innerHTML = '';
-
-      if(data.status === 'waiting'){
-        container.innerHTML = '<div class="cand-waiting">まだ予想データ待ちです。対象日のレース情報が公開され次第、自動的に表示されます。</div>';
-        return;
-      }
-
-      if(!data.target_date || data.target_date < todayStr()){
-        // 過去日の候補は表示しない（古い予想の流用防止）
-        container.appendChild(staleBanner(data.target_date || '不明'));
-        return;
-      }
-
-      const updatedLine = document.createElement('p');
-      updatedLine.className = 'updated';
-      updatedLine.style.marginBottom = '12px';
-      updatedLine.textContent = '更新日時: ' + data.generated_at + '（対象日: ' + data.target_date + '）';
-      if(data.provisional){
-        const tag = document.createElement('span');
-        tag.className = 'cand-provisional';
-        tag.textContent = '暫定（オッズ未確定分あり）';
-        updatedLine.appendChild(tag);
-      }
-      container.appendChild(updatedLine);
-
-      if(data.status === 'no_candidates' || !data.candidates || !data.candidates.length){
-        const div = document.createElement('div');
-        div.className = 'cand-waiting';
-        div.textContent = '本日の条件に該当する候補はありませんでした。見送りを推奨します。';
-        container.appendChild(div);
-        return;
-      }
-
-      if(data.top3 && data.top3.length){
-        const box = document.createElement('div');
-        box.className = 'top3-box';
-        box.innerHTML = '<h3>明日買うならこの順（最大3レース）</h3>' +
-          data.top3.map(function(c){
-            return '<div class="top3-item">' + c.rank + '. ' + c.track + c.race_no + 'R　' +
-              c.umaban + '番 ' + c.horse + '（' + c.bet_type + ' ' + c.amount.toLocaleString() + '円、信頼度' + c.confidence + '）</div>';
-          }).join('') +
-          '<div class="top3-item" style="margin-top:8px;font-weight:700;">合計購入額: ' + data.total_amount.toLocaleString() + '円</div>';
-        container.appendChild(box);
-      }
-
-      data.candidates.forEach(function(c){ container.appendChild(renderCandidate(c)); });
-    })
-    .catch(function(err){
-      $('candContent').innerHTML = '<div class="cand-waiting">候補データの読み込みに失敗しました。</div>';
-    });
+  // 2026-10-25: 品質監査のため、today_picks.json / research_candidates.json の
+  // 取得・表示を停止した。古いデータを買い目として誤表示しないための措置。
 })();
 </script>
 </body>
