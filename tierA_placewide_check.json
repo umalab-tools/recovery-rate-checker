@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-10-27 14:35:17",
+  "updated_at": "2026-10-27 14:38:19",
   "fixed_condition": "単勝オッズ1.0〜1.2倍 × Model E予測1位(変更禁止)",
   "confirm_n_threshold": 1000,
   "place_side": {
-    "n": 76,
-    "hit_rate": 89.47,
-    "roi": 92.11,
+    "n": 77,
+    "hit_rate": 88.31,
+    "roi": 90.91,
     "max_streak": 2,
-    "max_dd_pct": -0.69,
+    "max_dd_pct": -0.77,
     "confirmed": false,
     "ci95": [
-      84.8,
-      99.4
+      83.4,
+      98.5
     ]
   },
   "wide_side": {
-    "n": 76,
-    "hit_rate": 13.16,
-    "roi": 57.5,
+    "n": 77,
+    "hit_rate": 12.99,
+    "roi": 56.75,
     "max_streak": 23,
-    "max_dd_pct": -40.31,
+    "max_dd_pct": -41.26,
     "confirmed": false,
     "ci95": [
-      18.3,
-      96.7
+      18.0,
+      95.5
     ]
   },
   "tierA_plus_side": {
-    "n": 68,
-    "hit_rate": 89.71,
-    "roi": 91.62,
+    "n": 69,
+    "hit_rate": 88.41,
+    "roi": 90.29,
     "max_streak": 2,
-    "max_dd_pct": -0.54,
+    "max_dd_pct": -0.62,
     "confirmed": false,
     "ci95": [
-      84.1,
-      99.2
+      82.4,
+      98.2
     ]
   },
   "tierA_plus_condition": "Tier A + 軸馬が締切直前オッズでも単勝人気1位(2026-10-13固定・変更禁止、バックテストW1=102.50%→H1H2確認=102.04%で発見)",
   "skipped_races_logged": 707,
-  "early_vs_late_odds_qualification_mismatch": 69,
+  "early_vs_late_odds_qualification_mismatch": 70,
   "note": "これは研究用の前向き記録です。実際の馬券購入は行っていません。件数が1000件に達するまで的中率・回収率は確定評価とせず参考値として扱います。回収率100%超えが未確認の間、実戦購入推奨は行いません。改善案は既存ロジックとは別に検証します。Tier A+の過去バックテスト確認分(H1H2 103件)は独立検証として数えず、本日以降の新規実データのみでこの集計を進めます。"
 }
