@@ -3,182 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>競馬 今日の解析結果 | UMALAB</title>
+<title>競馬 今日の解析結果（検証中） | UMALAB</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8F%87</text></svg>">
-<meta name="description" content="UMALAB（馬ラボ）が本日解析した地方競馬の候補レースを、S/A/B/Cランクでそのまま公開。見送りレースも隠さず掲載。">
-<meta property="og:type" content="website">
-<link rel="canonical" href="https://umalab-tools.github.io/recovery-rate-checker/today-picks.html">
-<meta property="og:url" content="https://umalab-tools.github.io/recovery-rate-checker/today-picks.html">
-<meta property="og:title" content="競馬 今日の解析結果 | UMALAB">
-<meta property="og:description" content="UMALAB（馬ラボ）が本日解析した地方競馬の候補レースを、S/A/B/Cランクでそのまま公開。見送りレースも隠さず掲載。">
-<meta property="og:locale" content="ja_JP">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="競馬 今日の解析結果 | UMALAB">
-<meta name="twitter:description" content="UMALAB（馬ラボ）が本日解析した地方競馬の候補レースを、S/A/B/Cランクでそのまま公開。見送りレースも隠さず掲載。">
-<!-- アクセス解析（無料、GoatCounter。サイトコード: umalab-checker、既存ページと共通） -->
+<meta name="description" content="UMALAB（馬ラボ）が本日解析した候補レースを、検証中のデータとして公開しています。実購入は推奨していません。">
+<!-- アクセス解析（無料、GoatCounter） -->
 <script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;}
-  html{-webkit-text-size-adjust:100%;}
-  body{margin:0;}
-  :root{
-    --bg:#f6f4ee; --surface:#ffffff; --surface-alt:#eeebe1;
-    --text:#1d2318; --text-muted:#5c6455; --border:#dcd5c5;
-    --accent:#2f6e4b; --accent-strong:#1f4d34; --accent-soft:#e3ede5;
-    --good:#2f6e4b; --good-soft:#e3ede5;
-    --warn:#a8761f; --warn-soft:#f5ecd8;
-    --bad:#af3a35; --bad-soft:#f6e3e0;
-    --s-rank:#1f4d34; --s-rank-soft:#e3ede5;
-    --a-rank:#2f6e4b; --a-rank-soft:#eaf3ed;
-    --b-rank:#a8761f; --b-rank-soft:#f5ecd8;
-    --c-rank:#7a7368; --c-rank-soft:#eeebe1;
-    --shadow: 0 1px 2px rgba(30,35,25,0.06), 0 8px 24px -12px rgba(30,35,25,0.18);
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#12150f; --surface:#1a1f16; --surface-alt:#20261b;
-      --text:#eae7dc; --text-muted:#a4ac97; --border:#333c2b;
-      --accent:#71c191; --accent-strong:#93d8ac; --accent-soft:#1e3327;
-      --good:#71c191; --good-soft:#1e3327;
-      --warn:#dcb15a; --warn-soft:#332b16;
-      --bad:#e2867d; --bad-soft:#382019;
-      --s-rank:#93d8ac; --s-rank-soft:#1e3327;
-      --a-rank:#71c191; --a-rank-soft:#1b2a1f;
-      --b-rank:#dcb15a; --b-rank-soft:#332b16;
-      --c-rank:#8f9686; --c-rank-soft:#20261b;
-      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px -12px rgba(0,0,0,0.5);
-    }
-  }
-  body{background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
-  .wrap{max-width:640px;margin:0 auto;padding:32px 18px 72px;}
-  header{margin-bottom:26px;}
-  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:10px;}
-  h1{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;font-weight:900;font-size:clamp(24px,7vw,34px);margin:0 0 10px;text-wrap:balance;letter-spacing:-0.01em;}
-  h2{font-family:"Zen Kaku Gothic New",sans-serif;font-size:16px;font-weight:700;margin:0 0 14px;}
-  .lede{color:var(--text-muted);font-size:14px;margin:0 0 14px;}
-  .disclaimer{padding:12px 14px;background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;font-size:12px;color:var(--text-muted);margin-bottom:14px;}
-  .header-link{display:inline-block;font-size:13px;color:var(--accent);font-weight:700;text-decoration:none;}
-  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px 20px;margin-bottom:18px;}
-  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-muted);}
-  .refresh-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:-6px 0 14px;}
-  .refresh-btn{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:#fff;background:var(--accent);border:none;border-radius:8px;padding:7px 14px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
-  .refresh-btn:active{opacity:0.75;}
-  .refresh-btn[disabled]{opacity:0.6;}
-  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;}
-  .stat{background:var(--surface-alt);border-radius:12px;padding:12px 14px;}
-  .stat-label{font-size:11.5px;color:var(--text-muted);margin-bottom:4px;}
-  .stat-value{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:19px;}
-  .divider{border:none;border-top:1px solid var(--border);margin:22px 0;}
-  footer{margin-top:24px;font-size:11.5px;color:var(--text-muted);text-align:center;}
-
-  .rank-section-title{display:flex;align-items:center;gap:8px;margin:28px 0 12px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:18px;}
-  .rank-badge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;border-radius:8px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:15px;padding:0 8px;}
-  .rank-S .rank-badge{background:var(--s-rank-soft);color:var(--s-rank);}
-  .rank-A .rank-badge{background:var(--a-rank-soft);color:var(--a-rank);}
-  .rank-B .rank-badge{background:var(--b-rank-soft);color:var(--b-rank);}
-  .rank-C .rank-badge{background:var(--c-rank-soft);color:var(--c-rank);}
-  .race-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:16px 16px;margin-bottom:12px;}
-  .race-card.rank-S{border-left:4px solid var(--s-rank);}
-  .race-card.rank-A{border-left:4px solid var(--a-rank);}
-  .race-card.rank-B{border-left:4px solid var(--b-rank);}
-  .race-card.rank-C{border-left:4px solid var(--c-rank);opacity:0.75;}
-  .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px;}
-  .race-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:15px;}
-  .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-muted);white-space:nowrap;}
-  .race-odds-check{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--text-muted);margin-top:2px;}
-  .race-horses{font-size:13px;margin:6px 0;}
-  .race-horses .label{color:var(--text-muted);font-size:11px;margin-right:4px;}
-  .wide-pick{display:inline-block;background:var(--accent-soft);color:var(--accent-strong);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px;margin:4px 6px 0 0;}
-  .race-reason{font-size:12.5px;color:var(--text-muted);margin-top:8px;}
-  .confidence-tag{display:inline-block;font-size:11px;color:var(--text-muted);background:var(--surface-alt);padding:2px 8px;border-radius:6px;margin-left:6px;}
-  #loading{text-align:center;color:var(--text-muted);font-size:13px;padding:40px 0;}
-
-  .cand-section-title{margin:34px 0 12px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:18px;}
-  .cand-waiting{background:var(--surface-alt);border:1px solid var(--border);border-radius:12px;padding:18px 16px;text-align:center;color:var(--text-muted);font-size:13.5px;}
-  .cand-provisional{display:inline-block;font-size:11px;color:var(--warn);background:var(--warn-soft);padding:2px 8px;border-radius:6px;margin-left:6px;}
-  .cand-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-bottom:12px;}
-  .cand-card.conf-A{border-left:4px solid var(--s-rank);}
-  .cand-card.conf-B{border-left:4px solid var(--a-rank);}
-  .cand-card.conf-C{border-left:4px solid var(--c-rank);opacity:0.75;}
-  .cand-conf-badge{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;border-radius:7px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:0 7px;margin-left:6px;}
-  .conf-A .cand-conf-badge{background:var(--s-rank-soft);color:var(--s-rank);}
-  .conf-B .cand-conf-badge{background:var(--a-rank-soft);color:var(--a-rank);}
-  .conf-C .cand-conf-badge{background:var(--c-rank-soft);color:var(--c-rank);}
-  .cand-meta{font-size:12.5px;color:var(--text-muted);margin:4px 0;}
-  .cand-reason{font-size:12.5px;color:var(--text-muted);margin-top:8px;}
-  .cand-skip{font-size:11.5px;color:var(--text-muted);margin-top:4px;padding-top:8px;border-top:1px dashed var(--border);}
-  .top3-box{background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:16px;margin-bottom:16px;}
-  .top3-box h3{margin:0 0 8px;font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;color:var(--accent-strong);}
-  .top3-item{font-size:13.5px;margin:4px 0;}
-  .stale-banner{background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad);border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:700;margin-bottom:14px;}
-
-  .fsc-box{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);}
-  .fsc-label{display:inline-block;font-size:10.5px;font-weight:700;background:var(--surface-alt);color:var(--text-muted);padding:2px 8px;border-radius:6px;margin-right:6px;}
-  .fsc-included .fsc-label{background:var(--accent-soft);color:var(--accent-strong);}
-  .fsc-excluded .fsc-label{background:var(--warn-soft);color:var(--warn);}
-  .fsc-detail{font-size:12.5px;}
-  .fsc-detail .label{color:var(--text-muted);font-size:11px;margin-right:4px;}
-  .fsc-note{font-size:11.5px;color:var(--text-muted);margin-top:4px;}
-  .fsc-info{background:var(--surface-alt);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:11.5px;color:var(--text-muted);margin-bottom:14px;}
+  body{margin:0;background:#f6f4ee;color:#1d2318;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
+  @media (prefers-color-scheme: dark){body{background:#12150f;color:#eae7dc;}}
+  .wrap{max-width:640px;margin:0 auto;padding:28px 18px 64px;}
+  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,6vw,26px);margin:0 0 10px;}
+  .lede{font-size:13.5px;color:#5c6455;margin:0 0 12px;}
+  @media (prefers-color-scheme: dark){.lede{color:#a4ac97;}}
+  .alert{background:#f6e3e0;border:2px solid #af3a35;color:#af3a35;border-radius:10px;padding:14px 16px;font-size:13px;font-weight:700;margin-bottom:16px;}
+  @media (prefers-color-scheme: dark){.alert{background:#382019;border-color:#e2867d;color:#e2867d;}}
+  .panel{background:#fff;border:1px solid #dcd5c5;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  @media (prefers-color-scheme: dark){.panel{background:#1a1f16;border-color:#333c2b;}}
+  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:#5c6455;}
+  @media (prefers-color-scheme: dark){.updated{color:#a4ac97;}}
+  .race-card{background:#fff;border:1px solid #dcd5c5;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  @media (prefers-color-scheme: dark){.race-card{background:#1a1f16;border-color:#333c2b;}}
+  .race-card.buy{border-left:4px solid #a8761f;}
+  .race-card.skip{border-left:4px solid #7a7368;opacity:.85;}
+  .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;}
+  .race-title{font-weight:700;font-size:15px;}
+  .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:#5c6455;white-space:nowrap;}
+  @media (prefers-color-scheme: dark){.race-time{color:#a4ac97;}}
+  .verify-tag{display:inline-block;font-size:10.5px;font-weight:700;background:#f5ecd8;color:#a8761f;padding:2px 8px;border-radius:6px;margin-left:6px;}
+  @media (prefers-color-scheme: dark){.verify-tag{background:#332b16;color:#dcb15a;}}
+  .skip-tag{display:inline-block;font-size:10.5px;font-weight:700;background:#eeebe1;color:#7a7368;padding:2px 8px;border-radius:6px;margin-left:6px;}
+  @media (prefers-color-scheme: dark){.skip-tag{background:#20261b;color:#8f9686;}}
+  h3{font-size:11.5px;color:#5c6455;font-weight:700;margin:10px 0 4px;text-transform:uppercase;letter-spacing:.03em;}
+  @media (prefers-color-scheme: dark){h3{color:#a4ac97;}}
+  .horse-row{font-size:13px;margin:3px 0;}
+  .wide-pick{display:inline-block;background:#e3ede5;color:#1f4d34;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px;margin-top:4px;}
+  @media (prefers-color-scheme: dark){.wide-pick{background:#1e3327;color:#93d8ac;}}
+  .reason{font-size:12.5px;color:#5c6455;margin-top:8px;padding-top:8px;border-top:1px dashed #dcd5c5;}
+  @media (prefers-color-scheme: dark){.reason{color:#a4ac97;border-color:#333c2b;}}
+  #loading{text-align:center;color:#5c6455;padding:40px 0;}
+  .stale-banner{background:#f6e3e0;color:#af3a35;border:1px solid #af3a35;border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:700;margin-bottom:14px;}
+  @media (prefers-color-scheme: dark){.stale-banner{background:#382019;border-color:#e2867d;color:#e2867d;}}
+  a{color:#2f6e4b;}
+  @media (prefers-color-scheme: dark){a{color:#71c191;}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <span class="eyebrow">UMALAB 馬ラボ・本日の解析結果</span>
-    <h1>今日の解析結果（品質監査のため一時停止中）</h1>
-    <p class="disclaimer" style="background:var(--bad-soft);border-color:var(--bad);color:var(--bad);font-weight:700;">
-      【2026-10-25 緊急停止】このページのワイド推奨・実戦候補の新規生成を停止しました。
-      実測調査の結果、公開していたワイド推奨の的中率は約9.5%、回収率は約67.9%、
-      最大連敗43回であることが判明しました（詳細は検証実績ページをご確認ください）。
-      品質監査が完了し、改善が確認できるまで、新しい買い目の推奨は行いません。
-      既に表示されていた古い買い目は参考にしないでください。
+    <h1>今日の解析結果（検証中）</h1>
+    <p class="lede">UMALAB（馬ラボ）が本日解析した候補レースを、発走前に記録したデータとしてそのまま公開しています。</p>
+    <p class="alert">
+      【検証中・実購入非推奨】ここに表示される内容は研究・検証段階です。
+      回収率100%超えの統計的根拠は確認されていません（直近の時系列バックテスト
+      n=1,767件、95%信頼区間の上限は84.7%）。過去にこの方式に近い表示で
+      実際の金銭的損失が発生した事例があります。実際の馬券購入・投票には
+      使わないでください。
     </p>
-    <p class="disclaimer">これは参考情報であり、的中・利益を保証するものではありません。実際の購入判断・損失について、UMALABは責任を負いません。</p>
-    <a class="header-link" id="headerLink">UMALAB検証実績ページ（Tier A・EVルール・新ルールの確定実績）へ →</a>
+    <a href="bottom4-verification.html" style="font-size:13px;font-weight:700;">検証の詳しい数値はこちら →</a>
   </header>
 
-  <div id="loading" style="display:none;"></div>
-
-  <div class="panel" id="summaryPanel" style="display:none;"></div>
-
-  <div id="raceSections"></div>
-
-  <div class="panel">
-    <h2>停止までの実測データ（検証用）</h2>
-    <p class="disclaimer" style="margin:0;">
-      2026-10-04〜10-25に実際に公開されていたワイド推奨558件を、確定着順・払戻と
-      全件照合した結果です。的中率9.5%・回収率67.89%・損益-179,200円・最大連敗43。
-      バグ修正（2026-10-11）後の425件のみでも的中率9.6%・回収率77.29%と改善は
-      確認できませんでした。原因の調査・修正・未使用データでの再検証が完了するまで、
-      このページでの新しい推奨は行いません。
-    </p>
+  <div id="loading">読み込み中...</div>
+  <div id="content" style="display:none;">
+    <div class="panel">
+      <div class="updated" id="updatedAt"></div>
+      <div class="updated" id="totalRaces" style="margin-top:3px;"></div>
+    </div>
+    <div id="raceSections"></div>
   </div>
 
-  <div id="candSection" style="display:none;"></div>
-
-  <footer>
-    UMALAB｜地方競馬の実データで「買う・見送る」を検証しています。
+  <footer style="margin-top:20px;font-size:11.5px;color:#5c6455;text-align:center;">
+    UMALAB｜検証段階の内容を正直に公開しています。実際の購入判断はご自身の責任で行ってください。
   </footer>
 </div>
 
 <script>
 (function(){
-  const CHECKER_URL = "https://umalab-tools.github.io/recovery-rate-checker/track-record.html";
   const $ = id => document.getElementById(id);
 
-  function withUtm(url, content){
-    if(!url) return url;
-    const sep = url.includes('?') ? '&' : '?';
-    return url + sep + 'utm_source=today_picks&utm_medium=cta&utm_content=' + encodeURIComponent(content);
+  function todayStr(){
+    const d = new Date();
+    return '' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
   }
-  const headerLink = $('headerLink');
-  if(headerLink) headerLink.setAttribute('href', withUtm(CHECKER_URL, 'header'));
-  // 2026-10-25: 品質監査のため、today_picks.json / research_candidates.json の
-  // 取得・表示を停止した。古いデータを買い目として誤表示しないための措置。
+
+  function staleBanner(labelDate){
+    const el = document.createElement('div');
+    el.className = 'stale-banner';
+    el.textContent = 'この解析は本日（' + todayStr() + '）更新分ではないため、予想として表示しません（データ日付: ' + labelDate + '）。過去の予想を本日分として表示することはありません。';
+    return el;
+  }
+
+  function renderRace(r, updatedAt){
+    const el = document.createElement('div');
+    const isBuy = r.decision && r.decision.indexOf('買い') !== -1;
+    el.className = 'race-card ' + (isBuy ? 'buy' : 'skip');
+
+    const top3Html = (r.top3 || []).map(function(h, i){
+      const label = ['推奨1位','推奨2位','推奨3位'][i] || '';
+      return '<div class="horse-row">' + label + ': ' + h.no + '番 ' + h.name + '（確率' + Math.round(h.prob*1000)/10 + '%）</div>';
+    }).join('');
+
+    const bottom4Html = (r.bottom4 || []).map(function(h){
+      return '<div class="horse-row">' + h.no + '番 ' + h.name + '（下位危険度' + Math.round(h.bottom4_prob*1000)/10 + '%）</div>';
+    }).join('') || '<div class="horse-row">(算出できませんでした)</div>';
+
+    let wideHtml = '該当なし';
+    if(r.wide_candidate){
+      const w = r.wide_candidate;
+      const oddsText = (w.odds_low != null) ? (w.odds_low + '〜' + w.odds_high + '倍') : '取得できず(推定値は使用していません)';
+      wideHtml = '<span class="wide-pick">ワイド' + w.combo + '　' + oddsText + '</span>';
+    }
+
+    el.innerHTML =
+      '<div class="race-head">' +
+        '<span class="race-title">' + r.track + r.race_no + 'R' +
+          (isBuy ? '<span class="verify-tag">検証用・実購入非推奨</span>' : '<span class="skip-tag">見送り</span>') +
+        '</span>' +
+        '<span class="race-time">' + r.post_time + '発走　頭数' + (r.頭数 != null ? r.頭数 : '不明') + '</span>' +
+      '</div>' +
+      '<h3>推奨馬 上位3頭</h3>' + (top3Html || '(なし)') +
+      '<h3>下位予測4頭（参考・除外フィルターとしての有効性は未確認）</h3>' + bottom4Html +
+      '<h3>ワイド候補（取得時点オッズ）</h3>' + wideHtml +
+      '<div class="reason"><strong>判定: ' + r.decision + '</strong><br>' + (r.reason || '') + '</div>';
+    return el;
+  }
+
+  fetch('today_picks_v2.json?t=' + Date.now(), {cache: 'no-store'})
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      $('loading').style.display = 'none';
+      $('content').style.display = 'block';
+      $('updatedAt').textContent = '最終更新: ' + data.updated_at;
+
+      const container = $('raceSections');
+      if(!data.date || data.date !== todayStr()){
+        container.appendChild(staleBanner(data.date || '不明'));
+        $('totalRaces').textContent = '';
+        return;
+      }
+      $('totalRaces').textContent = '解析レース数: ' + data.total_races_analyzed + '件';
+      if(data.odds_stale){
+        const b = document.createElement('div');
+        b.className = 'stale-banner';
+        b.textContent = 'オッズが約' + data.odds_age_minutes + '分前から更新できていません。購入前に必ずご自身でオッズをご確認ください。';
+        container.appendChild(b);
+      }
+      (data.races || []).forEach(function(r){ container.appendChild(renderRace(r, data.updated_at)); });
+      if(!data.races || data.races.length === 0){
+        const b = document.createElement('div');
+        b.className = 'stale-banner';
+        b.style.background = 'var(--surface-alt, #eeebe1)';
+        b.style.color = '#5c6455';
+        b.style.borderColor = '#dcd5c5';
+        b.textContent = '本日、解析対象のレースがまだ無い、または全て終了しました。';
+        container.appendChild(b);
+      }
+    })
+    .catch(function(){
+      $('loading').textContent = 'データの読み込みに失敗しました。';
+    });
 })();
 </script>
 </body>
