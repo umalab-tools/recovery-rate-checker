@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>下位4頭モデル検証状況 | UMALAB</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%93%8A</text></svg>">
+<meta name="description" content="UMALABの下位4頭予測モデル・ワイド候補選定方式の検証状況を、仮想購入(Paper Trading)の実測データで透明に公開しています。">
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  body{margin:0;background:#f6f4ee;color:#1d2318;font-family:-apple-system,"Hiragino Sans",sans-serif;line-height:1.7;}
+  @media (prefers-color-scheme: dark){body{background:#12150f;color:#eae7dc;}}
+  .wrap{max-width:640px;margin:0 auto;padding:28px 18px 64px;}
+  h1{font-size:clamp(20px,6vw,26px);margin:0 0 10px;}
+  .lede{font-size:13.5px;color:#5c6455;margin:0 0 14px;}
+  @media (prefers-color-scheme: dark){.lede{color:#a4ac97;}}
+  .alert{background:#f6e3e0;border:1px solid #af3a35;color:#af3a35;border-radius:10px;padding:12px 14px;font-size:12.5px;font-weight:700;margin-bottom:16px;}
+  @media (prefers-color-scheme: dark){.alert{background:#382019;border-color:#e2867d;color:#e2867d;}}
+  .panel{background:#fff;border:1px solid #dcd5c5;border-radius:14px;padding:18px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  @media (prefers-color-scheme: dark){.panel{background:#1a1f16;border-color:#333c2b;}}
+  h2{font-size:15px;margin:0 0 10px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid #dcd5c5;}
+  @media (prefers-color-scheme: dark){th,td{border-color:#333c2b;}}
+  th{font-size:11px;color:#5c6455;font-weight:500;}
+  @media (prefers-color-scheme: dark){th{color:#a4ac97;}}
+  td.num{font-family:"JetBrains Mono",monospace;text-align:right;}
+  .note{font-size:11.5px;color:#5c6455;margin-top:8px;}
+  @media (prefers-color-scheme: dark){.note{color:#a4ac97;}}
+  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:#5c6455;}
+  @media (prefers-color-scheme: dark){.updated{color:#a4ac97;}}
+  a{color:#2f6e4b;}
+  @media (prefers-color-scheme: dark){a{color:#71c191;}}
+  #loading{text-align:center;color:#5c6455;padding:30px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>下位4頭モデル検証状況</h1>
+    <p class="lede">UMALABが研究中の「下位4頭予測モデル」を使ったワイド候補選定方式(従来方式・下位4頭除外方式・両者併用方式)の検証結果を、仮想購入(Paper Trading)の実測データで公開しています。</p>
+    <p class="alert">
+      このページは研究の進捗報告です。買い目・推奨馬は表示していません。
+      実際の馬券購入は一切行っておらず、推奨も行っていません。
+      現時点で回収率100%超えの統計的根拠は確認されていません。
+    </p>
+  </header>
+
+  <div id="loading">読み込み中...</div>
+  <div id="content" style="display:none;">
+    <div class="panel">
+      <div class="updated" id="updatedAt"></div>
+      <h2 style="margin-top:10px;">過去データでの検証(2026-08-26以降、確定済み全レース)</h2>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>方式</th><th>件数</th><th>的中率</th><th>回収率</th></tr></thead>
+          <tbody id="histBody"></tbody>
+        </table>
+      </div>
+      <p class="note">時系列で発見用・検証用に分割しても同水準の結果が再現しており、過学習の兆候はありません。いずれの方式も回収率100%には届いていません。</p>
+    </div>
+
+    <div class="panel">
+      <h2>前向き検証(2026-10-26以降、新規レースのみ・蓄積中)</h2>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>方式</th><th>件数</th><th>的中率</th><th>回収率</th></tr></thead>
+          <tbody id="fwdBody"></tbody>
+        </table>
+      </div>
+      <p class="note">毎日自動で新規レースのみを追加記録しています(発走前に確定したデータのみ使用、事後の書き換えなし)。件数が少ないうちは参考値です。</p>
+    </div>
+
+    <div class="panel">
+      <h2>注意書き</h2>
+      <p class="note" style="margin:0;">
+        ・全件Paper Trading(仮想購入)です。実際の馬券は購入していません。<br>
+        ・回収率・利益を保証する表現ではありません。<br>
+        ・本ページの数値は研究目的の実測記録であり、投資助言ではありません。
+      </p>
+    </div>
+  </div>
+
+  <footer style="margin-top:20px;font-size:11.5px;color:#5c6455;text-align:center;">
+    UMALAB｜検証過程を正直に公開しています。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  fetch('bottom4_research_status.json?t=' + Date.now(), {cache: 'no-store'})
+    .then(r => r.json())
+    .then(data => {
+      $('loading').style.display = 'none';
+      $('content').style.display = 'block';
+      $('updatedAt').textContent = '最終更新: ' + data.generated_at;
+
+      const hist = data.historical_backtest_n1767 || {};
+      const histBody = $('histBody');
+      Object.keys(hist).forEach(function(label){
+        const v = hist[label];
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + label + '</td><td class="num">' + v.n + '</td><td class="num">' + v.的中率 + '%</td><td class="num">' + v.回収率 + '%</td>';
+        histBody.appendChild(tr);
+      });
+
+      const fwd = data.forward_paper_trading || {};
+      const fwdBody = $('fwdBody');
+      Object.keys(fwd).forEach(function(label){
+        if(label === '新規データ総数') return;
+        const v = fwd[label];
+        const tr = document.createElement('tr');
+        const roiText = v.n > 0 ? (v.的中率 + '%</td><td class="num">' + v.回収率 + '%') : ('-</td><td class="num">(件数不足)');
+        tr.innerHTML = '<td>' + label + '</td><td class="num">' + v.n + '</td><td class="num">' + roiText + '</td>';
+        fwdBody.appendChild(tr);
+      });
+    })
+    .catch(function(){
+      $('loading').textContent = 'データの読み込みに失敗しました。';
+    });
+})();
+</script>
+</body>
+</html>
