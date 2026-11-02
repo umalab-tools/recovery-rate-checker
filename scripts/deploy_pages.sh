@@ -64,8 +64,10 @@ fi
 # 正常)。資格情報には一切触れず、確認を数回リトライするだけで解消する
 # ケースが多いため、ここで自動再試行する(失敗し続けた場合のみ中止)。
 AUTH_OK=0
+AUTH_ERR=""
 for attempt in 1 2 3; do
-  if gh auth status >/dev/null 2>&1; then
+  AUTH_ERR="$(gh auth status 2>&1 1>/dev/null)"
+  if [ -z "$AUTH_ERR" ]; then
     AUTH_OK=1
     break
   fi
@@ -74,6 +76,10 @@ for attempt in 1 2 3; do
 done
 if [ "$AUTH_OK" -ne 1 ]; then
   echo "エラー: gh CLI が認証されていません（gh auth login が必要、または一時的なkeychainアクセス不可）。3回再試行しましたが解消しませんでした。"
+  # 2026-11-03追加: 根本原因調査のため、gh自身が出力した詳細エラーを記録する
+  # (これまでは「認証されていません」という固定文言のみでgh自体のエラー内容が
+  # 残っていなかった)。資格情報の値そのものは出力しない。
+  echo "gh auth statusの詳細出力: $AUTH_ERR"
   exit 1
 fi
 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
