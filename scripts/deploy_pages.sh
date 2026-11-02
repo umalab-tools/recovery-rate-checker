@@ -59,8 +59,21 @@ if ! command -v gh >/dev/null 2>&1; then
   echo "エラー: gh CLI がインストールされていません。"
   exit 1
 fi
-if ! gh auth status >/dev/null 2>&1; then
-  echo "エラー: gh CLI が認証されていません（gh auth login が必要）。"
+# 2026-11-03追加: launchd経由の実行でgh認証確認が一時的に失敗することが
+# 複数回observed(keychainアクセスのタイミング起因と推定、認証情報自体は
+# 正常)。資格情報には一切触れず、確認を数回リトライするだけで解消する
+# ケースが多いため、ここで自動再試行する(失敗し続けた場合のみ中止)。
+AUTH_OK=0
+for attempt in 1 2 3; do
+  if gh auth status >/dev/null 2>&1; then
+    AUTH_OK=1
+    break
+  fi
+  echo "gh認証確認 ${attempt}/3回目失敗。一時的な問題の可能性があるため再試行します。"
+  sleep $((attempt * 10))
+done
+if [ "$AUTH_OK" -ne 1 ]; then
+  echo "エラー: gh CLI が認証されていません（gh auth login が必要、または一時的なkeychainアクセス不可）。3回再試行しましたが解消しませんでした。"
   exit 1
 fi
 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -90,8 +103,19 @@ fi
 
 echo "=== 6. push ==="
 if [ "$DID_COMMIT" -eq 1 ]; then
-  if ! git push origin "$BRANCH"; then
-    echo "失敗: push できませんでした（権限・ネットワーク・コンフリクトを確認してください）。"
+  # 2026-11-03追加: ネットワーク一時断(DNS解決失敗等)によるpush失敗を
+  # 自動再試行する。コンフリクト等の恒久的な失敗はそのまま3回失敗して中止。
+  PUSH_OK=0
+  for attempt in 1 2 3; do
+    if git push origin "$BRANCH"; then
+      PUSH_OK=1
+      break
+    fi
+    echo "push ${attempt}/3回目失敗。再試行します。"
+    sleep $((attempt * 10))
+  done
+  if [ "$PUSH_OK" -ne 1 ]; then
+    echo "失敗: push できませんでした（権限・ネットワーク・コンフリクトを確認してください）。3回再試行しましたが解消しませんでした。"
     exit 1
   fi
   echo "OK: pushしました"
