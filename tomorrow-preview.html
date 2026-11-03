@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>翌日の事前分析（検証前） | UMALAB</title>
+<meta name="description" content="UMALAB（馬ラボ）が翌日のレースについて、オッズ公開前の記述的な事前情報のみを公開しています。確率・期待値は含みません。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;}
+  body{margin:0;background:#f6f4ee;color:#1d2318;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
+  @media (prefers-color-scheme: dark){body{background:#12150f;color:#eae7dc;}}
+  .wrap{max-width:640px;margin:0 auto;padding:28px 18px 64px;}
+  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,6vw,24px);margin:0 0 10px;}
+  .lede{font-size:13px;color:#5c6455;margin:0 0 12px;}
+  @media (prefers-color-scheme: dark){.lede{color:#a4ac97;}}
+  .alert{background:#eef1e3;border:2px solid #5c7a3a;color:#45602a;border-radius:10px;padding:14px 16px;font-size:13px;font-weight:700;margin-bottom:16px;}
+  @media (prefers-color-scheme: dark){.alert{background:#1e2614;border-color:#8bb35e;color:#b6d98e;}}
+  .panel{background:#fff;border:1px solid #dcd5c5;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  @media (prefers-color-scheme: dark){.panel{background:#1a1f16;border-color:#333c2b;}}
+  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:#5c6455;}
+  @media (prefers-color-scheme: dark){.updated{color:#a4ac97;}}
+  .race-card{background:#fff;border:1px solid #dcd5c5;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  @media (prefers-color-scheme: dark){.race-card{background:#1a1f16;border-color:#333c2b;}}
+  .race-card.priority{border-left:4px solid #a8761f;}
+  .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+  .race-title{font-weight:700;font-size:15px;}
+  .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:#5c6455;white-space:nowrap;}
+  @media (prefers-color-scheme: dark){.race-time{color:#a4ac97;}}
+  .priority-tag{display:inline-block;font-size:10.5px;font-weight:700;background:#f5ecd8;color:#a8761f;padding:2px 8px;border-radius:6px;margin-left:6px;}
+  @media (prefers-color-scheme: dark){.priority-tag{background:#332b16;color:#dcb15a;}}
+  .horse-row{font-size:12.5px;margin:6px 0;padding:6px 8px;background:#f6f4ee;border-radius:8px;}
+  @media (prefers-color-scheme: dark){.horse-row{background:#12150f;}}
+  .horse-name{font-weight:700;}
+  .tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:5px;margin-left:4px;background:#e3ede5;color:#1f4d34;}
+  @media (prefers-color-scheme: dark){.tag{background:#1e3327;color:#93d8ac;}}
+  .tag.warn{background:#f6e3e0;color:#af3a35;}
+  @media (prefers-color-scheme: dark){.tag.warn{background:#382019;color:#e2867d;}}
+  h3{font-size:11px;color:#5c6455;font-weight:700;margin:14px 0 4px;text-transform:uppercase;letter-spacing:.03em;}
+  @media (prefers-color-scheme: dark){h3{color:#a4ac97;}}
+  #loading{text-align:center;color:#5c6455;padding:40px 0;}
+  a{color:#2f6e4b;}
+  @media (prefers-color-scheme: dark){a{color:#71c191;}}
+  details summary{cursor:pointer;font-size:12.5px;color:#5c6455;margin-top:4px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>翌日の事前分析（検証前）</h1>
+    <p class="lede">公式オッズ公開前の、直近成績など記述的な情報のみをまとめたものです。</p>
+    <p class="alert" id="statusMsg">読み込み中...</p>
+  </header>
+
+  <div id="loading">読み込み中...</div>
+  <div id="content" style="display:none;">
+    <div class="panel">
+      <div class="updated" id="updatedAt"></div>
+      <div class="updated" id="totalRaces" style="margin-top:3px;"></div>
+    </div>
+    <div id="raceSections"></div>
+  </div>
+
+  <footer style="margin-top:20px;font-size:11.5px;color:#5c6455;text-align:center;">
+    UMALAB｜本ページは確率・期待値を含まない事前情報です。最終予測はオッズ公開後にtoday-picks.htmlで公開されます。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+
+  function horseRow(h){
+    const jc = h.jockey_change && h.jockey_change.changed === true
+      ? '<span class="tag warn">騎手変更</span>' : '';
+    const r5 = h.recent5 || {};
+    const finishes = (r5.finishes || []).join('→') || '(データなし)';
+    const dfit = h.distance_fit || {};
+    const dfitText = dfit.n_same_distance ? `同距離${dfit.n_same_distance}走: ${(dfit.finishes_same_distance||[]).join('→')}着` : '同距離実績なし';
+    const el = document.createElement('div');
+    el.className = 'horse-row';
+    el.innerHTML =
+      '<span class="horse-name">' + h.no + '番 ' + h.name + '</span>' + jc +
+      '<br>騎手: ' + (h.jockey_today || '不明') +
+      '<br>直近5走着順: ' + finishes +
+      '<br>' + dfitText;
+    return el;
+  }
+
+  function renderRace(r){
+    const el = document.createElement('div');
+    el.className = 'race-card' + (r.priority_head_12_or_less ? ' priority' : '');
+    const post = String(r.post_time || '').padStart(4, '0');
+    const postText = post.length === 4 ? post.slice(0,2) + ':' + post.slice(2) : post;
+    const horsesHtml = (r.horses || []).map(horseRow);
+    el.innerHTML =
+      '<div class="race-head">' +
+        '<span class="race-title">' + r.track + r.race_no + 'R' +
+          (r.priority_head_12_or_less ? '<span class="priority-tag">12頭以下</span>' : '') +
+        '</span>' +
+        '<span class="race-time">' + postText + '発走　頭数' + (r.head_count != null ? r.head_count : '不明') + '　距離' + (r.distance || '不明') + 'm</span>' +
+      '</div>';
+    const details = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = '出走馬' + (r.horses ? r.horses.length : 0) + '頭の詳細を表示';
+    details.appendChild(summary);
+    horsesHtml.forEach(function(h){ details.appendChild(h); });
+    el.appendChild(details);
+    return el;
+  }
+
+  fetch('tomorrow_preliminary.json?t=' + Date.now(), {cache: 'no-store'})
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      $('loading').style.display = 'none';
+      $('content').style.display = 'block';
+      $('statusMsg').textContent = data.status || '';
+      $('updatedAt').textContent = '最終更新: ' + data.updated_at + '（対象日: ' + data.date + '）';
+      $('totalRaces').textContent = (data.note || '');
+      const container = $('raceSections');
+      (data.races || []).forEach(function(r){ container.appendChild(renderRace(r)); });
+      if(!data.races || data.races.length === 0){
+        container.textContent = '対象レースがありません。';
+      }
+    })
+    .catch(function(){
+      $('loading').textContent = 'データの読み込みに失敗しました。';
+    });
+})();
+</script>
+</body>
+</html>
