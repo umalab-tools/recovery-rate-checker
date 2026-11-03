@@ -142,11 +142,25 @@
       $('statusMsg').textContent = data.status || '';
       $('updatedAt').textContent = '最終更新: ' + data.updated_at + '（対象日: ' + data.date + '）';
       $('totalRaces').textContent = (data.note || '');
-      if(data.preliminary_top3 && data.preliminary_top3.length){
+      if((data.preliminary_top3 && data.preliminary_top3.length) || (data.withdrawn_candidates && data.withdrawn_candidates.length)){
         $('top3Note').style.display = 'block';
         $('top3Note').textContent = data.preliminary_top3_note || '';
         const t3 = $('top3Section');
-        data.preliminary_top3.forEach(function(t, i){ t3.appendChild(renderTop3(t, i)); });
+        (data.preliminary_top3 || []).forEach(function(t, i){ t3.appendChild(renderTop3(t, i)); });
+        (data.withdrawn_candidates || []).forEach(function(w){
+          const el = document.createElement('div');
+          el.className = 'race-card';
+          el.style.opacity = '0.7';
+          const post = String(w.post_time || '').padStart(4, '0');
+          const postText = post.length === 4 ? post.slice(0,2) + ':' + post.slice(2) : post;
+          el.innerHTML =
+            '<div class="race-head"><span class="race-title">' + w.track + w.race_no + 'R' +
+              '<span class="tag warn">' + w.status + '</span></span>' +
+              '<span class="race-time">' + postText + '発走　頭数' + w.head_count + '</span></div>' +
+            '<div class="horse-row">当初候補: ' + w.wide_combo + '(' + w.axis.no + '番' + w.axis.name + '・' + w.partner.no + '番' + w.partner.name + ')</div>' +
+            '<div class="horse-row"><strong>撤回理由:</strong> ' + w.reason_withdrawn + '</div>';
+          t3.appendChild(el);
+        });
       }
       const container = $('raceSections');
       (data.races || []).forEach(function(r){ container.appendChild(renderRace(r)); });
