@@ -60,6 +60,9 @@
       <div class="updated" id="updatedAt"></div>
       <div class="updated" id="totalRaces" style="margin-top:3px;"></div>
     </div>
+    <div id="top3Note" class="alert" style="display:none;"></div>
+    <div id="top3Section"></div>
+    <h3 style="margin-top:20px;">全59レース 事前情報一覧</h3>
     <div id="raceSections"></div>
   </div>
 
@@ -86,6 +89,26 @@
       '<br>騎手: ' + (h.jockey_today || '不明') +
       '<br>直近5走着順: ' + finishes +
       '<br>' + dfitText;
+    return el;
+  }
+
+  function renderTop3(t, idx){
+    const el = document.createElement('div');
+    el.className = 'race-card priority';
+    const post = String(t.post_time || '').padStart(4, '0');
+    const postText = post.length === 4 ? post.slice(0,2) + ':' + post.slice(2) : post;
+    el.innerHTML =
+      '<div class="race-head">' +
+        '<span class="race-title">参考' + (idx+1) + '　' + t.track + t.race_no + 'R' +
+          '<span class="tag warn">参考予想・購入非推奨</span></span>' +
+        '<span class="race-time">' + postText + '発走　頭数' + t.head_count + '</span>' +
+      '</div>' +
+      '<div class="horse-row"><strong>軸候補:</strong> ' + t.axis.no + '番 ' + t.axis.name + '</div>' +
+      '<div class="horse-row"><strong>相手候補:</strong> ' + t.partner.no + '番 ' + t.partner.name + '</div>' +
+      '<div class="horse-row"><strong>ワイド候補:</strong> ' + t.wide_combo + '　<span class="tag warn">期待値: 算出不可(オッズ未公開)</span></div>' +
+      '<div class="horse-row"><strong>選定理由:</strong> ' + t.reason + '</div>' +
+      '<div class="horse-row"><strong>不安材料:</strong> ' + t.risk + '</div>' +
+      '<div class="horse-row"><strong>最終判断に必要な情報:</strong> ' + t.needed_before_decision + '</div>';
     return el;
   }
 
@@ -119,6 +142,12 @@
       $('statusMsg').textContent = data.status || '';
       $('updatedAt').textContent = '最終更新: ' + data.updated_at + '（対象日: ' + data.date + '）';
       $('totalRaces').textContent = (data.note || '');
+      if(data.preliminary_top3 && data.preliminary_top3.length){
+        $('top3Note').style.display = 'block';
+        $('top3Note').textContent = data.preliminary_top3_note || '';
+        const t3 = $('top3Section');
+        data.preliminary_top3.forEach(function(t, i){ t3.appendChild(renderTop3(t, i)); });
+      }
       const container = $('raceSections');
       (data.races || []).forEach(function(r){ container.appendChild(renderRace(r)); });
       if(!data.races || data.races.length === 0){
