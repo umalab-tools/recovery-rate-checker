@@ -13,42 +13,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;}
-  body{margin:0;background:#f6f4ee;color:#1d2318;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
-  @media (prefers-color-scheme: dark){body{background:#12150f;color:#eae7dc;}}
+  :root{
+    --bg:#0a0a0c; --surface:#15141a; --surface2:#1b1a22; --border:#2c2a35;
+    --gold:#d4af37; --gold-soft:#8a7230; --gold-bg:#2a2210;
+    --text:#f3efe3; --text-dim:#a39f8e;
+    --red:#e2867d; --red-bg:#2e1512;
+    --green:#8fd4a8; --green-bg:#10281a;
+  }
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
   .wrap{max-width:640px;margin:0 auto;padding:28px 18px 64px;}
-  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,6vw,26px);margin:0 0 10px;}
-  .lede{font-size:13.5px;color:#5c6455;margin:0 0 12px;}
-  @media (prefers-color-scheme: dark){.lede{color:#a4ac97;}}
-  .alert{background:#f6e3e0;border:2px solid #af3a35;color:#af3a35;border-radius:10px;padding:14px 16px;font-size:13px;font-weight:700;margin-bottom:16px;}
-  @media (prefers-color-scheme: dark){.alert{background:#382019;border-color:#e2867d;color:#e2867d;}}
-  .panel{background:#fff;border:1px solid #dcd5c5;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
-  @media (prefers-color-scheme: dark){.panel{background:#1a1f16;border-color:#333c2b;}}
-  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:#5c6455;}
-  @media (prefers-color-scheme: dark){.updated{color:#a4ac97;}}
-  .race-card{background:#fff;border:1px solid #dcd5c5;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
-  @media (prefers-color-scheme: dark){.race-card{background:#1a1f16;border-color:#333c2b;}}
-  .race-card.buy{border-left:4px solid #a8761f;}
-  .race-card.skip{border-left:4px solid #7a7368;opacity:.85;}
-  .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;}
-  .race-title{font-weight:700;font-size:15px;}
-  .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:#5c6455;white-space:nowrap;}
-  @media (prefers-color-scheme: dark){.race-time{color:#a4ac97;}}
-  .verify-tag{display:inline-block;font-size:10.5px;font-weight:700;background:#f5ecd8;color:#a8761f;padding:2px 8px;border-radius:6px;margin-left:6px;}
-  @media (prefers-color-scheme: dark){.verify-tag{background:#332b16;color:#dcb15a;}}
-  .skip-tag{display:inline-block;font-size:10.5px;font-weight:700;background:#eeebe1;color:#7a7368;padding:2px 8px;border-radius:6px;margin-left:6px;}
-  @media (prefers-color-scheme: dark){.skip-tag{background:#20261b;color:#8f9686;}}
-  h3{font-size:11.5px;color:#5c6455;font-weight:700;margin:10px 0 4px;text-transform:uppercase;letter-spacing:.03em;}
-  @media (prefers-color-scheme: dark){h3{color:#a4ac97;}}
-  .horse-row{font-size:13px;margin:3px 0;}
-  .wide-pick{display:inline-block;background:#e3ede5;color:#1f4d34;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px;margin-top:4px;}
-  @media (prefers-color-scheme: dark){.wide-pick{background:#1e3327;color:#93d8ac;}}
-  .reason{font-size:12.5px;color:#5c6455;margin-top:8px;padding-top:8px;border-top:1px dashed #dcd5c5;}
-  @media (prefers-color-scheme: dark){.reason{color:#a4ac97;border-color:#333c2b;}}
-  #loading{text-align:center;color:#5c6455;padding:40px 0;}
-  .stale-banner{background:#f6e3e0;color:#af3a35;border:1px solid #af3a35;border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:700;margin-bottom:14px;}
-  @media (prefers-color-scheme: dark){.stale-banner{background:#382019;border-color:#e2867d;color:#e2867d;}}
-  a{color:#2f6e4b;}
-  @media (prefers-color-scheme: dark){a{color:#71c191;}}
+  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,6vw,26px);margin:0 0 10px;color:var(--gold);letter-spacing:.02em;}
+  .lede{font-size:13.5px;color:var(--text-dim);margin:0 0 12px;}
+  .alert{background:var(--red-bg);border:2px solid var(--red);color:var(--red);border-radius:10px;padding:14px 16px;font-size:13px;font-weight:700;margin-bottom:16px;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;}
+  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-dim);}
+  .race-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;}
+  .race-card.buy{border-left:4px solid var(--gold);}
+  .race-card.skip{border-left:4px solid #4a4856;opacity:.88;}
+  .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+  .race-title{font-weight:700;font-size:15px;color:var(--text);}
+  .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-dim);white-space:nowrap;}
+  .verify-tag{display:inline-block;font-size:10.5px;font-weight:700;background:var(--gold-bg);color:var(--gold);padding:2px 8px;border-radius:6px;margin-left:6px;}
+  .skip-tag{display:inline-block;font-size:10.5px;font-weight:700;background:#26242e;color:#8f8ca0;padding:2px 8px;border-radius:6px;margin-left:6px;}
+  .data-tag{display:inline-block;font-size:10.5px;font-weight:700;background:var(--red-bg);color:var(--red);padding:2px 8px;border-radius:6px;margin-left:6px;}
+  h3{font-size:11px;color:var(--gold-soft);font-weight:700;margin:12px 0 4px;text-transform:uppercase;letter-spacing:.05em;}
+  .horse-row{font-size:13px;margin:3px 0;color:var(--text);}
+  .wide-pick{display:inline-block;background:var(--gold-bg);color:var(--gold);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px;margin-top:4px;}
+  .fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:12.5px;margin-top:8px;}
+  .fact-grid .k{color:var(--text-dim);}
+  .fact-grid .v{color:var(--text);font-weight:700;font-family:"JetBrains Mono",monospace;}
+  .reason{font-size:12.5px;color:var(--text-dim);margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);}
+  .reason strong{color:var(--text);}
+  details{margin-top:10px;}
+  details summary{cursor:pointer;font-size:12.5px;color:var(--gold);font-weight:700;padding:8px 0;list-style:none;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary::before{content:"▸ ";}
+  details[open] summary::before{content:"▾ ";}
+  #loading{text-align:center;color:var(--text-dim);padding:40px 0;}
+  .stale-banner{background:var(--red-bg);color:var(--red);border:1px solid var(--red);border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:700;margin-bottom:14px;}
+  .neutral-banner{background:var(--surface2);color:var(--text-dim);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:12.5px;margin-bottom:14px;}
+  a{color:var(--gold);}
+  a:visited{color:var(--gold-soft);}
 </style>
 </head>
 <body>
@@ -57,19 +62,23 @@
     <h1>今日の解析結果（検証中）</h1>
     <p class="lede">UMALAB（馬ラボ）が本日解析した候補レースを、発走前に記録したデータとしてそのまま公開しています。</p>
     <p class="alert">
-      【検証中・実購入非推奨】ここに表示される内容は研究・検証段階です。
-      回収率100%超えの統計的根拠は確認されていません（直近の時系列バックテスト
-      n=1,767件、95%信頼区間の上限は84.7%）。過去にこの方式に近い表示で
-      実際の金銭的損失が発生した事例があります。実際の馬券購入・投票には
-      使わないでください。
+      【検証中・実購入非推奨】予想モデルの利益性能は未検証です。回収率100%超えの
+      統計的根拠は確認されていません（直近の時系列バックテストn=1,767件、95%信頼区間の
+      上限は84.7%）。過去にこの方式に近い表示で実際の金銭的損失が発生した事例があります。
+      実際の馬券購入・投票には使わないでください。
     </p>
     <a href="bottom4-verification.html" style="font-size:13px;font-weight:700;">検証の詳しい数値はこちら →</a>
     <br><a href="tomorrow-preview.html" style="font-size:13px;font-weight:700;">翌日の事前予想（参考情報）はこちら →</a>
   </header>
 
   <div class="panel" id="modelSummaryPanel" style="display:none;">
-    <h3 style="margin:0 0 6px;font-size:11.5px;color:#5c6455;text-transform:uppercase;">モデルの過去検証成績・仮想収支（A〜G、前向きPaperTrading）</h3>
+    <h3 style="margin:0 0 6px;">モデルの過去検証成績・仮想収支（A〜G、前向きPaperTrading）</h3>
     <div id="modelSummaryBody" style="font-size:12.5px;"></div>
+  </div>
+
+  <div class="panel" id="historyPanel" style="display:none;">
+    <h3 style="margin:0 0 6px;">事前予想実績（公開時刻が確認できるもののみ集計）</h3>
+    <div id="historyBody" style="font-size:12.5px;"></div>
   </div>
 
   <div id="loading">読み込み中...</div>
@@ -81,8 +90,9 @@
     <div id="raceSections"></div>
   </div>
 
-  <footer style="margin-top:20px;font-size:11.5px;color:#5c6455;text-align:center;">
-    UMALAB｜検証段階の内容を正直に公開しています。実際の購入判断はご自身の責任で行ってください。
+  <footer style="margin-top:20px;font-size:11.5px;color:var(--text-dim);text-align:center;">
+    UMALAB｜検証段階の内容を正直に公開しています。予想モデルの利益性能は未検証です。<br>
+    実際の購入判断はご自身の責任で行ってください。
   </footer>
 </div>
 
@@ -120,14 +130,34 @@
     return el;
   }
 
-  function renderRace(r, updatedAt){
+  function renderHistory(h){
+    const panel = $('historyPanel');
+    const body = $('historyBody');
+    if(!h || !h.n_published_total){
+      body.innerHTML = '<div>まだ公開実績がありません。</div>';
+      panel.style.display = 'block';
+      return;
+    }
+    let html = '<div>事前公開レース数: ' + h.n_published_total + '件（うち見送り ' + h.n_skipped + '件、買い候補 ' + h.n_bought + '件）</div>';
+    html += '<div>結果確定済み: ' + h.n_confirmed + '件</div>';
+    if(h.roi_bought != null){
+      html += '<div>買い候補の仮想回収率: ' + h.roi_bought + '%</div>';
+    } else {
+      html += '<div>買い候補の仮想回収率: 該当なし（買い候補がまだありません）</div>';
+    }
+    body.innerHTML = html;
+    panel.style.display = 'block';
+  }
+
+  function renderRace(r){
     const el = document.createElement('div');
     const isBuy = r.decision && r.decision.indexOf('買い') !== -1;
+    const dataOk = r.頭数 != null && r.top3 && r.top3.length >= 2;
     el.className = 'race-card ' + (isBuy ? 'buy' : 'skip');
 
     const top3Html = (r.top3 || []).map(function(h, i){
-      const label = ['推奨1位','推奨2位','推奨3位'][i] || '';
-      return '<div class="horse-row">' + label + ': ' + h.no + '番 ' + h.name + '（確率' + Math.round(h.prob*1000)/10 + '%）</div>';
+      const label = ['軸馬候補','相手馬候補','3番手'][i] || '';
+      return '<div class="horse-row">' + label + ': ' + h.no + '番 ' + h.name + '（モデル予測確率' + Math.round(h.prob*1000)/10 + '%）</div>';
     }).join('');
 
     const bottom4Html = (r.bottom4 || []).map(function(h){
@@ -135,22 +165,35 @@
     }).join('') || '<div class="horse-row">(算出できませんでした)</div>';
 
     let wideHtml = '該当なし';
+    let oddsText = '取得できず(推定値は使用していません)';
     if(r.wide_candidate){
       const w = r.wide_candidate;
-      const oddsText = (w.odds_low != null) ? (w.odds_low + '〜' + w.odds_high + '倍') : '取得できず(推定値は使用していません)';
-      wideHtml = '<span class="wide-pick">ワイド' + w.combo + '　' + oddsText + '</span>';
+      oddsText = (w.odds_low != null) ? (w.odds_low + '〜' + w.odds_high + '倍') : oddsText;
+      wideHtml = '<span class="wide-pick">ワイド ' + w.combo + '</span>';
     }
+    const calibText = (r.calibrated_prob != null) ? (Math.round(r.calibrated_prob*1000)/10 + '%（校正済み、個別確率の単純な積ではない）') : '算出不可';
+    const stakeText = (r.suggested_virtual_stake != null) ? (r.suggested_virtual_stake + '円（検証用の仮想金額、実購入は促しません）') : '該当なし（見送りのため配分なし）';
+
+    const statusTag = !dataOk ? '<span class="data-tag">データ不足</span>'
+      : (isBuy ? '<span class="verify-tag">検証用・実購入非推奨</span>' : '<span class="skip-tag">見送り</span>');
 
     el.innerHTML =
       '<div class="race-head">' +
-        '<span class="race-title">' + r.track + r.race_no + 'R' +
-          (isBuy ? '<span class="verify-tag">検証用・実購入非推奨</span>' : '<span class="skip-tag">見送り</span>') +
-        '</span>' +
+        '<span class="race-title">' + r.track + r.race_no + 'R' + statusTag + '</span>' +
         '<span class="race-time">' + r.post_time + '発走　頭数' + (r.頭数 != null ? r.頭数 : '不明') + '</span>' +
       '</div>' +
-      '<h3>推奨馬 上位3頭</h3>' + (top3Html || '(なし)') +
-      '<h3>下位予測4頭（参考・除外フィルターとしての有効性は未確認）</h3>' + bottom4Html +
-      '<h3>ワイド候補（取得時点オッズ）</h3>' + wideHtml +
+      '<div class="fact-grid">' +
+        '<div class="k">券種</div><div class="v">' + (r.bet_type || 'ワイド') + '</div>' +
+        '<div class="k">買い目</div><div class="v">' + (r.wide_candidate ? r.wide_candidate.combo : '—') + '</div>' +
+        '<div class="k">推定的中確率</div><div class="v">' + calibText + '</div>' +
+        '<div class="k">取得時点オッズ</div><div class="v">' + oddsText + '</div>' +
+      '</div>' +
+      wideHtml +
+      '<details><summary>軸馬・相手馬・下位予測の詳細</summary>' +
+        '<h3>軸馬・相手馬候補</h3>' + (top3Html || '(なし)') +
+        '<h3>下位予測4頭（参考・除外フィルターとしての有効性は未確認）</h3>' + bottom4Html +
+        '<h3>推奨配分（検証用の仮想金額）</h3><div class="horse-row">' + stakeText + '</div>' +
+      '</details>' +
       '<div class="reason"><strong>判定: ' + r.decision + '</strong><br>' + (r.reason || '') + '</div>';
     return el;
   }
@@ -161,6 +204,7 @@
       $('loading').style.display = 'none';
       $('content').style.display = 'block';
       $('updatedAt').textContent = '最終更新: ' + data.updated_at;
+      renderHistory(data.history_summary);
 
       const container = $('raceSections');
       if(!data.date || data.date !== todayStr()){
@@ -175,13 +219,10 @@
         b.textContent = 'オッズが約' + data.odds_age_minutes + '分前から更新できていません。購入前に必ずご自身でオッズをご確認ください。';
         container.appendChild(b);
       }
-      (data.races || []).forEach(function(r){ container.appendChild(renderRace(r, data.updated_at)); });
+      (data.races || []).forEach(function(r){ container.appendChild(renderRace(r)); });
       if(!data.races || data.races.length === 0){
         const b = document.createElement('div');
-        b.className = 'stale-banner';
-        b.style.background = 'var(--surface-alt, #eeebe1)';
-        b.style.color = '#5c6455';
-        b.style.borderColor = '#dcd5c5';
+        b.className = 'neutral-banner';
         b.textContent = '本日、解析対象のレースがまだ無い、または全て終了しました。';
         container.appendChild(b);
       }
