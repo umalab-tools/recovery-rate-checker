@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UMALABダッシュボード | AI競馬解析</title>
+<meta name="description" content="UMALABの当日予想・結果速報・シミュレーション収支を1画面で確認できるダッシュボード">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0c; --surface:#15141a; --surface2:#1b1a22; --border:#2c2a35;
+    --gold:#d4af37; --gold-soft:#8a7230; --gold-bg:#2a2210;
+    --text:#f3efe3; --text-dim:#a39f8e; --text-faint:#6e6a5d;
+    --red:#e2867d; --red-bg:#2e1512;
+    --green:#8fd4a8; --green-bg:#10281a;
+    --blue:#8fb8d4; --blue-bg:#101e28;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;-webkit-text-size-adjust:100%;}
+  .wrap{max-width:720px;margin:0 auto;padding:18px 16px 60px;}
+  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,6vw,26px);margin:0 0 4px;color:var(--gold);letter-spacing:.02em;}
+  .sub{font-size:12px;color:var(--text-dim);margin:0 0 18px;}
+  .mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;}
+  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-faint);}
+  nav.tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 16px;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
+  nav.tabs a{flex:0 0 auto;font-size:12px;color:var(--text-dim);text-decoration:none;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 14px;white-space:nowrap;}
+  nav.tabs a.active{color:var(--gold);border-color:var(--gold-soft);background:var(--gold-bg);}
+  section{margin-bottom:22px;}
+  h2{font-size:12px;color:var(--gold-soft);text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px;font-weight:700;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;}
+  .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;}
+  .stat .k{font-size:11px;color:var(--text-dim);margin-bottom:4px;}
+  .stat .v{font-size:19px;font-weight:700;}
+  .stat .v.pos{color:var(--green);} .stat .v.neg{color:var(--red);}
+  .period-switch{display:flex;gap:6px;margin-bottom:12px;}
+  .period-switch button{flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text-dim);border-radius:8px;padding:8px 0;font-size:12px;cursor:pointer;min-height:38px;}
+  .period-switch button.active{color:var(--gold);border-color:var(--gold-soft);background:var(--gold-bg);}
+  .race-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:8px;}
+  .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;}
+  .race-name{font-weight:700;font-size:14px;}
+  .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-dim);white-space:nowrap;}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;}
+  .badge.buy{background:var(--gold-bg);color:var(--gold);}
+  .badge.skip{background:var(--surface2);color:var(--text-dim);}
+  .badge.hit{background:var(--green-bg);color:var(--green);}
+  .badge.miss{background:var(--red-bg);color:var(--red);}
+  .badge.pending{background:var(--blue-bg);color:var(--blue);}
+  .reason{font-size:12px;color:var(--text-dim);margin-top:6px;}
+  .wide-pick{display:inline-block;background:var(--gold-bg);color:var(--gold);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px;margin-top:4px;}
+  .result-row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:8px 0;border-bottom:1px solid var(--border);}
+  .result-row:last-child{border-bottom:none;}
+  .links{display:grid;gap:8px;}
+  a.linkcard{display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;color:var(--text);text-decoration:none;}
+  a.linkcard .t{font-weight:700;font-size:13.5px;margin-bottom:2px;}
+  a.linkcard .d{font-size:11.5px;color:var(--text-dim);}
+  a.linkcard.private{border-color:var(--gold-soft);}
+  a.linkcard.private .t{color:var(--gold);}
+  .warn{background:var(--red-bg);color:var(--red);border-radius:10px;padding:10px 12px;font-size:12px;margin-bottom:12px;}
+  .empty{color:var(--text-faint);font-size:12.5px;padding:14px 0;text-align:center;}
+  footer{font-size:11px;color:var(--text-faint);text-align:center;margin-top:30px;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>UMALAB ダッシュボード</h1>
+  <p class="sub">当日予想・結果速報・シミュレーション収支を1画面で確認</p>
+  <nav class="tabs">
+    <a href="dashboard.html" class="active">ダッシュボード</a>
+    <a href="today-picks.html">当日予想(詳細)</a>
+    <a href="track-record.html">成績トラック</a>
+    <a href="tierA-placewide-check.html">TierA検証</a>
+  </nav>
+
+  <section>
+    <h2>本日の開催・予想一覧</h2>
+    <div id="picks-root" class="panel"><div class="empty">読み込み中…</div></div>
+  </section>
+
+  <section>
+    <h2>結果速報(直近の確定レース)</h2>
+    <div id="results-root" class="panel"><div class="empty">読み込み中…</div></div>
+  </section>
+
+  <section>
+    <h2>収支サマリー(シミュレーション)</h2>
+    <div class="period-switch" id="period-switch">
+      <button data-period="daily" class="active">本日</button>
+      <button data-period="weekly">週間</button>
+      <button data-period="monthly">月間</button>
+      <button data-period="all">累計</button>
+    </div>
+    <div id="pnl-root" class="panel"><div class="empty">読み込み中…</div></div>
+  </section>
+
+  <section>
+    <h2>関連リンク</h2>
+    <div class="links">
+      <a class="linkcard" href="track-record.html">
+        <div class="t">成績トラック記録</div>
+        <div class="d">これまでの的中・不的中の全履歴を競馬場・券種で検索</div>
+      </a>
+      <a class="linkcard" href="tierA-placewide-check.html">
+        <div class="t">Tier A ワイド検証</div>
+        <div class="d">下位4頭除外モデルの独立検証結果</div>
+      </a>
+      <a class="linkcard private" href="https://claude.ai/code/artifact/e7e5850e-5011-464c-a8ff-0daa85478fd6" target="_blank" rel="noopener">
+        <div class="t">的中帖(実際の購入・資金管理)</div>
+        <div class="d">本人のみアクセス可能な非公開ページ。実際の購入履歴・残高はこちらで管理(本画面には表示されません)</div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    このページはシミュレーション(仮想購入)に基づく情報のみを表示しています。実際の馬券購入はユーザー自身の判断と責任で行ってください。断定的な必勝情報ではありません。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const yen = v => v==null ? '—' : v.toLocaleString('ja-JP') + '円';
+  const pct = v => v==null ? '算出不能' : v + '%';
+
+  function badge(cls, label){ return '<span class="badge '+cls+'">'+label+'</span>'; }
+
+  function renderPicks(data){
+    const root = document.getElementById('picks-root');
+    if(!data || !data.races || data.races.length===0){
+      root.innerHTML = '<div class="empty">本日の対象レースはまだ取得されていません。</div>';
+      return;
+    }
+    let html = '<div class="updated">データ日付: '+data.date+' / 更新: '+data.updated_at+
+      (data.odds_stale ? ' <span style="color:var(--red)">(オッズ取得が古い可能性があります)</span>' : '')+'</div>';
+    html += data.races.map(r=>{
+      const isBuy = r.decision === '買う';
+      const wide = r.wide_candidate ? r.wide_candidate.combo : null;
+      return '<div class="race-card">'+
+        '<div class="race-head"><span class="race-name">'+r.track+' '+r.race_no+'R</span>'+
+        '<span class="race-time mono">'+(r.post_time||'')+'発走</span></div>'+
+        badge(isBuy?'buy':'skip', isBuy?'買う':'見送り')+
+        (wide ? '<span class="wide-pick">ワイド '+wide+'</span>' : '')+
+        '<div class="reason">'+(r.reason||'')+'</div>'+
+        '</div>';
+    }).join('');
+    root.innerHTML = html;
+  }
+
+  function renderResults(sim){
+    const root = document.getElementById('results-root');
+    const rows = (sim && sim.recent_results) || [];
+    if(rows.length===0){
+      root.innerHTML = '<div class="empty">確定済みの結果がまだありません。</div>';
+      return;
+    }
+    root.innerHTML = rows.map(r=>{
+      const cls = r.status==='的中' ? 'hit' : (r.status==='不的中' ? 'miss' : 'pending');
+      const label = r.status;
+      return '<div class="result-row"><span>'+r.track+' '+r.race_no+'R '+r.combo+'</span>'+
+        badge(cls,label)+'</div>';
+    }).join('');
+  }
+
+  let currentSim = null, currentPeriod = 'daily';
+  function renderPnl(){
+    const root = document.getElementById('pnl-root');
+    if(!currentSim){ root.innerHTML = '<div class="empty">読み込み中…</div>'; return; }
+    const p = currentSim.periods[currentPeriod];
+    if(!p){ root.innerHTML = '<div class="empty">データなし</div>'; return; }
+    let html = '';
+    if(p.purchase_total === 0){
+      html += '<div class="warn">この期間は品質ゲートを満たした買い目が無く、購入総額0円のため回収率は算出不能です(捏造せず実態を表示しています)。</div>';
+    }
+    html += '<div class="stat-grid">'+
+      '<div class="stat"><div class="k">損益</div><div class="v mono '+(p.pnl==null?'':(p.pnl>=0?'pos':'neg'))+'">'+(p.pnl==null?'算出不能':yen(p.pnl))+'</div></div>'+
+      '<div class="stat"><div class="k">回収率</div><div class="v mono">'+pct(p.roi)+'</div></div>'+
+      '<div class="stat"><div class="k">的中率</div><div class="v mono">'+(p.hit_rate==null?'未確認':p.hit_rate+'%')+'</div><div style="font-size:10.5px;color:var(--text-faint);">的中'+p.n_hit+'/不的中'+p.n_miss+'</div></div>'+
+      '<div class="stat"><div class="k">購入総額</div><div class="v mono">'+yen(p.purchase_total)+'</div><div style="font-size:10.5px;color:var(--text-faint);">見送り'+p.n_races_skipped+'件</div></div>'+
+    '</div>';
+    if(p.n_pending > 0){
+      html += '<div style="margin-top:10px;font-size:12px;color:var(--blue);">購入中(未確定): '+yen(p.pending_amount)+'('+p.n_pending+'件、確定収支には含まれません)</div>';
+    }
+    if(currentPeriod === 'all' && currentSim.max_drawdown != null){
+      html += '<div style="margin-top:10px;font-size:12px;color:var(--text-dim);">累計の最大ドローダウン: <span class="mono">'+yen(currentSim.max_drawdown)+'</span></div>';
+    }
+    root.innerHTML = html;
+  }
+
+  document.getElementById('period-switch').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-period]');
+    if(!btn) return;
+    document.querySelectorAll('#period-switch button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentPeriod = btn.dataset.period;
+    renderPnl();
+  });
+
+  fetch('today_picks_v2.json?t=' + Date.now(), {cache:'no-store'})
+    .then(r=>r.json()).then(renderPicks)
+    .catch(()=>{ document.getElementById('picks-root').innerHTML = '<div class="empty">本日の予想データを取得できませんでした。</div>'; });
+
+  fetch('simulation_pnl.json?t=' + Date.now(), {cache:'no-store'})
+    .then(r=>r.json()).then(data=>{
+      currentSim = data;
+      renderPnl();
+      renderResults(data);
+    })
+    .catch(()=>{
+      document.getElementById('pnl-root').innerHTML = '<div class="empty">収支データを取得できませんでした。</div>';
+      document.getElementById('results-root').innerHTML = '<div class="empty">結果データを取得できませんでした。</div>';
+    });
+})();
+</script>
+</body>
+</html>
