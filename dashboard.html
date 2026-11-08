@@ -171,6 +171,8 @@
     let html = '';
     if(p.purchase_total === 0){
       html += '<div class="warn">この期間は品質ゲートを満たした買い目が無く、購入総額0円のため回収率は算出不能です(捏造せず実態を表示しています)。</div>';
+    } else if(p.sample_size_warning){
+      html += '<div class="warn">購入件数'+p.n_races_bought+'件はサンプル数が少なく(目安30件未満)、回収率・的中率は参考値に過ぎません。過学習・偶然の結果である可能性があります。</div>';
     }
     html += '<div class="stat-grid">'+
       '<div class="stat"><div class="k">損益</div><div class="v mono '+(p.pnl==null?'':(p.pnl>=0?'pos':'neg'))+'">'+(p.pnl==null?'算出不能':yen(p.pnl))+'</div></div>'+
