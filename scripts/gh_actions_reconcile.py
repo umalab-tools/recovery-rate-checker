@@ -73,8 +73,14 @@ def fetch_today_payback(today: str) -> list[dict]:
 def lookup_wide_payout(payback_rows: list[dict], track: str, race_date: str, race_no: int,
                         combo: str) -> float | None:
     """該当レースが公式データに無ければNone(未確定)。あれば組番を正規化して
-    ワイド払戻金を照合する(0円なら不的中)。"""
-    nums = sorted(int(x) for x in combo.split("-"))
+    ワイド払戻金を照合する(0円なら不的中)。買い目が空(データ不足で候補を
+    示せなかった見送り)の場合も照合不能としてNoneを返す(クラッシュさせない)。"""
+    if not combo or "-" not in combo:
+        return None
+    try:
+        nums = sorted(int(x) for x in combo.split("-"))
+    except ValueError:
+        return None
     matches = [r for r in payback_rows if r.get("競馬場") == track
                and r.get("競走年月日") == race_date and str(r.get("レース番号")) == str(race_no)]
     if not matches:

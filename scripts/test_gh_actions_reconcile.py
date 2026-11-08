@@ -29,6 +29,19 @@ def test_lookup_wide_payout_miss_returns_zero():
     assert r.lookup_wide_payout(payback, "船橋", "20261108", 1, "3-7") == 0.0
 
 
+def test_lookup_wide_payout_empty_combo_returns_none_not_crash():
+    """データ不足で買い目を示せなかった「見送り」行(買い目が空文字列)でも
+    クラッシュしないこと(2026-11-08 実データで発見した不具合の再発防止)。"""
+    payback = [{"競馬場": "帯広ば", "競走年月日": "20261108", "レース番号": "3"}]
+    assert r.lookup_wide_payout(payback, "帯広ば", "20261108", 3, "") is None
+
+
+def test_merge_skips_empty_combo_picks_without_crashing():
+    picks = [mk_pick(combo="")]
+    merged = r.merge_new_confirmations(picks, [], payback_rows=[], today="20261108")
+    assert merged == []
+
+
 def test_lookup_wide_payout_race_not_found_returns_none():
     assert r.lookup_wide_payout([], "船橋", "20261108", 1, "3-7") is None
 
