@@ -1,0 +1,64 @@
+name: 高頻度結果反映(GitHub Actions・Mac非依存)
+
+# Macがスリープ・停止していても、公式結果の反映だけは継続させるためのフォールバック。
+# GitHub Actionsのscheduleは最短5分間隔で、ベストエフォート(高負荷時は遅延・間引きされる
+# ことが公式ドキュメントに明記されている)。そのためMac側の3分間隔ジョブを「主」、
+# このワークフローを「保険(Macが使えないときのための安全網)」として並行稼働させる。
+# 実際の馬券購入・外部への新規投稿は一切行わない。読み取り専用の公式データ取得と、
+# このリポジトリ自身のJSON更新のみ。
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: high-frequency-result-sync
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: 稼働時間帯ガード(9-24時JST以外はスキップ)
+        id: hours
+        run: |
+          hour=$(TZ=Asia/Tokyo date +%H)
+          if [ "$hour" -lt 9 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 結果照合(標準ライブラリのみ、pip installなし)
+        if: steps.hours.outputs.skip == 'false'
+        run: python3 scripts/gh_actions_reconcile.py
+
+      - name: 変更があれば安全にコミット
+        if: steps.hours.outputs.skip == 'false'
+        run: |
+          git config user.name "umalab-bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet -- simulation_pnl.json; then
+            echo "差分なし、コミットしない"
+            exit 0
+          fi
+          git add simulation_pnl.json
+          git commit -m "GitHub Actions: 高頻度結果反映 ($(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S %Z'))"
+          # Mac側ジョブと競合した場合はpull --rebaseで解決してから再push(1回だけ再試行)
+          for i in 1 2; do
+            if git push; then
+              exit 0
+            fi
+            echo "push失敗、pull --rebaseして再試行します($i回目)"
+            git pull --rebase origin main
+          done
+          echo "::warning::2回再試行してもpushできませんでした(次回サイクルで再試行されます)"
