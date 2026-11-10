@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>競馬場別全レース結果 | UMALAB</title>
+<meta name="description" content="日付・競馬場を選んで1Rから最終Rまで全レースの予想と確定結果を確認できるページ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0c; --surface:#15141a; --surface2:#1b1a22; --border:#2c2a35;
+    --gold:#d4af37; --gold-soft:#8a7230; --gold-bg:#2a2210;
+    --text:#f3efe3; --text-dim:#a39f8e; --text-faint:#6e6a5d;
+    --red:#e2867d; --red-bg:#2e1512;
+    --green:#8fd4a8; --green-bg:#10281a;
+    --blue:#8fb8d4; --blue-bg:#101e28;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;-webkit-text-size-adjust:100%;}
+  .wrap{max-width:720px;margin:0 auto;padding:18px 16px 60px;}
+  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(18px,5.5vw,24px);margin:0 0 4px;color:var(--gold);letter-spacing:.02em;}
+  .sub{font-size:12px;color:var(--text-dim);margin:0 0 16px;}
+  .mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;}
+  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-faint);margin-bottom:10px;}
+  nav.tabs{display:flex;gap:6px;overflow-x:auto;margin:0 0 16px;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
+  nav.tabs a{flex:0 0 auto;font-size:12px;color:var(--text-dim);text-decoration:none;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:12px 16px;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;}
+  nav.tabs a.active{color:var(--gold);border-color:var(--gold-soft);background:var(--gold-bg);}
+  .filters{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .filters select{flex:1;min-width:120px;min-height:44px;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:0 10px;font-size:13px;}
+  .warn{background:var(--red-bg);color:var(--red);border-radius:10px;padding:10px 12px;font-size:12px;margin-bottom:12px;}
+  .race-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:8px;}
+  .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;}
+  .race-name{font-weight:700;font-size:14px;}
+  .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-dim);white-space:nowrap;}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;margin-right:4px;}
+  .badge.hit{background:var(--green-bg);color:var(--green);}
+  .badge.miss{background:var(--red-bg);color:var(--red);}
+  .badge.pending{background:var(--blue-bg);color:var(--blue);}
+  .grid-row{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font-size:12px;color:var(--text-dim);margin-top:6px;}
+  .grid-row b{color:var(--text);}
+  .empty{color:var(--text-faint);font-size:12.5px;padding:14px 0;text-align:center;}
+  footer{font-size:11px;color:var(--text-faint);text-align:center;margin-top:30px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>競馬場別 全レース結果</h1>
+  <p class="sub">日付・競馬場を選ぶと1Rから最終Rまで全レース(見送りも含む)を表示</p>
+  <nav class="tabs">
+    <a href="dashboard.html">ダッシュボード</a>
+    <a href="race-results.html" class="active">競馬場別結果</a>
+    <a href="today-picks.html">当日予想(詳細)</a>
+  </nav>
+
+  <div class="filters">
+    <select id="date-select"><option>読み込み中…</option></select>
+    <select id="track-select"><option>読み込み中…</option></select>
+  </div>
+
+  <div id="updated-root"></div>
+  <div id="races-root" class="empty">読み込み中…</div>
+
+  <footer>
+    このページはシミュレーション(仮想購入)に基づく情報のみを表示しています。実際の馬券購入はユーザー自身の判断と責任で行ってください。
+  </footer>
+</div>
+
+<script>
+(function(){
+  const yen = v => v==null ? '—' : v.toLocaleString('ja-JP') + '円';
+  let fullData = null;
+
+  function badge(cls, label){ return '<span class="badge '+cls+'">'+label+'</span>'; }
+
+  function renderRaces(){
+    const date = document.getElementById('date-select').value;
+    const track = document.getElementById('track-select').value;
+    const root = document.getElementById('races-root');
+    if(!fullData){ root.innerHTML = '<div class="empty">読み込み中…</div>'; return; }
+    const races = fullData.races.filter(r => r.race_date===date && r.track===track)
+      .sort((a,b)=>a.race_no-b.race_no);
+    if(races.length===0){
+      root.innerHTML = '<div class="empty">該当するレースの記録がありません。</div>';
+      return;
+    }
+    root.innerHTML = races.map(r=>{
+      let resultBadge;
+      if(!r.confirmed){ resultBadge = badge('pending','未確定'); }
+      else if(r.wide_hit===true){ resultBadge = badge('hit','的中'); }
+      else if(r.wide_hit===false){ resultBadge = badge('miss','不的中'); }
+      else { resultBadge = badge('pending','判定不可'); }
+      const finishText = r.confirmed ? (r.top1_no+'番 '+(r.top1_finish!=null?r.top1_finish+'着':'—')+
+        (r.top2_no!=null ? (' / '+r.top2_no+'番 '+(r.top2_finish!=null?r.top2_finish+'着':'—')) : '')) : '未確定';
+      return '<div class="race-card">'+
+        '<div class="race-head"><span class="race-name">'+r.track+' '+r.race_no+'R</span>'+
+        '<span class="race-time mono">'+(r.post_time||'—')+'発走</span></div>'+
+        resultBadge+
+        '<div class="grid-row">'+
+          '<div>予想上位: <b>'+(r.top1_no||'—')+' '+(r.top1_name||'')+'</b></div>'+
+          '<div>頭数: <b>'+(r.head_count||'不明')+'頭</b></div>'+
+          '<div>ワイド予想: <b>'+(r.wide_combo||'—')+'</b></div>'+
+          '<div>予想時オッズ: <b>'+(r.odds_at_prediction||'—')+'倍</b></div>'+
+          '<div>確定着順: <b>'+finishText+'</b></div>'+
+          '<div>払戻: <b>'+(r.payout_per_100!=null?r.payout_per_100+'円(100円あたり)':'—')+'</b></div>'+
+          '<div>仮想損益: <b class="mono" style="color:'+(r.virtual_pnl==null?'var(--text-faint)':(r.virtual_pnl>=0?'var(--green)':'var(--red)'))+'">'+(r.virtual_pnl==null?'—':yen(r.virtual_pnl))+'</b></div>'+
+          '<div>予想確定: <b class="mono">'+(r.predicted_at||'—')+'</b></div>'+
+        '</div>'+
+      '</div>';
+    }).join('');
+  }
+
+  function populateFilters(){
+    const dateSelect = document.getElementById('date-select');
+    const trackSelect = document.getElementById('track-select');
+    dateSelect.innerHTML = fullData.dates.slice().reverse().map(d=>'<option value="'+d+'">'+d+'</option>').join('');
+    trackSelect.innerHTML = fullData.tracks.map(t=>'<option value="'+t+'">'+t+'</option>').join('');
+    dateSelect.addEventListener('change', renderRaces);
+    trackSelect.addEventListener('change', renderRaces);
+    renderRaces();
+  }
+
+  fetch('race_results_full.json?t=' + Date.now(), {cache:'no-store'})
+    .then(r=>r.json()).then(data=>{
+      fullData = data;
+      document.getElementById('updated-root').innerHTML =
+        '<div class="updated">全'+data.n_races+'レース中より選択 / 更新: '+data.generated_at+'</div>';
+      populateFilters();
+    })
+    .catch(()=>{
+      document.getElementById('races-root').innerHTML = '<div class="empty">データを取得できませんでした。</div>';
+      document.getElementById('date-select').innerHTML = '<option>取得失敗</option>';
+      document.getElementById('track-select').innerHTML = '<option>取得失敗</option>';
+    });
+})();
+</script>
+</body>
+</html>
