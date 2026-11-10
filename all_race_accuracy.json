@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-11-11T00:40:09",
+  "n_races_total": 2242,
+  "overall": {
+    "n_total_predictions": 2242,
+    "n_confirmed": 1919,
+    "n_unconfirmed": 323,
+    "top1_win_rate": 41.53,
+    "top1_place_rate": 72.69,
+    "wide_hit_rate": 38.72
+  },
+  "by_track": {
+    "船橋": {
+      "n_total_predictions": 95,
+      "n_confirmed": 57,
+      "n_unconfirmed": 38,
+      "top1_win_rate": 40.35,
+      "top1_place_rate": 70.18,
+      "wide_hit_rate": 40.35
+    },
+    "笠松": {
+      "n_total_predictions": 159,
+      "n_confirmed": 157,
+      "n_unconfirmed": 2,
+      "top1_win_rate": 41.4,
+      "top1_place_rate": 76.43,
+      "wide_hit_rate": 46.5
+    },
+    "園田": {
+      "n_total_predictions": 288,
+      "n_confirmed": 272,
+      "n_unconfirmed": 16,
+      "top1_win_rate": 43.01,
+      "top1_place_rate": 77.57,
+      "wide_hit_rate": 47.06
+    },
+    "門別": {
+      "n_total_predictions": 295,
+      "n_confirmed": 233,
+      "n_unconfirmed": 62,
+      "top1_win_rate": 39.91,
+      "top1_place_rate": 72.96,
+      "wide_hit_rate": 34.33
+    },
+    "帯広ば": {
+      "n_total_predictions": 209,
+      "n_confirmed": 180,
+      "n_unconfirmed": 29,
+      "top1_win_rate": 31.11,
+      "top1_place_rate": 57.78,
+      "wide_hit_rate": 26.67
+    },
+    "盛岡": {
+      "n_total_predictions": 213,
+      "n_confirmed": 198,
+      "n_unconfirmed": 15,
+      "top1_win_rate": 34.34,
+      "top1_place_rate": 70.71,
+      "wide_hit_rate": 36.36
+    },
+    "大井": {
+      "n_total_predictions": 148,
+      "n_confirmed": 118,
+      "n_unconfirmed": 30,
+      "top1_win_rate": 36.44,
+      "top1_place_rate": 67.8,
+      "wide_hit_rate": 31.36
+    },
+    "金沢": {
+      "n_total_predictions": 150,
+      "n_confirmed": 139,
+      "n_unconfirmed": 11,
+      "top1_win_rate": 53.96,
+      "top1_place_rate": 82.01,
+      "wide_hit_rate": 44.6
+    },
+    "名古屋": {
+      "n_total_predictions": 190,
+      "n_confirmed": 160,
+      "n_unconfirmed": 30,
+      "top1_win_rate": 40.0,
+      "top1_place_rate": 74.38,
+      "wide_hit_rate": 39.38
+    },
+    "佐賀": {
+      "n_total_predictions": 151,
+      "n_confirmed": 115,
+      "n_unconfirmed": 36,
+      "top1_win_rate": 52.17,
+      "top1_place_rate": 79.13,
+      "wide_hit_rate": 43.48
+    },
+    "川崎": {
+      "n_total_predictions": 99,
+      "n_confirmed": 85,
+      "n_unconfirmed": 14,
+      "top1_win_rate": 50.59,
+      "top1_place_rate": 68.24,
+      "wide_hit_rate": 29.41
+    },
+    "浦和": {
+      "n_total_predictions": 98,
+      "n_confirmed": 83,
+      "n_unconfirmed": 15,
+      "top1_win_rate": 43.37,
+      "top1_place_rate": 66.27,
+      "wide_hit_rate": 31.33
+    },
+    "高知": {
+      "n_total_predictions": 135,
+      "n_confirmed": 112,
+      "n_unconfirmed": 23,
+      "top1_win_rate": 41.96,
+      "top1_place_rate": 75.0,
+      "wide_hit_rate": 45.54
+    },
+    "水沢": {
+      "n_total_predictions": 12,
+      "n_confirmed": 10,
+      "n_unconfirmed": 2,
+      "top1_win_rate": 70.0,
+      "top1_place_rate": 90.0,
+      "wide_hit_rate": 50.0
+    }
+  },
+  "by_odds_band": {
+    "2-5倍": {
+      "n_total_predictions": 1284,
+      "n_confirmed": 1068,
+      "n_unconfirmed": 216,
+      "top1_win_rate": 29.96,
+      "top1_place_rate": 62.64,
+      "wide_hit_rate": 31.18
+    },
+    "1倍台": {
+      "n_total_predictions": 925,
+      "n_confirmed": 824,
+      "n_unconfirmed": 101,
+      "top1_win_rate": 57.28,
+      "top1_place_rate": 86.04,
+      "wide_hit_rate": 48.91
+    },
+    "5-10倍": {
+      "n_total_predictions": 33,
+      "n_confirmed": 27,
+      "n_unconfirmed": 6,
+      "top1_win_rate": 18.52,
+      "top1_place_rate": 62.96,
+      "wide_hit_rate": 25.93
+    }
+  },
+  "virtual_purchase_all_races": {
+    "n_bet": 1829,
+    "n_hit": 742,
+    "hit_rate": 40.57,
+    "purchase_total": 1829000.0,
+    "payout_total": 1454500.0,
+    "pnl": -374500.0,
+    "roi": 79.52,
+    "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+  },
+  "note": "対象は既存all_predictions_history.csv(53日・14競馬場)。品質ゲート済みの公式配信(today-picks.html/simulation_pnl.json)とは別系列。仮想購入は全予測の上位2頭ワイドを毎回定額購入したと仮定した完全な仮想集計で、実購入ではない。"
+}
