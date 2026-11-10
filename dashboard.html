@@ -136,11 +136,15 @@
     html += data.races.map(r=>{
       const isBuy = r.decision === '買う';
       const wide = r.wide_candidate ? r.wide_candidate.combo : null;
+      const oddsLow = r.wide_candidate ? r.wide_candidate.odds_low : null;
+      const oddsHigh = r.wide_candidate ? r.wide_candidate.odds_high : null;
+      const oddsText = (oddsLow!=null && oddsHigh!=null) ? ('予想時オッズ '+oddsLow+'〜'+oddsHigh+'倍') : null;
       return '<div class="race-card">'+
         '<div class="race-head"><span class="race-name">'+r.track+' '+r.race_no+'R</span>'+
         '<span class="race-time mono">'+(r.post_time||'')+'発走</span></div>'+
         badge(isBuy?'buy':'skip', isBuy?'買う':'見送り')+
         (wide ? '<span class="wide-pick">ワイド '+wide+'</span>' : '')+
+        (oddsText ? '<span class="mono" style="font-size:11px;color:var(--text-dim);margin-left:8px;">'+oddsText+'</span>' : '')+
         '<div class="reason">'+(r.reason||'')+'</div>'+
         '</div>';
     }).join('');
