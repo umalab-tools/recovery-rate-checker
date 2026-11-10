@@ -96,6 +96,12 @@
   </section>
 
   <section>
+    <h2>全レース予想精度(購入判定とは無関係)</h2>
+    <p style="font-size:11px;color:var(--text-dim);margin:0 0 10px;">「買う」判定の有無に関わらず、発走前に保存された全予想を対象に集計。仮想購入成績は品質ゲート済みの公式配信とは別系列です。</p>
+    <div id="accuracy-root" class="panel"><div class="empty">読み込み中…</div></div>
+  </section>
+
+  <section>
     <h2>関連リンク</h2>
     <div class="links">
       <a class="linkcard" href="track-record.html">
@@ -216,6 +222,24 @@
       document.getElementById('pnl-root').innerHTML = '<div class="empty">収支データを取得できませんでした。</div>';
       document.getElementById('results-root').innerHTML = '<div class="empty">結果データを取得できませんでした。</div>';
     });
+
+  function renderAccuracy(data){
+    const root = document.getElementById('accuracy-root');
+    const o = data.overall;
+    const vp = data.virtual_purchase_all_races;
+    let html = '<div class="updated">対象件数: '+data.n_races_total+'件(確定済み'+o.n_confirmed+'件・未確定'+o.n_unconfirmed+'件) / 更新: '+data.generated_at+'</div>';
+    html += '<div class="stat-grid" style="margin-top:8px;">'+
+      '<div class="stat"><div class="k">予想1位 1着率</div><div class="v mono">'+(o.top1_win_rate==null?'未確認':o.top1_win_rate+'%')+'</div></div>'+
+      '<div class="stat"><div class="k">予想1位 複勝圏率</div><div class="v mono">'+(o.top1_place_rate==null?'未確認':o.top1_place_rate+'%')+'</div></div>'+
+      '<div class="stat"><div class="k">ワイド的中率</div><div class="v mono">'+(o.wide_hit_rate==null?'未確認':o.wide_hit_rate+'%')+'</div></div>'+
+      '<div class="stat"><div class="k">全レース仮想回収率</div><div class="v mono">'+(vp.roi==null?'算出不能':vp.roi+'%')+'</div><div style="font-size:10.5px;color:var(--text-faint);">n='+vp.n_bet+'件(全レース毎回購入した場合)</div></div>'+
+    '</div>';
+    root.innerHTML = html;
+  }
+
+  fetch('all_race_accuracy.json?t=' + Date.now(), {cache:'no-store'})
+    .then(r=>r.json()).then(renderAccuracy)
+    .catch(()=>{ document.getElementById('accuracy-root').innerHTML = '<div class="empty">予想精度データを取得できませんでした。</div>'; });
 })();
 </script>
 </body>
