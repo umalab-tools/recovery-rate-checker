@@ -30,6 +30,15 @@ th{color:#5c6455;font-weight:600;}
 @media (prefers-color-scheme: dark){.tag{background:#20261b;color:#9aa68a;}}
 .refresh{display:block;width:100%;min-height:44px;padding:10px;background:#3a6b3a;color:#fff;border:none;border-radius:8px;margin-top:8px;font-size:14px;}
 select{width:100%;min-height:40px;padding:8px;border-radius:8px;border:1px solid #dcd5c5;background:#fff;color:#1d2318;font-size:14px;margin-bottom:8px;}
+.bar-row{display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:11px;}
+.bar-label{width:52px;flex-shrink:0;text-align:right;}
+.bar-track{flex:1;background:#eeebe1;border-radius:4px;height:16px;position:relative;overflow:hidden;}
+@media (prefers-color-scheme: dark){.bar-track{background:#20261b;}}
+.bar-fill{height:100%;border-radius:4px;}
+.bar-value{width:48px;flex-shrink:0;font-size:11px;}
+.baseline{position:absolute;top:0;bottom:0;width:1px;background:#af3a35;}
+.heat-cell{display:inline-block;width:46px;height:28px;line-height:28px;text-align:center;font-size:10px;border-radius:4px;margin:1px;color:#fff;}
+svg.pnl-chart{width:100%;height:120px;}
 @media (prefers-color-scheme: dark){select{background:#1a1f16;border-color:#333c2b;color:#eae7dc;}}
 .pill{display:inline-block;font-size:11px;padding:3px 9px;border-radius:999px;margin-bottom:8px;}
 .pill-ok{background:#dcebdd;color:#2a6b3a;}
@@ -87,6 +96,67 @@ function stakingRows(staking){
 
 let DASHBOARD_DATA = null;
 
+function renderRoiBarChart(){
+  const full = DASHBOARD_DATA.all_track_full_report;
+  if (!full) return;
+  const rows = Object.entries(full).map(([track, t]) => {
+    const w1 = (t.bet_type_roi || {})['ワイド1点']?.all_periods;
+    return { track, roi: w1 && w1.n > 0 ? w1.roi : null, n: w1 ? w1.n : 0 };
+  }).filter(r => r.roi !== null).sort((a,b) => b.roi - a.roi);
+  const maxRoi = Math.max(100, ...rows.map(r => r.roi));
+  const html = rows.map(r => {
+    const pct = (r.roi / maxRoi * 100).toFixed(1);
+    const basePct = (100 / maxRoi * 100).toFixed(1);
+    const color = r.roi >= 100 ? '#2a6b3a' : (r.roi >= 85 ? '#8a8a3a' : '#af3a35');
+    return `<div class="bar-row"><span class="bar-label">${r.track}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${color};"></div>
+        <div class="baseline" style="left:${basePct}%;"></div></div>
+      <span class="bar-value">${r.roi}%(n=${r.n})</span></div>`;
+  }).join('');
+  document.getElementById('roiBarChart').innerHTML = html + '<p class="note">赤線=ROI100%(損益ゼロ)の基準線</p>';
+}
+
+function renderPnlChart(track){
+  const series = (DASHBOARD_DATA.cumulative_pnl_by_track || {})[track] || [];
+  const container = document.getElementById('pnlChart');
+  if (series.length < 2) { container.innerHTML = '<p class="note">データ不足(累積損益を描画するには2件以上必要)</p>'; return; }
+  const vals = series.map(p => p.cumulative_pnl);
+  const minV = Math.min(0, ...vals), maxV = Math.max(0, ...vals);
+  const w = 300, h = 100, pad = 4;
+  const scaleX = i => pad + i / (series.length - 1) * (w - 2*pad);
+  const scaleY = v => h - pad - (v - minV) / (maxV - minV || 1) * (h - 2*pad);
+  const points = series.map((p,i) => `${scaleX(i)},${scaleY(p.cumulative_pnl)}`).join(' ');
+  const zeroY = scaleY(0);
+  const last = series[series.length-1].cumulative_pnl;
+  const color = last >= 0 ? '#2a6b3a' : '#af3a35';
+  container.innerHTML = `<svg class="pnl-chart" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+      <line x1="0" y1="${zeroY}" x2="${w}" y2="${zeroY}" stroke="#af3a35" stroke-width="1" stroke-dasharray="3,2"/>
+      <polyline points="${points}" fill="none" stroke="${color}" stroke-width="2"/>
+    </svg><p class="note">${track}のワイド1点、最終累積損益: ${last}円(n=${series.length})</p>`;
+}
+
+function renderMonthlyHeatmap(track){
+  const months = (DASHBOARD_DATA.monthly_roi_by_track || {})[track] || {};
+  const container = document.getElementById('monthlyHeatmap');
+  const entries = Object.entries(months).sort();
+  if (!entries.length) { container.innerHTML = '<p class="note">データなし</p>'; return; }
+  container.innerHTML = entries.map(([month, s]) => {
+    const roi = s.roi;
+    const color = roi === null ? '#666' : (roi >= 100 ? '#2a6b3a' : roi >= 85 ? '#8a8a3a' : '#af3a35');
+    const label = `${month.slice(4,6)}月`;
+    return `<span class="heat-cell" style="background:${color};" title="n=${s.n}">${label}<br>${roi ?? '-'}%</span>`;
+  }).join('');
+}
+
+function renderOddsBandFilter(track){
+  const bands = (DASHBOARD_DATA.odds_band_national_comparison || {})[track] || {};
+  const container = document.getElementById('oddsBandFilter');
+  const rows = Object.entries(bands).map(([band, s]) =>
+    `<tr><td>${band}</td><td>${s.n}${s.insufficient_sample ? '(不足)' : ''}</td><td>${fmtPct(s.roi)}</td></tr>`
+  ).join('');
+  container.innerHTML = `<div class="scroll"><table><tr><th>オッズ帯</th><th>件数</th><th>ROI</th></tr>${rows}</table></div>`;
+}
+
 let CURRENT_PERIOD = 'all_periods';
 
 function setPeriod(p){ CURRENT_PERIOD = p; renderTrack(); }
@@ -133,7 +203,16 @@ function renderTrack(){
       <tr><th>券種</th><th>件数</th><th>的中率</th><th>ROI</th><th>純利益</th></tr>
       ${betRows}
     </table></div>
-    <p class="note">ホールドアウトは複数ステージで既に参照済みのため完全未使用ではありません。</p>`;
+    <p class="note">ホールドアウトは複数ステージで既に参照済みのため完全未使用ではありません。</p>
+    <h2 style="font-size:13px;margin-top:14px;">累積損益(ワイド1点)</h2>
+    <div id="pnlChart"></div>
+    <h2 style="font-size:13px;margin-top:14px;">月別ROI</h2>
+    <div id="monthlyHeatmap"></div>
+    <h2 style="font-size:13px;margin-top:14px;">オッズ帯別ROI(条件フィルター)</h2>
+    <div id="oddsBandFilter"></div>`;
+  renderPnlChart(sel.value);
+  renderMonthlyHeatmap(sel.value);
+  renderOddsBandFilter(sel.value);
 }
 
 function renderRankings(){
@@ -204,6 +283,11 @@ async function load(force){
     </div>
 
     <div class="panel">
+      <h2>競馬場別ROI棒グラフ(ワイド1点、全期間)</h2>
+      <div id="roiBarChart"></div>
+    </div>
+
+    <div class="panel">
       <h2>競馬場別プロファイル(第4段階)</h2>
       <select id="trackSelect" onchange="renderTrack()"></select>
       <div id="trackDetail"></div>
@@ -270,6 +354,7 @@ async function load(force){
   sel.innerHTML = (d.track_profile || []).map(t => `<option value="${t.track}">${t.track}</option>`).join('');
   if (d.track_profile && d.track_profile.length) renderTrack();
   renderRankings();
+  renderRoiBarChart();
 }
 load(false);
 </script>
