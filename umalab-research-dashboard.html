@@ -114,6 +114,18 @@ async function load(force){
     </div>
 
     <div class="panel">
+      <h2>外部情報源調査(第3段階)</h2>
+      <div class="scroll"><table>
+        <tr><th>情報源</th><th>所見</th></tr>
+        ${Object.entries(d.external_source_survey || {}).map(([k,v]) =>
+          `<tr><td>${k}</td><td style="text-align:left;white-space:normal;">${v}</td></tr>`).join('')}
+      </table></div>
+      <p class="note">新聞・AI予想サイト(競馬ブック・netkeiba・SPAIA競馬)は利用規約でスクレイピングを
+        明示的に禁止しており、地方競馬の完全な過去予想印アーカイブも確認できなかったため、
+        新聞対UMALABの実データ比較は未実施(規約上の制約。捏造はしていません)。</p>
+    </div>
+
+    <div class="panel">
       <h2>資金配分方式の比較(最良候補に適用)</h2>
       <div class="scroll"><table>
         <tr><th>方式</th><th>最終資金</th><th>最大DD</th><th>破産</th></tr>

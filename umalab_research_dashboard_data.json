@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11 22:27:04",
+  "updated_at": "2026-11-11 22:58:16",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -365,11 +365,26 @@
       "test_top1_hit_rate": 0.44262509824469476,
       "vs_model_e_logloss": 0.46984754679122387,
       "adopted": true
+    },
+    {
+      "name": "オッズ帯別アンサンブル(人気1-3位/4位以下で別モデル)",
+      "test_logloss": 0.4702191415082957,
+      "test_top1_hit_rate": 0.44262509824469476,
+      "vs_model_e_logloss": 0.46984754679122387,
+      "adopted": false
     }
   ],
   "probability_calibration": {
     "brier_score_raw": 0.15399,
     "brier_score_isotonic_calibrated": 0.1541
+  },
+  "external_source_survey": {
+    "nar_official_csv": "最有力な無料・合法な情報源(既存データの出典と一致)。ただしオッズ履歴は2026年3月以降のみ、自動取得頻度の上限は明記されていない",
+    "jra_van_data_lab": "要承認(有料・個人利用限定・再配布禁止)。未契約",
+    "odds_park_rakuten_keiba": "利用規約で再利用・商用利用を明示的に禁止。使用せず",
+    "track_official_sites": "独自のオープンデータは無し。編集コンテンツのみ",
+    "newspaper_ai_tipsters": "競馬ブック・netkeiba・SPAIA競馬とも利用規約でスクレイピングを明示的に禁止。地方競馬の完全な過去予想印アーカイブ(見送り含む全件)は確認できず。新聞対UMALABの実データ比較は本ターンでは実施不可(規約上の制約)",
+    "academic_papers": "無料で利用可能。CiNii論文(人気帯別に最良手法が異なる)の知見をModel Eで検証したが再現せず(仮説台帳H021)"
   },
   "weakest_segments_top10": [
     {
