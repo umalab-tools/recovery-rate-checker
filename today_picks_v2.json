@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11 17:42",
+  "updated_at": "2026-11-11 17:50",
   "date": "20261111",
   "total_races_analyzed": 13,
   "races": [
@@ -11,19 +11,19 @@
       "bet_type": "ワイド",
       "top3": [
         {
-          "no": 11,
-          "name": "ギフテッドクィーン",
-          "prob": 0.642
-        },
-        {
           "no": 7,
           "name": "ヴィトーリアヘーザ",
-          "prob": 0.465
+          "prob": 0.638
         },
         {
           "no": 3,
           "name": "ノヴァヴィア",
-          "prob": 0.437
+          "prob": 0.533
+        },
+        {
+          "no": 11,
+          "name": "ギフテッドクィーン",
+          "prob": 0.522
         }
       ],
       "bottom4": [
@@ -38,26 +38,26 @@
           "bottom4_prob": 0.571
         },
         {
-          "no": 10,
-          "name": "アーサ",
-          "bottom4_prob": 0.561
-        },
-        {
           "no": 5,
           "name": "アトラスライズ",
-          "bottom4_prob": 0.46
+          "bottom4_prob": 0.501
+        },
+        {
+          "no": 10,
+          "name": "アーサ",
+          "bottom4_prob": 0.477
         }
       ],
       "wide_candidate": {
-        "combo": "11-7",
-        "odds_low": 1.5,
-        "odds_high": 1.7
+        "combo": "7-3",
+        "odds_low": 3.3,
+        "odds_high": 4.2
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.642
+      "confidence": 0.638
     },
     {
       "track": "名古屋",
@@ -89,9 +89,9 @@
           "bottom4_prob": 0.628
         },
         {
-          "no": 10,
-          "name": "シャッフルガール",
-          "bottom4_prob": 0.583
+          "no": 9,
+          "name": "ロックマジェスティ",
+          "bottom4_prob": 0.602
         },
         {
           "no": 5,
@@ -99,15 +99,15 @@
           "bottom4_prob": 0.564
         },
         {
-          "no": 9,
-          "name": "ロックマジェスティ",
-          "bottom4_prob": 0.562
+          "no": 3,
+          "name": "ノーブルアクト",
+          "bottom4_prob": 0.521
         }
       ],
       "wide_candidate": {
         "combo": "7-6",
-        "odds_low": 1.9,
-        "odds_high": 2.0
+        "odds_low": 2.3,
+        "odds_high": 2.6
       },
       "calibrated_prob": 0.4454,
       "decision": "見送り",
@@ -130,12 +130,12 @@
         {
           "no": 8,
           "name": "カセノイーグル",
-          "prob": 0.471
+          "prob": 0.571
         },
         {
           "no": 6,
           "name": "ケイキカーネ",
-          "prob": 0.468
+          "prob": 0.381
         }
       ],
       "bottom4": [
@@ -147,12 +147,12 @@
         {
           "no": 2,
           "name": "レギュム",
-          "bottom4_prob": 0.495
+          "bottom4_prob": 0.536
         },
         {
           "no": 7,
           "name": "ミスプランセス",
-          "bottom4_prob": 0.443
+          "bottom4_prob": 0.444
         },
         {
           "no": 4,
@@ -162,10 +162,10 @@
       ],
       "wide_candidate": {
         "combo": "5-8",
-        "odds_low": 3.1,
-        "odds_high": 3.6
+        "odds_low": 3.7,
+        "odds_high": 4.4
       },
-      "calibrated_prob": 0.2917,
+      "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
@@ -189,9 +189,9 @@
           "prob": 0.556
         },
         {
-          "no": 11,
-          "name": "ブリッツアロング",
-          "prob": 0.484
+          "no": 4,
+          "name": "アパタイトテソーロ",
+          "prob": 0.553
         }
       ],
       "bottom4": [
@@ -199,6 +199,11 @@
           "no": 6,
           "name": "ササキントモゴロウ",
           "bottom4_prob": 0.662
+        },
+        {
+          "no": 2,
+          "name": "ルージュアマリア",
+          "bottom4_prob": 0.535
         },
         {
           "no": 10,
@@ -209,17 +214,12 @@
           "no": 7,
           "name": "クレバス",
           "bottom4_prob": 0.506
-        },
-        {
-          "no": 2,
-          "name": "ルージュアマリア",
-          "bottom4_prob": 0.471
         }
       ],
       "wide_candidate": {
         "combo": "9-3",
-        "odds_low": 1.6,
-        "odds_high": 1.7
+        "odds_low": 1.3,
+        "odds_high": 1.4
       },
       "calibrated_prob": 0.4538,
       "decision": "見送り",
@@ -240,14 +240,14 @@
           "prob": 0.632
         },
         {
-          "no": 6,
-          "name": "ルージュソムニウム",
-          "prob": 0.566
-        },
-        {
           "no": 3,
           "name": "クレセントゼファー",
-          "prob": 0.489
+          "prob": 0.609
+        },
+        {
+          "no": 6,
+          "name": "ルージュソムニウム",
+          "prob": 0.439
         }
       ],
       "bottom4": [
@@ -273,11 +273,11 @@
         }
       ],
       "wide_candidate": {
-        "combo": "4-6",
-        "odds_low": 3.4,
-        "odds_high": 3.8
+        "combo": "4-3",
+        "odds_low": 3.6,
+        "odds_high": 4.0
       },
-      "calibrated_prob": 0.2917,
+      "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
@@ -330,8 +330,8 @@
       ],
       "wide_candidate": {
         "combo": "13-11",
-        "odds_low": 2.0,
-        "odds_high": 2.2
+        "odds_low": 2.1,
+        "odds_high": 2.4
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -386,8 +386,8 @@
       ],
       "wide_candidate": {
         "combo": "3-10",
-        "odds_low": 2.6,
-        "odds_high": 2.8
+        "odds_low": 2.4,
+        "odds_high": 2.6
       },
       "calibrated_prob": 0.4538,
       "decision": "見送り",
@@ -442,8 +442,8 @@
       ],
       "wide_candidate": {
         "combo": "5-11",
-        "odds_low": 15.3,
-        "odds_high": 17.9
+        "odds_low": 14.5,
+        "odds_high": 16.9
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -486,20 +486,20 @@
           "bottom4_prob": 0.444
         },
         {
+          "no": 5,
+          "name": "ミスティライズ",
+          "bottom4_prob": 0.42
+        },
+        {
           "no": 8,
           "name": "モネ",
           "bottom4_prob": 0.391
-        },
-        {
-          "no": 5,
-          "name": "ミスティライズ",
-          "bottom4_prob": 0.371
         }
       ],
       "wide_candidate": {
         "combo": "10-9",
         "odds_low": 3.0,
-        "odds_high": 3.4
+        "odds_high": 3.3
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -555,7 +555,7 @@
       "wide_candidate": {
         "combo": "9-5",
         "odds_low": 2.6,
-        "odds_high": 3.0
+        "odds_high": 3.1
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -610,7 +610,7 @@
       ],
       "wide_candidate": {
         "combo": "8-10",
-        "odds_low": 1.7,
+        "odds_low": 1.8,
         "odds_high": 1.9
       },
       "calibrated_prob": 0.4454,
@@ -659,15 +659,15 @@
           "bottom4_prob": 0.41
         },
         {
-          "no": 12,
-          "name": "ノアルパフェ",
-          "bottom4_prob": 0.358
+          "no": 11,
+          "name": "ジャスパーロイヤル",
+          "bottom4_prob": 0.372
         }
       ],
       "wide_candidate": {
         "combo": "7-9",
         "odds_low": 2.1,
-        "odds_high": 2.3
+        "odds_high": 2.2
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -722,8 +722,8 @@
       ],
       "wide_candidate": {
         "combo": "10-2",
-        "odds_low": 5.8,
-        "odds_high": 6.2
+        "odds_low": 5.7,
+        "odds_high": 6.0
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -732,7 +732,7 @@
       "confidence": 0.641
     }
   ],
-  "odds_age_minutes": 0.9,
+  "odds_age_minutes": 1.3,
   "odds_stale": false,
   "verified_roi_status": "回収率100%超えの統計的根拠は確認されていません(直近の時系列バックテストn=1,767件、95%信頼区間上限84.7%)。",
   "model_confirmed_profitable": false,
