@@ -1,64 +1,8 @@
 {
-  "updated_at": "2026-11-11 20:17",
+  "updated_at": "2026-11-11 20:22",
   "date": "20261111",
-  "total_races_analyzed": 3,
+  "total_races_analyzed": 2,
   "races": [
-    {
-      "track": "川崎",
-      "race_no": 11,
-      "post_time": "20:10",
-      "頭数": 14,
-      "bet_type": "ワイド",
-      "top3": [
-        {
-          "no": 10,
-          "name": "ヘスペリス",
-          "prob": 0.759
-        },
-        {
-          "no": 8,
-          "name": "ブレイズエッジ",
-          "prob": 0.477
-        },
-        {
-          "no": 5,
-          "name": "ナーサリーテイル",
-          "prob": 0.469
-        }
-      ],
-      "bottom4": [
-        {
-          "no": 11,
-          "name": "エゴンウレア",
-          "bottom4_prob": 0.549
-        },
-        {
-          "no": 7,
-          "name": "アップタウン",
-          "bottom4_prob": 0.51
-        },
-        {
-          "no": 13,
-          "name": "プリンセスデイジー",
-          "bottom4_prob": 0.491
-        },
-        {
-          "no": 3,
-          "name": "ラミアメロディア",
-          "bottom4_prob": 0.351
-        }
-      ],
-      "wide_candidate": {
-        "combo": "10-8",
-        "odds_low": 1.6,
-        "odds_high": 1.8
-      },
-      "calibrated_prob": 0.2917,
-      "decision": "見送り",
-      "reason": "頭数14頭(検証で13頭以上は成績悪化が確認されているため見送り)",
-      "suggested_virtual_stake": null,
-      "confidence": 0.759
-    },
     {
       "track": "門別",
       "race_no": 12,
@@ -86,28 +30,28 @@
         {
           "no": 1,
           "name": "ロアリングフレイム",
-          "bottom4_prob": 0.754
+          "bottom4_prob": 0.723
         },
         {
           "no": 6,
           "name": "パープルビューティ",
-          "bottom4_prob": 0.447
+          "bottom4_prob": 0.477
+        },
+        {
+          "no": 11,
+          "name": "ジャスパーロイヤル",
+          "bottom4_prob": 0.374
         },
         {
           "no": 10,
           "name": "ヨシノカムイ",
           "bottom4_prob": 0.372
-        },
-        {
-          "no": 2,
-          "name": "キアキア",
-          "bottom4_prob": 0.337
         }
       ],
       "wide_candidate": {
         "combo": "7-9",
-        "odds_low": 2.6,
-        "odds_high": 2.8
+        "odds_low": 2.0,
+        "odds_high": 2.2
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -123,14 +67,14 @@
       "bet_type": "ワイド",
       "top3": [
         {
+          "no": 10,
+          "name": "トンヤイビーン",
+          "prob": 0.668
+        },
+        {
           "no": 2,
           "name": "ドーサンドーサン",
           "prob": 0.582
-        },
-        {
-          "no": 10,
-          "name": "トンヤイビーン",
-          "prob": 0.482
         },
         {
           "no": 6,
@@ -161,18 +105,18 @@
         }
       ],
       "wide_candidate": {
-        "combo": "2-10",
+        "combo": "10-2",
         "odds_low": 5.6,
         "odds_high": 6.0
       },
-      "calibrated_prob": 0.2917,
+      "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "頭数14頭(検証で13頭以上は成績悪化が確認されているため見送り)",
       "suggested_virtual_stake": null,
-      "confidence": 0.582
+      "confidence": 0.668
     }
   ],
-  "odds_age_minutes": 0.0,
+  "odds_age_minutes": 0.7,
   "odds_stale": false,
   "verified_roi_status": "回収率100%超えの統計的根拠は確認されていません(直近の時系列バックテストn=1,767件、95%信頼区間上限84.7%)。",
   "model_confirmed_profitable": false,
@@ -180,7 +124,7 @@
     "n_published_total": 237,
     "n_skipped": 237,
     "n_bought": 0,
-    "n_confirmed": 210,
+    "n_confirmed": 211,
     "roi_bought": null
   }
 }
