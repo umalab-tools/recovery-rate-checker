@@ -1,0 +1,682 @@
+{
+  "updated_at": "2026-11-11 22:17:24",
+  "data_coverage": {
+    "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
+    "walk_forward_split": {
+      "discovery_days": 20,
+      "confirmation_days": 6,
+      "holdout_days": 6,
+      "note": "分割は分析開始前に日付順で機械的に固定し、結果を見て調整していない。"
+    },
+    "n_total_legs_baseline": 1460
+  },
+  "current_model_vs_candidates": {
+    "best_candidate": "ワイド1点(現行ベースライン)",
+    "best_candidate_reason": "発見期間・検証期間の両方で回収率100%以上を再現した新構成が無いため、現行ベースラインを維持。",
+    "constructions": [
+      {
+        "name": "単勝",
+        "is_best": false,
+        "discovery": {
+          "n": 924,
+          "bet_total": 924000.0,
+          "payout_total": 701200.0,
+          "roi": 75.89,
+          "hit_rate": 41.02,
+          "hits": 379,
+          "ci95": [
+            37.89,
+            44.22
+          ]
+        },
+        "confirmation": {
+          "n": 240,
+          "bet_total": 240000.0,
+          "payout_total": 201300.0,
+          "roi": 83.88,
+          "hit_rate": 41.67,
+          "hits": 100,
+          "ci95": [
+            35.61,
+            47.99
+          ]
+        },
+        "holdout": {
+          "n": 261,
+          "bet_total": 261000.0,
+          "payout_total": 191100.0,
+          "roi": 73.22,
+          "hit_rate": 37.93,
+          "hits": 99,
+          "ci95": [
+            32.26,
+            43.95
+          ]
+        },
+        "replicated": false
+      },
+      {
+        "name": "複勝",
+        "is_best": false,
+        "discovery": {
+          "n": 924,
+          "bet_total": 924000.0,
+          "payout_total": 777500.0,
+          "roi": 84.15,
+          "hit_rate": 70.78,
+          "hits": 654,
+          "ci95": [
+            67.77,
+            73.62
+          ]
+        },
+        "confirmation": {
+          "n": 240,
+          "bet_total": 240000.0,
+          "payout_total": 208400.0,
+          "roi": 86.83,
+          "hit_rate": 73.33,
+          "hits": 176,
+          "ci95": [
+            67.4,
+            78.53
+          ]
+        },
+        "holdout": {
+          "n": 261,
+          "bet_total": 261000.0,
+          "payout_total": 221700.0,
+          "roi": 84.94,
+          "hit_rate": 70.11,
+          "hits": 183,
+          "ci95": [
+            64.3,
+            75.34
+          ]
+        },
+        "replicated": false
+      },
+      {
+        "name": "ワイド1点(現行ベースライン)",
+        "is_best": true,
+        "discovery": {
+          "n": 935,
+          "bet_total": 935000.0,
+          "payout_total": 741400.0,
+          "roi": 79.29,
+          "hit_rate": 39.79,
+          "hits": 372,
+          "ci95": [
+            36.7,
+            42.96
+          ]
+        },
+        "confirmation": {
+          "n": 239,
+          "bet_total": 239000.0,
+          "payout_total": 202800.0,
+          "roi": 84.85,
+          "hit_rate": 42.68,
+          "hits": 102,
+          "ci95": [
+            36.57,
+            49.02
+          ]
+        },
+        "holdout": {
+          "n": 285,
+          "bet_total": 285000.0,
+          "payout_total": 210600.0,
+          "roi": 73.89,
+          "hit_rate": 38.6,
+          "hits": 110,
+          "ci95": [
+            33.13,
+            44.36
+          ]
+        },
+        "replicated": false
+      },
+      {
+        "name": "ワイド2点",
+        "is_best": false,
+        "discovery": {
+          "n": 1870,
+          "bet_total": 1870000.0,
+          "payout_total": 1365100.0,
+          "roi": 73.0,
+          "hit_rate": 33.85,
+          "hits": 633,
+          "ci95": [
+            31.74,
+            36.03
+          ]
+        },
+        "confirmation": {
+          "n": 478,
+          "bet_total": 478000.0,
+          "payout_total": 415500.0,
+          "roi": 86.92,
+          "hit_rate": 38.28,
+          "hits": 183,
+          "ci95": [
+            34.04,
+            42.72
+          ]
+        },
+        "holdout": {
+          "n": 570,
+          "bet_total": 570000.0,
+          "payout_total": 439400.0,
+          "roi": 77.09,
+          "hit_rate": 34.56,
+          "hits": 197,
+          "ci95": [
+            30.77,
+            38.56
+          ]
+        },
+        "replicated": false
+      },
+      {
+        "name": "ワイド3点",
+        "is_best": false,
+        "discovery": {
+          "n": 2805,
+          "bet_total": 2805000.0,
+          "payout_total": 2006400.0,
+          "roi": 71.53,
+          "hit_rate": 29.77,
+          "hits": 835,
+          "ci95": [
+            28.1,
+            31.49
+          ]
+        },
+        "confirmation": {
+          "n": 717,
+          "bet_total": 717000.0,
+          "payout_total": 578200.0,
+          "roi": 80.64,
+          "hit_rate": 32.5,
+          "hits": 233,
+          "ci95": [
+            29.17,
+            36.01
+          ]
+        },
+        "holdout": {
+          "n": 855,
+          "bet_total": 855000.0,
+          "payout_total": 630600.0,
+          "roi": 73.75,
+          "hit_rate": 29.94,
+          "hits": 256,
+          "ci95": [
+            26.97,
+            33.1
+          ]
+        },
+        "replicated": false
+      },
+      {
+        "name": "軸流し(全流し)",
+        "is_best": false,
+        "discovery": {
+          "n": 8701,
+          "bet_total": 8701000.0,
+          "payout_total": 5670300.0,
+          "roi": 65.17,
+          "hit_rate": 15.15,
+          "hits": 1318,
+          "ci95": [
+            14.41,
+            15.92
+          ]
+        },
+        "confirmation": {
+          "n": 2378,
+          "bet_total": 2378000.0,
+          "payout_total": 1664600.0,
+          "roi": 70.0,
+          "hit_rate": 15.05,
+          "hits": 358,
+          "ci95": [
+            13.67,
+            16.55
+          ]
+        },
+        "holdout": {
+          "n": 2739,
+          "bet_total": 2739000.0,
+          "payout_total": 1709300.0,
+          "roi": 62.41,
+          "hit_rate": 14.49,
+          "hits": 397,
+          "ci95": [
+            13.23,
+            15.86
+          ]
+        },
+        "replicated": false
+      },
+      {
+        "name": "ワイド(人気薄相手)",
+        "is_best": false,
+        "discovery": {
+          "n": 935,
+          "bet_total": 935000.0,
+          "payout_total": 576600.0,
+          "roi": 61.67,
+          "hit_rate": 3.21,
+          "hits": 30,
+          "ci95": [
+            2.26,
+            4.54
+          ]
+        },
+        "confirmation": {
+          "n": 239,
+          "bet_total": 239000.0,
+          "payout_total": 213000.0,
+          "roi": 89.12,
+          "hit_rate": 3.77,
+          "hits": 9,
+          "ci95": [
+            1.99,
+            7.0
+          ]
+        },
+        "holdout": {
+          "n": 285,
+          "bet_total": 285000.0,
+          "payout_total": 109500.0,
+          "roi": 38.42,
+          "hit_rate": 2.81,
+          "hits": 8,
+          "ci95": [
+            1.43,
+            5.44
+          ]
+        },
+        "replicated": false
+      },
+      {
+        "name": "可変点数(確率閾値流し)",
+        "is_best": false,
+        "discovery": {
+          "n": 2214,
+          "bet_total": 2214000.0,
+          "payout_total": 1611300.0,
+          "roi": 72.78,
+          "hit_rate": 31.57,
+          "hits": 699,
+          "ci95": [
+            29.67,
+            33.54
+          ]
+        },
+        "confirmation": {
+          "n": 578,
+          "bet_total": 578000.0,
+          "payout_total": 488800.0,
+          "roi": 84.57,
+          "hit_rate": 35.29,
+          "hits": 204,
+          "ci95": [
+            31.51,
+            39.28
+          ]
+        },
+        "holdout": {
+          "n": 728,
+          "bet_total": 728000.0,
+          "payout_total": 529100.0,
+          "roi": 72.68,
+          "hit_rate": 30.63,
+          "hits": 223,
+          "ci95": [
+            27.39,
+            34.07
+          ]
+        },
+        "replicated": false
+      }
+    ]
+  },
+  "model_algorithm_comparison": [
+    {
+      "name": "LightGBM",
+      "test_logloss": 0.46998419392435314,
+      "test_top1_hit_rate": 0.4421011265391669,
+      "vs_model_e_logloss": 0.46984754679122387,
+      "adopted": false
+    },
+    {
+      "name": "ロジスティック回帰",
+      "test_logloss": 0.4739443849174948,
+      "test_top1_hit_rate": 0.43411055802986637,
+      "vs_model_e_logloss": 0.46984754679122387,
+      "adopted": false
+    }
+  ],
+  "probability_calibration": {
+    "brier_score_raw": 0.15399,
+    "brier_score_isotonic_calibrated": 0.1541
+  },
+  "weakest_segments_top10": [
+    {
+      "dimension": "baba_band",
+      "condition": "稍重",
+      "n": 56,
+      "bet_total": 56000.0,
+      "payout_total": 23600.0,
+      "roi": 42.14,
+      "hit_rate": 14.29,
+      "hits": 8,
+      "ci95": [
+        7.42,
+        25.74
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "浦和",
+      "n": 60,
+      "bet_total": 60000.0,
+      "payout_total": 33800.0,
+      "roi": 56.33,
+      "hit_rate": 26.67,
+      "hits": 16,
+      "ci95": [
+        17.13,
+        39.01
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "川崎",
+      "n": 96,
+      "bet_total": 96000.0,
+      "payout_total": 55400.0,
+      "roi": 57.71,
+      "hit_rate": 32.29,
+      "hits": 31,
+      "ci95": [
+        23.78,
+        42.17
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "金沢",
+      "n": 107,
+      "bet_total": 107000.0,
+      "payout_total": 70900.0,
+      "roi": 66.26,
+      "hit_rate": 42.06,
+      "hits": 45,
+      "ci95": [
+        33.14,
+        51.53
+      ]
+    },
+    {
+      "dimension": "distance_band",
+      "condition": "1601-2000m",
+      "n": 100,
+      "bet_total": 100000.0,
+      "payout_total": 68300.0,
+      "roi": 68.3,
+      "hit_rate": 37.0,
+      "hits": 37,
+      "ci95": [
+        28.18,
+        46.78
+      ]
+    },
+    {
+      "dimension": "odds_band",
+      "condition": "2-5倍",
+      "n": 681,
+      "bet_total": 681000.0,
+      "payout_total": 492300.0,
+      "roi": 72.29,
+      "hit_rate": 28.19,
+      "hits": 192,
+      "ci95": [
+        24.94,
+        31.69
+      ]
+    },
+    {
+      "dimension": "n_horses_band",
+      "condition": "13頭以上",
+      "n": 87,
+      "bet_total": 87000.0,
+      "payout_total": 66000.0,
+      "roi": 75.86,
+      "hit_rate": 28.74,
+      "hits": 25,
+      "ci95": [
+        20.29,
+        38.98
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "盛岡",
+      "n": 156,
+      "bet_total": 156000.0,
+      "payout_total": 118900.0,
+      "roi": 76.22,
+      "hit_rate": 40.38,
+      "hits": 63,
+      "ci95": [
+        33.01,
+        48.23
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "門別",
+      "n": 180,
+      "bet_total": 180000.0,
+      "payout_total": 137300.0,
+      "roi": 76.28,
+      "hit_rate": 39.44,
+      "hits": 71,
+      "ci95": [
+        32.6,
+        46.73
+      ]
+    },
+    {
+      "dimension": "hour_band",
+      "condition": "15-17時台",
+      "n": 776,
+      "bet_total": 776000.0,
+      "payout_total": 598100.0,
+      "roi": 77.07,
+      "hit_rate": 39.69,
+      "hits": 308,
+      "ci95": [
+        36.31,
+        43.18
+      ]
+    }
+  ],
+  "strongest_segments_top10": [
+    {
+      "dimension": "baba_band",
+      "condition": "良",
+      "n": 88,
+      "bet_total": 88000.0,
+      "payout_total": 98100.0,
+      "roi": 111.48,
+      "hit_rate": 34.09,
+      "hits": 30,
+      "ci95": [
+        25.04,
+        44.47
+      ]
+    },
+    {
+      "dimension": "odds_band",
+      "condition": "5-10倍",
+      "n": 92,
+      "bet_total": 92000.0,
+      "payout_total": 94700.0,
+      "roi": 102.93,
+      "hit_rate": 17.39,
+      "hits": 16,
+      "ci95": [
+        11.0,
+        26.4
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "高知",
+      "n": 91,
+      "bet_total": 91000.0,
+      "payout_total": 85400.0,
+      "roi": 93.85,
+      "hit_rate": 46.15,
+      "hits": 42,
+      "ci95": [
+        36.28,
+        56.34
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "佐賀",
+      "n": 124,
+      "bet_total": 124000.0,
+      "payout_total": 114500.0,
+      "roi": 92.34,
+      "hit_rate": 46.77,
+      "hits": 58,
+      "ci95": [
+        38.22,
+        55.52
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "船橋",
+      "n": 48,
+      "bet_total": 48000.0,
+      "payout_total": 43300.0,
+      "roi": 90.21,
+      "hit_rate": 39.58,
+      "hits": 19,
+      "ci95": [
+        27.02,
+        53.69
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "名古屋",
+      "n": 132,
+      "bet_total": 132000.0,
+      "payout_total": 118100.0,
+      "roi": 89.47,
+      "hit_rate": 41.67,
+      "hits": 55,
+      "ci95": [
+        33.61,
+        50.2
+      ]
+    },
+    {
+      "dimension": "track",
+      "condition": "帯広ば",
+      "n": 144,
+      "bet_total": 144000.0,
+      "payout_total": 121700.0,
+      "roi": 84.51,
+      "hit_rate": 26.39,
+      "hits": 38,
+      "ci95": [
+        19.87,
+        34.13
+      ]
+    },
+    {
+      "dimension": "odds_band",
+      "condition": "1倍台",
+      "n": 669,
+      "bet_total": 669000.0,
+      "payout_total": 560200.0,
+      "roi": 83.74,
+      "hit_rate": 56.05,
+      "hits": 375,
+      "ci95": [
+        52.27,
+        59.77
+      ]
+    },
+    {
+      "dimension": "hour_band",
+      "condition": "午前〜14時台",
+      "n": 265,
+      "bet_total": 265000.0,
+      "payout_total": 216400.0,
+      "roi": 81.66,
+      "hit_rate": 49.06,
+      "hits": 130,
+      "ci95": [
+        43.09,
+        55.05
+      ]
+    },
+    {
+      "dimension": "distance_band",
+      "condition": "1200m以下",
+      "n": 467,
+      "bet_total": 467000.0,
+      "payout_total": 380600.0,
+      "roi": 81.5,
+      "hit_rate": 35.76,
+      "hits": 167,
+      "ci95": [
+        31.55,
+        40.21
+      ]
+    }
+  ],
+  "staking_comparison": {
+    "固定100円": {
+      "final_bankroll": 88940.0,
+      "max_drawdown_pct": 11.18,
+      "ruined": false,
+      "path_len": 525
+    },
+    "均等配分(1000円)": {
+      "final_bankroll": 0.0,
+      "max_drawdown_pct": 100.0,
+      "ruined": true,
+      "path_len": 525
+    },
+    "期待値比例": {
+      "final_bankroll": 44522.410741125685,
+      "max_drawdown_pct": 63.37,
+      "ruined": false,
+      "path_len": 525
+    },
+    "制約付きハーフケリー": {
+      "final_bankroll": 19120.0,
+      "max_drawdown_pct": 85.91,
+      "ruined": false,
+      "path_len": 525
+    }
+  },
+  "notes": [
+    "ここに表示される新戦略候補は検証中であり、実運用の推奨ではありません。",
+    "本番の買い目は現行ワイド1点のみです(today-picks.html等)。",
+    "利益を保証する結果ではありません。実際の馬券購入・自動投票は行っていません。"
+  ]
+}

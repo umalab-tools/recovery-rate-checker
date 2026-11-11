@@ -1,0 +1,149 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UMALAB研究ダッシュボード</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:#f6f4ee;color:#1d2318;font-family:-apple-system,"Hiragino Sans",sans-serif;line-height:1.6;}
+@media (prefers-color-scheme: dark){body{background:#12150f;color:#eae7dc;}}
+.wrap{max-width:640px;margin:0 auto;padding:20px 14px 64px;}
+h1{font-size:18px;margin:0 0 6px;}
+h2{font-size:14px;margin:0 0 10px;color:#4a5340;}
+@media (prefers-color-scheme: dark){h2{color:#9aa68a;}}
+.lede{font-size:12.5px;color:#5c6455;margin:0 0 12px;}
+@media (prefers-color-scheme: dark){.lede{color:#a4ac97;}}
+.alert{background:#f6e3e0;border:1px solid #af3a35;color:#af3a35;border-radius:10px;padding:12px 14px;font-size:12.5px;font-weight:700;margin-bottom:16px;}
+@media (prefers-color-scheme: dark){.alert{background:#382019;border-color:#e2867d;color:#e2867d;}}
+.panel{background:#fff;border:1px solid #dcd5c5;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+@media (prefers-color-scheme: dark){.panel{background:#1a1f16;border-color:#333c2b;}}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th,td{border-bottom:1px solid #e3ddc9;padding:5px 6px;text-align:right;white-space:nowrap;}
+@media (prefers-color-scheme: dark){th,td{border-color:#2a3122;}}
+th:first-child,td:first-child{text-align:left;}
+th{color:#5c6455;font-weight:600;}
+@media (prefers-color-scheme: dark){th{color:#a4ac97;}}
+.best{font-weight:800;color:#2a6b3a;}
+@media (prefers-color-scheme: dark){.best{color:#7fd89a;}}
+.scroll{overflow-x:auto;}
+.note{font-size:11.5px;color:#8a9180;margin-top:6px;}
+@media (prefers-color-scheme: dark){.note{color:#6f7a63;}}
+.tag{display:inline-block;font-size:10.5px;padding:2px 7px;border-radius:999px;background:#eeebe1;color:#5c6455;margin-right:4px;}
+@media (prefers-color-scheme: dark){.tag{background:#20261b;color:#9aa68a;}}
+.refresh{display:block;width:100%;min-height:44px;padding:10px;background:#3a6b3a;color:#fff;border:none;border-radius:8px;margin-top:8px;font-size:14px;}
+</style></head><body>
+<div class="wrap">
+<h1>UMALAB研究ダッシュボード</h1>
+<p class="lede"><a href="./today-picks.html">本日の買い目(本番)へ →</a>　<a href="./track-record.html">実績ページへ →</a></p>
+
+<div class="alert">
+【研究・検証専用】ここに表示される新戦略候補は検証中であり、実運用の推奨ではありません。
+本番の買い目は現行ワイド1点のみです。実際の馬券購入・自動投票は行っていません。
+利益を保証する結果ではありません。
+</div>
+
+<div id="content">読み込み中...</div>
+<button class="refresh" onclick="load(true)">更新</button>
+</div>
+
+<script>
+function fmtPct(v){ return v === null || v === undefined ? '-' : v + '%'; }
+function periodTag(label){ return `<span class="tag">${label}</span>`; }
+
+function constructionRows(rows){
+  return rows.map(r => {
+    const cls = r.is_best ? ' class="best"' : '';
+    const d = r.discovery, c = r.confirmation, h = r.holdout;
+    return `<tr${cls}><td>${r.name}${r.is_best ? ' ★' : ''}</td>
+      <td>${fmtPct(d.roi)}</td><td>${fmtPct(c.roi)}</td><td>${fmtPct(h.roi)}</td>
+      <td>${r.replicated === true ? '再現' : r.replicated === false ? '未再現' : '判定不可'}</td></tr>`;
+  }).join('');
+}
+
+function segmentRows(rows){
+  return rows.map(r =>
+    `<tr><td>${r.dimension}=${r.condition}</td><td>${r.n}</td><td>${fmtPct(r.hit_rate)}</td><td>${fmtPct(r.roi)}</td></tr>`
+  ).join('');
+}
+
+function modelRows(rows){
+  return rows.map(r =>
+    `<tr><td>${r.name}</td><td>${r.test_logloss}</td><td>${r.vs_model_e_logloss}</td>
+      <td>${r.adopted ? '採用' : '不採用'}</td></tr>`
+  ).join('');
+}
+
+function stakingRows(staking){
+  if (!staking) return '';
+  return Object.entries(staking).filter(([k,v]) => v && 'final_bankroll' in v).map(([label, s]) =>
+    `<tr><td>${label}</td><td>${s.final_bankroll}</td><td>${s.max_drawdown_pct}%</td>
+      <td>${s.ruined ? 'はい' : 'いいえ'}</td></tr>`
+  ).join('');
+}
+
+async function load(force){
+  const url = 'umalab_research_dashboard_data.json' + (force ? ('?t='+Date.now()) : '');
+  const r = await fetch(url, {cache: force ? 'no-store' : 'default'});
+  const d = await r.json();
+  const m = d.current_model_vs_candidates;
+
+  document.getElementById('content').innerHTML = `
+    <div class="panel">
+      <h2>最終更新: ${d.updated_at}</h2>
+      <p class="note">購入時点オッズのデータ期間: ${d.data_coverage.purchase_time_odds_period} /
+        検証対象leg数: ${d.data_coverage.n_total_legs_baseline ?? '-'}</p>
+      <p>${periodTag('発見期間')}${periodTag('検証期間')}${periodTag('完全未使用ホールドアウト')}の3段階で評価</p>
+    </div>
+
+    <div class="panel">
+      <h2>券種別成績(現行モデルの予測を使用)</h2>
+      <p class="note">最良候補: <strong>${m.best_candidate ?? '-'}</strong> — ${m.best_candidate_reason ?? ''}</p>
+      <div class="scroll"><table>
+        <tr><th>構成</th><th>発見ROI</th><th>検証ROI</th><th>ホールドアウトROI</th><th>再現性</th></tr>
+        ${constructionRows(m.constructions)}
+      </table></div>
+      <p class="note">★=最良候補(多くの場合、現行ベースラインのまま=改善未確認)。ROIは100%が損益ゼロ。</p>
+    </div>
+
+    <div class="panel">
+      <h2>モデル比較(予測アルゴリズムの違い)</h2>
+      <div class="scroll"><table>
+        <tr><th>モデル</th><th>test logloss</th><th>Model E logloss</th><th>判定</th></tr>
+        ${modelRows(d.model_algorithm_comparison)}
+      </table></div>
+      <p class="note">loglossは小さいほど良い。確率校正: raw Brier=${d.probability_calibration?.brier_score_raw ?? '-'} /
+        isotonic校正後=${d.probability_calibration?.brier_score_isotonic_calibrated ?? '-'}</p>
+    </div>
+
+    <div class="panel">
+      <h2>資金配分方式の比較(最良候補に適用)</h2>
+      <div class="scroll"><table>
+        <tr><th>方式</th><th>最終資金</th><th>最大DD</th><th>破産</th></tr>
+        ${stakingRows(d.staking_comparison)}
+      </table></div>
+    </div>
+
+    <div class="panel">
+      <h2>弱点セグメントTOP10(ROI最低)</h2>
+      <div class="scroll"><table>
+        <tr><th>条件</th><th>件数</th><th>的中率</th><th>ROI</th></tr>
+        ${segmentRows(d.weakest_segments_top10)}
+      </table></div>
+    </div>
+
+    <div class="panel">
+      <h2>強い条件TOP10(ROI最高・未再現含む参考値)</h2>
+      <div class="scroll"><table>
+        <tr><th>条件</th><th>件数</th><th>的中率</th><th>ROI</th></tr>
+        ${segmentRows(d.strongest_segments_top10)}
+      </table></div>
+      <p class="note">ここでの「強い」は全期間プールの記述統計。期間分割で再現しない場合は採用していません。</p>
+    </div>
+
+    <div class="panel">
+      <h2>注記</h2>
+      <p class="note">${d.notes.join(' / ')}</p>
+    </div>
+  `;
+}
+load(false);
+</script>
+</body></html>
