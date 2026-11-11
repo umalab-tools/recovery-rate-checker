@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11 22:17:24",
+  "updated_at": "2026-11-11 22:27:04",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -358,6 +358,13 @@
       "test_top1_hit_rate": 0.43411055802986637,
       "vs_model_e_logloss": 0.46984754679122387,
       "adopted": false
+    },
+    {
+      "name": "Model F2(既存未使用24特徴量追加)",
+      "test_logloss": 0.4694472263526006,
+      "test_top1_hit_rate": 0.44262509824469476,
+      "vs_model_e_logloss": 0.46984754679122387,
+      "adopted": true
     }
   ],
   "probability_calibration": {
