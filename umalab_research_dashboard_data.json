@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11 22:58:16",
+  "updated_at": "2026-11-12 00:12:23",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -372,6 +372,13 @@
       "test_top1_hit_rate": 0.44262509824469476,
       "vs_model_e_logloss": 0.46984754679122387,
       "adopted": false
+    },
+    {
+      "name": "Model B(全国共通+競馬場特徴量)",
+      "test_logloss": 0.46940848251644673,
+      "test_top1_hit_rate": 0.4400052397170553,
+      "vs_model_e_logloss": 0.46984754679122387,
+      "adopted": false
     }
   ],
   "probability_calibration": {
@@ -385,6 +392,1457 @@
     "track_official_sites": "独自のオープンデータは無し。編集コンテンツのみ",
     "newspaper_ai_tipsters": "競馬ブック・netkeiba・SPAIA競馬とも利用規約でスクレイピングを明示的に禁止。地方競馬の完全な過去予想印アーカイブ(見送り含む全件)は確認できず。新聞対UMALABの実データ比較は本ターンでは実施不可(規約上の制約)",
     "academic_papers": "無料で利用可能。CiNii論文(人気帯別に最良手法が異なる)の知見をModel Eで検証したが再現せず(仮説台帳H021)"
+  },
+  "track_profile": [
+    {
+      "track": "門別",
+      "top1_win_rate": 45.24,
+      "top3_recall": 64.48,
+      "logloss": 0.4451,
+      "calibration_error": 0.92,
+      "n_races_test": 473,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 172,
+          "bet_total": 172000.0,
+          "payout_total": 143300.0,
+          "roi": 83.31,
+          "hit_rate": 41.28,
+          "hits": 71,
+          "ci95": [
+            34.19,
+            48.75
+          ]
+        },
+        "複勝": {
+          "n": 172,
+          "bet_total": 172000.0,
+          "payout_total": 141600.0,
+          "roi": 82.33,
+          "hit_rate": 69.77,
+          "hits": 120,
+          "ci95": [
+            62.53,
+            76.14
+          ]
+        },
+        "ワイド1点": {
+          "n": 180,
+          "bet_total": 180000.0,
+          "payout_total": 137300.0,
+          "roi": 76.28,
+          "hit_rate": 39.44,
+          "hits": 71,
+          "ci95": [
+            32.6,
+            46.73
+          ]
+        },
+        "ワイド2点": {
+          "n": 360,
+          "bet_total": 360000.0,
+          "payout_total": 252100.0,
+          "roi": 70.03,
+          "hit_rate": 32.5,
+          "hits": 117,
+          "ci95": [
+            27.87,
+            37.5
+          ]
+        },
+        "ワイド3点": {
+          "n": 540,
+          "bet_total": 540000.0,
+          "payout_total": 388400.0,
+          "roi": 71.93,
+          "hit_rate": 29.63,
+          "hits": 160,
+          "ci95": [
+            25.93,
+            33.61
+          ]
+        }
+      },
+      "classification": "改善未確認",
+      "raw_brier": 0.14571,
+      "n_val": 5561,
+      "n_test": 4667
+    },
+    {
+      "track": "盛岡",
+      "top1_win_rate": 46.08,
+      "top3_recall": 57.68,
+      "logloss": 0.4831,
+      "calibration_error": 1.16,
+      "n_races_test": 319,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 149,
+          "bet_total": 149000.0,
+          "payout_total": 88900.0,
+          "roi": 59.66,
+          "hit_rate": 36.91,
+          "hits": 55,
+          "ci95": [
+            29.58,
+            44.9
+          ]
+        },
+        "複勝": {
+          "n": 149,
+          "bet_total": 149000.0,
+          "payout_total": 129200.0,
+          "roi": 86.71,
+          "hit_rate": 74.5,
+          "hits": 111,
+          "ci95": [
+            66.94,
+            80.82
+          ]
+        },
+        "ワイド1点": {
+          "n": 156,
+          "bet_total": 156000.0,
+          "payout_total": 118900.0,
+          "roi": 76.22,
+          "hit_rate": 40.38,
+          "hits": 63,
+          "ci95": [
+            33.01,
+            48.23
+          ]
+        },
+        "ワイド2点": {
+          "n": 312,
+          "bet_total": 312000.0,
+          "payout_total": 254100.0,
+          "roi": 81.44,
+          "hit_rate": 36.22,
+          "hits": 113,
+          "ci95": [
+            31.08,
+            41.69
+          ]
+        },
+        "ワイド3点": {
+          "n": 468,
+          "bet_total": 468000.0,
+          "payout_total": 362700.0,
+          "roi": 77.5,
+          "hit_rate": 30.98,
+          "hits": 145,
+          "ci95": [
+            26.96,
+            35.31
+          ]
+        }
+      },
+      "classification": "改善未確認",
+      "raw_brier": 0.15912,
+      "n_val": 4315,
+      "n_test": 3253
+    },
+    {
+      "track": "水沢",
+      "top1_win_rate": 41.53,
+      "top3_recall": 61.24,
+      "logloss": 0.4908,
+      "calibration_error": 1.76,
+      "n_races_test": 419,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        },
+        "複勝": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        },
+        "ワイド1点": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        },
+        "ワイド2点": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        },
+        "ワイド3点": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        }
+      },
+      "classification": "データ不足",
+      "raw_brier": 0.16092,
+      "n_val": 3576,
+      "n_test": 4156
+    },
+    {
+      "track": "浦和",
+      "top1_win_rate": 37.78,
+      "top3_recall": 58.8,
+      "logloss": 0.4675,
+      "calibration_error": 1.41,
+      "n_races_test": 360,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 59,
+          "bet_total": 59000.0,
+          "payout_total": 49700.0,
+          "roi": 84.24,
+          "hit_rate": 45.76,
+          "hits": 27,
+          "ci95": [
+            33.7,
+            58.34
+          ]
+        },
+        "複勝": {
+          "n": 59,
+          "bet_total": 59000.0,
+          "payout_total": 45400.0,
+          "roi": 76.95,
+          "hit_rate": 64.41,
+          "hits": 38,
+          "ci95": [
+            51.66,
+            75.4
+          ]
+        },
+        "ワイド1点": {
+          "n": 60,
+          "bet_total": 60000.0,
+          "payout_total": 33800.0,
+          "roi": 56.33,
+          "hit_rate": 26.67,
+          "hits": 16,
+          "ci95": [
+            17.13,
+            39.01
+          ]
+        },
+        "ワイド2点": {
+          "n": 120,
+          "bet_total": 120000.0,
+          "payout_total": 77000.0,
+          "roi": 64.17,
+          "hit_rate": 25.83,
+          "hits": 31,
+          "ci95": [
+            18.84,
+            34.33
+          ]
+        },
+        "ワイド3点": {
+          "n": 180,
+          "bet_total": 180000.0,
+          "payout_total": 113800.0,
+          "roi": 63.22,
+          "hit_rate": 23.89,
+          "hits": 43,
+          "ci95": [
+            18.25,
+            30.62
+          ]
+        }
+      },
+      "classification": "改善未確認",
+      "raw_brier": 0.15279,
+      "n_val": 3397,
+      "n_test": 3837
+    },
+    {
+      "track": "船橋",
+      "top1_win_rate": 41.94,
+      "top3_recall": 55.93,
+      "logloss": 0.479,
+      "calibration_error": 2.7,
+      "n_races_test": 360,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 48,
+          "bet_total": 48000.0,
+          "payout_total": 51900.0,
+          "roi": 108.12,
+          "hit_rate": 37.5,
+          "hits": 18,
+          "ci95": [
+            25.22,
+            51.64
+          ]
+        },
+        "複勝": {
+          "n": 48,
+          "bet_total": 48000.0,
+          "payout_total": 42100.0,
+          "roi": 87.71,
+          "hit_rate": 66.67,
+          "hits": 32,
+          "ci95": [
+            52.54,
+            78.32
+          ]
+        },
+        "ワイド1点": {
+          "n": 48,
+          "bet_total": 48000.0,
+          "payout_total": 43300.0,
+          "roi": 90.21,
+          "hit_rate": 39.58,
+          "hits": 19,
+          "ci95": [
+            27.02,
+            53.69
+          ]
+        },
+        "ワイド2点": {
+          "n": 96,
+          "bet_total": 96000.0,
+          "payout_total": 98300.0,
+          "roi": 102.4,
+          "hit_rate": 36.46,
+          "hits": 35,
+          "ci95": [
+            27.52,
+            46.43
+          ]
+        },
+        "ワイド3点": {
+          "n": 144,
+          "bet_total": 144000.0,
+          "payout_total": 122400.0,
+          "roi": 85.0,
+          "hit_rate": 27.08,
+          "hits": 39,
+          "ci95": [
+            20.49,
+            34.87
+          ]
+        }
+      },
+      "classification": "有望(ただし100%未達、未使用期間での再現性は未確認)",
+      "raw_brier": 0.15813,
+      "n_val": 3388,
+      "n_test": 3884
+    },
+    {
+      "track": "大井",
+      "top1_win_rate": 47.3,
+      "top3_recall": 57.48,
+      "logloss": 0.4277,
+      "calibration_error": 0.77,
+      "n_races_test": 537,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 70,
+          "bet_total": 70000.0,
+          "payout_total": 46700.0,
+          "roi": 66.71,
+          "hit_rate": 34.29,
+          "hits": 24,
+          "ci95": [
+            24.25,
+            45.96
+          ]
+        },
+        "複勝": {
+          "n": 70,
+          "bet_total": 70000.0,
+          "payout_total": 53400.0,
+          "roi": 76.29,
+          "hit_rate": 64.29,
+          "hits": 45,
+          "ci95": [
+            52.59,
+            74.5
+          ]
+        },
+        "ワイド1点": {
+          "n": 70,
+          "bet_total": 70000.0,
+          "payout_total": 55700.0,
+          "roi": 79.57,
+          "hit_rate": 34.29,
+          "hits": 24,
+          "ci95": [
+            24.25,
+            45.96
+          ]
+        },
+        "ワイド2点": {
+          "n": 140,
+          "bet_total": 140000.0,
+          "payout_total": 98600.0,
+          "roi": 70.43,
+          "hit_rate": 31.43,
+          "hits": 44,
+          "ci95": [
+            24.32,
+            39.53
+          ]
+        },
+        "ワイド3点": {
+          "n": 210,
+          "bet_total": 210000.0,
+          "payout_total": 145900.0,
+          "roi": 69.48,
+          "hit_rate": 28.1,
+          "hits": 59,
+          "ci95": [
+            22.45,
+            34.53
+          ]
+        }
+      },
+      "classification": "改善未確認",
+      "raw_brier": 0.13802,
+      "n_val": 7157,
+      "n_test": 6432
+    },
+    {
+      "track": "川崎",
+      "top1_win_rate": 42.14,
+      "top3_recall": 59.29,
+      "logloss": 0.4635,
+      "calibration_error": 0.54,
+      "n_races_test": 420,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 85,
+          "bet_total": 85000.0,
+          "payout_total": 77300.0,
+          "roi": 90.94,
+          "hit_rate": 47.06,
+          "hits": 40,
+          "ci95": [
+            36.81,
+            57.57
+          ]
+        },
+        "複勝": {
+          "n": 85,
+          "bet_total": 85000.0,
+          "payout_total": 68600.0,
+          "roi": 80.71,
+          "hit_rate": 65.88,
+          "hits": 56,
+          "ci95": [
+            55.31,
+            75.08
+          ]
+        },
+        "ワイド1点": {
+          "n": 96,
+          "bet_total": 96000.0,
+          "payout_total": 55400.0,
+          "roi": 57.71,
+          "hit_rate": 32.29,
+          "hits": 31,
+          "ci95": [
+            23.78,
+            42.17
+          ]
+        },
+        "ワイド2点": {
+          "n": 192,
+          "bet_total": 192000.0,
+          "payout_total": 123900.0,
+          "roi": 64.53,
+          "hit_rate": 30.21,
+          "hits": 58,
+          "ci95": [
+            24.15,
+            37.04
+          ]
+        },
+        "ワイド3点": {
+          "n": 288,
+          "bet_total": 288000.0,
+          "payout_total": 189200.0,
+          "roi": 65.69,
+          "hit_rate": 26.74,
+          "hits": 77,
+          "ci95": [
+            21.96,
+            32.13
+          ]
+        }
+      },
+      "classification": "改善未確認",
+      "raw_brier": 0.15063,
+      "n_val": 4149,
+      "n_test": 4522
+    },
+    {
+      "track": "金沢",
+      "top1_win_rate": 51.41,
+      "top3_recall": 66.94,
+      "logloss": 0.4701,
+      "calibration_error": 2.42,
+      "n_races_test": 496,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 103,
+          "bet_total": 103000.0,
+          "payout_total": 86600.0,
+          "roi": 84.08,
+          "hit_rate": 47.57,
+          "hits": 49,
+          "ci95": [
+            38.19,
+            57.13
+          ]
+        },
+        "複勝": {
+          "n": 103,
+          "bet_total": 103000.0,
+          "payout_total": 89900.0,
+          "roi": 87.28,
+          "hit_rate": 76.7,
+          "hits": 79,
+          "ci95": [
+            67.67,
+            83.81
+          ]
+        },
+        "ワイド1点": {
+          "n": 107,
+          "bet_total": 107000.0,
+          "payout_total": 70900.0,
+          "roi": 66.26,
+          "hit_rate": 42.06,
+          "hits": 45,
+          "ci95": [
+            33.14,
+            51.53
+          ]
+        },
+        "ワイド2点": {
+          "n": 214,
+          "bet_total": 214000.0,
+          "payout_total": 137600.0,
+          "roi": 64.3,
+          "hit_rate": 37.38,
+          "hits": 80,
+          "ci95": [
+            31.18,
+            44.03
+          ]
+        },
+        "ワイド3点": {
+          "n": 321,
+          "bet_total": 321000.0,
+          "payout_total": 213800.0,
+          "roi": 66.6,
+          "hit_rate": 34.27,
+          "hits": 110,
+          "ci95": [
+            29.29,
+            39.62
+          ]
+        }
+      },
+      "classification": "改善未確認",
+      "raw_brier": 0.15325,
+      "n_val": 4036,
+      "n_test": 4433
+    },
+    {
+      "track": "笠松",
+      "top1_win_rate": 43.55,
+      "top3_recall": 63.05,
+      "logloss": 0.5129,
+      "calibration_error": 0.79,
+      "n_races_test": 535,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 83,
+          "bet_total": 83000.0,
+          "payout_total": 52800.0,
+          "roi": 63.61,
+          "hit_rate": 39.76,
+          "hits": 33,
+          "ci95": [
+            29.91,
+            50.52
+          ]
+        },
+        "複勝": {
+          "n": 83,
+          "bet_total": 83000.0,
+          "payout_total": 69800.0,
+          "roi": 84.1,
+          "hit_rate": 75.9,
+          "hits": 63,
+          "ci95": [
+            65.69,
+            83.83
+          ]
+        },
+        "ワイド1点": {
+          "n": 83,
+          "bet_total": 83000.0,
+          "payout_total": 64200.0,
+          "roi": 77.35,
+          "hit_rate": 53.01,
+          "hits": 44,
+          "ci95": [
+            42.38,
+            63.38
+          ]
+        },
+        "ワイド2点": {
+          "n": 166,
+          "bet_total": 166000.0,
+          "payout_total": 112500.0,
+          "roi": 67.77,
+          "hit_rate": 42.77,
+          "hits": 71,
+          "ci95": [
+            35.49,
+            50.38
+          ]
+        },
+        "ワイド3点": {
+          "n": 249,
+          "bet_total": 249000.0,
+          "payout_total": 158200.0,
+          "roi": 63.53,
+          "hit_rate": 35.34,
+          "hits": 88,
+          "ci95": [
+            29.67,
+            41.46
+          ]
+        }
+      },
+      "classification": "改善未確認",
+      "raw_brier": 0.17027,
+      "n_val": 4637,
+      "n_test": 4675
+    },
+    {
+      "track": "名古屋",
+      "top1_win_rate": 44.02,
+      "top3_recall": 58.27,
+      "logloss": 0.452,
+      "calibration_error": 0.87,
+      "n_races_test": 711,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 130,
+          "bet_total": 130000.0,
+          "payout_total": 93600.0,
+          "roi": 72.0,
+          "hit_rate": 38.46,
+          "hits": 50,
+          "ci95": [
+            30.54,
+            47.04
+          ]
+        },
+        "複勝": {
+          "n": 130,
+          "bet_total": 130000.0,
+          "payout_total": 115600.0,
+          "roi": 88.92,
+          "hit_rate": 73.08,
+          "hits": 95,
+          "ci95": [
+            64.87,
+            79.96
+          ]
+        },
+        "ワイド1点": {
+          "n": 132,
+          "bet_total": 132000.0,
+          "payout_total": 118100.0,
+          "roi": 89.47,
+          "hit_rate": 41.67,
+          "hits": 55,
+          "ci95": [
+            33.61,
+            50.2
+          ]
+        },
+        "ワイド2点": {
+          "n": 264,
+          "bet_total": 264000.0,
+          "payout_total": 219300.0,
+          "roi": 83.07,
+          "hit_rate": 35.23,
+          "hits": 93,
+          "ci95": [
+            29.71,
+            41.16
+          ]
+        },
+        "ワイド3点": {
+          "n": 396,
+          "bet_total": 396000.0,
+          "payout_total": 294400.0,
+          "roi": 74.34,
+          "hit_rate": 29.04,
+          "hits": 115,
+          "ci95": [
+            24.79,
+            33.7
+          ]
+        }
+      },
+      "classification": "改善未確認",
+      "raw_brier": 0.14721,
+      "n_val": 7854,
+      "n_test": 7817
+    },
+    {
+      "track": "園田",
+      "top1_win_rate": 48.55,
+      "top3_recall": 63.26,
+      "logloss": 0.4534,
+      "calibration_error": 1.67,
+      "n_races_test": 725,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 168,
+          "bet_total": 168000.0,
+          "payout_total": 128500.0,
+          "roi": 76.49,
+          "hit_rate": 41.07,
+          "hits": 69,
+          "ci95": [
+            33.91,
+            48.63
+          ]
+        },
+        "複勝": {
+          "n": 168,
+          "bet_total": 168000.0,
+          "payout_total": 147300.0,
+          "roi": 87.68,
+          "hit_rate": 76.79,
+          "hits": 129,
+          "ci95": [
+            69.85,
+            82.53
+          ]
+        },
+        "ワイド1点": {
+          "n": 168,
+          "bet_total": 168000.0,
+          "payout_total": 135600.0,
+          "roi": 80.71,
+          "hit_rate": 46.43,
+          "hits": 78,
+          "ci95": [
+            39.05,
+            53.97
+          ]
+        },
+        "ワイド2点": {
+          "n": 336,
+          "bet_total": 336000.0,
+          "payout_total": 275500.0,
+          "roi": 81.99,
+          "hit_rate": 40.77,
+          "hits": 137,
+          "ci95": [
+            35.65,
+            46.1
+          ]
+        },
+        "ワイド3点": {
+          "n": 504,
+          "bet_total": 504000.0,
+          "payout_total": 410000.0,
+          "roi": 81.35,
+          "hit_rate": 36.51,
+          "hits": 184,
+          "ci95": [
+            32.42,
+            40.8
+          ]
+        }
+      },
+      "classification": "改善未確認",
+      "raw_brier": 0.14788,
+      "n_val": 9021,
+      "n_test": 7205
+    },
+    {
+      "track": "姫路",
+      "top1_win_rate": 45.83,
+      "top3_recall": 63.43,
+      "logloss": 0.4515,
+      "calibration_error": 1.55,
+      "n_races_test": 216,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        },
+        "複勝": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        },
+        "ワイド1点": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        },
+        "ワイド2点": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        },
+        "ワイド3点": {
+          "n": 0,
+          "bet_total": 0.0,
+          "payout_total": 0.0,
+          "roi": null,
+          "hit_rate": null,
+          "hits": 0,
+          "ci95": null
+        }
+      },
+      "classification": "データ不足",
+      "raw_brier": 0.14738,
+      "n_val": 711,
+      "n_test": 2202
+    },
+    {
+      "track": "高知",
+      "top1_win_rate": 45.18,
+      "top3_recall": 60.91,
+      "logloss": 0.4772,
+      "calibration_error": 0.97,
+      "n_races_test": 602,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 91,
+          "bet_total": 91000.0,
+          "payout_total": 54600.0,
+          "roi": 60.0,
+          "hit_rate": 37.36,
+          "hits": 34,
+          "ci95": [
+            28.12,
+            47.62
+          ]
+        },
+        "複勝": {
+          "n": 91,
+          "bet_total": 91000.0,
+          "payout_total": 78000.0,
+          "roi": 85.71,
+          "hit_rate": 72.53,
+          "hits": 66,
+          "ci95": [
+            62.59,
+            80.64
+          ]
+        },
+        "ワイド1点": {
+          "n": 91,
+          "bet_total": 91000.0,
+          "payout_total": 85400.0,
+          "roi": 93.85,
+          "hit_rate": 46.15,
+          "hits": 42,
+          "ci95": [
+            36.28,
+            56.34
+          ]
+        },
+        "ワイド2点": {
+          "n": 182,
+          "bet_total": 182000.0,
+          "payout_total": 152900.0,
+          "roi": 84.01,
+          "hit_rate": 40.11,
+          "hits": 73,
+          "ci95": [
+            33.26,
+            47.36
+          ]
+        },
+        "ワイド3点": {
+          "n": 273,
+          "bet_total": 273000.0,
+          "payout_total": 222300.0,
+          "roi": 81.43,
+          "hit_rate": 35.16,
+          "hits": 96,
+          "ci95": [
+            29.74,
+            41.0
+          ]
+        }
+      },
+      "classification": "有望(ただし100%未達、未使用期間での再現性は未確認)",
+      "raw_brier": 0.15661,
+      "n_val": 5379,
+      "n_test": 5927
+    },
+    {
+      "track": "佐賀",
+      "top1_win_rate": 50.48,
+      "top3_recall": 63.78,
+      "logloss": 0.434,
+      "calibration_error": 2.12,
+      "n_races_test": 626,
+      "bet_type_roi": {
+        "単勝": {
+          "n": 125,
+          "bet_total": 125000.0,
+          "payout_total": 112100.0,
+          "roi": 89.68,
+          "hit_rate": 52.8,
+          "hits": 66,
+          "ci95": [
+            44.1,
+            61.34
+          ]
+        },
+        "複勝": {
+          "n": 125,
+          "bet_total": 125000.0,
+          "payout_total": 115200.0,
+          "roi": 92.16,
+          "hit_rate": 79.2,
+          "hits": 99,
+          "ci95": [
+            71.27,
+            85.39
+          ]
+        },
+        "ワイド1点": {
+          "n": 124,
+          "bet_total": 124000.0,
+          "payout_total": 114500.0,
+          "roi": 92.34,
+          "hit_rate": 46.77,
+          "hits": 58,
+          "ci95": [
+            38.22,
+            55.52
+          ]
+        },
+        "ワイド2点": {
+          "n": 248,
+          "bet_total": 248000.0,
+          "payout_total": 200500.0,
+          "roi": 80.85,
+          "hit_rate": 39.52,
+          "hits": 98,
+          "ci95": [
+            33.64,
+            45.72
+          ]
+        },
+        "ワイド3点": {
+          "n": 372,
+          "bet_total": 372000.0,
+          "payout_total": 254500.0,
+          "roi": 68.41,
+          "hit_rate": 31.45,
+          "hits": 117,
+          "ci95": [
+            26.94,
+            36.34
+          ]
+        }
+      },
+      "classification": "有望(ただし100%未達、未使用期間での再現性は未確認)",
+      "raw_brier": 0.13939,
+      "n_val": 6354,
+      "n_test": 6438
+    }
+  ],
+  "track_rankings": {
+    "的中率ランキング(本命勝率、test期間)": [
+      {
+        "track": "金沢",
+        "value": 51.41,
+        "n": 496
+      },
+      {
+        "track": "佐賀",
+        "value": 50.48,
+        "n": 626
+      },
+      {
+        "track": "園田",
+        "value": 48.55,
+        "n": 725
+      },
+      {
+        "track": "大井",
+        "value": 47.3,
+        "n": 537
+      },
+      {
+        "track": "盛岡",
+        "value": 46.08,
+        "n": 319
+      },
+      {
+        "track": "姫路",
+        "value": 45.83,
+        "n": 216
+      },
+      {
+        "track": "門別",
+        "value": 45.24,
+        "n": 473
+      },
+      {
+        "track": "高知",
+        "value": 45.18,
+        "n": 602
+      },
+      {
+        "track": "名古屋",
+        "value": 44.02,
+        "n": 711
+      },
+      {
+        "track": "笠松",
+        "value": 43.55,
+        "n": 535
+      },
+      {
+        "track": "川崎",
+        "value": 42.14,
+        "n": 420
+      },
+      {
+        "track": "船橋",
+        "value": 41.94,
+        "n": 360
+      },
+      {
+        "track": "水沢",
+        "value": 41.53,
+        "n": 419
+      },
+      {
+        "track": "浦和",
+        "value": 37.78,
+        "n": 360
+      }
+    ],
+    "回収率ランキング(ワイド1点、32日分)": [
+      {
+        "track": "高知",
+        "value": 93.85,
+        "n": 91,
+        "insufficient_sample": false
+      },
+      {
+        "track": "佐賀",
+        "value": 92.34,
+        "n": 124,
+        "insufficient_sample": false
+      },
+      {
+        "track": "船橋",
+        "value": 90.21,
+        "n": 48,
+        "insufficient_sample": false
+      },
+      {
+        "track": "名古屋",
+        "value": 89.47,
+        "n": 132,
+        "insufficient_sample": false
+      },
+      {
+        "track": "園田",
+        "value": 80.71,
+        "n": 168,
+        "insufficient_sample": false
+      },
+      {
+        "track": "大井",
+        "value": 79.57,
+        "n": 70,
+        "insufficient_sample": false
+      },
+      {
+        "track": "笠松",
+        "value": 77.35,
+        "n": 83,
+        "insufficient_sample": false
+      },
+      {
+        "track": "門別",
+        "value": 76.28,
+        "n": 180,
+        "insufficient_sample": false
+      },
+      {
+        "track": "盛岡",
+        "value": 76.22,
+        "n": 156,
+        "insufficient_sample": false
+      },
+      {
+        "track": "金沢",
+        "value": 66.26,
+        "n": 107,
+        "insufficient_sample": false
+      },
+      {
+        "track": "川崎",
+        "value": 57.71,
+        "n": 96,
+        "insufficient_sample": false
+      },
+      {
+        "track": "浦和",
+        "value": 56.33,
+        "n": 60,
+        "insufficient_sample": false
+      }
+    ],
+    "予測精度ランキング(logloss低い=良い、test期間)": [
+      {
+        "track": "大井",
+        "value": 0.4277,
+        "n": 537
+      },
+      {
+        "track": "佐賀",
+        "value": 0.434,
+        "n": 626
+      },
+      {
+        "track": "門別",
+        "value": 0.4451,
+        "n": 473
+      },
+      {
+        "track": "姫路",
+        "value": 0.4515,
+        "n": 216
+      },
+      {
+        "track": "名古屋",
+        "value": 0.452,
+        "n": 711
+      },
+      {
+        "track": "園田",
+        "value": 0.4534,
+        "n": 725
+      },
+      {
+        "track": "川崎",
+        "value": 0.4635,
+        "n": 420
+      },
+      {
+        "track": "浦和",
+        "value": 0.4675,
+        "n": 360
+      },
+      {
+        "track": "金沢",
+        "value": 0.4701,
+        "n": 496
+      },
+      {
+        "track": "高知",
+        "value": 0.4772,
+        "n": 602
+      },
+      {
+        "track": "船橋",
+        "value": 0.479,
+        "n": 360
+      },
+      {
+        "track": "盛岡",
+        "value": 0.4831,
+        "n": 319
+      },
+      {
+        "track": "水沢",
+        "value": 0.4908,
+        "n": 419
+      },
+      {
+        "track": "笠松",
+        "value": 0.5129,
+        "n": 535
+      }
+    ],
+    "損失額ランキング(ワイド1点の純損益が低い順、32日分)": [
+      {
+        "track": "門別",
+        "value": -42700.0,
+        "n": 180,
+        "insufficient_sample": false
+      },
+      {
+        "track": "川崎",
+        "value": -40600.0,
+        "n": 96,
+        "insufficient_sample": false
+      },
+      {
+        "track": "盛岡",
+        "value": -37100.0,
+        "n": 156,
+        "insufficient_sample": false
+      },
+      {
+        "track": "金沢",
+        "value": -36100.0,
+        "n": 107,
+        "insufficient_sample": false
+      },
+      {
+        "track": "園田",
+        "value": -32400.0,
+        "n": 168,
+        "insufficient_sample": false
+      },
+      {
+        "track": "浦和",
+        "value": -26200.0,
+        "n": 60,
+        "insufficient_sample": false
+      },
+      {
+        "track": "笠松",
+        "value": -18800.0,
+        "n": 83,
+        "insufficient_sample": false
+      },
+      {
+        "track": "大井",
+        "value": -14300.0,
+        "n": 70,
+        "insufficient_sample": false
+      },
+      {
+        "track": "名古屋",
+        "value": -13900.0,
+        "n": 132,
+        "insufficient_sample": false
+      },
+      {
+        "track": "佐賀",
+        "value": -9500.0,
+        "n": 124,
+        "insufficient_sample": false
+      },
+      {
+        "track": "高知",
+        "value": -5600.0,
+        "n": 91,
+        "insufficient_sample": false
+      },
+      {
+        "track": "船橋",
+        "value": -4700.0,
+        "n": 48,
+        "insufficient_sample": false
+      }
+    ],
+    "改善余地ランキング(校正誤差が大きい順、test期間)": [
+      {
+        "track": "船橋",
+        "value": 2.7,
+        "n": 360
+      },
+      {
+        "track": "金沢",
+        "value": 2.42,
+        "n": 496
+      },
+      {
+        "track": "佐賀",
+        "value": 2.12,
+        "n": 626
+      },
+      {
+        "track": "水沢",
+        "value": 1.76,
+        "n": 419
+      },
+      {
+        "track": "園田",
+        "value": 1.67,
+        "n": 725
+      },
+      {
+        "track": "姫路",
+        "value": 1.55,
+        "n": 216
+      },
+      {
+        "track": "浦和",
+        "value": 1.41,
+        "n": 360
+      },
+      {
+        "track": "盛岡",
+        "value": 1.16,
+        "n": 319
+      },
+      {
+        "track": "高知",
+        "value": 0.97,
+        "n": 602
+      },
+      {
+        "track": "門別",
+        "value": 0.92,
+        "n": 473
+      },
+      {
+        "track": "名古屋",
+        "value": 0.87,
+        "n": 711
+      },
+      {
+        "track": "笠松",
+        "value": 0.79,
+        "n": 535
+      },
+      {
+        "track": "大井",
+        "value": 0.77,
+        "n": 537
+      },
+      {
+        "track": "川崎",
+        "value": 0.54,
+        "n": 420
+      }
+    ],
+    "データ不足ランキング(32日分のワイド1点購入可能件数が少ない順)": [
+      {
+        "track": "水沢",
+        "value": 0,
+        "n": 0
+      },
+      {
+        "track": "姫路",
+        "value": 0,
+        "n": 0
+      },
+      {
+        "track": "船橋",
+        "value": 48,
+        "n": 48
+      },
+      {
+        "track": "浦和",
+        "value": 60,
+        "n": 60
+      },
+      {
+        "track": "大井",
+        "value": 70,
+        "n": 70
+      },
+      {
+        "track": "笠松",
+        "value": 83,
+        "n": 83
+      },
+      {
+        "track": "高知",
+        "value": 91,
+        "n": 91
+      },
+      {
+        "track": "川崎",
+        "value": 96,
+        "n": 96
+      },
+      {
+        "track": "金沢",
+        "value": 107,
+        "n": 107
+      },
+      {
+        "track": "佐賀",
+        "value": 124,
+        "n": 124
+      },
+      {
+        "track": "名古屋",
+        "value": 132,
+        "n": 132
+      },
+      {
+        "track": "盛岡",
+        "value": 156,
+        "n": 156
+      },
+      {
+        "track": "園田",
+        "value": 168,
+        "n": 168
+      },
+      {
+        "track": "門別",
+        "value": 180,
+        "n": 180
+      }
+    ]
+  },
+  "course_geometry_findings": {
+    "nagoya_relocation": "名古屋競馬場は2022年4月に弥富市へ移転し、物理的に別のコースになった(移転前は1400/1600/800mが主流、移転後は1500/1700/920mが主流、DB上でも確認済み)。本番モデルの学習期間(2023年8月以降)は移転後のみで問題ないが、馬個体の「当該コース通算成績」特徴量は移転前の成績を引き続きプールしている可能性があり、古い馬ほど影響を受けうる(未検証、次回優先課題)。",
+    "himeji_data_gap": "姫路競馬場は2026年3月12日以降、DB上にレースデータが無い(8ヶ月のギャップ)。運営上の休止かデータ取得側の欠落かは未確認。過去にも2012-2020年の約7.5年間の休止歴があり、運営上の休止である可能性があるが断定しない。",
+    "other_notes": "盛岡はNARで唯一の芝コースを持ち高低差(4.4-4.6m)が地方競馬としては大きい。大井は内外・右左回りの両方を持つ唯一の施設。水沢・姫路は公式に高低差0mと明記。園田は1周1,051mと日本最短クラス。大井(2023年11月)・高知(2024年8月〜)・川崎は近年の砂材変更・改修歴があり、変更前後のデータは比較に注意が必要。"
   },
   "weakest_segments_top10": [
     {

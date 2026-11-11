@@ -29,6 +29,12 @@ th{color:#5c6455;font-weight:600;}
 .tag{display:inline-block;font-size:10.5px;padding:2px 7px;border-radius:999px;background:#eeebe1;color:#5c6455;margin-right:4px;}
 @media (prefers-color-scheme: dark){.tag{background:#20261b;color:#9aa68a;}}
 .refresh{display:block;width:100%;min-height:44px;padding:10px;background:#3a6b3a;color:#fff;border:none;border-radius:8px;margin-top:8px;font-size:14px;}
+select{width:100%;min-height:40px;padding:8px;border-radius:8px;border:1px solid #dcd5c5;background:#fff;color:#1d2318;font-size:14px;margin-bottom:8px;}
+@media (prefers-color-scheme: dark){select{background:#1a1f16;border-color:#333c2b;color:#eae7dc;}}
+.pill{display:inline-block;font-size:11px;padding:3px 9px;border-radius:999px;margin-bottom:8px;}
+.pill-ok{background:#dcebdd;color:#2a6b3a;}
+.pill-warn{background:#f6e3e0;color:#af3a35;}
+@media (prefers-color-scheme: dark){.pill-ok{background:#1e3324;color:#7fd89a;}.pill-warn{background:#382019;color:#e2867d;}}
 </style></head><body>
 <div class="wrap">
 <h1>UMALAB研究ダッシュボード</h1>
@@ -79,10 +85,48 @@ function stakingRows(staking){
   ).join('');
 }
 
+let DASHBOARD_DATA = null;
+
+function renderTrack(){
+  const sel = document.getElementById('trackSelect');
+  const t = DASHBOARD_DATA.track_profile.find(x => x.track === sel.value);
+  if (!t) { document.getElementById('trackDetail').innerHTML = ''; return; }
+  const pillClass = t.classification && t.classification.startsWith('有望') ? 'pill-ok' : 'pill-warn';
+  const betRows = Object.entries(t.bet_type_roi || {}).map(([bt, s]) =>
+    `<tr><td>${bt}</td><td>${s.n}</td><td>${fmtPct(s.roi)}</td></tr>`).join('');
+  document.getElementById('trackDetail').innerHTML = `
+    <span class="pill ${pillClass}">${t.classification ?? '-'}</span>
+    <div class="scroll"><table>
+      <tr><th>指標</th><th>値</th></tr>
+      <tr><td>本命勝率(test, n=${t.n_races_test})</td><td>${fmtPct(t.top1_win_rate)}</td></tr>
+      <tr><td>複勝圏再現率</td><td>${fmtPct(t.top3_recall)}</td></tr>
+      <tr><td>logloss</td><td>${t.logloss ?? '-'}</td></tr>
+      <tr><td>校正誤差</td><td>${t.calibration_error ?? '-'}pt</td></tr>
+      <tr><td>生Brier(校正前)</td><td>${t.raw_brier ?? '-'}</td></tr>
+    </table></div>
+    <div class="scroll"><table>
+      <tr><th>券種(32日分)</th><th>件数</th><th>ROI</th></tr>
+      ${betRows}
+    </table></div>`;
+}
+
+function renderRankings(){
+  if (!DASHBOARD_DATA.track_rankings) return;
+  const html = Object.entries(DASHBOARD_DATA.track_rankings).map(([name, rows]) => {
+    const top5 = rows.slice(0, 5).map(r =>
+      `<tr><td>${r.track}</td><td>${r.value}</td><td>${r.n}${r.insufficient_sample ? '(不足)' : ''}</td></tr>`
+    ).join('');
+    return `<h2 style="font-size:13px;margin-top:14px;">${name}</h2>
+      <div class="scroll"><table><tr><th>競馬場</th><th>値</th><th>件数</th></tr>${top5}</table></div>`;
+  }).join('');
+  document.getElementById('trackRankings').innerHTML = html;
+}
+
 async function load(force){
   const url = 'umalab_research_dashboard_data.json' + (force ? ('?t='+Date.now()) : '');
   const r = await fetch(url, {cache: force ? 'no-store' : 'default'});
   const d = await r.json();
+  DASHBOARD_DATA = d;
   const m = d.current_model_vs_candidates;
 
   document.getElementById('content').innerHTML = `
@@ -111,6 +155,26 @@ async function load(force){
       </table></div>
       <p class="note">loglossは小さいほど良い。確率校正: raw Brier=${d.probability_calibration?.brier_score_raw ?? '-'} /
         isotonic校正後=${d.probability_calibration?.brier_score_isotonic_calibrated ?? '-'}</p>
+    </div>
+
+    <div class="panel">
+      <h2>競馬場別プロファイル(第4段階)</h2>
+      <select id="trackSelect" onchange="renderTrack()"></select>
+      <div id="trackDetail"></div>
+      <p class="note">予測精度(的中率・logloss・校正誤差)はtest期間(未知データ、各場数百件)。
+        回収率は購入時点オッズが存在する32日分のみ(各場数十〜百数十件、サンプル不足の場合あり)。</p>
+    </div>
+
+    <div class="panel">
+      <h2>競馬場別ランキング(上位5)</h2>
+      <div id="trackRankings"></div>
+    </div>
+
+    <div class="panel">
+      <h2>コース構造の知見(NAR公式ガイドブック)</h2>
+      <p class="note">${d.course_geometry_findings?.nagoya_relocation ?? ''}</p>
+      <p class="note">${d.course_geometry_findings?.himeji_data_gap ?? ''}</p>
+      <p class="note">${d.course_geometry_findings?.other_notes ?? ''}</p>
     </div>
 
     <div class="panel">
@@ -155,6 +219,11 @@ async function load(force){
       <p class="note">${d.notes.join(' / ')}</p>
     </div>
   `;
+
+  const sel = document.getElementById('trackSelect');
+  sel.innerHTML = (d.track_profile || []).map(t => `<option value="${t.track}">${t.track}</option>`).join('');
+  if (d.track_profile && d.track_profile.length) renderTrack();
+  renderRankings();
 }
 load(false);
 </script>
