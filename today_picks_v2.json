@@ -1,64 +1,8 @@
 {
-  "updated_at": "2026-11-11 20:27",
+  "updated_at": "2026-11-11 20:40",
   "date": "20261111",
-  "total_races_analyzed": 2,
+  "total_races_analyzed": 1,
   "races": [
-    {
-      "track": "門別",
-      "race_no": 12,
-      "post_time": "20:20",
-      "頭数": 12,
-      "bet_type": "ワイド",
-      "top3": [
-        {
-          "no": 7,
-          "name": "シラントロ",
-          "prob": 0.65
-        },
-        {
-          "no": 9,
-          "name": "マイラーズドーン",
-          "prob": 0.553
-        },
-        {
-          "no": 5,
-          "name": "ミソドレミ",
-          "prob": 0.381
-        }
-      ],
-      "bottom4": [
-        {
-          "no": 1,
-          "name": "ロアリングフレイム",
-          "bottom4_prob": 0.723
-        },
-        {
-          "no": 6,
-          "name": "パープルビューティ",
-          "bottom4_prob": 0.477
-        },
-        {
-          "no": 11,
-          "name": "ジャスパーロイヤル",
-          "bottom4_prob": 0.374
-        },
-        {
-          "no": 10,
-          "name": "ヨシノカムイ",
-          "bottom4_prob": 0.372
-        }
-      ],
-      "wide_candidate": {
-        "combo": "7-9",
-        "odds_low": 2.0,
-        "odds_high": 2.2
-      },
-      "calibrated_prob": 0.2917,
-      "decision": "見送り",
-      "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
-      "suggested_virtual_stake": null,
-      "confidence": 0.65
-    },
     {
       "track": "川崎",
       "race_no": 12,
@@ -77,9 +21,9 @@
           "prob": 0.454
         },
         {
-          "no": 4,
-          "name": "アースヴィンチ",
-          "prob": 0.419
+          "no": 6,
+          "name": "シェナベスト",
+          "prob": 0.412
         }
       ],
       "bottom4": [
@@ -101,13 +45,13 @@
         {
           "no": 7,
           "name": "フクシマジンロッソ",
-          "bottom4_prob": 0.441
+          "bottom4_prob": 0.422
         }
       ],
       "wide_candidate": {
         "combo": "10-2",
-        "odds_low": 5.2,
-        "odds_high": 5.6
+        "odds_low": 4.8,
+        "odds_high": 5.3
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -116,7 +60,7 @@
       "confidence": 0.668
     }
   ],
-  "odds_age_minutes": 0.0,
+  "odds_age_minutes": 0.8,
   "odds_stale": false,
   "verified_roi_status": "回収率100%超えの統計的根拠は確認されていません(直近の時系列バックテストn=1,767件、95%信頼区間上限84.7%)。",
   "model_confirmed_profitable": false,
