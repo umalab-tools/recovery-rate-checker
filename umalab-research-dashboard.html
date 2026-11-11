@@ -184,6 +184,26 @@ async function load(force){
     </div>
 
     <div class="panel">
+      <h2>有望4競馬場の徹底比較(第6段階)</h2>
+      <p class="note">${d.four_track_deep_dive?.selection_bias_note ?? ''}</p>
+      <div class="scroll"><table>
+        <tr><th>競馬場</th><th>件数</th><th>的中率</th><th>ROI</th><th>最大DD</th><th>発見/検証/ホールドアウト</th></tr>
+        ${(d.four_track_deep_dive?.tracks || []).map(t => {
+          const s = d.four_track_deep_dive.roi_summary[t] || {};
+          const o = s.overall || {}; const dd = s.max_drawdown || {}; const bp = s.by_period || {};
+          const periods = ['discovery','confirmation','holdout'].map(p => bp[p]?.roi ?? '-').join(' / ');
+          return `<tr><td>${t}</td><td>${o.n ?? '-'}</td><td>${fmtPct(o.hit_rate)}</td><td>${fmtPct(o.roi)}</td>
+            <td>${dd.max_drawdown_pct ?? '-'}%</td><td>${periods}</td></tr>`;
+        }).join('')}
+      </table></div>
+      <p class="note">金沢の予測1位が市場人気1位と一致する割合: ${d.four_track_deep_dive?.kanazawa_favorite_check?.kanazawa?.agreement_with_favorite_pct ?? '-'}%
+        (全国平均: ${d.four_track_deep_dive?.kanazawa_favorite_check?.national_all_tracks?.agreement_with_favorite_pct ?? '-'}%)。
+        モデルは全国的にほぼ市場の人気順位をそのまま再現している。</p>
+      <p class="note">4場内の2条件組み合わせ探索でROI100%超えの候補: ${(d.four_track_deep_dive?.combo_candidates_above_100pct || []).length}件
+        (Bonferroni補正後アルファ=${d.four_track_deep_dive?.combo_bonferroni_alpha ?? '-'})。</p>
+    </div>
+
+    <div class="panel">
       <h2>競馬場別プロファイル(第4段階)</h2>
       <select id="trackSelect" onchange="renderTrack()"></select>
       <div id="trackDetail"></div>
