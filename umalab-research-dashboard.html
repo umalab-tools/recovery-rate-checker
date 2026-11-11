@@ -87,13 +87,37 @@ function stakingRows(staking){
 
 let DASHBOARD_DATA = null;
 
+let CURRENT_PERIOD = 'all_periods';
+
+function setPeriod(p){ CURRENT_PERIOD = p; renderTrack(); }
+
 function renderTrack(){
   const sel = document.getElementById('trackSelect');
   const t = DASHBOARD_DATA.track_profile.find(x => x.track === sel.value);
   if (!t) { document.getElementById('trackDetail').innerHTML = ''; return; }
   const pillClass = t.classification && t.classification.startsWith('有望') ? 'pill-ok' : 'pill-warn';
-  const betRows = Object.entries(t.bet_type_roi || {}).map(([bt, s]) =>
-    `<tr><td>${bt}</td><td>${s.n}</td><td>${fmtPct(s.roi)}</td></tr>`).join('');
+  const full = (DASHBOARD_DATA.all_track_full_report || {})[sel.value];
+  const periodLabels = {all_periods:'全期間', discovery:'発見期間', confirmation:'検証期間', holdout:'ホールドアウト'};
+  const periodButtons = Object.entries(periodLabels).map(([key,label]) =>
+    `<button class="refresh" style="background:${key===CURRENT_PERIOD?'#2a6':'#555'};display:inline-block;width:auto;min-height:32px;padding:6px 10px;margin:2px;font-size:12px;" onclick="setPeriod('${key}')">${label}</button>`
+  ).join('');
+
+  let betRows = '';
+  let countsHtml = '';
+  if (full) {
+    betRows = Object.entries(full.bet_type_roi || {}).map(([bt, periods]) => {
+      const s = periods[CURRENT_PERIOD] || {};
+      if (!s.n) return `<tr><td>${bt}</td><td colspan="4">データなし</td></tr>`;
+      const pnl = Math.round((s.payout_total||0) - (s.bet_total||0));
+      return `<tr><td>${bt}</td><td>${s.n}</td><td>${fmtPct(s.hit_rate)}</td><td>${fmtPct(s.roi)}</td><td>${pnl}円</td></tr>`;
+    }).join('');
+    countsHtml = `
+      <tr><td>解析レース総数/学習/検証/未使用期間</td>
+        <td>${full.total_races_full_history}/${full.train_races}/${full.val_races}/${full.test_races}</td></tr>
+      <tr><td>直近予測レース数(買い目/見送り)</td>
+        <td>${full.predicted_races_recent}(${full.buy_races_recent}/${full.skip_races_recent})</td></tr>`;
+  }
+
   document.getElementById('trackDetail').innerHTML = `
     <span class="pill ${pillClass}">${t.classification ?? '-'}</span>
     <div class="scroll"><table>
@@ -102,12 +126,14 @@ function renderTrack(){
       <tr><td>複勝圏再現率</td><td>${fmtPct(t.top3_recall)}</td></tr>
       <tr><td>logloss</td><td>${t.logloss ?? '-'}</td></tr>
       <tr><td>校正誤差</td><td>${t.calibration_error ?? '-'}pt</td></tr>
-      <tr><td>生Brier(校正前)</td><td>${t.raw_brier ?? '-'}</td></tr>
+      ${countsHtml}
     </table></div>
+    <div>${periodButtons}</div>
     <div class="scroll"><table>
-      <tr><th>券種(32日分)</th><th>件数</th><th>ROI</th></tr>
+      <tr><th>券種</th><th>件数</th><th>的中率</th><th>ROI</th><th>純利益</th></tr>
       ${betRows}
-    </table></div>`;
+    </table></div>
+    <p class="note">ホールドアウトは複数ステージで既に参照済みのため完全未使用ではありません。</p>`;
 }
 
 function renderRankings(){
