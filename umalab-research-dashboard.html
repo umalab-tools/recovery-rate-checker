@@ -276,6 +276,45 @@ async function load(force){
     </div>
 
     <div class="panel">
+      <h2>第8段階 研究1: データ完全監査(A/B/C/D分類)</h2>
+      <p class="note">${d.stage8_research1_data_audit?.summary ?? ''}</p>
+      <p class="note">${d.stage8_research1_data_audit?.finding ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第8段階 研究2: 競馬場別優位性探索(8場比較)</h2>
+      <div class="scroll"><table>
+        <tr><th>競馬場</th><th>件数</th><th>的中率</th><th>logloss</th><th>校正誤差</th><th>単勝ROI</th><th>複勝ROI</th><th>ワイドROI</th></tr>
+        ${(d.stage8_research2_track_comparison?.rows || []).map(t => `<tr>
+          <td>${t.track}${t.insufficient_sample ? '<span class="tag">サンプル不足</span>' : ''}</td>
+          <td>${t.n_test ?? '-'}</td><td>${t.top1_win_rate ?? '-'}%</td><td>${t.logloss ?? '-'}</td>
+          <td>${t.calib_error_pt ?? '-'}pt</td><td>${t.tansho_roi ?? '-'}%</td><td>${t.fukusho_roi ?? '-'}%</td><td>${t.wide_roi ?? '-'}%</td></tr>`).join('')}
+      </table></div>
+      <p class="note">${d.stage8_research2_track_comparison?.note ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第8段階 研究3: 川崎12R8番の過大評価診断</h2>
+      <p class="note">${d.stage8_research3_kawasaki_diagnostic?.summary ?? ''}</p>
+      <p class="note">${d.stage8_research3_kawasaki_diagnostic?.gap_found ?? ''}</p>
+      <p class="note">${d.stage8_research3_kawasaki_diagnostic?.caveat ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第8段階 研究4・5: 新特徴量・SHAP・EV閾値比較</h2>
+      <div class="scroll"><table>
+        <tr><th>ID</th><th>テーマ</th><th>状態</th><th>所見</th></tr>
+        ${(d.stage8_research4_5_findings || []).map(f => {
+          const cls = f.status.includes('保留') ? '' : 'pill-warn';
+          return `<tr><td>${f.id}</td><td style="text-align:left;white-space:normal;">${f.theme}</td>
+            <td><span class="pill ${cls}">${f.status}</span></td>
+            <td style="text-align:left;white-space:normal;font-size:10px;">${f.finding}</td></tr>`;
+        }).join('')}
+      </table></div>
+      <p class="note">いずれも本番モデル・購入ルールは変更していない。改善が独立検証で確認できるまで既存ルールを維持する方針。</p>
+    </div>
+
+    <div class="panel">
       <h2>第7段階: 条件付きロジット・Benter統合モデル研究</h2>
       <div class="scroll"><table>
         <tr><th>#</th><th>仮説</th><th>状態</th><th>所見</th></tr>

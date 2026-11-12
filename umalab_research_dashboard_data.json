@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12 20:44:59",
+  "updated_at": "2026-11-13 00:13 JST",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -11587,5 +11587,137 @@
     "ここに表示される新戦略候補は検証中であり、実運用の推奨ではありません。",
     "本番の買い目は現行ワイド1点のみです(today-picks.html等)。",
     "利益を保証する結果ではありません。実際の馬券購入・自動投票は行っていません。"
+  ],
+  "stage8_research1_data_audit": {
+    "summary": "races 102,763行・15競馬場(2020-2026)、features 138列・1,043,987行をA(発走前)/B(過去走集計)/C(発走後のみ判明)/D(取得時刻不明)に分類。",
+    "finding": "TIER_S_A/B/C_FEATURES全104列を確認し、着順・確定タイム・当該レース上がり3F・コーナー通過順・確定払戻のいずれも含まれず、Cの混入なし。ninki列は確定人気(締切直前情報)であり、数日前予測には使えない既知の限界として記録。"
+  },
+  "stage8_research2_track_comparison": {
+    "target_tracks": [
+      "川崎",
+      "盛岡",
+      "浦和",
+      "園田",
+      "門別",
+      "船橋",
+      "金沢",
+      "笠松"
+    ],
+    "rows": [
+      {
+        "track": "川崎",
+        "n_test": 420,
+        "top1_win_rate": 42.14,
+        "logloss": 0.4635,
+        "calib_error_pt": 0.54,
+        "tansho_roi": 90.94,
+        "fukusho_roi": 80.71,
+        "wide_roi": 57.71,
+        "insufficient_sample": false
+      },
+      {
+        "track": "盛岡",
+        "n_test": 319,
+        "top1_win_rate": 46.08,
+        "logloss": 0.4831,
+        "calib_error_pt": 1.16,
+        "tansho_roi": 59.66,
+        "fukusho_roi": 86.71,
+        "wide_roi": 76.22,
+        "insufficient_sample": false
+      },
+      {
+        "track": "浦和",
+        "n_test": 360,
+        "top1_win_rate": 37.78,
+        "logloss": 0.4675,
+        "calib_error_pt": 1.41,
+        "tansho_roi": 84.24,
+        "fukusho_roi": 76.95,
+        "wide_roi": 56.33,
+        "insufficient_sample": false
+      },
+      {
+        "track": "園田",
+        "n_test": 725,
+        "top1_win_rate": 48.55,
+        "logloss": 0.4534,
+        "calib_error_pt": 1.67,
+        "tansho_roi": 76.49,
+        "fukusho_roi": 87.68,
+        "wide_roi": 80.71,
+        "insufficient_sample": false
+      },
+      {
+        "track": "門別",
+        "n_test": 473,
+        "top1_win_rate": 45.24,
+        "logloss": 0.4451,
+        "calib_error_pt": 0.92,
+        "tansho_roi": 83.31,
+        "fukusho_roi": 82.33,
+        "wide_roi": 76.28,
+        "insufficient_sample": false
+      },
+      {
+        "track": "船橋",
+        "n_test": 360,
+        "top1_win_rate": 41.94,
+        "logloss": 0.479,
+        "calib_error_pt": 2.7,
+        "tansho_roi": 108.12,
+        "fukusho_roi": 87.71,
+        "wide_roi": 90.21,
+        "insufficient_sample": false
+      },
+      {
+        "track": "金沢",
+        "n_test": 496,
+        "top1_win_rate": 51.41,
+        "logloss": 0.4701,
+        "calib_error_pt": 2.42,
+        "tansho_roi": 84.08,
+        "fukusho_roi": 87.28,
+        "wide_roi": 66.26,
+        "insufficient_sample": false
+      },
+      {
+        "track": "笠松",
+        "n_test": 535,
+        "top1_win_rate": 43.55,
+        "logloss": 0.5129,
+        "calib_error_pt": 0.79,
+        "tansho_roi": 63.61,
+        "fukusho_roi": 84.1,
+        "wide_roi": 77.35,
+        "insufficient_sample": false
+      }
+    ],
+    "note": "単勝・複勝・ワイドROIは購入時点オッズが存在する32日分のみ。的中率・logloss・校正誤差はtest期間(未知データ)。選択バイアス: 8場は過去段階でデータ量が十分なものを選定しており、他場を除外した恣意性がある。"
+  },
+  "stage8_research3_kawasaki_diagnostic": {
+    "summary": "川崎12R8番ナリノボガートの複勝圏内確率0.689は、使用特徴量(近走複勝率1.0・コース複勝率0.615・距離複勝率0.778)が高水準であることと整合しており、モデルの評価自体は妥当だった。",
+    "gap_found": "未使用特徴量baba_matched_starts(重馬場適性)が8番は欠損(重馬場未経験)、2着10番は複勝率0.625と強い適性を持っていた。また8番のrecent3_agari3f_avg=42.07は実際の1-3着馬(39.4-39.7台)より明確に遅かった。",
+    "caveat": "この診断は結果に合わせたモデルの後付け変更ではない。着想した仮説(研究4)は集計全体では改善効果なしと判明した。"
+  },
+  "stage8_research4_5_findings": [
+    {
+      "id": "H040",
+      "theme": "上がり3Fのレース内相対化(Z-score)",
+      "status": "不採用",
+      "finding": "logloss改善0.01%(無視できる水準)、本命的中率-0.45pt。川崎12Rの個別診断から着想したが集計全体では効果なし。"
+    },
+    {
+      "id": "H041",
+      "theme": "SHAP特徴量重要度(本番Model E、test期間3000件)",
+      "status": "保留(除外は未実施)",
+      "finding": "recent1_finish(直近1走の着順)が0.974で他を大きく上回る唯一の支配的特徴量(2位impost=0.160)。ninki(人気)は重要度最下位(0.00013)で直感に反し、多重共線性の影響を未確認のため除外判断はしない。"
+    },
+    {
+      "id": "H042",
+      "theme": "EV閾値A(既存)〜E(EV>1.20)比較(複勝、半ケリー資金配分含む)",
+      "status": "不採用",
+      "finding": "既存フィルターROI94.46%(CI95=[91.65,97.05])に対しEV閾値ルールは67.3〜74.2%に留まり劣る。半ケリー適用時の最大ドローダウンは既存2.0%に対しEV閾値ルールは51.5〜64.0%と極端な資金溶解を示した。H039に続く独立検証での再確認。"
+    }
   ]
 }
