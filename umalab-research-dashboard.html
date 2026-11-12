@@ -263,6 +263,20 @@ async function load(force){
     </div>
 
     <div class="panel">
+      <h2>第7段階: 条件付きロジット・Benter統合モデル研究</h2>
+      <div class="scroll"><table>
+        <tr><th>#</th><th>仮説</th><th>状態</th><th>所見</th></tr>
+        ${(d.stage7_cycles || []).map(c => {
+          const cls = c.status.includes('基盤構築') ? '' : (c.status.includes('不採用') ? 'pill-warn' : '');
+          return `<tr><td>${c.cycle}</td><td style="text-align:left;white-space:normal;">${c.hypothesis}</td>
+            <td><span class="pill ${cls}">${c.status}</span></td>
+            <td style="text-align:left;white-space:normal;font-size:10px;">${c.finding}</td></tr>`;
+        }).join('')}
+      </table></div>
+      <p class="note">${d.stage7_overall_conclusion ?? ''}</p>
+    </div>
+
+    <div class="panel">
       <h2>PDCAサイクル(5サイクル完了)</h2>
       <div class="scroll"><table>
         <tr><th>#</th><th>仮説</th><th>状態</th><th>所見</th></tr>
