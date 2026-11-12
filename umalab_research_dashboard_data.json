@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13 00:13 JST",
+  "updated_at": "2026-11-13 00:59 JST",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -11719,5 +11719,221 @@
       "status": "不採用",
       "finding": "既存フィルターROI94.46%(CI95=[91.65,97.05])に対しEV閾値ルールは67.3〜74.2%に留まり劣る。半ケリー適用時の最大ドローダウンは既存2.0%に対しEV閾値ルールは51.5〜64.0%と極端な資金溶解を示した。H039に続く独立検証での再確認。"
     }
-  ]
+  ],
+  "stage9_step1_reaudit": {
+    "target": "既存フィルター(複勝・予測1位・単勝1.0-1.5倍)のROI94.46%(Stage8 Cycle1)",
+    "period": "20261008~20261111(32日)",
+    "n_tracks": 13,
+    "n_bets": 386,
+    "bet_total": 386000.0,
+    "payout_total": 364600.0,
+    "roi": 94.46,
+    "max_dd_yen": 22800.0,
+    "max_dd_pct": 45.15,
+    "odds_timing_median_min": 1.6,
+    "conclusion": "94.46%は実購入の確定成績ではなく、研究用バックテストの数値である。モデルの学習データとは時系列的に重複していないため学習データリークは無いが、ホールドアウト期間の「未使用性」は既に損なわれている。"
+  },
+  "stage9_step3_track_stats": {
+    "chi2": 33.277,
+    "p_value": 0.0015,
+    "significant": true,
+    "interpretation": "p<0.05: 競馬場間の的中率差は偶然のばらつきだけでは説明しにくい",
+    "rows": [
+      {
+        "track": "門別",
+        "n": 4667,
+        "brier": 0.1457,
+        "fukusho_roi": 82.33,
+        "max_dd_pct": 63.58
+      },
+      {
+        "track": "盛岡",
+        "n": 3253,
+        "brier": 0.1591,
+        "fukusho_roi": 86.71,
+        "max_dd_pct": 42.15
+      },
+      {
+        "track": "水沢",
+        "n": 4156,
+        "brier": 0.1609,
+        "fukusho_roi": null,
+        "max_dd_pct": null
+      },
+      {
+        "track": "浦和",
+        "n": 3837,
+        "brier": 0.1528,
+        "fukusho_roi": 76.95,
+        "max_dd_pct": 27.2
+      },
+      {
+        "track": "船橋",
+        "n": 3884,
+        "brier": 0.1581,
+        "fukusho_roi": 87.71,
+        "max_dd_pct": 14.94
+      },
+      {
+        "track": "大井",
+        "n": 6432,
+        "brier": 0.138,
+        "fukusho_roi": 76.29,
+        "max_dd_pct": 33.8
+      },
+      {
+        "track": "川崎",
+        "n": 4522,
+        "brier": 0.1506,
+        "fukusho_roi": 80.71,
+        "max_dd_pct": 33.8
+      },
+      {
+        "track": "金沢",
+        "n": 4433,
+        "brier": 0.1533,
+        "fukusho_roi": 87.28,
+        "max_dd_pct": 28.17
+      },
+      {
+        "track": "笠松",
+        "n": 4675,
+        "brier": 0.1703,
+        "fukusho_roi": 84.1,
+        "max_dd_pct": 30.65
+      },
+      {
+        "track": "名古屋",
+        "n": 7817,
+        "brier": 0.1472,
+        "fukusho_roi": 88.92,
+        "max_dd_pct": 33.07
+      },
+      {
+        "track": "園田",
+        "n": 7205,
+        "brier": 0.1479,
+        "fukusho_roi": 87.68,
+        "max_dd_pct": 42.46
+      },
+      {
+        "track": "姫路",
+        "n": 2202,
+        "brier": 0.1474,
+        "fukusho_roi": null,
+        "max_dd_pct": null
+      },
+      {
+        "track": "高知",
+        "n": 5927,
+        "brier": 0.1566,
+        "fukusho_roi": 85.71,
+        "max_dd_pct": 31.88
+      },
+      {
+        "track": "佐賀",
+        "n": 6438,
+        "brier": 0.1394,
+        "fukusho_roi": 92.16,
+        "max_dd_pct": 21.4
+      }
+    ]
+  },
+  "stage9_step4_hypotheses": {
+    "n_overrated": 1878,
+    "n_underrated": 4212,
+    "E_note": "features表に脚質(先行/差し/追込等)・展開カラムが存在しないため、データ不足により検証不能(推測で補完しない)。Stage10での新規データ取得を検討課題とする。",
+    "G_overconfident_bins": "4/10",
+    "summary": "A/B/C/D/Fは予測1位に選ばれる理由そのものと相関するため因果的な過大評価の原因とは言えない。C/Dでは経験(course_starts/baba_matched_starts)が少ないほど過大評価されやすい傾向が見られ、Stage10で小サンプル縮小補正を検討。"
+  },
+  "stage9_step5_model_comparison": {
+    "rows": [
+      {
+        "name": "existing_Model_E",
+        "logloss": 0.4701,
+        "brier": 0.15407,
+        "auc": 0.812
+      },
+      {
+        "name": "logistic_regression",
+        "logloss": 0.47393,
+        "brier": 0.15531,
+        "auc": 0.8096
+      },
+      {
+        "name": "lightgbm",
+        "logloss": 0.46997,
+        "brier": 0.15407,
+        "auc": 0.812
+      },
+      {
+        "name": "catboost",
+        "logloss": 0.46973,
+        "brier": 0.15395,
+        "auc": 0.8123
+      },
+      {
+        "name": "track_corrected_Model_E",
+        "logloss": 0.47813,
+        "brier": 0.15459,
+        "auc": 0.811
+      },
+      {
+        "name": "ensemble_lightgbm_catboost",
+        "logloss": 0.46938,
+        "brier": 0.15384,
+        "auc": 0.8126
+      }
+    ],
+    "best": "ensemble_lightgbm_catboost",
+    "conclusion": "最良モデルとの差は既存Model Eから0.15%程度でランダムシード相当の変動域。信頼区間未算出のため厳格な採用基準を満たさず「改善なし」と判定。"
+  },
+  "stage9_step6_wide_strategy": {
+    "rows": [
+      {
+        "rule": "A_既存構成(予測1-2位ワイド1点)",
+        "n": 1459,
+        "roi": 79.15,
+        "ci95": {
+          "n_legs": 1459,
+          "n_race_days": 31,
+          "point_roi": 79.15,
+          "ci95_low": 71.72,
+          "ci95_high": 86.15
+        },
+        "flat_dd": 60.92,
+        "kelly_dd": null
+      },
+      {
+        "rule": "B_補正前EV>0",
+        "n": 549,
+        "roi": 78.29,
+        "ci95": {
+          "n_legs": 549,
+          "n_race_days": 31,
+          "point_roi": 78.29,
+          "ci95_low": 64.84,
+          "ci95_high": 91.87
+        },
+        "flat_dd": 24.74,
+        "kelly_dd": 92.87
+      },
+      {
+        "rule": "C_補正後EV>0(同時分布補正)",
+        "n": 496,
+        "roi": 78.95,
+        "ci95": {
+          "n_legs": 496,
+          "n_race_days": 31,
+          "point_roi": 78.95,
+          "ci95_low": 63.96,
+          "ci95_high": 93.54
+        },
+        "flat_dd": 23.46,
+        "kelly_dd": 91.26
+      }
+    ],
+    "conclusion": "同時分布補正(pa*pbの単純積を廃止)はキャリブレーションを改善したがROIは改善せず、3ルールとも統計的に区別不能(ROI78-79%、CI大幅重複)。半ケリーは最大ドローダウン91-93%と壊滅的でフラットベットの方が明確に安全。"
+  },
+  "stage9_overall_conclusion": "Stage9の全ステップを通じて、本番採用可能な改善案は確認されなかった。94.46%は実購入成績ではなく研究用バックテストであること、競馬場間の有意な異質性は存在するが単純な補正では活かせないこと、新モデル群は既存Model Eと統計的に区別できない水準にとどまること、ワイドの同時分布補正はキャリブレーションのみ改善しROIには結びつかないこと、EVベースの資金配分(半ケリー)は複勝・ワイドいずれでも壊滅的なドローダウンを招くことが確認された。既存の固定オッズ帯フィルター+フラットベットを本番運用として維持する。"
 }

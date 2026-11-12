@@ -315,6 +315,75 @@ async function load(force){
     </div>
 
     <div class="panel">
+      <h2>第9段階 Step1: ROI94.46%の再監査</h2>
+      <p class="pill pill-warn">実購入ではなく研究用バックテスト</p>
+      <div class="scroll"><table>
+        <tr><th>期間</th><th>対象場数</th><th>件数</th><th>賭金</th><th>払戻</th><th>ROI</th><th>最大DD</th></tr>
+        <tr><td style="white-space:normal;">${d.stage9_step1_reaudit?.period ?? ''}</td>
+          <td>${d.stage9_step1_reaudit?.n_tracks ?? '-'}</td><td>${d.stage9_step1_reaudit?.n_bets ?? '-'}</td>
+          <td>${(d.stage9_step1_reaudit?.bet_total ?? 0).toLocaleString()}円</td>
+          <td>${(d.stage9_step1_reaudit?.payout_total ?? 0).toLocaleString()}円</td>
+          <td>${d.stage9_step1_reaudit?.roi ?? '-'}%</td>
+          <td>${d.stage9_step1_reaudit?.max_dd_yen ?? '-'}円(${d.stage9_step1_reaudit?.max_dd_pct ?? '-'}%)</td></tr>
+      </table></div>
+      <p class="note">オッズ取得は発走${d.stage9_step1_reaudit?.odds_timing_median_min ?? '-'}分前(中央値)の購入時点スナップショット。</p>
+      <p class="note">${d.stage9_step1_reaudit?.conclusion ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第9段階 Step3: 競馬場別統計検証</h2>
+      <p class="note">カイ二乗検定: chi2=${d.stage9_step3_track_stats?.chi2 ?? '-'} p=${d.stage9_step3_track_stats?.p_value ?? '-'}
+        <span class="pill ${d.stage9_step3_track_stats?.significant ? 'pill-warn' : 'pill-ok'}">
+          ${d.stage9_step3_track_stats?.significant ? '統計的に有意な差あり' : '有意差なし'}</span></p>
+      <div class="scroll"><table>
+        <tr><th>競馬場</th><th>件数</th><th>Brier</th><th>複勝ROI</th><th>最大DD</th></tr>
+        ${(d.stage9_step3_track_stats?.rows || []).map(t => `<tr><td>${t.track}</td><td>${t.n}</td>
+          <td>${t.brier}</td><td>${t.fukusho_roi ?? '-'}%</td><td>${t.max_dd_pct ?? '-'}%</td></tr>`).join('')}
+      </table></div>
+      <p class="note">${d.stage9_step3_track_stats?.interpretation ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第9段階 Step4: 過大評価・過小評価の仮説A-G診断</h2>
+      <p class="note">予測1位だが着外: ${d.stage9_step4_hypotheses?.n_overrated ?? '-'}件 /
+        予測6位以下だが馬券圏内: ${d.stage9_step4_hypotheses?.n_underrated ?? '-'}件(test期間全国)</p>
+      <p class="note">仮説E(脚質と展開): <span class="pill pill-warn">検証不能</span> ${d.stage9_step4_hypotheses?.E_note ?? ''}</p>
+      <p class="note">仮説G(過信傾向、10分位): ${d.stage9_step4_hypotheses?.G_overconfident_bins ?? '-'}分位が過信、全体的な過信傾向は確認できず。</p>
+      <p class="note">${d.stage9_step4_hypotheses?.summary ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第9段階 Step5: 新モデル比較(LogReg/LightGBM/CatBoost/アンサンブル)</h2>
+      <div class="scroll"><table>
+        <tr><th>モデル</th><th>LogLoss</th><th>Brier</th><th>AUC</th></tr>
+        ${(d.stage9_step5_model_comparison?.rows || []).map(m => {
+          const best = m.name === d.stage9_step5_model_comparison.best;
+          return `<tr><td class="${best ? 'best' : ''}">${m.name}${best ? '(最良)' : ''}</td>
+            <td>${m.logloss}</td><td>${m.brier}</td><td>${m.auc}</td></tr>`;
+        }).join('')}
+      </table></div>
+      <p class="note">${d.stage9_step5_model_comparison?.conclusion ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第9段階 Step6: ワイドEV戦略(同時分布補正)</h2>
+      <div class="scroll"><table>
+        <tr><th>ルール</th><th>件数</th><th>ROI</th><th>95%CI</th><th>flat DD</th><th>半ケリーDD</th></tr>
+        ${(d.stage9_step6_wide_strategy?.rows || []).map(r => `<tr><td style="white-space:normal;">${r.rule}</td>
+          <td>${r.n}</td><td>${r.roi}%</td>
+          <td>${r.ci95 ? `[${r.ci95.ci95_low},${r.ci95.ci95_high}]` : '-'}</td>
+          <td>${r.flat_dd}%</td><td>${r.kelly_dd ?? '-'}%</td></tr>`).join('')}
+      </table></div>
+      <p class="note">${d.stage9_step6_wide_strategy?.conclusion ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第9段階 総括</h2>
+      <p class="pill pill-warn">本番採用可能な改善案: なし</p>
+      <p class="note">${d.stage9_overall_conclusion ?? ''}</p>
+    </div>
+
+    <div class="panel">
       <h2>第7段階: 条件付きロジット・Benter統合モデル研究</h2>
       <div class="scroll"><table>
         <tr><th>#</th><th>仮説</th><th>状態</th><th>所見</th></tr>
