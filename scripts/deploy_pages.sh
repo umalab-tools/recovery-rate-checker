@@ -111,8 +111,29 @@ echo "=== 6. push ==="
 if [ "$DID_COMMIT" -eq 1 ]; then
   # 2026-11-03追加: ネットワーク一時断(DNS解決失敗等)によるpush失敗を
   # 自動再試行する。コンフリクト等の恒久的な失敗はそのまま3回失敗して中止。
+  #
+  # 2026-11-14追加: 複数の自動ジョブが同じリポジトリへ同時にpushするため、
+  # 「remoteに自分が持っていない変更がある」non-fast-forward拒否が頻発
+  # していた(push 3回とも全く同じコミットを再送するだけで、一度も
+  # origin/$BRANCHの新しい状態を取り込んでいなかったため、3回とも同じ理由で
+  # 失敗していた)。2回目以降の再試行の前にfetch + rebaseで最新のorigin状態を
+  # 取り込むことで、この種の一時的な競合を自動的に解消できるようにする。
+  # force push・force rebase・履歴の書き換えは行わない。rebaseが
+  # コンフリクトした場合は即座にabortし、安全に失敗する(他ジョブの変更を
+  # 壊さない)。
   PUSH_OK=0
   for attempt in 1 2 3; do
+    if [ "$attempt" -gt 1 ]; then
+      echo "push再試行前にfetch + rebaseでoriginの最新状態を取り込みます..."
+      if ! git fetch origin "$BRANCH"; then
+        echo "fetch失敗。ネットワークの一時的な問題の可能性があるため、そのまま再試行します。"
+      elif ! git rebase "origin/$BRANCH"; then
+        echo "rebaseでコンフリクトが発生したためabortします（他ジョブの変更を壊さないための安全策）。"
+        git rebase --abort
+        echo "失敗: リポジトリ側の変更と競合しました。手動確認が必要です。"
+        exit 1
+      fi
+    fi
     if git push origin "$BRANCH"; then
       PUSH_OK=1
       break
