@@ -130,6 +130,22 @@ button{font-family:inherit;}
 
 .loading{text-align:center;color:var(--text-dim);padding:48px 0;font-size:13px;}
 
+/* ---------- filters (全レース結果) ---------- */
+.filter-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.filter-bar label{display:block;font-size:10.5px;color:var(--text-faint);margin-bottom:3px;font-weight:700;}
+.filter-bar select{
+  width:100%;min-height:44px;padding:8px 10px;border-radius:var(--radius-sm);
+  background:var(--bg-elev);border:1px solid var(--border);color:var(--text);font-size:13px;
+}
+.result-row{background:var(--bg-elev2);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:10px 12px;margin-bottom:8px;font-size:12.5px;}
+.result-row .head{display:flex;justify-content:space-between;font-weight:900;margin-bottom:4px;}
+.result-row .legs{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
+.legtag{font-size:10.5px;font-weight:700;padding:3px 7px;border-radius:999px;}
+.legtag.hit{background:var(--accent-bg);color:var(--accent);}
+.legtag.miss{background:var(--chip);color:var(--text-dim);}
+.legtag.pending{background:var(--warn-bg);color:var(--warn);}
+
 /* ---------- condition rows / pnl table ---------- */
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
 table.data{width:100%;border-collapse:collapse;font-size:12.5px;white-space:nowrap;}
@@ -148,11 +164,11 @@ table.data th{color:var(--text-dim);font-weight:700;font-size:11px;}
 }
 .nav-btn{
   flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
-  background:none;border:none;color:var(--text-faint);padding:8px 2px;border-radius:12px;
-  min-height:52px;min-width:44px;
+  background:none;border:none;color:var(--text-faint);padding:7px 1px;border-radius:12px;
+  min-height:52px;min-width:0;
 }
-.nav-btn .ic{font-size:20px;line-height:1;}
-.nav-btn .lb{font-size:10.5px;font-weight:700;}
+.nav-btn .ic{font-size:18px;line-height:1;}
+.nav-btn .lb{font-size:9.5px;font-weight:700;white-space:nowrap;}
 .nav-btn.active{color:var(--accent);}
 .nav-btn.active .ic{filter:drop-shadow(0 0 6px rgba(88,217,122,.5));}
 
@@ -188,6 +204,12 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
       <div id="tomorrowContent"><div class="loading">タブを開くと読み込みます…</div></div>
     </section>
 
+    <!-- ============ 全レース結果 ============ -->
+    <section class="view" id="view-results">
+      <div id="resultsFilters"></div>
+      <div id="resultsContent"><div class="loading">タブを開くと読み込みます…</div></div>
+    </section>
+
     <!-- ============ 競馬場別成績 ============ -->
     <section class="view" id="view-tracks">
       <div id="tracksContent"><div class="loading">タブを開くと読み込みます…</div></div>
@@ -212,8 +234,9 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
   <nav class="bottom-nav" id="bottomNav">
     <button class="nav-btn active" data-view="today"><span class="ic">📅</span><span class="lb">今日</span></button>
     <button class="nav-btn" data-view="tomorrow"><span class="ic">🌙</span><span class="lb">明日</span></button>
+    <button class="nav-btn" data-view="results"><span class="ic">📋</span><span class="lb">全レース</span></button>
     <button class="nav-btn" data-view="tracks"><span class="ic">🏟️</span><span class="lb">競馬場別</span></button>
-    <button class="nav-btn" data-view="pnl"><span class="ic">💰</span><span class="lb">収支</span></button>
+    <button class="nav-btn" data-view="pnl"><span class="ic">💰</span><span class="lb">仮想収支</span></button>
     <button class="nav-btn" data-view="research"><span class="ic">🔬</span><span class="lb">研究結果</span></button>
   </nav>
 </div>
@@ -524,6 +547,112 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
   }
 
   /* ============================================================
+     全レース結果(race_results_detail.json、戦略A-F精算済み2,384レース)
+     ============================================================ */
+  var RESULTS_DATA = null;
+  var STRATEGY_LABELS = {
+    A: "A: 単勝◎", B: "B: 複勝◎", C: "C: ワイド◎○", D: "D: ワイド◎▲",
+    E: "E: ワイドBOX", F: "F: 既存ベストフィルター(複勝)",
+  };
+  var RESULTS_FILTER = { track: "", date: "", strategy: "A" };
+  var RESULTS_PAGE_SIZE = 100;
+
+  function legTag(settled, hit){
+    if(!settled) return '<span class="legtag pending">未精算</span>';
+    return hit ? '<span class="legtag hit">的中</span>' : '<span class="legtag miss">はずれ</span>';
+  }
+
+  function renderResultRow(r, strat){
+    var settled = r[strat + "_settled"];
+    var hit = r[strat + "_hit"];
+    var payout = r[strat + "_payout"];
+    var notPurchased = strat === "F" && settled == null && payout == null;
+    var el = document.createElement("div");
+    el.className = "result-row";
+    el.innerHTML =
+      '<div class="head"><span>' + esc(r.track) + ' ' + esc(r.date) + ' ' + esc(r.race_no) + 'R</span>' +
+        '<span>' + (notPurchased ? '<span class="legtag miss">対象外</span>' : legTag(settled, hit)) + '</span></div>' +
+      '<div style="color:var(--text-dim);">◎' + esc(r.axis_no) + '番' + esc(r.axis_name) +
+        '(着順' + (r.axis_finish != null ? esc(r.axis_finish) : '未確定') + ')' +
+      (r.sub1_no ? ' / ○' + esc(r.sub1_no) + '番' + esc(r.sub1_name) + '(着順' + (r.sub1_finish != null ? esc(r.sub1_finish) : '未確定') + ')' : '') +
+      (r.sub2_no ? ' / ▲' + esc(r.sub2_no) + '番' + esc(r.sub2_name) + '(着順' + (r.sub2_finish != null ? esc(r.sub2_finish) : '未確定') + ')' : '') +
+      '</div>' +
+      (settled && payout != null ? '<div class="legs"><span class="legtag ' + (hit ? 'hit' : 'miss') + '">払戻 ' + Math.round(payout) + '円/100円</span></div>' : '');
+    return el;
+  }
+
+  function applyResultsFilters(){
+    var rows = (RESULTS_DATA || {}).rows || [];
+    var f = RESULTS_FILTER;
+    return rows.filter(function(r){
+      if(f.track && r.track !== f.track) return false;
+      if(f.date && r.date !== f.date) return false;
+      return true;
+    });
+  }
+
+  function renderResultsList(){
+    var container = $("resultsContent");
+    var filtered = applyResultsFilters().slice().reverse(); // 新しい日付を先頭に
+    var shown = filtered.slice(0, RESULTS_PAGE_SIZE);
+    container.innerHTML = "";
+    var summary = document.createElement("div");
+    summary.className = "banner neutral";
+    summary.textContent = "該当" + filtered.length + "件中" + shown.length + "件を表示(" + STRATEGY_LABELS[RESULTS_FILTER.strategy] + ")。";
+    container.appendChild(summary);
+    if(shown.length === 0){
+      var e = document.createElement("div");
+      e.className = "banner neutral";
+      e.textContent = "条件に一致するレースがありません。";
+      container.appendChild(e);
+      return;
+    }
+    shown.forEach(function(r){ container.appendChild(renderResultRow(r, RESULTS_FILTER.strategy)); });
+  }
+
+  function renderResultsFilters(){
+    var rows = (RESULTS_DATA || {}).rows || [];
+    var tracks = Array.from(new Set(rows.map(function(r){ return r.track; }))).sort();
+    var dates = Array.from(new Set(rows.map(function(r){ return r.date; }))).sort().reverse();
+    var bar = $("resultsFilters");
+    bar.innerHTML =
+      '<div class="filter-bar">' +
+        '<div><label>競馬場</label><select id="filterTrack"><option value="">すべて</option>' +
+          tracks.map(function(t){ return '<option value="' + esc(t) + '">' + esc(t) + '</option>'; }).join("") +
+        '</select></div>' +
+        '<div><label>日付</label><select id="filterDate"><option value="">すべて</option>' +
+          dates.map(function(d){ return '<option value="' + esc(d) + '">' + esc(fmtDateLabel(d)) + '</option>'; }).join("") +
+        '</select></div>' +
+        '<div style="grid-column:1/-1;"><label>券種・戦略</label><select id="filterStrategy">' +
+          Object.keys(STRATEGY_LABELS).map(function(k){ return '<option value="' + k + '">' + esc(STRATEGY_LABELS[k]) + '</option>'; }).join("") +
+        '</select></div>' +
+      '</div>';
+    $("filterTrack").addEventListener("change", function(e){ RESULTS_FILTER.track = e.target.value; renderResultsList(); });
+    $("filterDate").addEventListener("change", function(e){ RESULTS_FILTER.date = e.target.value; renderResultsList(); });
+    $("filterStrategy").addEventListener("change", function(e){ RESULTS_FILTER.strategy = e.target.value; renderResultsList(); });
+  }
+
+  function renderResults(){
+    var content = $("resultsContent");
+    content.innerHTML = '<div class="loading">読み込み中…(約2,400レース)</div>';
+    fetch("race_results_detail.json?t=" + Date.now(), {cache: "no-store"})
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        RESULTS_DATA = data;
+        var note = document.createElement("div");
+        note.className = "banner info";
+        note.textContent = "既存の本番予測ログ(56日分・" + data.n_races + "レース)を使い、戦略A-Fを仮想購入した場合の精算結果です。実際の馬券購入ではありません。全レース予想とAI購入推奨(既存ベストフィルターF)は別物として区別しています。";
+        $("resultsFilters").innerHTML = "";
+        $("resultsFilters").appendChild(note);
+        renderResultsFilters();
+        renderResultsList();
+      })
+      .catch(function(){
+        content.innerHTML = '<div class="banner bad">データの読み込みに失敗しました。</div>';
+      });
+  }
+
+  /* ============================================================
      競馬場別成績 / 収支・回収率(mobile_summary.json)
      ============================================================ */
   var MOBILE_SUMMARY = null;
@@ -539,22 +668,39 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
     content.innerHTML = '<div class="loading">読み込み中…</div>';
     loadMobileSummary().then(function(d){
       content.innerHTML = "";
-      var wide = (d.production_real_results_status || {}).wide_method || {};
-      var note = document.createElement("div");
-      note.className = "banner info";
-      note.textContent = "下記は本番予想が実際に発行した推奨の記録(競馬場別)です。品質ゲートにより現在は全件見送りのため、購入0件です。";
-      content.appendChild(note);
+      var audit = d.track_data_audit || {};
+      var rows = audit.rows || [];
+
+      var tierNote = document.createElement("div");
+      tierNote.className = "banner info";
+      tierNote.textContent = "過去データ数・学習/検証数は全期間(10万件規模)の集計、本番予想数は直近56日分の本番ログを使った戦略Fの精算結果です。直近7日分の運用ログ(数十件)とは集計期間が異なります。混同しないようご注意ください。";
+      content.appendChild(tierNote);
 
       var wrap = document.createElement("div");
       wrap.className = "card table-wrap";
-      var rows = Object.keys(wide.by_track || {}).sort(function(a,b){ return wide.by_track[b]-wide.by_track[a]; })
-        .map(function(t){ return '<tr><td>' + esc(t) + '</td><td class="num">' + wide.by_track[t] + '</td><td class="num"><span class="chip muted">見送り</span></td></tr>'; }).join("");
-      wrap.innerHTML = '<table class="data"><tr><th>競馬場</th><th>記録件数</th><th>状態</th></tr>' + (rows || '<tr><td colspan="3">未取得</td></tr>') + '</table>';
+      var trRows = rows.map(function(r){
+        var roi = r["回収率(%)"];
+        var roiText = (typeof roi === "number") ? roi + "%" : esc(roi || "—");
+        return "<tr><td>" + esc(r.track) + "</td>" +
+          '<td class="num">' + esc(r["過去データ数(races表全期間)"]) + "</td>" +
+          '<td class="num">' + esc(r["学習レース数(train, 2023-08~2025-07)"]) + "</td>" +
+          '<td class="num">' + esc(r["検証レース数(val+test, 2025-08~2026-07)"]) + "</td>" +
+          '<td class="num">' + esc(r["本番予想レース数(all_predictions_history.csv, 56日分)"]) + "</td>" +
+          '<td class="num">' + esc(r["購入数(既存ベストフィルター該当)"]) + "</td>" +
+          '<td class="num">' + roiText + "</td></tr>";
+      }).join("");
+      wrap.innerHTML = '<table class="data"><tr><th>競馬場</th><th>過去データ</th><th>学習</th><th>検証</th>' +
+        '<th>本番予想</th><th>購入</th><th>回収率</th></tr>' + (trRows || '<tr><td colspan="7">未取得</td></tr>') + '</table>';
       content.appendChild(wrap);
+
+      var srcNote = document.createElement("div");
+      srcNote.className = "banner neutral";
+      srcNote.textContent = "集計元: races表(過去データ)/features表(学習・検証)/predictions/all_predictions_history.csv(本番予想・購入・回収率、56日分)。";
+      content.appendChild(srcNote);
 
       var hint = document.createElement("div");
       hint.className = "banner neutral";
-      hint.innerHTML = '競馬場別の詳しい統計検証(的中率・LogLoss・Brier Score等、研究用バックテスト)は<a href="umalab-research-dashboard.html">研究ダッシュボード →</a>をご覧ください。';
+      hint.innerHTML = '競馬場別の詳しい統計検証(LogLoss・Brier Score等、研究用バックテスト)は<a href="umalab-research-dashboard.html">研究ダッシュボード →</a>をご覧ください。';
       content.appendChild(hint);
     }).catch(function(){
       content.innerHTML = '<div class="banner bad">データの読み込みに失敗しました。</div>';
@@ -567,16 +713,41 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
     loadMobileSummary().then(function(d){
       content.innerHTML = "";
       var pt = d.paper_trading_summary || {};
+      var settlement = d.strategy_settlement || {};
+      var overall = settlement.overall_by_strategy || {};
 
       var realNote = document.createElement("div");
       realNote.className = "banner bad";
-      realNote.textContent = "【実績】本番予想システムが実際に発行した購入推奨は、これまで0件です(品質ゲートにより全件見送り)。実際のお金での購入・決済は一度も行っていません。";
+      realNote.textContent = "【実績】本番予想システムが実際のお金で購入・決済したことは一度もありません。以下はすべて仮想購入のシミュレーションです。";
       content.appendChild(realNote);
 
-      var virtualNote = document.createElement("div");
-      virtualNote.className = "banner warn";
-      virtualNote.textContent = "以下は仮想購入(Paper Trading)の記録です。実際のお金ではありません。" + (pt.updated_at || "");
-      content.appendChild(virtualNote);
+      var stratNote = document.createElement("div");
+      stratNote.className = "banner info";
+      stratNote.textContent = "戦略A-F仮想購入精算(" + (settlement.prediction_log_date_range || "期間不明") + "、リーク除外" +
+        (settlement.n_leak_violations_excluded != null ? settlement.n_leak_violations_excluded : "-") + "件)。" +
+        "全レースで◎を単勝/複勝、◎○・◎▲のワイド、◎○▲ワイドBOX、既存ベストフィルター該当時のみ複勝を購入した場合の精算結果。";
+      content.appendChild(stratNote);
+
+      var stratWrap = document.createElement("div");
+      stratWrap.className = "card table-wrap";
+      var stratRows = Object.keys(STRATEGY_LABELS).map(function(k){
+        var full = Object.keys(overall).find(function(key){ return key.indexOf(k + "_") === 0; });
+        var v = overall[full] || {};
+        var roi = v.roi_pct;
+        var roiText = (typeof roi === "number") ? roi + "%" : esc(roi || "—");
+        return "<tr><td>" + esc(STRATEGY_LABELS[k]) + "</td>" +
+          '<td class="num">' + esc(v.n_settled != null ? v.n_settled : "—") + "</td>" +
+          '<td class="num">' + esc(v.hit_rate_pct != null ? v.hit_rate_pct + "%" : "—") + "</td>" +
+          '<td class="num">' + roiText + "</td>" +
+          '<td class="num">' + esc(v.max_drawdown_yen != null ? Math.round(v.max_drawdown_yen) + "円" : "—") + "</td></tr>";
+      }).join("");
+      stratWrap.innerHTML = '<table class="data"><tr><th>戦略</th><th>精算件数</th><th>的中率</th><th>回収率</th><th>最大DD</th></tr>' + stratRows + '</table>';
+      content.appendChild(stratWrap);
+
+      var legacyNote = document.createElement("div");
+      legacyNote.className = "banner warn";
+      legacyNote.textContent = "以下は別途運用している旧方式(Tier A・EVルール・新ルール・B候補)のPaper Trading記録です。実際のお金ではありません。" + (pt.updated_at || "");
+      content.appendChild(legacyNote);
 
       var grid = document.createElement("div");
       grid.className = "summary-grid";
@@ -601,7 +772,7 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
       link.innerHTML = '条件ごとの詳細・訂正履歴は<a href="track-record.html">検証実績ページ →</a>をご覧ください。';
       content.appendChild(link);
 
-      $("statRoi").textContent = pt.total_roi || "—";
+      $("statRoi").textContent = (overall["F_既存ベストフィルター"] || {}).roi_pct || pt.total_roi || "—";
     }).catch(function(){
       content.innerHTML = '<div class="banner bad">データの読み込みに失敗しました。</div>';
     });
@@ -649,7 +820,8 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
      ============================================================ */
   var LOADED = {};
   var LOADERS = {
-    today: loadToday, tomorrow: loadTomorrow, tracks: renderTracks, pnl: renderPnl, research: renderResearch,
+    today: loadToday, tomorrow: loadTomorrow, results: renderResults,
+    tracks: renderTracks, pnl: renderPnl, research: renderResearch,
   };
   document.querySelectorAll(".nav-btn").forEach(function(btn){
     btn.addEventListener("click", function(){
