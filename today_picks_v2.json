@@ -1,64 +1,8 @@
 {
-  "updated_at": "2026-11-13 19:49",
+  "updated_at": "2026-11-13 20:00",
   "date": "20261113",
-  "total_races_analyzed": 5,
+  "total_races_analyzed": 4,
   "races": [
-    {
-      "track": "川崎",
-      "race_no": 10,
-      "post_time": "19:40",
-      "頭数": 12,
-      "bet_type": "ワイド",
-      "top3": [
-        {
-          "no": 2,
-          "name": "ブラックトルマリン",
-          "prob": 0.633
-        },
-        {
-          "no": 4,
-          "name": "ゴットランド",
-          "prob": 0.621
-        },
-        {
-          "no": 12,
-          "name": "ベセル",
-          "prob": 0.459
-        }
-      ],
-      "bottom4": [
-        {
-          "no": 8,
-          "name": "ウインメラナイト",
-          "bottom4_prob": 0.804
-        },
-        {
-          "no": 6,
-          "name": "ミオサンダー",
-          "bottom4_prob": 0.481
-        },
-        {
-          "no": 10,
-          "name": "キャッスルレーヴ",
-          "bottom4_prob": 0.407
-        },
-        {
-          "no": 3,
-          "name": "イルフロッタント",
-          "bottom4_prob": 0.359
-        }
-      ],
-      "wide_candidate": {
-        "combo": "2-4",
-        "odds_low": 2.2,
-        "odds_high": 2.7
-      },
-      "calibrated_prob": 0.4454,
-      "decision": "見送り",
-      "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
-      "suggested_virtual_stake": null,
-      "confidence": 0.633
-    },
     {
       "track": "金沢",
       "race_no": 9,
@@ -72,14 +16,14 @@
           "prob": 0.884
         },
         {
-          "no": 1,
-          "name": "ゴールドブラボー",
-          "prob": 0.563
-        },
-        {
           "no": 2,
           "name": "フランコルシャン",
-          "prob": 0.484
+          "prob": 0.568
+        },
+        {
+          "no": 1,
+          "name": "ゴールドブラボー",
+          "prob": 0.441
         }
       ],
       "bottom4": [
@@ -91,12 +35,12 @@
         {
           "no": 8,
           "name": "フェイマスダンディ",
-          "bottom4_prob": 0.599
+          "bottom4_prob": 0.676
         },
         {
           "no": 3,
           "name": "ボルネオ",
-          "bottom4_prob": 0.588
+          "bottom4_prob": 0.507
         },
         {
           "no": 6,
@@ -105,9 +49,9 @@
         }
       ],
       "wide_candidate": {
-        "combo": "9-1",
-        "odds_low": 2.4,
-        "odds_high": 2.8
+        "combo": "9-2",
+        "odds_low": 1.9,
+        "odds_high": 2.3
       },
       "calibrated_prob": 0.4958,
       "decision": "見送り",
@@ -162,8 +106,8 @@
       ],
       "wide_candidate": {
         "combo": "7-2",
-        "odds_low": 1.6,
-        "odds_high": 1.9
+        "odds_low": 1.8,
+        "odds_high": 2.2
       },
       "calibrated_prob": 0.4538,
       "decision": "見送り",
@@ -218,7 +162,7 @@
       ],
       "wide_candidate": {
         "combo": "12-7",
-        "odds_low": 2.3,
+        "odds_low": 2.2,
         "odds_high": 2.4
       },
       "calibrated_prob": 0.4454,
@@ -237,54 +181,54 @@
         {
           "no": 3,
           "name": "スプリンガフォート",
-          "prob": 0.579
+          "prob": 0.565
         },
         {
           "no": 2,
           "name": "マナフラッシュ",
-          "prob": 0.521
+          "prob": 0.517
         },
         {
           "no": 11,
           "name": "サンエイジロー",
-          "prob": 0.406
+          "prob": 0.425
         }
       ],
       "bottom4": [
         {
-          "no": 1,
-          "name": "デーレーシトロン",
-          "bottom4_prob": 0.506
-        },
-        {
           "no": 4,
           "name": "ビターメロン",
-          "bottom4_prob": 0.493
+          "bottom4_prob": 0.491
+        },
+        {
+          "no": 1,
+          "name": "デーレーシトロン",
+          "bottom4_prob": 0.482
         },
         {
           "no": 5,
           "name": "ファイアトーチ",
-          "bottom4_prob": 0.469
+          "bottom4_prob": 0.472
         },
         {
           "no": 12,
           "name": "トリプルアクセル",
-          "bottom4_prob": 0.414
+          "bottom4_prob": 0.411
         }
       ],
       "wide_candidate": {
         "combo": "3-2",
         "odds_low": 2.8,
-        "odds_high": 3.1
+        "odds_high": 3.2
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.579
+      "confidence": 0.565
     }
   ],
-  "odds_age_minutes": 0.0,
+  "odds_age_minutes": 0.8,
   "odds_stale": false,
   "verified_roi_status": "回収率100%超えの統計的根拠は確認されていません(直近の時系列バックテストn=1,767件、95%信頼区間上限84.7%)。",
   "model_confirmed_profitable": false,
@@ -292,7 +236,7 @@
     "n_published_total": 331,
     "n_skipped": 331,
     "n_bought": 0,
-    "n_confirmed": 292,
+    "n_confirmed": 293,
     "roi_bought": null
   }
 }
