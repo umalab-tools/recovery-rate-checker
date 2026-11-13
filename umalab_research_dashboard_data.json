@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13 00:59 JST",
+  "updated_at": "2026-11-13 23:25 JST",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -11935,5 +11935,168 @@
     ],
     "conclusion": "同時分布補正(pa*pbの単純積を廃止)はキャリブレーションを改善したがROIは改善せず、3ルールとも統計的に区別不能(ROI78-79%、CI大幅重複)。半ケリーは最大ドローダウン91-93%と壊滅的でフラットベットの方が明確に安全。"
   },
-  "stage9_overall_conclusion": "Stage9の全ステップを通じて、本番採用可能な改善案は確認されなかった。94.46%は実購入成績ではなく研究用バックテストであること、競馬場間の有意な異質性は存在するが単純な補正では活かせないこと、新モデル群は既存Model Eと統計的に区別できない水準にとどまること、ワイドの同時分布補正はキャリブレーションのみ改善しROIには結びつかないこと、EVベースの資金配分(半ケリー)は複勝・ワイドいずれでも壊滅的なドローダウンを招くことが確認された。既存の固定オッズ帯フィルター+フラットベットを本番運用として維持する。"
+  "stage9_overall_conclusion": "Stage9の全ステップを通じて、本番採用可能な改善案は確認されなかった。94.46%は実購入成績ではなく研究用バックテストであること、競馬場間の有意な異質性は存在するが単純な補正では活かせないこと、新モデル群は既存Model Eと統計的に区別できない水準にとどまること、ワイドの同時分布補正はキャリブレーションのみ改善しROIには結びつかないこと、EVベースの資金配分(半ケリー)は複勝・ワイドいずれでも壊滅的なドローダウンを招くことが確認された。既存の固定オッズ帯フィルター+フラットベットを本番運用として維持する。",
+  "stage10_model_ranking": {
+    "rows": [
+      {
+        "name": "ensemble_lightgbm_catboost",
+        "logloss": 0.46938
+      },
+      {
+        "name": "catboost",
+        "logloss": 0.46973
+      },
+      {
+        "name": "lightgbm",
+        "logloss": 0.46997
+      },
+      {
+        "name": "existing_Model_E",
+        "logloss": 0.4701
+      },
+      {
+        "name": "logistic_regression",
+        "logloss": 0.47393
+      },
+      {
+        "name": "track_corrected_Model_E",
+        "logloss": 0.47813
+      },
+      {
+        "name": "market_model_H",
+        "logloss": 0.48277
+      },
+      {
+        "name": "ranking_lambdarank",
+        "logloss": 0.56641
+      }
+    ],
+    "best": "ensemble_lightgbm_catboost",
+    "xgboost_status": "環境制約のため保留(libomp/Homebrew不在)",
+    "conclusion": "最良モデルでも既存Model Eとの差は0.15%程度で、ランキング学習・市場モデルはいずれも劣る。採用基準未達。"
+  },
+  "stage10_track_shrinkage": {
+    "rows": [
+      {
+        "track": "門別",
+        "n_test": 473,
+        "raw_win_rate": 45.24,
+        "shrunk_win_rate": 45.35,
+        "raw_fukusho_hit_rate_32d": 69.77,
+        "shrunk_fukusho_hit_rate_32d": 72.45
+      },
+      {
+        "track": "盛岡",
+        "n_test": 319,
+        "raw_win_rate": 46.08,
+        "shrunk_win_rate": 45.78,
+        "raw_fukusho_hit_rate_32d": 74.5,
+        "shrunk_fukusho_hit_rate_32d": 72.86
+      },
+      {
+        "track": "水沢",
+        "n_test": 419,
+        "raw_win_rate": 41.53,
+        "shrunk_win_rate": 43.31
+      },
+      {
+        "track": "浦和",
+        "n_test": 360,
+        "raw_win_rate": 37.78,
+        "shrunk_win_rate": 41.54,
+        "raw_fukusho_hit_rate_32d": 64.41,
+        "shrunk_fukusho_hit_rate_32d": 72.45
+      },
+      {
+        "track": "船橋",
+        "n_test": 360,
+        "raw_win_rate": 41.94,
+        "shrunk_win_rate": 43.68,
+        "raw_fukusho_hit_rate_32d": 66.67,
+        "shrunk_fukusho_hit_rate_32d": 72.56
+      },
+      {
+        "track": "大井",
+        "n_test": 537,
+        "raw_win_rate": 47.3,
+        "shrunk_win_rate": 46.59,
+        "raw_fukusho_hit_rate_32d": 64.29,
+        "shrunk_fukusho_hit_rate_32d": 72.39
+      },
+      {
+        "track": "川崎",
+        "n_test": 420,
+        "raw_win_rate": 42.14,
+        "shrunk_win_rate": 43.65,
+        "raw_fukusho_hit_rate_32d": 65.88,
+        "shrunk_fukusho_hit_rate_32d": 72.4
+      },
+      {
+        "track": "金沢",
+        "n_test": 496,
+        "raw_win_rate": 51.41,
+        "shrunk_win_rate": 48.99,
+        "raw_fukusho_hit_rate_32d": 76.7,
+        "shrunk_fukusho_hit_rate_32d": 72.94
+      },
+      {
+        "track": "笠松",
+        "n_test": 535,
+        "raw_win_rate": 43.55,
+        "shrunk_win_rate": 44.31,
+        "raw_fukusho_hit_rate_32d": 75.9,
+        "shrunk_fukusho_hit_rate_32d": 72.87
+      },
+      {
+        "track": "名古屋",
+        "n_test": 711,
+        "raw_win_rate": 44.02,
+        "shrunk_win_rate": 44.5,
+        "raw_fukusho_hit_rate_32d": 73.08,
+        "shrunk_fukusho_hit_rate_32d": 72.75
+      },
+      {
+        "track": "園田",
+        "n_test": 725,
+        "raw_win_rate": 48.55,
+        "shrunk_win_rate": 47.57,
+        "raw_fukusho_hit_rate_32d": 76.79,
+        "shrunk_fukusho_hit_rate_32d": 73.08
+      },
+      {
+        "track": "姫路",
+        "n_test": 216,
+        "raw_win_rate": 45.83,
+        "shrunk_win_rate": 45.62
+      },
+      {
+        "track": "高知",
+        "n_test": 602,
+        "raw_win_rate": 45.18,
+        "shrunk_win_rate": 45.3,
+        "raw_fukusho_hit_rate_32d": 72.53,
+        "shrunk_fukusho_hit_rate_32d": 72.71
+      },
+      {
+        "track": "佐賀",
+        "n_test": 626,
+        "raw_win_rate": 50.48,
+        "shrunk_win_rate": 48.71,
+        "raw_fukusho_hit_rate_32d": 79.2,
+        "shrunk_fukusho_hit_rate_32d": 73.16
+      }
+    ],
+    "method": "Beta-Binomial経験的ベイズ(PyMC等フルMCMCは未導入のため実用的代替)",
+    "note": "shrunk値はサンプルが少ない競馬場ほどグループ平均に近づく。金沢・佐賀等の一見高いROIの一部はサンプリング変動の可能性。"
+  },
+  "stage10_fresh_holdout_and_interactions": {
+    "fresh_date": "20261112",
+    "fresh_result_n": 0,
+    "fresh_note": "1日分のみ(n=0)のため統計的な確認検証ではなく、方向性参考値として扱う。",
+    "interaction_cells_tested": 127,
+    "interaction_bonferroni_alpha": 0.000394,
+    "interaction_n_promising": 0,
+    "interaction_conclusion": "127セルの競馬場×距離・馬場・頭数・人気の交互作用をBonferroni補正付きで検定し、有意なセルは0件。"
+  },
+  "stage10_overall_conclusion": "Stage10でも本番採用可能な改善案は確認されなかった。XGBoostは環境制約(libomp未導入)で保留、ランキング学習・市場ベースモデルはいずれも既存Model Eに劣り、交互作用のBonferroni補正付き探索でも有意な新条件は見つからなかった。経験的ベイズ縮小推定により、一部競馬場の見かけ上の優位性がサンプリング変動である可能性を定量化した。真に未使用の新しい日(2026-11-12)の再検証はn=0で比較不能だったが、恣意的な除外ではなく実際のオッズ分布の結果。既存の固定オッズ帯フィルター+フラットベットを本番運用として維持する。"
 }

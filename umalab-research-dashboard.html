@@ -384,6 +384,48 @@ async function load(force){
     </div>
 
     <div class="panel">
+      <h2>第10段階 モデル別成績ランキング</h2>
+      <div class="scroll"><table>
+        <tr><th>順位</th><th>モデル</th><th>LogLoss(test)</th></tr>
+        ${(d.stage10_model_ranking?.rows || []).map((m, i) => `<tr>
+          <td>${i + 1}</td><td class="${m.name === d.stage10_model_ranking.best ? 'best' : ''}">${m.name}${m.name === d.stage10_model_ranking.best ? '(最良)' : ''}</td>
+          <td>${m.logloss}</td></tr>`).join('')}
+      </table></div>
+      <p class="note">XGBoost: <span class="pill pill-warn">${d.stage10_model_ranking?.xgboost_status ?? ''}</span></p>
+      <p class="note">${d.stage10_model_ranking?.conclusion ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第10段階 競馬場別回収率ランキング(経験的ベイズ縮小推定)</h2>
+      <div class="scroll"><table>
+        <tr><th>競馬場</th><th>n(test)</th><th>勝率(生)</th><th>勝率(縮小後)</th><th>複勝的中率(生,32日)</th><th>複勝的中率(縮小後)</th></tr>
+        ${(d.stage10_track_shrinkage?.rows || []).slice().sort((a,b) => b.shrunk_win_rate - a.shrunk_win_rate).map(t => `<tr>
+          <td>${t.track}</td><td>${t.n_test}</td><td>${t.raw_win_rate}%</td><td class="best">${t.shrunk_win_rate}%</td>
+          <td>${t.raw_fukusho_hit_rate_32d ?? '-'}%</td><td>${t.shrunk_fukusho_hit_rate_32d ?? '-'}%</td></tr>`).join('')}
+      </table></div>
+      <p class="note">手法: ${d.stage10_track_shrinkage?.method ?? ''}</p>
+      <p class="note">${d.stage10_track_shrinkage?.note ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第10段階 新しい発見の探索・未使用日再検証</h2>
+      <p class="note">交互作用スクリーニング: ${d.stage10_fresh_holdout_and_interactions?.interaction_cells_tested ?? '-'}セル検定、
+        Bonferroniアルファ=${d.stage10_fresh_holdout_and_interactions?.interaction_bonferroni_alpha ?? '-'}、
+        <span class="pill ${d.stage10_fresh_holdout_and_interactions?.interaction_n_promising ? 'pill-warn' : 'pill-ok'}">
+          有望候補${d.stage10_fresh_holdout_and_interactions?.interaction_n_promising ?? 0}件</span></p>
+      <p class="note">${d.stage10_fresh_holdout_and_interactions?.interaction_conclusion ?? ''}</p>
+      <p class="note">未使用日(${d.stage10_fresh_holdout_and_interactions?.fresh_date ?? '-'})再検証: 購入件数n=${d.stage10_fresh_holdout_and_interactions?.fresh_result_n ?? '-'}。
+        ${d.stage10_fresh_holdout_and_interactions?.fresh_note ?? ''}</p>
+    </div>
+
+    <div class="panel">
+      <h2>第10段階 総括</h2>
+      <p class="pill pill-warn">本番採用可能な改善案: なし</p>
+      <p class="note">${d.stage10_overall_conclusion ?? ''}</p>
+      <p class="note">最終更新: ${d.updated_at ?? ''}</p>
+    </div>
+
+    <div class="panel">
       <h2>第7段階: 条件付きロジット・Benter統合モデル研究</h2>
       <div class="scroll"><table>
         <tr><th>#</th><th>仮説</th><th>状態</th><th>所見</th></tr>
