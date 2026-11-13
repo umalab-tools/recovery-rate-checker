@@ -145,6 +145,7 @@ button{font-family:inherit;}
 .legtag.hit{background:var(--accent-bg);color:var(--accent);}
 .legtag.miss{background:var(--chip);color:var(--text-dim);}
 .legtag.pending{background:var(--warn-bg);color:var(--warn);}
+.legtag.muted{background:var(--chip);color:var(--text-faint);}
 
 /* ---------- condition rows / pnl table ---------- */
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
@@ -557,27 +558,45 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
   var RESULTS_FILTER = { track: "", date: "", strategy: "A" };
   var RESULTS_PAGE_SIZE = 100;
 
-  function legTag(settled, hit){
-    if(!settled) return '<span class="legtag pending">未精算</span>';
-    return hit ? '<span class="legtag hit">的中</span>' : '<span class="legtag miss">はずれ</span>';
+  function legState(r, strat){
+    var settled = r[strat + "_settled"];
+    var hit = r[strat + "_hit"];
+    var notPurchased = r[strat + "_not_purchased"];
+    if(notPurchased) return { label: "対象外", cls: "miss" };
+    if(settled) return { label: hit ? "的中" : "はずれ", cls: hit ? "hit" : "miss" };
+    // settled=false/null: レース自体が中止・未確定か、軸馬等が個別に出走取消かを区別する
+    if(r.race_status === "cancelled_or_pending" && !r.actual_top3){
+      return { label: "中止/未定", cls: "pending" };
+    }
+    return { label: "返還", cls: "pending" };
+  }
+
+  function legTagHtml(state){
+    return '<span class="legtag ' + state.cls + '">' + esc(state.label) + '</span>';
   }
 
   function renderResultRow(r, strat){
-    var settled = r[strat + "_settled"];
-    var hit = r[strat + "_hit"];
+    var state = legState(r, strat);
     var payout = r[strat + "_payout"];
-    var notPurchased = strat === "F" && settled == null && payout == null;
+    var top3 = r.actual_top3;
+    var top3Text = "未確定(中止の可能性を含む)";
+    if(top3){
+      var parts = ["1","2","3"].filter(function(k){ return top3[k]; })
+        .map(function(k){ return k + "着:" + top3[k].no + "番" + top3[k].name; });
+      top3Text = parts.join(" / ") || top3Text;
+    }
     var el = document.createElement("div");
     el.className = "result-row";
     el.innerHTML =
       '<div class="head"><span>' + esc(r.track) + ' ' + esc(r.date) + ' ' + esc(r.race_no) + 'R</span>' +
-        '<span>' + (notPurchased ? '<span class="legtag miss">対象外</span>' : legTag(settled, hit)) + '</span></div>' +
-      '<div style="color:var(--text-dim);">◎' + esc(r.axis_no) + '番' + esc(r.axis_name) +
-        '(着順' + (r.axis_finish != null ? esc(r.axis_finish) : '未確定') + ')' +
-      (r.sub1_no ? ' / ○' + esc(r.sub1_no) + '番' + esc(r.sub1_name) + '(着順' + (r.sub1_finish != null ? esc(r.sub1_finish) : '未確定') + ')' : '') +
-      (r.sub2_no ? ' / ▲' + esc(r.sub2_no) + '番' + esc(r.sub2_name) + '(着順' + (r.sub2_finish != null ? esc(r.sub2_finish) : '未確定') + ')' : '') +
+        '<span>' + legTagHtml(state) + '</span></div>' +
+      '<div style="color:var(--text-dim);">予想: ◎' + esc(r.axis_no) + '番' + esc(r.axis_name) +
+      (r.sub1_no ? ' / ○' + esc(r.sub1_no) + '番' + esc(r.sub1_name) : '') +
+      (r.sub2_no ? ' / ▲' + esc(r.sub2_no) + '番' + esc(r.sub2_name) : '') +
       '</div>' +
-      (settled && payout != null ? '<div class="legs"><span class="legtag ' + (hit ? 'hit' : 'miss') + '">払戻 ' + Math.round(payout) + '円/100円</span></div>' : '');
+      '<div style="color:var(--text-dim);margin-top:2px;">確定: ' + esc(top3Text) + '</div>' +
+      (state.cls !== "pending" && payout != null ? '<div class="legs">' + legTagHtml(state) +
+        '<span class="legtag muted">払戻 ' + Math.round(payout) + '円/100円</span></div>' : '');
     return el;
   }
 
