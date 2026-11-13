@@ -3,233 +3,671 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>競馬 今日の解析結果（検証中） | UMALAB</title>
+<title>UMALAB 今日の予想</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%8F%87</text></svg>">
-<meta name="description" content="UMALAB（馬ラボ）が本日解析した候補レースを、検証中のデータとして公開しています。実購入は推奨していません。">
+<meta name="description" content="UMALAB（馬ラボ）が本日・翌日に解析した地方競馬の候補レースを、発走前に記録したデータとしてそのまま公開しています。実購入は推奨していません。">
 <!-- アクセス解析（無料、GoatCounter） -->
 <script data-goatcounter="https://umalab-checker.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{box-sizing:border-box;}
-  :root{
-    --bg:#0a0a0c; --surface:#15141a; --surface2:#1b1a22; --border:#2c2a35;
-    --gold:#d4af37; --gold-soft:#8a7230; --gold-bg:#2a2210;
-    --text:#f3efe3; --text-dim:#a39f8e;
-    --red:#e2867d; --red-bg:#2e1512;
-    --green:#8fd4a8; --green-bg:#10281a;
-  }
-  body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP","Hiragino Sans",sans-serif;line-height:1.7;}
-  .wrap{max-width:640px;margin:0 auto;padding:28px 18px 64px;}
-  h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,6vw,26px);margin:0 0 10px;color:var(--gold);letter-spacing:.02em;}
-  .lede{font-size:13.5px;color:var(--text-dim);margin:0 0 12px;}
-  .alert{background:var(--red-bg);border:2px solid var(--red);color:var(--red);border-radius:10px;padding:14px 16px;font-size:13px;font-weight:700;margin-bottom:16px;}
-  .panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;}
-  .updated{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-dim);}
-  .race-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;}
-  .race-card.buy{border-left:4px solid var(--gold);}
-  .race-card.skip{border-left:4px solid #4a4856;opacity:.88;}
-  .race-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
-  .race-title{font-weight:700;font-size:15px;color:var(--text);}
-  .race-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--text-dim);white-space:nowrap;}
-  .verify-tag{display:inline-block;font-size:10.5px;font-weight:700;background:var(--gold-bg);color:var(--gold);padding:2px 8px;border-radius:6px;margin-left:6px;}
-  .skip-tag{display:inline-block;font-size:10.5px;font-weight:700;background:#26242e;color:#8f8ca0;padding:2px 8px;border-radius:6px;margin-left:6px;}
-  .data-tag{display:inline-block;font-size:10.5px;font-weight:700;background:var(--red-bg);color:var(--red);padding:2px 8px;border-radius:6px;margin-left:6px;}
-  h3{font-size:11px;color:var(--gold-soft);font-weight:700;margin:12px 0 4px;text-transform:uppercase;letter-spacing:.05em;}
-  .horse-row{font-size:13px;margin:3px 0;color:var(--text);}
-  .wide-pick{display:inline-block;background:var(--gold-bg);color:var(--gold);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px;margin-top:4px;}
-  .fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:12.5px;margin-top:8px;}
-  .fact-grid .k{color:var(--text-dim);}
-  .fact-grid .v{color:var(--text);font-weight:700;font-family:"JetBrains Mono",monospace;}
-  .reason{font-size:12.5px;color:var(--text-dim);margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);}
-  .reason strong{color:var(--text);}
-  details{margin-top:10px;}
-  details summary{cursor:pointer;font-size:12.5px;color:var(--gold);font-weight:700;padding:14px 0;list-style:none;min-height:44px;display:flex;align-items:center;box-sizing:border-box;}
-  details summary::-webkit-details-marker{display:none;}
-  details summary::before{content:"▸ ";}
-  details[open] summary::before{content:"▾ ";}
-  #loading{text-align:center;color:var(--text-dim);padding:40px 0;}
-  .stale-banner{background:var(--red-bg);color:var(--red);border:1px solid var(--red);border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:700;margin-bottom:14px;}
-  .neutral-banner{background:var(--surface2);color:var(--text-dim);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:12.5px;margin-bottom:14px;}
-  a{color:var(--gold);}
-  a:visited{color:var(--gold-soft);}
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#0b0f0c; --bg-elev:#141a15; --bg-elev2:#1b231c; --border:#293129;
+  --text:#edf1ea; --text-dim:#9fab98; --text-faint:#6d7869;
+  --accent:#58d97a; --accent-dim:#2f6b43; --accent-bg:#132317;
+  --warn:#ecc24b; --warn-bg:#2a2210;
+  --bad:#ef6b61; --bad-bg:#2a1512;
+  --info:#6fb0ef; --info-bg:#122234;
+  --chip:#1d251e;
+  --radius:16px; --radius-sm:10px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+html,body{margin:0;background:var(--bg);color:var(--text);}
+body{
+  font-family:"Noto Sans JP","Hiragino Sans",sans-serif;
+  line-height:1.6; font-size:16px; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden; width:100%;
+}
+.num{font-family:"Noto Sans JP",sans-serif;font-variant-numeric:tabular-nums;}
+a{color:var(--accent);text-decoration:none;}
+h1,h2,h3{font-family:"Zen Kaku Gothic New",sans-serif;margin:0;}
+button{font-family:inherit;}
+
+/* ---------- layout shell ---------- */
+.app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;}
+.topbar{
+  position:sticky;top:0;z-index:20;background:rgba(11,15,12,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  padding:14px 16px 10px;border-bottom:1px solid var(--border);
+}
+.topbar-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;}
+.brand{font-weight:900;font-size:17px;letter-spacing:.02em;color:var(--accent);}
+.date-pill{font-size:12.5px;color:var(--text-dim);font-weight:700;}
+.summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px;}
+.stat-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;}
+.stat-card .label{font-size:11px;color:var(--text-dim);margin-bottom:2px;}
+.stat-card .value{font-size:19px;font-weight:900;color:var(--text);}
+.stat-card .value.accent{color:var(--accent);}
+.stat-card .sub{font-size:10.5px;color:var(--text-faint);margin-top:2px;}
+
+.main{flex:1;padding:14px 14px calc(84px + var(--safe-b));width:100%;}
+.view{display:none;}
+.view.active{display:block;}
+
+/* ---------- generic components ---------- */
+.card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:12px;}
+.banner{border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;font-weight:700;margin-bottom:12px;line-height:1.55;}
+.banner.bad{background:var(--bad-bg);color:var(--bad);border:1px solid var(--bad);}
+.banner.warn{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn);}
+.banner.info{background:var(--info-bg);color:var(--info);border:1px solid var(--info);}
+.banner.neutral{background:var(--chip);color:var(--text-dim);border:1px solid var(--border);font-weight:500;}
+
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;white-space:nowrap;}
+.chip.ok{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-dim);}
+.chip.warn{background:var(--warn-bg);color:var(--warn);border:1px solid #6b5a1e;}
+.chip.bad{background:var(--bad-bg);color:var(--bad);border:1px solid #6b2b26;}
+.chip.muted{background:var(--chip);color:var(--text-dim);border:1px solid var(--border);}
+
+.section-title{font-size:11px;color:var(--text-faint);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:14px 0 6px;}
+
+/* waku(frame) chip: color + always a number, never color-only */
+.waku{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;font-size:13px;font-weight:900;flex-shrink:0;border:1px solid rgba(0,0,0,.25);}
+.waku-1{background:#fff;color:#111;}
+.waku-2{background:#1a1a1a;color:#fff;}
+.waku-3{background:#d1372b;color:#fff;}
+.waku-4{background:#1c5fc9;color:#fff;}
+.waku-5{background:#e8c520;color:#222;}
+.waku-6{background:#2a9e4e;color:#fff;}
+.waku-7{background:#e8792a;color:#fff;}
+.waku-8{background:#e87fae;color:#222;}
+.waku-unknown{background:var(--chip);color:var(--text-faint);border-style:dashed;}
+
+/* ---------- track accordion (今日/明日) ---------- */
+.track-group{margin-bottom:10px;}
+.track-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px 14px;min-height:52px;cursor:pointer;
+}
+.track-head .name{font-weight:900;font-size:16px;}
+.track-head .meta{font-size:12px;color:var(--text-dim);}
+.track-head .arrow{font-size:14px;color:var(--text-faint);transition:transform .15s;}
+.track-head[aria-expanded="true"] .arrow{transform:rotate(90deg);}
+.track-races{display:none;padding-top:8px;}
+.track-races.open{display:block;}
+
+.race-card{background:var(--bg-elev2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-bottom:8px;}
+.race-top{display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;min-height:44px;}
+.race-top .rno{font-weight:900;font-size:14.5px;}
+.race-top .ptime{font-size:12.5px;color:var(--text-dim);font-weight:700;}
+.race-badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+.race-detail{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);}
+.race-detail.open{display:block;}
+
+.horse-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+.horse-row:last-child{border-bottom:none;}
+.horse-mark{width:20px;text-align:center;font-weight:900;color:var(--accent);flex-shrink:0;}
+.horse-main{flex:1;min-width:0;}
+.horse-name{font-weight:700;font-size:14px;}
+.horse-sub{font-size:11.5px;color:var(--text-dim);margin-top:1px;display:flex;gap:10px;flex-wrap:wrap;}
+.horse-metric{text-align:right;flex-shrink:0;}
+.horse-metric .big{font-weight:900;font-size:15px;}
+.horse-metric .cap{font-size:10px;color:var(--text-faint);}
+
+.kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:12.5px;margin-top:8px;}
+.kv-grid .k{color:var(--text-dim);}
+.kv-grid .v{font-weight:700;text-align:right;}
+
+.reason-box{font-size:12px;color:var(--text-dim);margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);}
+.reason-box strong{color:var(--text);}
+
+.rec-box{border-radius:var(--radius-sm);padding:10px 12px;margin-top:10px;font-size:12.5px;}
+.rec-box.yes{background:var(--accent-bg);border:1px solid var(--accent-dim);}
+.rec-box.no{background:var(--chip);border:1px solid var(--border);color:var(--text-dim);}
+.rec-box .title{font-weight:900;font-size:13px;margin-bottom:4px;}
+.rec-box.yes .title{color:var(--accent);}
+
+.loading{text-align:center;color:var(--text-dim);padding:48px 0;font-size:13px;}
+
+/* ---------- condition rows / pnl table ---------- */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table.data{width:100%;border-collapse:collapse;font-size:12.5px;white-space:nowrap;}
+table.data th,table.data td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--border);}
+table.data th:first-child,table.data td:first-child{text-align:left;white-space:normal;}
+table.data th{color:var(--text-dim);font-weight:700;font-size:11px;}
+
+/* ---------- bottom nav ---------- */
+.bottom-nav{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;
+  background:rgba(11,15,12,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-around;
+  padding:6px 4px calc(6px + var(--safe-b));
+  max-width:520px;margin:0 auto;
+}
+.nav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+  background:none;border:none;color:var(--text-faint);padding:8px 2px;border-radius:12px;
+  min-height:52px;min-width:44px;
+}
+.nav-btn .ic{font-size:20px;line-height:1;}
+.nav-btn .lb{font-size:10.5px;font-weight:700;}
+.nav-btn.active{color:var(--accent);}
+.nav-btn.active .ic{filter:drop-shadow(0 0 6px rgba(88,217,122,.5));}
+
+footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;padding:10px 4px 0;}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>今日の解析結果（検証中）</h1>
-    <p class="lede">UMALAB（馬ラボ）が本日解析した候補レースを、発走前に記録したデータとしてそのまま公開しています。</p>
-    <p class="alert">
-      【検証中・実購入非推奨】予想モデルの利益性能は未検証です。回収率100%超えの
-      統計的根拠は確認されていません（直近の時系列バックテストn=1,767件、95%信頼区間の
-      上限は84.7%）。過去にこの方式に近い表示で実際の金銭的損失が発生した事例があります。
-      実際の馬券購入・投票には使わないでください。
-    </p>
-    <a href="bottom4-verification.html" style="font-size:13px;font-weight:700;">検証の詳しい数値はこちら →</a>
-    <br><a href="tomorrow-preview.html" style="font-size:13px;font-weight:700;">翌日の事前予想（参考情報）はこちら →</a>
-  </header>
+<div class="app">
 
-  <div class="panel" id="modelSummaryPanel" style="display:none;">
-    <h3 style="margin:0 0 6px;">モデルの過去検証成績・仮想収支（A〜G、前向きPaperTrading）</h3>
-    <div id="modelSummaryBody" style="font-size:12.5px;"></div>
-  </div>
-
-  <div class="panel" id="historyPanel" style="display:none;">
-    <h3 style="margin:0 0 6px;">事前予想実績（公開時刻が確認できるもののみ集計）</h3>
-    <div id="historyBody" style="font-size:12.5px;"></div>
-  </div>
-
-  <div id="loading">読み込み中...</div>
-  <div id="content" style="display:none;">
-    <div class="panel">
-      <div class="updated" id="updatedAt"></div>
-      <div class="updated" id="totalRaces" style="margin-top:3px;"></div>
+  <div class="topbar">
+    <div class="topbar-row">
+      <div class="brand">🏇 UMALAB</div>
+      <div class="date-pill" id="topDate">読み込み中…</div>
     </div>
-    <div id="raceSections"></div>
+    <div class="summary-grid" id="summaryGrid">
+      <div class="stat-card"><div class="label">開催場数</div><div class="value num" id="statTracks">—</div></div>
+      <div class="stat-card"><div class="label">解析レース数</div><div class="value num" id="statRaces">—</div></div>
+      <div class="stat-card"><div class="label">購入推奨件数</div><div class="value num accent" id="statRecs">—</div></div>
+      <div class="stat-card"><div class="label">仮想累積回収率</div><div class="value num" id="statRoi">—</div></div>
+    </div>
   </div>
 
-  <footer style="margin-top:20px;font-size:11.5px;color:var(--text-dim);text-align:center;">
-    UMALAB｜検証段階の内容を正直に公開しています。予想モデルの利益性能は未検証です。<br>
-    実際の購入判断はご自身の責任で行ってください。
-  </footer>
+  <main class="main">
+
+    <!-- ============ 今日の予想 ============ -->
+    <section class="view active" id="view-today">
+      <div id="todayBanners"></div>
+      <div id="todayContent"><div class="loading">読み込み中…</div></div>
+    </section>
+
+    <!-- ============ 明日の予想 ============ -->
+    <section class="view" id="view-tomorrow">
+      <div id="tomorrowContent"><div class="loading">タブを開くと読み込みます…</div></div>
+    </section>
+
+    <!-- ============ 競馬場別成績 ============ -->
+    <section class="view" id="view-tracks">
+      <div id="tracksContent"><div class="loading">タブを開くと読み込みます…</div></div>
+    </section>
+
+    <!-- ============ 収支・回収率 ============ -->
+    <section class="view" id="view-pnl">
+      <div id="pnlContent"><div class="loading">タブを開くと読み込みます…</div></div>
+    </section>
+
+    <!-- ============ 研究結果 ============ -->
+    <section class="view" id="view-research">
+      <div id="researchContent"><div class="loading">タブを開くと読み込みます…</div></div>
+    </section>
+
+    <footer class="disclaimer">
+      UMALAB｜検証段階の内容を正直に公開しています。予想モデルの利益性能は未検証です。<br>
+      実際の購入判断はご自身の責任で行ってください。回収率100%超えを保証するものではありません。
+    </footer>
+  </main>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="nav-btn active" data-view="today"><span class="ic">📅</span><span class="lb">今日</span></button>
+    <button class="nav-btn" data-view="tomorrow"><span class="ic">🌙</span><span class="lb">明日</span></button>
+    <button class="nav-btn" data-view="tracks"><span class="ic">🏟️</span><span class="lb">競馬場別</span></button>
+    <button class="nav-btn" data-view="pnl"><span class="ic">💰</span><span class="lb">収支</span></button>
+    <button class="nav-btn" data-view="research"><span class="ic">🔬</span><span class="lb">研究結果</span></button>
+  </nav>
 </div>
 
 <script>
 (function(){
-  const $ = id => document.getElementById(id);
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  };
+  var pct = function(p){ return (p == null) ? null : Math.round(p * 1000) / 10; };
+  var fmtPct = function(p){ var v = pct(p); return v == null ? "未取得" : v + "%"; };
+  var fmtOdds = function(o){ return (o == null) ? "未取得" : (Math.round(o*10)/10) + "倍"; };
+  var fmtEv = function(ev){ return (ev == null) ? "未取得" : (ev >= 0 ? "+" : "") + Math.round(ev*100) + "%"; };
+  var fmtHHMM = function(raw){
+    if(raw == null || raw === "") return "未取得";
+    var digits = String(raw).replace(/\D/g, "").padStart(4, "0");
+    return digits.slice(0, 2) + ":" + digits.slice(2, 4);
+  };
 
   function todayStr(){
-    const d = new Date();
-    return '' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+    var d = new Date();
+    return "" + d.getFullYear() + String(d.getMonth()+1).padStart(2,"0") + String(d.getDate()).padStart(2,"0");
+  }
+  function fmtDateLabel(yyyymmdd){
+    if(!yyyymmdd) return "日付未取得";
+    var s = String(yyyymmdd);
+    return s.slice(0,4) + "年" + s.slice(4,6) + "月" + s.slice(6,8) + "日";
   }
 
-  fetch('bottom4_research_status.json?t=' + Date.now(), {cache: 'no-store'})
-    .then(function(res){ return res.json(); })
-    .then(function(bstatus){
-      const fwd = bstatus.forward_paper_trading || {};
-      const body = $('modelSummaryBody');
-      let html = '<div style="margin-bottom:4px;">更新: ' + (bstatus.generated_at || '不明') + '</div>';
-      Object.keys(fwd).forEach(function(label){
-        if(label === '新規データ総数') return;
-        const v = fwd[label];
-        if(!v || !v.n){ html += '<div>' + label + ': データ不足</div>'; return; }
-        html += '<div>' + label + ': n=' + v.n + ' 的中率' + v.的中率 + '% 回収率' + v.回収率 + '%</div>';
-      });
-      html += '<div style="margin-top:6px;"><a href="bottom4-verification.html">全方式の詳細 →</a></div>';
-      body.innerHTML = html;
-      $('modelSummaryPanel').style.display = 'block';
-    })
-    .catch(function(){ /* モデル実績パネルは表示できなくても本体の予想表示は継続する */ });
+  function wakuChip(waku){
+    if(waku == null) return '<span class="waku waku-unknown">?</span>';
+    var n = ((waku - 1) % 8) + 1;
+    return '<span class="waku waku-' + n + '">' + esc(waku) + '</span>';
+  }
 
-  function staleBanner(labelDate){
-    const el = document.createElement('div');
-    el.className = 'stale-banner';
-    el.textContent = 'この解析は本日（' + todayStr() + '）更新分ではないため、予想として表示しません（データ日付: ' + labelDate + '）。過去の予想を本日分として表示することはありません。';
+  /* ============================================================
+     今日の予想
+     ============================================================ */
+  var TODAY_DATA = null;
+
+  function horseEv(prob, odds){
+    if(prob == null || odds == null) return null;
+    return prob * odds - 1;
+  }
+
+  function renderRaceDetail(r){
+    var marks = ["◎", "○", "▲"];
+    var rows = (r.top3 || []).map(function(h, i){
+      var ev = horseEv(h.prob, h.win_odds_at_prediction);
+      return (
+        '<div class="horse-row">' +
+          '<div class="horse-mark">' + marks[i] + '</div>' +
+          wakuChip(h.waku) +
+          '<div class="horse-main">' +
+            '<div class="horse-name">' + esc(h.no) + '番 ' + esc(h.name) + '</div>' +
+            '<div class="horse-sub">' +
+              '<span>予測確率(複勝圏内) ' + fmtPct(h.prob) + '</span>' +
+              '<span>発走前オッズ ' + fmtOdds(h.win_odds_at_prediction) + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="horse-metric"><div class="big">' + fmtEv(ev) + '</div><div class="cap">参考EV</div></div>' +
+        '</div>'
+      );
+    }).join("") || '<div class="horse-row">データ未取得</div>';
+
+    var vr = r.validated_recommendation || {};
+    var recBox;
+    if(vr.qualifies){
+      recBox = '<div class="rec-box yes"><div class="title">✅ 購入推奨（既存ベストフィルター該当）</div>' +
+        '複勝: ' + esc(vr.horse_no) + '番 ' + esc(vr.horse_name) +
+        '（予測時点単勝オッズ ' + fmtOdds(vr.win_odds_at_prediction) + '）<br>' +
+        '<span style="color:var(--text-dim);font-size:11.5px;">' + esc(vr.backtest_reference || "") + '</span></div>';
+    } else {
+      recBox = '<div class="rec-box no"><div class="title">購入推奨なし</div>' + esc(vr.reason || "条件不成立") + '</div>';
+    }
+
+    var wideNote = '<div class="reason-box"><strong>参考: ワイド方式（検証中・実購入非推奨）</strong><br>' +
+      '判定: ' + esc(r.decision || "—") + '<br>' + esc(r.reason || "");
+    if(r.wide_candidate && r.wide_candidate.combo){
+      wideNote += '<br>買い目候補: ワイド ' + esc(r.wide_candidate.combo);
+    }
+    wideNote += '</div>';
+
+    return (
+      '<div class="kv-grid">' +
+        '<div class="k">発走時刻</div><div class="v">' + esc(r.post_time) + '</div>' +
+        '<div class="k">頭数</div><div class="v">' + (r.頭数 != null ? esc(r.頭数) + "頭" : "未取得") + '</div>' +
+      '</div>' +
+      '<div class="section-title">予測上位3頭</div>' + rows +
+      recBox + wideNote +
+      '<div class="reason-box">結果・的中判定は、レース終了後の夜間自動集計を経て「収支・回収率」タブに反映されます（終了直後のこの画面には表示されません）。</div>'
+    );
+  }
+
+  function renderRaceCard(r){
+    var vr = r.validated_recommendation || {};
+    var el = document.createElement("div");
+    el.className = "race-card";
+    var badges = vr.qualifies
+      ? '<span class="chip ok">✅ 購入推奨あり</span>'
+      : '<span class="chip muted">見送り</span>';
+    if(r.top3 && r.top3[0]){
+      badges += '<span class="chip warn">本命 ' + esc(r.top3[0].no) + '番</span>';
+    }
+    el.innerHTML =
+      '<div class="race-top">' +
+        '<span class="rno">' + esc(r.race_no) + 'R</span>' +
+        '<span class="ptime">' + esc(r.post_time) + ' 発走</span>' +
+      '</div>' +
+      '<div class="race-badges">' + badges + '</div>' +
+      '<div class="race-detail">' + renderRaceDetail(r) + '</div>';
+    el.querySelector(".race-top").addEventListener("click", function(){
+      el.querySelector(".race-detail").classList.toggle("open");
+    });
     return el;
   }
 
-  function renderHistory(h){
-    const panel = $('historyPanel');
-    const body = $('historyBody');
-    if(!h || !h.n_published_total){
-      body.innerHTML = '<div>まだ公開実績がありません。</div>';
-      panel.style.display = 'block';
+  function groupByTrack(races){
+    var order = [], map = {};
+    (races || []).forEach(function(r){
+      if(!map[r.track]){ map[r.track] = []; order.push(r.track); }
+      map[r.track].push(r);
+    });
+    return order.map(function(t){ return { track: t, races: map[t] }; });
+  }
+
+  function renderTrackGroups(groups, emptyMsg){
+    var wrap = document.createElement("div");
+    if(!groups.length){
+      var b = document.createElement("div");
+      b.className = "banner neutral";
+      b.textContent = emptyMsg;
+      wrap.appendChild(b);
+      return wrap;
+    }
+    groups.forEach(function(g){
+      var recCount = g.races.filter(function(r){ return r.validated_recommendation && r.validated_recommendation.qualifies; }).length;
+      var box = document.createElement("div");
+      box.className = "track-group";
+      var head = document.createElement("div");
+      head.className = "track-head";
+      head.setAttribute("aria-expanded", "false");
+      head.innerHTML =
+        '<div><div class="name">' + esc(g.track) + '</div>' +
+          '<div class="meta">' + g.races.length + 'レース' + (recCount ? ' ・ 推奨' + recCount + '件' : '') + '</div></div>' +
+        '<div class="arrow">▶</div>';
+      var body = document.createElement("div");
+      body.className = "track-races";
+      g.races.forEach(function(r){ body.appendChild(renderRaceCard(r)); });
+      head.addEventListener("click", function(){
+        var open = body.classList.toggle("open");
+        head.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      box.appendChild(head);
+      box.appendChild(body);
+      wrap.appendChild(box);
+    });
+    return wrap;
+  }
+
+  function updateSummary(data){
+    $("topDate").textContent = fmtDateLabel(data.date);
+    var tracks = {};
+    (data.races || []).forEach(function(r){ tracks[r.track] = true; });
+    $("statTracks").textContent = Object.keys(tracks).length;
+    $("statRaces").textContent = data.total_races_analyzed != null ? data.total_races_analyzed : "—";
+    var recs = (data.races || []).filter(function(r){ return r.validated_recommendation && r.validated_recommendation.qualifies; }).length;
+    $("statRecs").textContent = recs;
+  }
+
+  function renderToday(data){
+    TODAY_DATA = data;
+    var banners = $("todayBanners");
+    banners.innerHTML = "";
+
+    if(!data.date || data.date !== todayStr()){
+      var b = document.createElement("div");
+      b.className = "banner bad";
+      b.textContent = "この解析は本日(" + fmtDateLabel(todayStr()) + ")更新分ではないため、予想として表示しません(データ日付: " + fmtDateLabel(data.date) + ")。過去の予想を本日分として表示することはありません。";
+      banners.appendChild(b);
+      $("todayContent").innerHTML = "";
+      updateSummary({date: data.date, races: []});
       return;
     }
-    let html = '<div>事前公開レース数: ' + h.n_published_total + '件（うち見送り ' + h.n_skipped + '件、買い候補 ' + h.n_bought + '件）</div>';
-    html += '<div>結果確定済み: ' + h.n_confirmed + '件</div>';
-    if(h.roi_bought != null){
-      html += '<div>買い候補の仮想回収率: ' + h.roi_bought + '%</div>';
-    } else {
-      html += '<div>買い候補の仮想回収率: 該当なし（買い候補がまだありません）</div>';
+
+    updateSummary(data);
+
+    if(data.odds_stale){
+      var ob = document.createElement("div");
+      ob.className = "banner warn";
+      ob.textContent = "発走前オッズが約" + data.odds_age_minutes + "分前から更新できていません。購入前に必ずご自身でオッズをご確認ください。";
+      banners.appendChild(ob);
     }
-    body.innerHTML = html;
-    panel.style.display = 'block';
+
+    var recCount = (data.races || []).filter(function(r){ return r.validated_recommendation && r.validated_recommendation.qualifies; }).length;
+    if(recCount === 0 && (data.races || []).length > 0){
+      var rb = document.createElement("div");
+      rb.className = "banner info";
+      rb.textContent = "本日解析した" + data.races.length + "レース中、既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当する馬はまだありません。該当馬が出た時点でこの画面に表示されます。";
+      banners.appendChild(rb);
+    }
+
+    if(data.total_races_unpredictable){
+      var ub = document.createElement("div");
+      ub.className = "banner neutral";
+      ub.textContent = "本日の開催" + (data.total_races_scheduled != null ? data.total_races_scheduled : "?") + "レース中、" + data.total_races_unpredictable + "レースは発走前オッズ等のデータが未公開のため、まだ予想不能です(見送り判断とは別、データ待ちの状態)。";
+      banners.appendChild(ub);
+    }
+
+    var content = $("todayContent");
+    content.innerHTML = "";
+    if(!data.races || data.races.length === 0){
+      content.appendChild(renderTrackGroups([], "本日、解析対象のレースがまだありません。または本日の開催が終了しました。"));
+      return;
+    }
+    content.appendChild(renderTrackGroups(groupByTrack(data.races), ""));
   }
 
-  function renderRace(r){
-    const el = document.createElement('div');
-    const isBuy = r.decision && r.decision.indexOf('買い') !== -1;
-    const dataOk = r.頭数 != null && r.top3 && r.top3.length >= 2;
-    el.className = 'race-card ' + (isBuy ? 'buy' : 'skip');
+  function loadToday(){
+    fetch("today_picks_v2.json?t=" + Date.now(), {cache: "no-store"})
+      .then(function(res){ return res.json(); })
+      .then(renderToday)
+      .catch(function(){
+        $("todayContent").innerHTML = '<div class="banner bad">データの読み込みに失敗しました。</div>';
+      });
+  }
 
-    const top3Html = (r.top3 || []).map(function(h, i){
-      const label = ['軸馬候補','相手馬候補','3番手'][i] || '';
-      return '<div class="horse-row">' + label + ': ' + h.no + '番 ' + h.name + '（モデル予測確率' + Math.round(h.prob*1000)/10 + '%）</div>';
-    }).join('');
+  /* ============================================================
+     明日の予想(事前分析、オッズ非依存・確率は含まない)
+     ============================================================ */
+  function renderTomorrowHorse(h){
+    var r5 = h.recent5 || {};
+    var finishes = (r5.finishes || []).join("-") || "未取得";
+    var jc = h.jockey_change || {};
+    return (
+      '<div class="horse-row">' +
+        '<div class="horse-mark">' + esc(h.no) + '</div>' +
+        '<div class="horse-main">' +
+          '<div class="horse-name">' + esc(h.name) + '</div>' +
+          '<div class="horse-sub">' +
+            '<span>騎手 ' + esc(h.jockey_today || "未取得") + (jc.changed ? "(乗り替わり)" : "") + '</span>' +
+            '<span>直近5走 ' + esc(finishes) + '</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
 
-    const bottom4Html = (r.bottom4 || []).map(function(h){
-      return '<div class="horse-row">' + h.no + '番 ' + h.name + '（下位危険度' + Math.round(h.bottom4_prob*1000)/10 + '%）</div>';
-    }).join('') || '<div class="horse-row">(算出できませんでした)</div>';
-
-    let wideHtml = '該当なし';
-    let oddsText = '取得できず(推定値は使用していません)';
-    if(r.wide_candidate){
-      const w = r.wide_candidate;
-      oddsText = (w.odds_low != null) ? (w.odds_low + '〜' + w.odds_high + '倍') : oddsText;
-      wideHtml = '<span class="wide-pick">ワイド ' + w.combo + '</span>';
-    }
-    const calibText = (r.calibrated_prob != null) ? (Math.round(r.calibrated_prob*1000)/10 + '%（校正済み、個別確率の単純な積ではない）') : '算出不可';
-    const stakeText = (r.suggested_virtual_stake != null) ? (r.suggested_virtual_stake + '円（検証用の仮想金額、実購入は促しません）') : '該当なし（見送りのため配分なし）';
-
-    const statusTag = !dataOk ? '<span class="data-tag">データ不足</span>'
-      : (isBuy ? '<span class="verify-tag">検証用・実購入非推奨</span>' : '<span class="skip-tag">見送り</span>');
-
+  function renderTomorrowRace(r){
+    var el = document.createElement("div");
+    el.className = "race-card";
+    var horses = (r.horses || []).map(renderTomorrowHorse).join("") || '<div class="horse-row">出走馬データ未取得</div>';
     el.innerHTML =
-      '<div class="race-head">' +
-        '<span class="race-title">' + r.track + r.race_no + 'R' + statusTag + '</span>' +
-        '<span class="race-time">' + r.post_time + '発走　頭数' + (r.頭数 != null ? r.頭数 : '不明') + '</span>' +
+      '<div class="race-top">' +
+        '<span class="rno">' + esc(r.race_no) + 'R</span>' +
+        '<span class="ptime">' + esc(fmtHHMM(r.post_time)) + ' 発走予定</span>' +
       '</div>' +
-      '<div class="fact-grid">' +
-        '<div class="k">券種</div><div class="v">' + (r.bet_type || 'ワイド') + '</div>' +
-        '<div class="k">買い目</div><div class="v">' + (r.wide_candidate ? r.wide_candidate.combo : '—') + '</div>' +
-        '<div class="k">推定的中確率</div><div class="v">' + calibText + '</div>' +
-        '<div class="k">取得時点オッズ</div><div class="v">' + oddsText + '</div>' +
-      '</div>' +
-      wideHtml +
-      '<details><summary>軸馬・相手馬・下位予測の詳細</summary>' +
-        '<h3>軸馬・相手馬候補</h3>' + (top3Html || '(なし)') +
-        '<h3>下位予測4頭（参考・除外フィルターとしての有効性は未確認）</h3>' + bottom4Html +
-        '<h3>推奨配分（検証用の仮想金額）</h3><div class="horse-row">' + stakeText + '</div>' +
-      '</details>' +
-      '<div class="reason"><strong>判定: ' + r.decision + '</strong><br>' + (r.reason || '') + '</div>';
+      '<div class="race-badges"><span class="chip muted">距離 ' + (r.distance != null ? esc(r.distance) + "m" : "未取得") + '</span>' +
+        '<span class="chip muted">頭数 ' + (r.head_count != null ? esc(r.head_count) + "頭" : "未取得") + '</span></div>' +
+      '<div class="race-detail open">' + horses + '</div>';
     return el;
   }
 
-  fetch('today_picks_v2.json?t=' + Date.now(), {cache: 'no-store'})
-    .then(function(res){ return res.json(); })
-    .then(function(data){
-      $('loading').style.display = 'none';
-      $('content').style.display = 'block';
-      $('updatedAt').textContent = '最終更新: ' + data.updated_at;
-      renderHistory(data.history_summary);
+  function loadTomorrow(){
+    var content = $("tomorrowContent");
+    content.innerHTML = '<div class="loading">読み込み中…</div>';
+    fetch("tomorrow_preliminary.json?t=" + Date.now(), {cache: "no-store"})
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        content.innerHTML = "";
+        var note = document.createElement("div");
+        note.className = "banner info";
+        note.textContent = "翌日(" + fmtDateLabel(data.date) + ")の事前分析です。確率・期待値は一切含みません(公式オッズ未公開のため)。最終予測はオッズ公開後、今日の予想タブに自動的に表示されます。";
+        content.appendChild(note);
 
-      const container = $('raceSections');
-      if(!data.date || data.date !== todayStr()){
-        container.appendChild(staleBanner(data.date || '不明'));
-        $('totalRaces').textContent = '';
-        return;
-      }
-      $('totalRaces').textContent = '解析レース数: ' + data.total_races_analyzed + '件';
-      if(data.odds_stale){
-        const b = document.createElement('div');
-        b.className = 'stale-banner';
-        b.textContent = 'オッズが約' + data.odds_age_minutes + '分前から更新できていません。購入前に必ずご自身でオッズをご確認ください。';
-        container.appendChild(b);
-      }
-      (data.races || []).forEach(function(r){ container.appendChild(renderRace(r)); });
-      if(!data.races || data.races.length === 0){
-        const b = document.createElement('div');
-        b.className = 'neutral-banner';
-        b.textContent = '本日、解析対象のレースがまだ無い、または全て終了しました。';
-        container.appendChild(b);
-      }
-    })
-    .catch(function(){
-      $('loading').textContent = 'データの読み込みに失敗しました。';
+        if(data.status === "未公開" || !data.races || data.races.length === 0){
+          var b = document.createElement("div");
+          b.className = "banner neutral";
+          b.textContent = data.note || (fmtDateLabel(data.date) + "の出馬表はまだ公開されていません。");
+          content.appendChild(b);
+          return;
+        }
+        var groups = groupByTrack(data.races);
+        groups.forEach(function(g){
+          var box = document.createElement("div");
+          box.className = "track-group";
+          var head = document.createElement("div");
+          head.className = "track-head";
+          head.innerHTML = '<div><div class="name">' + esc(g.track) + '</div><div class="meta">' + g.races.length + 'レース</div></div><div class="arrow">▶</div>';
+          var body = document.createElement("div");
+          body.className = "track-races";
+          g.races.forEach(function(r){ body.appendChild(renderTomorrowRace(r)); });
+          head.addEventListener("click", function(){
+            var open = body.classList.toggle("open");
+            head.setAttribute("aria-expanded", open ? "true" : "false");
+          });
+          box.appendChild(head); box.appendChild(body);
+          content.appendChild(box);
+        });
+      })
+      .catch(function(){
+        content.innerHTML = '<div class="banner bad">データの読み込みに失敗しました。</div>';
+      });
+  }
+
+  /* ============================================================
+     競馬場別成績 / 収支・回収率(mobile_summary.json)
+     ============================================================ */
+  var MOBILE_SUMMARY = null;
+  function loadMobileSummary(){
+    if(MOBILE_SUMMARY) return Promise.resolve(MOBILE_SUMMARY);
+    return fetch("mobile_summary.json?t=" + Date.now(), {cache: "no-store"})
+      .then(function(res){ return res.json(); })
+      .then(function(d){ MOBILE_SUMMARY = d; return d; });
+  }
+
+  function renderTracks(){
+    var content = $("tracksContent");
+    content.innerHTML = '<div class="loading">読み込み中…</div>';
+    loadMobileSummary().then(function(d){
+      content.innerHTML = "";
+      var wide = (d.production_real_results_status || {}).wide_method || {};
+      var note = document.createElement("div");
+      note.className = "banner info";
+      note.textContent = "下記は本番予想が実際に発行した推奨の記録(競馬場別)です。品質ゲートにより現在は全件見送りのため、購入0件です。";
+      content.appendChild(note);
+
+      var wrap = document.createElement("div");
+      wrap.className = "card table-wrap";
+      var rows = Object.keys(wide.by_track || {}).sort(function(a,b){ return wide.by_track[b]-wide.by_track[a]; })
+        .map(function(t){ return '<tr><td>' + esc(t) + '</td><td class="num">' + wide.by_track[t] + '</td><td class="num"><span class="chip muted">見送り</span></td></tr>'; }).join("");
+      wrap.innerHTML = '<table class="data"><tr><th>競馬場</th><th>記録件数</th><th>状態</th></tr>' + (rows || '<tr><td colspan="3">未取得</td></tr>') + '</table>';
+      content.appendChild(wrap);
+
+      var hint = document.createElement("div");
+      hint.className = "banner neutral";
+      hint.innerHTML = '競馬場別の詳しい統計検証(的中率・LogLoss・Brier Score等、研究用バックテスト)は<a href="umalab-research-dashboard.html">研究ダッシュボード →</a>をご覧ください。';
+      content.appendChild(hint);
+    }).catch(function(){
+      content.innerHTML = '<div class="banner bad">データの読み込みに失敗しました。</div>';
     });
+  }
+
+  function renderPnl(){
+    var content = $("pnlContent");
+    content.innerHTML = '<div class="loading">読み込み中…</div>';
+    loadMobileSummary().then(function(d){
+      content.innerHTML = "";
+      var pt = d.paper_trading_summary || {};
+
+      var realNote = document.createElement("div");
+      realNote.className = "banner bad";
+      realNote.textContent = "【実績】本番予想システムが実際に発行した購入推奨は、これまで0件です(品質ゲートにより全件見送り)。実際のお金での購入・決済は一度も行っていません。";
+      content.appendChild(realNote);
+
+      var virtualNote = document.createElement("div");
+      virtualNote.className = "banner warn";
+      virtualNote.textContent = "以下は仮想購入(Paper Trading)の記録です。実際のお金ではありません。" + (pt.updated_at || "");
+      content.appendChild(virtualNote);
+
+      var grid = document.createElement("div");
+      grid.className = "summary-grid";
+      grid.style.marginBottom = "12px";
+      grid.innerHTML =
+        '<div class="stat-card"><div class="label">検証件数</div><div class="value num">' + esc(pt.total_n || "—") + '</div></div>' +
+        '<div class="stat-card"><div class="label">的中率</div><div class="value num">' + esc(pt.total_hit_rate || "—") + '</div></div>' +
+        '<div class="stat-card"><div class="label">仮想回収率</div><div class="value num accent">' + esc(pt.total_roi || "—") + '</div></div>' +
+        '<div class="stat-card"><div class="label">仮想収支</div><div class="value num">' + esc(pt.balance || "—") + '</div></div>';
+      content.appendChild(grid);
+
+      var wrap = document.createElement("div");
+      wrap.className = "card table-wrap";
+      var rows = (pt.condition_rows || []).map(function(row){
+        return "<tr>" + row.map(function(c,i){ return (i===0 ? "<td>" : '<td class="num">') + esc(c) + "</td>"; }).join("") + "</tr>";
+      }).join("");
+      wrap.innerHTML = '<table class="data"><tr><th>条件</th><th>件数</th><th>的中率</th><th>回収率</th><th>最大連敗</th></tr>' + (rows || '<tr><td colspan="5">未取得</td></tr>') + '</table>';
+      content.appendChild(wrap);
+
+      var link = document.createElement("div");
+      link.className = "banner neutral";
+      link.innerHTML = '条件ごとの詳細・訂正履歴は<a href="track-record.html">検証実績ページ →</a>をご覧ください。';
+      content.appendChild(link);
+
+      $("statRoi").textContent = pt.total_roi || "—";
+    }).catch(function(){
+      content.innerHTML = '<div class="banner bad">データの読み込みに失敗しました。</div>';
+    });
+  }
+
+  /* ============================================================
+     研究結果(要約 + リンク)
+     ============================================================ */
+  function renderResearch(){
+    var content = $("researchContent");
+    content.innerHTML = '<div class="loading">読み込み中…</div>';
+    fetch("umalab_research_dashboard_data.json?t=" + Date.now(), {cache: "no-store"})
+      .then(function(res){ return res.json(); })
+      .then(function(d){
+        content.innerHTML = "";
+        var intro = document.createElement("div");
+        intro.className = "banner info";
+        intro.textContent = "研究用バックテストの要約です。実際の購入成績ではありません。最終更新: " + (d.updated_at || "不明");
+        content.appendChild(intro);
+
+        [
+          ["第10段階", d.stage10_overall_conclusion],
+          ["第9段階", d.stage9_overall_conclusion],
+          ["第8段階", d.stage8_overall_conclusion],
+        ].forEach(function(pair){
+          if(!pair[1]) return;
+          var c = document.createElement("div");
+          c.className = "card";
+          c.innerHTML = '<div class="section-title">' + pair[0] + '</div><div style="font-size:13px;color:var(--text-dim);">' + esc(pair[1]) + '</div>';
+          content.appendChild(c);
+        });
+
+        var link = document.createElement("div");
+        link.className = "banner neutral";
+        link.innerHTML = '競馬場別・モデル別の全データは<a href="umalab-research-dashboard.html">研究ダッシュボード全体 →</a>でご覧いただけます。';
+        content.appendChild(link);
+      })
+      .catch(function(){
+        content.innerHTML = '<div class="banner bad">データの読み込みに失敗しました。</div>';
+      });
+  }
+
+  /* ============================================================
+     タブ切り替え
+     ============================================================ */
+  var LOADED = {};
+  var LOADERS = {
+    today: loadToday, tomorrow: loadTomorrow, tracks: renderTracks, pnl: renderPnl, research: renderResearch,
+  };
+  document.querySelectorAll(".nav-btn").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var view = btn.getAttribute("data-view");
+      document.querySelectorAll(".nav-btn").forEach(function(b){ b.classList.toggle("active", b === btn); });
+      document.querySelectorAll(".view").forEach(function(v){ v.classList.toggle("active", v.id === "view-" + view); });
+      if(!LOADED[view]){ LOADED[view] = true; LOADERS[view](); }
+      window.scrollTo(0, 0);
+    });
+  });
+
+  loadToday();
+  LOADED.today = true;
+  loadMobileSummary().then(function(d){
+    if(d.paper_trading_summary && d.paper_trading_summary.total_roi){
+      $("statRoi").textContent = d.paper_trading_summary.total_roi;
+    }
+  }).catch(function(){});
 })();
 </script>
 </body>
