@@ -426,6 +426,28 @@ async function load(force){
     </div>
 
     <div class="panel">
+      <h2>本番予想の実際の購入実績(研究バックテストではない)</h2>
+      <p class="pill pill-warn">単勝・複勝・ワイドいずれも実購入は0件</p>
+      <div class="scroll"><table>
+        <tr><th>券種</th><th>記録件数</th><th>購入(見送り以外)</th><th>状態</th></tr>
+        <tr><td>ワイド(現行本番方式)</td><td>${d.production_real_results_status?.wide_method?.n_logged ?? '-'}</td>
+          <td>${d.production_real_results_status?.wide_method?.n_purchased ?? '-'}</td>
+          <td><span class="pill pill-warn">品質ゲートで全件見送り</span></td></tr>
+        <tr><td>複勝(既存ベストフィルター、新規追加)</td><td>${d.production_real_results_status?.validated_fukusho_filter?.n_logged ?? '-'}</td>
+          <td>-</td><td><span class="pill">本日機能追加・履歴なし</span></td></tr>
+        <tr><td>単勝</td><td>${d.production_real_results_status?.tansho?.n_logged ?? '-'}</td>
+          <td>-</td><td><span class="pill pill-warn">本番で実施していない(計算不能)</span></td></tr>
+      </table></div>
+      <div class="scroll"><table>
+        <tr><th>競馬場(ワイド記録)</th><th>件数</th></tr>
+        ${Object.entries(d.production_real_results_status?.wide_method?.by_track || {}).map(([t,n]) => `<tr><td>${t}</td><td>${n}</td></tr>`).join('')}
+      </table></div>
+      <p class="note">${d.production_real_results_status?.wide_method?.note ?? ''}</p>
+      <p class="note">${d.production_real_results_status?.validated_fukusho_filter?.note ?? ''}</p>
+      <p class="note">確認時刻: ${d.production_real_results_status?.last_checked ?? ''}</p>
+    </div>
+
+    <div class="panel">
       <h2>第7段階: 条件付きロジット・Benter統合モデル研究</h2>
       <div class="scroll"><table>
         <tr><th>#</th><th>仮説</th><th>状態</th><th>所見</th></tr>
