@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14 01:41",
+  "updated_at": "2026-11-14 11:21",
   "data_tiers_note": "本サイトのデータは集計期間が異なる3種類を明確に区別する。(1)過去データ・学習・検証件数=races表/features表の全期間(10万件規模、研究用バックテスト)。(2)本番予想56日分精算=predictions/all_predictions_history.csv(2026-08-26~、track_data_auditとstrategy_settlementが対象)。(3)直近の本番ログ=predictions/published_picks_log.csv(直近7日・数十件、production_real_results_status)。(3)を(1)(2)の代わりに表示しないこと。",
   "track_data_audit": {
     "status": "ok",
@@ -193,15 +193,15 @@
     ]
   },
   "strategy_settlement": {
-    "prediction_log_date_range": "20260826~20261113(56日分)",
-    "n_races_settlement_eligible": 2384,
+    "prediction_log_date_range": "20260826~20261114(57日分)",
+    "n_races_settlement_eligible": 2395,
     "n_leak_violations_excluded": 602,
     "overall_by_strategy": {
       "A_単勝◎": {
-        "n_predicted": 2384,
-        "n_purchased": 2384,
+        "n_predicted": 2395,
+        "n_purchased": 2395,
         "n_settled": 2369,
-        "n_unsettled": 15,
+        "n_unsettled": 26,
         "n_hit": 971,
         "hit_rate_pct": 40.99,
         "bet_total_yen": 236900.0,
@@ -212,10 +212,10 @@
         "insufficient_sample": false
       },
       "B_複勝◎": {
-        "n_predicted": 2384,
-        "n_purchased": 2384,
+        "n_predicted": 2395,
+        "n_purchased": 2395,
         "n_settled": 2369,
-        "n_unsettled": 15,
+        "n_unsettled": 26,
         "n_hit": 1714,
         "hit_rate_pct": 72.35,
         "bet_total_yen": 236900.0,
@@ -226,10 +226,10 @@
         "insufficient_sample": false
       },
       "C_ワイド◎○": {
-        "n_predicted": 2384,
-        "n_purchased": 2384,
+        "n_predicted": 2395,
+        "n_purchased": 2395,
         "n_settled": 2181,
-        "n_unsettled": 203,
+        "n_unsettled": 214,
         "n_hit": 870,
         "hit_rate_pct": 39.89,
         "bet_total_yen": 218100.0,
@@ -240,10 +240,10 @@
         "insufficient_sample": false
       },
       "D_ワイド◎▲": {
-        "n_predicted": 2384,
-        "n_purchased": 2384,
+        "n_predicted": 2395,
+        "n_purchased": 2395,
         "n_settled": 2181,
-        "n_unsettled": 203,
+        "n_unsettled": 214,
         "n_hit": 656,
         "hit_rate_pct": 30.08,
         "bet_total_yen": 218100.0,
@@ -254,10 +254,10 @@
         "insufficient_sample": false
       },
       "E_ワイドBOX": {
-        "n_predicted": 2384,
-        "n_purchased": 2384,
+        "n_predicted": 2395,
+        "n_purchased": 2395,
         "n_settled": 2181,
-        "n_unsettled": 203,
+        "n_unsettled": 214,
         "n_hit": 1426,
         "hit_rate_pct": 65.38,
         "bet_total_yen": 654300.0,
@@ -268,10 +268,10 @@
         "insufficient_sample": false
       },
       "F_既存ベストフィルター": {
-        "n_predicted": 2384,
-        "n_purchased": 579,
+        "n_predicted": 2395,
+        "n_purchased": 583,
         "n_settled": 578,
-        "n_unsettled": 1,
+        "n_unsettled": 5,
         "n_hit": 523,
         "hit_rate_pct": 90.48,
         "bet_total_yen": 57800.0,
@@ -1403,10 +1403,10 @@
       },
       "高知": {
         "A_単勝◎": {
-          "n_predicted": 135,
-          "n_purchased": 135,
+          "n_predicted": 146,
+          "n_purchased": 146,
           "n_settled": 134,
-          "n_unsettled": 1,
+          "n_unsettled": 12,
           "n_hit": 56,
           "hit_rate_pct": 41.79,
           "bet_total_yen": 13400.0,
@@ -1417,10 +1417,10 @@
           "insufficient_sample": false
         },
         "B_複勝◎": {
-          "n_predicted": 135,
-          "n_purchased": 135,
+          "n_predicted": 146,
+          "n_purchased": 146,
           "n_settled": 134,
-          "n_unsettled": 1,
+          "n_unsettled": 12,
           "n_hit": 100,
           "hit_rate_pct": 74.63,
           "bet_total_yen": 13400.0,
@@ -1431,10 +1431,10 @@
           "insufficient_sample": false
         },
         "C_ワイド◎○": {
-          "n_predicted": 135,
-          "n_purchased": 135,
+          "n_predicted": 146,
+          "n_purchased": 146,
           "n_settled": 122,
-          "n_unsettled": 13,
+          "n_unsettled": 24,
           "n_hit": 56,
           "hit_rate_pct": 45.9,
           "bet_total_yen": 12200.0,
@@ -1445,10 +1445,10 @@
           "insufficient_sample": false
         },
         "D_ワイド◎▲": {
-          "n_predicted": 135,
-          "n_purchased": 135,
+          "n_predicted": 146,
+          "n_purchased": 146,
           "n_settled": 122,
-          "n_unsettled": 13,
+          "n_unsettled": 24,
           "n_hit": 42,
           "hit_rate_pct": 34.43,
           "bet_total_yen": 12200.0,
@@ -1459,10 +1459,10 @@
           "insufficient_sample": false
         },
         "E_ワイドBOX": {
-          "n_predicted": 135,
-          "n_purchased": 135,
+          "n_predicted": 146,
+          "n_purchased": 146,
           "n_settled": 122,
-          "n_unsettled": 13,
+          "n_unsettled": 24,
           "n_hit": 84,
           "hit_rate_pct": 68.85,
           "bet_total_yen": 36600.0,
@@ -1473,10 +1473,10 @@
           "insufficient_sample": false
         },
         "F_既存ベストフィルター": {
-          "n_predicted": 135,
-          "n_purchased": 36,
+          "n_predicted": 146,
+          "n_purchased": 40,
           "n_settled": 35,
-          "n_unsettled": 1,
+          "n_unsettled": 5,
           "n_hit": 33,
           "hit_rate_pct": 94.29,
           "bet_total_yen": 3500.0,
@@ -1495,39 +1495,39 @@
     }
   },
   "paper_trading_summary": {
-    "updated_at": "最終更新: 2026-11-14 00:05（自動更新）",
-    "total_n": "741件",
+    "updated_at": "最終更新: 2026-11-14 02:24（自動更新）",
+    "total_n": "759件",
     "total_days": "56日",
-    "total_hit_rate": "54.1%",
-    "total_roi": "89.23%",
-    "balance": "92,020円",
+    "total_hit_rate": "54.0%",
+    "total_roi": "89.92%",
+    "balance": "92,350円",
     "condition_rows": [
       [
         "Tier A（単勝1.0-1.2倍・予測1位）",
-        "255",
-        "91.8%",
-        "95.61%",
+        "258",
+        "91.5%",
+        "95.35%",
         "2"
       ],
       [
         "EVルール（EV≧1.2）",
-        "236",
-        "53.0%",
-        "81.31%",
+        "244",
+        "53.7%",
+        "81.93%",
         "6"
       ],
       [
         "新ルール（AI評価差-1×単勝4-10倍）",
-        "250",
-        "16.8%",
-        "90.2%",
+        "257",
+        "16.7%",
+        "92.06%",
         "32"
       ],
       [
         "B候補（馬体重450-480kg×単勝16-18倍）",
-        "247",
-        "3.6%",
-        "58.42%",
+        "256",
+        "3.5%",
+        "56.37%",
         "57"
       ]
     ],
