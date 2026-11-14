@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T11:48:02",
+  "generated_at": "2026-11-14T11:54:16",
   "n_races_total": 2395,
   "overall": {
     "n_total_predictions": 2395,
@@ -185,9 +185,9 @@
   },
   "by_odds_band": {
     "2-5倍": {
-      "n_total_predictions": 1377,
+      "n_total_predictions": 1379,
       "n_confirmed": 1360,
-      "n_unconfirmed": 17,
+      "n_unconfirmed": 19,
       "top1_win_rate": 30.22,
       "top1_place_rate": 62.79,
       "top2_place_rate": 18.29,
@@ -197,9 +197,9 @@
       "avg_top3_set_overlap": 1.617
     },
     "1倍台": {
-      "n_total_predictions": 984,
+      "n_total_predictions": 983,
       "n_confirmed": 976,
-      "n_unconfirmed": 8,
+      "n_unconfirmed": 7,
       "top1_win_rate": 56.66,
       "top1_place_rate": 86.07,
       "top2_place_rate": 24.46,
@@ -209,9 +209,9 @@
       "avg_top3_set_overlap": 1.904
     },
     "5-10倍": {
-      "n_total_predictions": 34,
+      "n_total_predictions": 33,
       "n_confirmed": 33,
-      "n_unconfirmed": 1,
+      "n_unconfirmed": 0,
       "top1_win_rate": 21.21,
       "top1_place_rate": 60.61,
       "top2_place_rate": 27.27,
@@ -784,114 +784,6 @@
     "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
   },
   "by_track_bet_types": {
-    "名古屋": {
-      "win_place": {
-        "単勝": {
-          "n_bet": 226,
-          "n_hit": 90,
-          "hit_rate": 39.82,
-          "purchase_total": 226000.0,
-          "payout_total": 172200.0,
-          "pnl": -53800.0,
-          "roi": 76.19
-        },
-        "複勝": {
-          "n_bet": 226,
-          "n_hit": 168,
-          "hit_rate": 74.34,
-          "purchase_total": 226000.0,
-          "payout_total": 206100.0,
-          "pnl": -19900.0,
-          "roi": 91.19
-        },
-        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      },
-      "wide": {
-        "n_bet": 198,
-        "n_hit": 86,
-        "hit_rate": 43.43,
-        "purchase_total": 198000.0,
-        "payout_total": 168400.0,
-        "pnl": -29600.0,
-        "roi": 85.05,
-        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
-      },
-      "trio_trifecta": {
-        "3連複": {
-          "n_bet": 198,
-          "n_hit": 22,
-          "hit_rate": 11.11,
-          "purchase_total": 198000.0,
-          "payout_total": 102800.0,
-          "pnl": -95200.0,
-          "roi": 51.92
-        },
-        "3連単": {
-          "n_bet": 198,
-          "n_hit": 7,
-          "hit_rate": 3.54,
-          "purchase_total": 198000.0,
-          "payout_total": 135100.0,
-          "pnl": -62900.0,
-          "roi": 68.23
-        },
-        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      }
-    },
-    "浦和": {
-      "win_place": {
-        "単勝": {
-          "n_bet": 97,
-          "n_hit": 42,
-          "hit_rate": 43.3,
-          "purchase_total": 97000.0,
-          "payout_total": 78200.0,
-          "pnl": -18800.0,
-          "roi": 80.62
-        },
-        "複勝": {
-          "n_bet": 97,
-          "n_hit": 63,
-          "hit_rate": 64.95,
-          "purchase_total": 97000.0,
-          "payout_total": 77200.0,
-          "pnl": -19800.0,
-          "roi": 79.59
-        },
-        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      },
-      "wide": {
-        "n_bet": 82,
-        "n_hit": 27,
-        "hit_rate": 32.93,
-        "purchase_total": 82000.0,
-        "payout_total": 52300.0,
-        "pnl": -29700.0,
-        "roi": 63.78,
-        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
-      },
-      "trio_trifecta": {
-        "3連複": {
-          "n_bet": 82,
-          "n_hit": 6,
-          "hit_rate": 7.32,
-          "purchase_total": 82000.0,
-          "payout_total": 29900.0,
-          "pnl": -52100.0,
-          "roi": 36.46
-        },
-        "3連単": {
-          "n_bet": 82,
-          "n_hit": 2,
-          "hit_rate": 2.44,
-          "purchase_total": 82000.0,
-          "payout_total": 24000.0,
-          "pnl": -58000.0,
-          "roi": 29.27
-        },
-        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      }
-    },
     "大井": {
       "win_place": {
         "単勝": {
@@ -942,330 +834,6 @@
           "payout_total": 31600.0,
           "pnl": -102400.0,
           "roi": 23.58
-        },
-        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      }
-    },
-    "金沢": {
-      "win_place": {
-        "単勝": {
-          "n_bet": 160,
-          "n_hit": 84,
-          "hit_rate": 52.5,
-          "purchase_total": 160000.0,
-          "payout_total": 142400.0,
-          "pnl": -17600.0,
-          "roi": 89.0
-        },
-        "複勝": {
-          "n_bet": 160,
-          "n_hit": 129,
-          "hit_rate": 80.62,
-          "purchase_total": 160000.0,
-          "payout_total": 148100.0,
-          "pnl": -11900.0,
-          "roi": 92.56
-        },
-        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      },
-      "wide": {
-        "n_bet": 160,
-        "n_hit": 71,
-        "hit_rate": 44.38,
-        "purchase_total": 160000.0,
-        "payout_total": 117500.0,
-        "pnl": -42500.0,
-        "roi": 73.44,
-        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
-      },
-      "trio_trifecta": {
-        "3連複": {
-          "n_bet": 160,
-          "n_hit": 27,
-          "hit_rate": 16.88,
-          "purchase_total": 160000.0,
-          "payout_total": 88100.0,
-          "pnl": -71900.0,
-          "roi": 55.06
-        },
-        "3連単": {
-          "n_bet": 160,
-          "n_hit": 11,
-          "hit_rate": 6.88,
-          "purchase_total": 160000.0,
-          "payout_total": 101900.0,
-          "pnl": -58100.0,
-          "roi": 63.69
-        },
-        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      }
-    },
-    "帯広ば": {
-      "win_place": {
-        "単勝": {
-          "n_bet": 207,
-          "n_hit": 60,
-          "hit_rate": 28.99,
-          "purchase_total": 207000.0,
-          "payout_total": 143500.0,
-          "pnl": -63500.0,
-          "roi": 69.32
-        },
-        "複勝": {
-          "n_bet": 207,
-          "n_hit": 113,
-          "hit_rate": 54.59,
-          "purchase_total": 207000.0,
-          "payout_total": 154000.0,
-          "pnl": -53000.0,
-          "roi": 74.4
-        },
-        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      },
-      "wide": {
-        "n_bet": 196,
-        "n_hit": 50,
-        "hit_rate": 25.51,
-        "purchase_total": 196000.0,
-        "payout_total": 154600.0,
-        "pnl": -41400.0,
-        "roi": 78.88,
-        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
-      },
-      "trio_trifecta": {
-        "3連複": {
-          "n_bet": 196,
-          "n_hit": 14,
-          "hit_rate": 7.14,
-          "purchase_total": 196000.0,
-          "payout_total": 165700.0,
-          "pnl": -30300.0,
-          "roi": 84.54
-        },
-        "3連単": {
-          "n_bet": 196,
-          "n_hit": 4,
-          "hit_rate": 2.04,
-          "purchase_total": 196000.0,
-          "payout_total": 248800.0,
-          "pnl": 52800.0,
-          "roi": 126.94
-        },
-        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      }
-    },
-    "園田": {
-      "win_place": {
-        "単勝": {
-          "n_bet": 323,
-          "n_hit": 137,
-          "hit_rate": 42.41,
-          "purchase_total": 323000.0,
-          "payout_total": 250500.0,
-          "pnl": -72500.0,
-          "roi": 77.55
-        },
-        "複勝": {
-          "n_bet": 323,
-          "n_hit": 248,
-          "hit_rate": 76.78,
-          "purchase_total": 323000.0,
-          "payout_total": 287300.0,
-          "pnl": -35700.0,
-          "roi": 88.95
-        },
-        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      },
-      "wide": {
-        "n_bet": 309,
-        "n_hit": 145,
-        "hit_rate": 46.93,
-        "purchase_total": 309000.0,
-        "payout_total": 254200.0,
-        "pnl": -54800.0,
-        "roi": 82.27,
-        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
-      },
-      "trio_trifecta": {
-        "3連複": {
-          "n_bet": 309,
-          "n_hit": 47,
-          "hit_rate": 15.21,
-          "purchase_total": 309000.0,
-          "payout_total": 213600.0,
-          "pnl": -95400.0,
-          "roi": 69.13
-        },
-        "3連単": {
-          "n_bet": 309,
-          "n_hit": 8,
-          "hit_rate": 2.59,
-          "purchase_total": 309000.0,
-          "payout_total": 161500.0,
-          "pnl": -147500.0,
-          "roi": 52.27
-        },
-        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      }
-    },
-    "盛岡": {
-      "win_place": {
-        "単勝": {
-          "n_bet": 206,
-          "n_hit": 70,
-          "hit_rate": 33.98,
-          "purchase_total": 206000.0,
-          "payout_total": 116400.0,
-          "pnl": -89600.0,
-          "roi": 56.5
-        },
-        "複勝": {
-          "n_bet": 206,
-          "n_hit": 144,
-          "hit_rate": 69.9,
-          "purchase_total": 206000.0,
-          "payout_total": 170000.0,
-          "pnl": -36000.0,
-          "roi": 82.52
-        },
-        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      },
-      "wide": {
-        "n_bet": 194,
-        "n_hit": 73,
-        "hit_rate": 37.63,
-        "purchase_total": 194000.0,
-        "payout_total": 136800.0,
-        "pnl": -57200.0,
-        "roi": 70.52,
-        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
-      },
-      "trio_trifecta": {
-        "3連複": {
-          "n_bet": 193,
-          "n_hit": 23,
-          "hit_rate": 11.92,
-          "purchase_total": 193000.0,
-          "payout_total": 127200.0,
-          "pnl": -65800.0,
-          "roi": 65.91
-        },
-        "3連単": {
-          "n_bet": 193,
-          "n_hit": 7,
-          "hit_rate": 3.63,
-          "purchase_total": 193000.0,
-          "payout_total": 67200.0,
-          "pnl": -125800.0,
-          "roi": 34.82
-        },
-        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      }
-    },
-    "高知": {
-      "win_place": {
-        "単勝": {
-          "n_bet": 134,
-          "n_hit": 56,
-          "hit_rate": 41.79,
-          "purchase_total": 134000.0,
-          "payout_total": 96100.0,
-          "pnl": -37900.0,
-          "roi": 71.72
-        },
-        "複勝": {
-          "n_bet": 134,
-          "n_hit": 100,
-          "hit_rate": 74.63,
-          "purchase_total": 134000.0,
-          "payout_total": 124800.0,
-          "pnl": -9200.0,
-          "roi": 93.13
-        },
-        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      },
-      "wide": {
-        "n_bet": 121,
-        "n_hit": 56,
-        "hit_rate": 46.28,
-        "purchase_total": 121000.0,
-        "payout_total": 118400.0,
-        "pnl": -2600.0,
-        "roi": 97.85,
-        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
-      },
-      "trio_trifecta": {
-        "3連複": {
-          "n_bet": 121,
-          "n_hit": 23,
-          "hit_rate": 19.01,
-          "purchase_total": 121000.0,
-          "payout_total": 112600.0,
-          "pnl": -8400.0,
-          "roi": 93.06
-        },
-        "3連単": {
-          "n_bet": 121,
-          "n_hit": 8,
-          "hit_rate": 6.61,
-          "purchase_total": 121000.0,
-          "payout_total": 66100.0,
-          "pnl": -54900.0,
-          "roi": 54.63
-        },
-        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      }
-    },
-    "船橋": {
-      "win_place": {
-        "単勝": {
-          "n_bet": 95,
-          "n_hit": 38,
-          "hit_rate": 40.0,
-          "purchase_total": 95000.0,
-          "payout_total": 87500.0,
-          "pnl": -7500.0,
-          "roi": 92.11
-        },
-        "複勝": {
-          "n_bet": 95,
-          "n_hit": 66,
-          "hit_rate": 69.47,
-          "purchase_total": 95000.0,
-          "payout_total": 83900.0,
-          "pnl": -11100.0,
-          "roi": 88.32
-        },
-        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
-      },
-      "wide": {
-        "n_bet": 75,
-        "n_hit": 30,
-        "hit_rate": 40.0,
-        "purchase_total": 75000.0,
-        "payout_total": 68100.0,
-        "pnl": -6900.0,
-        "roi": 90.8,
-        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
-      },
-      "trio_trifecta": {
-        "3連複": {
-          "n_bet": 75,
-          "n_hit": 13,
-          "hit_rate": 17.33,
-          "purchase_total": 75000.0,
-          "payout_total": 135200.0,
-          "pnl": 60200.0,
-          "roi": 180.27
-        },
-        "3連単": {
-          "n_bet": 75,
-          "n_hit": 2,
-          "hit_rate": 2.67,
-          "purchase_total": 75000.0,
-          "payout_total": 85000.0,
-          "pnl": 10000.0,
-          "roi": 113.33
         },
         "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
       }
@@ -1324,56 +892,218 @@
         "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
       }
     },
-    "門別": {
+    "盛岡": {
       "win_place": {
         "単勝": {
-          "n_bet": 318,
-          "n_hit": 126,
-          "hit_rate": 39.62,
-          "purchase_total": 318000.0,
-          "payout_total": 250900.0,
-          "pnl": -67100.0,
-          "roi": 78.9
+          "n_bet": 206,
+          "n_hit": 70,
+          "hit_rate": 33.98,
+          "purchase_total": 206000.0,
+          "payout_total": 116400.0,
+          "pnl": -89600.0,
+          "roi": 56.5
         },
         "複勝": {
-          "n_bet": 318,
-          "n_hit": 228,
-          "hit_rate": 71.7,
-          "purchase_total": 318000.0,
-          "payout_total": 274000.0,
-          "pnl": -44000.0,
-          "roi": 86.16
+          "n_bet": 206,
+          "n_hit": 144,
+          "hit_rate": 69.9,
+          "purchase_total": 206000.0,
+          "payout_total": 170000.0,
+          "pnl": -36000.0,
+          "roi": 82.52
         },
         "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
       },
       "wide": {
-        "n_bet": 273,
-        "n_hit": 104,
-        "hit_rate": 38.1,
-        "purchase_total": 273000.0,
-        "payout_total": 218100.0,
-        "pnl": -54900.0,
-        "roi": 79.89,
+        "n_bet": 194,
+        "n_hit": 73,
+        "hit_rate": 37.63,
+        "purchase_total": 194000.0,
+        "payout_total": 136800.0,
+        "pnl": -57200.0,
+        "roi": 70.52,
         "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
       },
       "trio_trifecta": {
         "3連複": {
-          "n_bet": 273,
-          "n_hit": 31,
-          "hit_rate": 11.36,
-          "purchase_total": 273000.0,
-          "payout_total": 202900.0,
-          "pnl": -70100.0,
-          "roi": 74.32
+          "n_bet": 193,
+          "n_hit": 23,
+          "hit_rate": 11.92,
+          "purchase_total": 193000.0,
+          "payout_total": 127200.0,
+          "pnl": -65800.0,
+          "roi": 65.91
         },
         "3連単": {
-          "n_bet": 273,
+          "n_bet": 193,
+          "n_hit": 7,
+          "hit_rate": 3.63,
+          "purchase_total": 193000.0,
+          "payout_total": 67200.0,
+          "pnl": -125800.0,
+          "roi": 34.82
+        },
+        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      }
+    },
+    "名古屋": {
+      "win_place": {
+        "単勝": {
+          "n_bet": 226,
+          "n_hit": 90,
+          "hit_rate": 39.82,
+          "purchase_total": 226000.0,
+          "payout_total": 172200.0,
+          "pnl": -53800.0,
+          "roi": 76.19
+        },
+        "複勝": {
+          "n_bet": 226,
+          "n_hit": 168,
+          "hit_rate": 74.34,
+          "purchase_total": 226000.0,
+          "payout_total": 206100.0,
+          "pnl": -19900.0,
+          "roi": 91.19
+        },
+        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      },
+      "wide": {
+        "n_bet": 198,
+        "n_hit": 86,
+        "hit_rate": 43.43,
+        "purchase_total": 198000.0,
+        "payout_total": 168400.0,
+        "pnl": -29600.0,
+        "roi": 85.05,
+        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+      },
+      "trio_trifecta": {
+        "3連複": {
+          "n_bet": 198,
+          "n_hit": 22,
+          "hit_rate": 11.11,
+          "purchase_total": 198000.0,
+          "payout_total": 102800.0,
+          "pnl": -95200.0,
+          "roi": 51.92
+        },
+        "3連単": {
+          "n_bet": 198,
+          "n_hit": 7,
+          "hit_rate": 3.54,
+          "purchase_total": 198000.0,
+          "payout_total": 135100.0,
+          "pnl": -62900.0,
+          "roi": 68.23
+        },
+        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      }
+    },
+    "園田": {
+      "win_place": {
+        "単勝": {
+          "n_bet": 323,
+          "n_hit": 137,
+          "hit_rate": 42.41,
+          "purchase_total": 323000.0,
+          "payout_total": 250500.0,
+          "pnl": -72500.0,
+          "roi": 77.55
+        },
+        "複勝": {
+          "n_bet": 323,
+          "n_hit": 248,
+          "hit_rate": 76.78,
+          "purchase_total": 323000.0,
+          "payout_total": 287300.0,
+          "pnl": -35700.0,
+          "roi": 88.95
+        },
+        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      },
+      "wide": {
+        "n_bet": 309,
+        "n_hit": 145,
+        "hit_rate": 46.93,
+        "purchase_total": 309000.0,
+        "payout_total": 254200.0,
+        "pnl": -54800.0,
+        "roi": 82.27,
+        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+      },
+      "trio_trifecta": {
+        "3連複": {
+          "n_bet": 309,
+          "n_hit": 47,
+          "hit_rate": 15.21,
+          "purchase_total": 309000.0,
+          "payout_total": 213600.0,
+          "pnl": -95400.0,
+          "roi": 69.13
+        },
+        "3連単": {
+          "n_bet": 309,
           "n_hit": 8,
-          "hit_rate": 2.93,
-          "purchase_total": 273000.0,
-          "payout_total": 198000.0,
-          "pnl": -75000.0,
-          "roi": 72.53
+          "hit_rate": 2.59,
+          "purchase_total": 309000.0,
+          "payout_total": 161500.0,
+          "pnl": -147500.0,
+          "roi": 52.27
+        },
+        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      }
+    },
+    "高知": {
+      "win_place": {
+        "単勝": {
+          "n_bet": 134,
+          "n_hit": 56,
+          "hit_rate": 41.79,
+          "purchase_total": 134000.0,
+          "payout_total": 96100.0,
+          "pnl": -37900.0,
+          "roi": 71.72
+        },
+        "複勝": {
+          "n_bet": 134,
+          "n_hit": 100,
+          "hit_rate": 74.63,
+          "purchase_total": 134000.0,
+          "payout_total": 124800.0,
+          "pnl": -9200.0,
+          "roi": 93.13
+        },
+        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      },
+      "wide": {
+        "n_bet": 121,
+        "n_hit": 56,
+        "hit_rate": 46.28,
+        "purchase_total": 121000.0,
+        "payout_total": 118400.0,
+        "pnl": -2600.0,
+        "roi": 97.85,
+        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+      },
+      "trio_trifecta": {
+        "3連複": {
+          "n_bet": 121,
+          "n_hit": 23,
+          "hit_rate": 19.01,
+          "purchase_total": 121000.0,
+          "payout_total": 112600.0,
+          "pnl": -8400.0,
+          "roi": 93.06
+        },
+        "3連単": {
+          "n_bet": 121,
+          "n_hit": 8,
+          "hit_rate": 6.61,
+          "purchase_total": 121000.0,
+          "payout_total": 66100.0,
+          "pnl": -54900.0,
+          "roi": 54.63
         },
         "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
       }
@@ -1428,6 +1158,60 @@
           "payout_total": 0.0,
           "pnl": -10000.0,
           "roi": 0.0
+        },
+        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      }
+    },
+    "金沢": {
+      "win_place": {
+        "単勝": {
+          "n_bet": 160,
+          "n_hit": 84,
+          "hit_rate": 52.5,
+          "purchase_total": 160000.0,
+          "payout_total": 142400.0,
+          "pnl": -17600.0,
+          "roi": 89.0
+        },
+        "複勝": {
+          "n_bet": 160,
+          "n_hit": 129,
+          "hit_rate": 80.62,
+          "purchase_total": 160000.0,
+          "payout_total": 148100.0,
+          "pnl": -11900.0,
+          "roi": 92.56
+        },
+        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      },
+      "wide": {
+        "n_bet": 160,
+        "n_hit": 71,
+        "hit_rate": 44.38,
+        "purchase_total": 160000.0,
+        "payout_total": 117500.0,
+        "pnl": -42500.0,
+        "roi": 73.44,
+        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+      },
+      "trio_trifecta": {
+        "3連複": {
+          "n_bet": 160,
+          "n_hit": 27,
+          "hit_rate": 16.88,
+          "purchase_total": 160000.0,
+          "payout_total": 88100.0,
+          "pnl": -71900.0,
+          "roi": 55.06
+        },
+        "3連単": {
+          "n_bet": 160,
+          "n_hit": 11,
+          "hit_rate": 6.88,
+          "purchase_total": 160000.0,
+          "payout_total": 101900.0,
+          "pnl": -58100.0,
+          "roi": 63.69
         },
         "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
       }
@@ -1536,6 +1320,222 @@
           "payout_total": 60200.0,
           "pnl": -69800.0,
           "roi": 46.31
+        },
+        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      }
+    },
+    "船橋": {
+      "win_place": {
+        "単勝": {
+          "n_bet": 95,
+          "n_hit": 38,
+          "hit_rate": 40.0,
+          "purchase_total": 95000.0,
+          "payout_total": 87500.0,
+          "pnl": -7500.0,
+          "roi": 92.11
+        },
+        "複勝": {
+          "n_bet": 95,
+          "n_hit": 66,
+          "hit_rate": 69.47,
+          "purchase_total": 95000.0,
+          "payout_total": 83900.0,
+          "pnl": -11100.0,
+          "roi": 88.32
+        },
+        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      },
+      "wide": {
+        "n_bet": 75,
+        "n_hit": 30,
+        "hit_rate": 40.0,
+        "purchase_total": 75000.0,
+        "payout_total": 68100.0,
+        "pnl": -6900.0,
+        "roi": 90.8,
+        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+      },
+      "trio_trifecta": {
+        "3連複": {
+          "n_bet": 75,
+          "n_hit": 13,
+          "hit_rate": 17.33,
+          "purchase_total": 75000.0,
+          "payout_total": 135200.0,
+          "pnl": 60200.0,
+          "roi": 180.27
+        },
+        "3連単": {
+          "n_bet": 75,
+          "n_hit": 2,
+          "hit_rate": 2.67,
+          "purchase_total": 75000.0,
+          "payout_total": 85000.0,
+          "pnl": 10000.0,
+          "roi": 113.33
+        },
+        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      }
+    },
+    "浦和": {
+      "win_place": {
+        "単勝": {
+          "n_bet": 97,
+          "n_hit": 42,
+          "hit_rate": 43.3,
+          "purchase_total": 97000.0,
+          "payout_total": 78200.0,
+          "pnl": -18800.0,
+          "roi": 80.62
+        },
+        "複勝": {
+          "n_bet": 97,
+          "n_hit": 63,
+          "hit_rate": 64.95,
+          "purchase_total": 97000.0,
+          "payout_total": 77200.0,
+          "pnl": -19800.0,
+          "roi": 79.59
+        },
+        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      },
+      "wide": {
+        "n_bet": 82,
+        "n_hit": 27,
+        "hit_rate": 32.93,
+        "purchase_total": 82000.0,
+        "payout_total": 52300.0,
+        "pnl": -29700.0,
+        "roi": 63.78,
+        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+      },
+      "trio_trifecta": {
+        "3連複": {
+          "n_bet": 82,
+          "n_hit": 6,
+          "hit_rate": 7.32,
+          "purchase_total": 82000.0,
+          "payout_total": 29900.0,
+          "pnl": -52100.0,
+          "roi": 36.46
+        },
+        "3連単": {
+          "n_bet": 82,
+          "n_hit": 2,
+          "hit_rate": 2.44,
+          "purchase_total": 82000.0,
+          "payout_total": 24000.0,
+          "pnl": -58000.0,
+          "roi": 29.27
+        },
+        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      }
+    },
+    "帯広ば": {
+      "win_place": {
+        "単勝": {
+          "n_bet": 207,
+          "n_hit": 60,
+          "hit_rate": 28.99,
+          "purchase_total": 207000.0,
+          "payout_total": 143500.0,
+          "pnl": -63500.0,
+          "roi": 69.32
+        },
+        "複勝": {
+          "n_bet": 207,
+          "n_hit": 113,
+          "hit_rate": 54.59,
+          "purchase_total": 207000.0,
+          "payout_total": 154000.0,
+          "pnl": -53000.0,
+          "roi": 74.4
+        },
+        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      },
+      "wide": {
+        "n_bet": 196,
+        "n_hit": 50,
+        "hit_rate": 25.51,
+        "purchase_total": 196000.0,
+        "payout_total": 154600.0,
+        "pnl": -41400.0,
+        "roi": 78.88,
+        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+      },
+      "trio_trifecta": {
+        "3連複": {
+          "n_bet": 196,
+          "n_hit": 14,
+          "hit_rate": 7.14,
+          "purchase_total": 196000.0,
+          "payout_total": 165700.0,
+          "pnl": -30300.0,
+          "roi": 84.54
+        },
+        "3連単": {
+          "n_bet": 196,
+          "n_hit": 4,
+          "hit_rate": 2.04,
+          "purchase_total": 196000.0,
+          "payout_total": 248800.0,
+          "pnl": 52800.0,
+          "roi": 126.94
+        },
+        "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      }
+    },
+    "門別": {
+      "win_place": {
+        "単勝": {
+          "n_bet": 318,
+          "n_hit": 126,
+          "hit_rate": 39.62,
+          "purchase_total": 318000.0,
+          "payout_total": 250900.0,
+          "pnl": -67100.0,
+          "roi": 78.9
+        },
+        "複勝": {
+          "n_bet": 318,
+          "n_hit": 228,
+          "hit_rate": 71.7,
+          "purchase_total": 318000.0,
+          "payout_total": 274000.0,
+          "pnl": -44000.0,
+          "roi": 86.16
+        },
+        "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+      },
+      "wide": {
+        "n_bet": 273,
+        "n_hit": 104,
+        "hit_rate": 38.1,
+        "purchase_total": 273000.0,
+        "payout_total": 218100.0,
+        "pnl": -54900.0,
+        "roi": 79.89,
+        "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+      },
+      "trio_trifecta": {
+        "3連複": {
+          "n_bet": 273,
+          "n_hit": 31,
+          "hit_rate": 11.36,
+          "purchase_total": 273000.0,
+          "payout_total": 202900.0,
+          "pnl": -70100.0,
+          "roi": 74.32
+        },
+        "3連単": {
+          "n_bet": 273,
+          "n_hit": 8,
+          "hit_rate": 2.93,
+          "purchase_total": 273000.0,
+          "payout_total": 198000.0,
+          "pnl": -75000.0,
+          "roi": 72.53
         },
         "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
       }
