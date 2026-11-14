@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14 16:51",
+  "updated_at": "2026-11-14 17:06",
   "data_tiers_note": "本サイトのデータは集計期間が異なる3種類を明確に区別する。(1)過去データ・学習・検証件数=races表/features表の全期間(10万件規模、研究用バックテスト)。(2)本番予想56日分精算=predictions/all_predictions_history.csv(2026-08-26~、track_data_auditとstrategy_settlementが対象)。(3)直近の本番ログ=predictions/published_picks_log.csv(直近7日・数十件、production_real_results_status)。(3)を(1)(2)の代わりに表示しないこと。",
   "track_data_audit": {
     "status": "ok",
@@ -1839,33 +1839,6 @@
     ],
     "source": "track-record.html(Paper Trading、仮想購入・実際のお金ではない)"
   },
-  "production_real_results_status": {
-    "wide_method": {
-      "n_logged": 331,
-      "n_skipped": 331,
-      "n_purchased": 0,
-      "by_track": {
-        "帯広ば": 24,
-        "高知": 24,
-        "佐賀": 34,
-        "盛岡": 36,
-        "名古屋": 60,
-        "川崎": 60,
-        "門別": 36,
-        "金沢": 21,
-        "園田": 36
-      },
-      "note": "品質ゲート(MODEL_CONFIRMED_PROFITABLE=False)により全件見送り。実際の購入は一度も発生していない(的中率・回収率は計算不能)。"
-    },
-    "validated_fukusho_filter": {
-      "n_logged": 0,
-      "note": "2026-11-14に本番予想へ追加した新フィールド(既存ベストフィルター: 複勝・予測1位・単勝1.0-1.5倍)。本日追加のため実績履歴はまだ無い。今後の本番予想から蓄積が始まる。"
-    },
-    "tansho": {
-      "n_logged": 0,
-      "note": "本番では単勝の購入推奨を行っていない(計算不能)。"
-    },
-    "last_checked": "2026-11-13 23:44 JST"
-  },
+  "production_real_results_status": {},
   "note": "paper_trading_summaryは仮想購入の記録(実際のお金ではない)。production_real_results_statusは本番予想システムが実際に発行した推奨の記録(2026-11-13時点でいずれも0件購入、品質ゲートにより見送り)。strategy_settlementは56日分の本番予測ログを使った戦略A-Fの仮想購入精算。いずれも実際の馬券購入・決済ではない。集計期間が異なるこれらを混同しないよう画面上でも分離して表示する。"
 }
