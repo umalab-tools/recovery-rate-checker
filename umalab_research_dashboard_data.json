@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14 16:51:42",
+  "updated_at": "2026-11-14 17:29:02",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -409,6 +409,22 @@
         "n_race_days": 180
       },
       "adopted": true
+    },
+    {
+      "name": "CatBoost(第3期研究3、独立期間2026-08~11での再検証)",
+      "test_logloss": 0.45876,
+      "test_brier": 0.14959,
+      "test_top1_hit_rate": 0.7615999999999999,
+      "vs_model_e_logloss": 0.45985,
+      "vs_model_e_brier": 0.14999,
+      "hit_rate_diff_ci95": {
+        "point_diff_pt": 0.18,
+        "ci95_low_pt": -0.208,
+        "ci95_high_pt": 0.552,
+        "n_race_days": 61
+      },
+      "adopted": false,
+      "note": "確率の質(LogLoss/Brier/校正)は独立期間でも改善方向が再現したが、的中率差のCI95はゼロを含み有意ではないため保留。"
     }
   ],
   "probability_calibration": {
@@ -11721,6 +11737,76 @@
       }
     },
     "note": "複勝のみを対象(単勝・ワイド等は予測時点オッズの取得範囲外のため今回は含めない)。しきい値は事前に決めた3点のみで、結果を見てからの事後調整は行っていない。発見期間・検証期間の両方でF超えが確認できた場合のみ採用候補とする。"
+  },
+  "strategy_ABDH_comparison(第3期研究5、2026-11-14)": {
+    "A_既存フィルターF": {
+      "n": 768,
+      "n_hit": 708,
+      "hit_rate_pct": 92.19,
+      "roi_pct": 94.28,
+      "ci95(開催日単位クラスタブートストラップ)": {
+        "n_legs": 768,
+        "n_race_days": 61,
+        "point_roi": 94.28,
+        "ci95_low": 91.72,
+        "ci95_high": 96.75
+      }
+    },
+    "B_F+CatBoost": {
+      "n": 767,
+      "n_hit": 707,
+      "hit_rate_pct": 92.18,
+      "roi_pct": 94.28,
+      "ci95(開催日単位クラスタブートストラップ)": {
+        "n_legs": 767,
+        "n_race_days": 61,
+        "point_roi": 94.28,
+        "ci95_low": 91.66,
+        "ci95_high": 96.79
+      }
+    },
+    "H_合議制": {
+      "n": 765,
+      "n_hit": 705,
+      "hit_rate_pct": 92.16,
+      "roi_pct": 94.26,
+      "ci95(開催日単位クラスタブートストラップ)": {
+        "n_legs": 765,
+        "n_race_days": 61,
+        "point_roi": 94.26,
+        "ci95_low": 91.69,
+        "ci95_high": 96.73
+      }
+    },
+    "D_F+確率校正": {
+      "calibrated(D)": {
+        "n": 382,
+        "n_hit": 353,
+        "hit_rate_pct": 92.41,
+        "roi_pct": 94.16,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 382,
+          "n_race_days": 31,
+          "point_roi": 94.16,
+          "ci95_low": 90.55,
+          "ci95_high": 97.17
+        }
+      },
+      "not_calibrated_same_period(A, 参考比較)": {
+        "n": 383,
+        "n_hit": 354,
+        "hit_rate_pct": 92.43,
+        "roi_pct": 94.2,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 383,
+          "n_race_days": 31,
+          "point_roi": 94.2,
+          "ci95_low": 90.6,
+          "ci95_high": 97.23
+        }
+      }
+    },
+    "note": "E(競馬場別)はH054の競馬場別CI(いずれも100%を含むか下回る)を参照。F(オッズ帯別)は既存のODDS_BAND_REVERIFICATION_RESULT.jsonを参照。G(EV選別)はH068で既にFに劣ると確認済み(本検証では再実施せず)。I(複勝+ワイド組み合わせ)は既存戦略C/D/E(ワイド)を参照、Fとの組み合わせ購入は未検証。J(見送り強化)は本サイクルでは未検証(次回課題)。 oddsテーブルの複勝オッズはレース確定後に記録された確定値であり、本番の『予測時点複勝オッズ』とは異なる(参考値)。本番運用のF実績(95.74%)とは直接比較できない。あくまでA/B/D/H間の相対比較に限定した参考値。"
   },
   "last_model_research_date": "2026-11-14",
   "notes": [
