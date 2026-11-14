@@ -137,6 +137,15 @@ button{font-family:inherit;}
   width:100%;min-height:44px;padding:8px 10px;border-radius:var(--radius-sm);
   background:var(--bg-elev);border:1px solid var(--border);color:var(--text);font-size:13px;
 }
+.period-toggle{display:flex;gap:6px;margin-bottom:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.period-toggle button{
+  flex-shrink:0;background:var(--bg-elev);border:1px solid var(--border);color:var(--text-dim);
+  font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:999px;min-height:36px;
+}
+.period-toggle button.active{background:var(--accent-bg);border-color:var(--accent-dim);color:var(--accent);}
+.bettype-mini{font-size:11px;color:var(--text-dim);display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
+.bettype-mini span{white-space:nowrap;}
+.bettype-mini b{color:var(--text);}
 .result-row{background:var(--bg-elev2);border:1px solid var(--border);border-radius:var(--radius-sm);
   padding:10px 12px;margin-bottom:8px;font-size:12.5px;}
 .result-row .head{display:flex;justify-content:space-between;font-weight:900;margin-bottom:4px;}
@@ -721,8 +730,96 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
       hint.className = "banner neutral";
       hint.innerHTML = '競馬場別の詳しい統計検証(LogLoss・Brier Score等、研究用バックテスト)は<a href="umalab-research-dashboard.html">研究ダッシュボード →</a>をご覧ください。';
       content.appendChild(hint);
+
+      renderAccuracyByTrack(content);
     }).catch(function(){
       content.innerHTML = '<div class="banner bad">データの読み込みに失敗しました。</div>';
+    });
+  }
+
+  /* ============================================================
+     競馬場別・期間別の予想精度と券種別仮想回収率(all_race_accuracy.json)
+     2026-11-14追加: 今日/直近7日/直近30日/累計の切り替えに対応。
+     ============================================================ */
+  var ACCURACY_DATA = null;
+  var ACCURACY_PERIOD = "last7";
+  var PERIOD_LABELS = {today: "今日", last7: "直近7日", last30: "直近30日", all: "累計"};
+
+  function renderAccuracyPeriodTable(container){
+    if(!ACCURACY_DATA) return;
+    var period = ACCURACY_DATA.by_period[ACCURACY_PERIOD] || {};
+    var byTrack = period.by_track || {};
+    var betTypes = ACCURACY_DATA.by_track_bet_types || {};
+    var tracks = Object.keys(byTrack).sort();
+
+    var toggle = document.createElement("div");
+    toggle.className = "period-toggle";
+    toggle.innerHTML = Object.keys(PERIOD_LABELS).map(function(p){
+      return '<button data-period="' + p + '" class="' + (p === ACCURACY_PERIOD ? "active" : "") + '">' +
+        esc(PERIOD_LABELS[p]) + "</button>";
+    }).join("");
+    container.appendChild(toggle);
+    toggle.querySelectorAll("button").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        ACCURACY_PERIOD = btn.getAttribute("data-period");
+        var old = $("accuracyByTrackCard");
+        if(old) old.remove();
+        renderAccuracyPeriodTable(container);
+      });
+    });
+
+    var card = document.createElement("div");
+    card.id = "accuracyByTrackCard";
+    card.className = "card table-wrap";
+    var rows = tracks.map(function(t){
+      var v = byTrack[t] || {};
+      var bt = (betTypes[t] || {});
+      var win = (bt.win_place || {})["単勝"] || {};
+      var place = (bt.win_place || {})["複勝"] || {};
+      var wide = bt.wide || {};
+      var trio = (bt.trio_trifecta || {})["3連複"] || {};
+      var trifecta = (bt.trio_trifecta || {})["3連単"] || {};
+      var fmtR = function(x){ return (x && x.roi != null) ? x.roi + "%" : "—"; };
+      return "<tr><td>" + esc(t) + "</td>" +
+        '<td class="num">' + esc(v.n_confirmed != null ? v.n_confirmed : "—") + "</td>" +
+        '<td class="num">' + esc(v.top1_win_rate != null ? v.top1_win_rate + "%" : "—") + "</td>" +
+        '<td class="num">' + esc(v.top1_place_rate != null ? v.top1_place_rate + "%" : "—") + "</td>" +
+        '<td class="num">' + esc(v.avg_top3_set_overlap != null ? v.avg_top3_set_overlap : "—") + "</td>" +
+        '<td class="num">' + esc(v.trifecta_exact_rate != null ? v.trifecta_exact_rate + "%" : "—") + "</td></tr>" +
+        '<tr><td colspan="6"><div class="bettype-mini">' +
+          "<span>単勝<b>" + fmtR(win) + "</b></span>" +
+          "<span>複勝<b>" + fmtR(place) + "</b></span>" +
+          "<span>ワイド<b>" + fmtR(wide) + "</b></span>" +
+          "<span>3連複<b>" + fmtR(trio) + "</b></span>" +
+          "<span>3連単<b>" + fmtR(trifecta) + "</b></span>" +
+        "</div></td></tr>";
+    }).join("");
+    card.innerHTML = '<table class="data"><tr><th>競馬場</th><th>確定数</th><th>1着的中</th><th>複勝的中</th>' +
+      '<th>上位3頭一致(平均/3)</th><th>3連単完全一致</th></tr>' + (rows || '<tr><td colspan="6">未取得</td></tr>') + '</table>';
+    container.appendChild(card);
+  }
+
+  function renderAccuracyByTrack(container){
+    var title = document.createElement("div");
+    title.className = "section-title";
+    title.textContent = "全レース予想の精度・券種別仮想回収率(期間切り替え)";
+    container.appendChild(title);
+
+    var note = document.createElement("div");
+    note.className = "banner info";
+    note.textContent = "上の的中率は選択した期間の集計です。券種別仮想回収率(単勝〜3連単)は累計(全期間)の値を表示しています。買う・見送る判定とは無関係に全レースを対象とした仮想集計で、実際の馬券購入ではありません。";
+    container.appendChild(note);
+
+    (ACCURACY_DATA ? Promise.resolve(ACCURACY_DATA) :
+      fetch("all_race_accuracy.json?t=" + Date.now(), {cache: "no-store"}).then(function(res){ return res.json(); })
+    ).then(function(d){
+      ACCURACY_DATA = d;
+      renderAccuracyPeriodTable(container);
+    }).catch(function(){
+      var e = document.createElement("div");
+      e.className = "banner bad";
+      e.textContent = "券種別仮想回収率データの読み込みに失敗しました。";
+      container.appendChild(e);
     });
   }
 
