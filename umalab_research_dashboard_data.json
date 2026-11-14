@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14 17:52:13",
+  "updated_at": "2026-11-14 19:37:42",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -11920,6 +11920,672 @@
       "significant_at_0.05": true
     },
     "note": "一致率が高い場合、不一致レースでの両モデルの軸馬成績の差は、どちらの予測が優れているかよりも、不一致自体が『difficult race(判断が割れる競走)』のシグナルになっている可能性を示唆する(不確実性評価への応用可能性、次回検証課題)。"
+  },
+  "kochi_deep_dive(第5期研究1)": {
+    "by_time_window": {
+      "直近7日": {
+        "n_predictions": 35,
+        "n_confirmed": 31,
+        "accuracy": {
+          "n_total_predictions": 31,
+          "n_confirmed": 31,
+          "n_unconfirmed": 0,
+          "top1_win_rate": 38.71,
+          "top1_place_rate": 74.19,
+          "top2_place_rate": 22.58,
+          "top3_place_rate": 32.26,
+          "wide_hit_rate": 35.48,
+          "trifecta_exact_rate": 9.68,
+          "avg_top3_set_overlap": 1.935
+        },
+        "単勝複勝ROI(予測1位基準)": {
+          "単勝": {
+            "n_bet": 31,
+            "n_hit": 12,
+            "hit_rate": 38.71,
+            "purchase_total": 31000.0,
+            "payout_total": 19800.0,
+            "pnl": -11200.0,
+            "roi": 63.87
+          },
+          "複勝": {
+            "n_bet": 31,
+            "n_hit": 23,
+            "hit_rate": 74.19,
+            "purchase_total": 31000.0,
+            "payout_total": 27000.0,
+            "pnl": -4000.0,
+            "roi": 87.1
+          },
+          "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        },
+        "ワイドROI(予測1-2位基準)": {
+          "n_bet": 31,
+          "n_hit": 11,
+          "hit_rate": 35.48,
+          "purchase_total": 31000.0,
+          "payout_total": 19000.0,
+          "pnl": -12000.0,
+          "roi": 61.29,
+          "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+        },
+        "3連複3連単ROI(予測1-3位基準)": {
+          "3連複": {
+            "n_bet": 31,
+            "n_hit": 6,
+            "hit_rate": 19.35,
+            "purchase_total": 31000.0,
+            "payout_total": 22100.0,
+            "pnl": -8900.0,
+            "roi": 71.29
+          },
+          "3連単": {
+            "n_bet": 31,
+            "n_hit": 3,
+            "hit_rate": 9.68,
+            "purchase_total": 31000.0,
+            "payout_total": 21900.0,
+            "pnl": -9100.0,
+            "roi": 70.65
+          },
+          "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        }
+      },
+      "直近30日": {
+        "n_predictions": 80,
+        "n_confirmed": 76,
+        "accuracy": {
+          "n_total_predictions": 76,
+          "n_confirmed": 76,
+          "n_unconfirmed": 0,
+          "top1_win_rate": 39.47,
+          "top1_place_rate": 71.05,
+          "top2_place_rate": 22.37,
+          "top3_place_rate": 21.05,
+          "wide_hit_rate": 43.42,
+          "trifecta_exact_rate": 6.58,
+          "avg_top3_set_overlap": 1.868
+        },
+        "単勝複勝ROI(予測1位基準)": {
+          "単勝": {
+            "n_bet": 76,
+            "n_hit": 30,
+            "hit_rate": 39.47,
+            "purchase_total": 76000.0,
+            "payout_total": 48800.0,
+            "pnl": -27200.0,
+            "roi": 64.21
+          },
+          "複勝": {
+            "n_bet": 76,
+            "n_hit": 54,
+            "hit_rate": 71.05,
+            "purchase_total": 76000.0,
+            "payout_total": 62500.0,
+            "pnl": -13500.0,
+            "roi": 82.24
+          },
+          "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        },
+        "ワイドROI(予測1-2位基準)": {
+          "n_bet": 76,
+          "n_hit": 33,
+          "hit_rate": 43.42,
+          "purchase_total": 76000.0,
+          "payout_total": 58000.0,
+          "pnl": -18000.0,
+          "roi": 76.32,
+          "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+        },
+        "3連複3連単ROI(予測1-3位基準)": {
+          "3連複": {
+            "n_bet": 76,
+            "n_hit": 16,
+            "hit_rate": 21.05,
+            "purchase_total": 76000.0,
+            "payout_total": 70100.0,
+            "pnl": -5900.0,
+            "roi": 92.24
+          },
+          "3連単": {
+            "n_bet": 76,
+            "n_hit": 5,
+            "hit_rate": 6.58,
+            "purchase_total": 76000.0,
+            "payout_total": 39300.0,
+            "pnl": -36700.0,
+            "roi": 51.71
+          },
+          "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        }
+      },
+      "直近90日": {
+        "n_predictions": 146,
+        "n_confirmed": 141,
+        "accuracy": {
+          "n_total_predictions": 141,
+          "n_confirmed": 141,
+          "n_unconfirmed": 0,
+          "top1_win_rate": 42.55,
+          "top1_place_rate": 74.47,
+          "top2_place_rate": 25.53,
+          "top3_place_rate": 18.44,
+          "wide_hit_rate": 45.39,
+          "trifecta_exact_rate": 6.38,
+          "avg_top3_set_overlap": 1.809
+        },
+        "単勝複勝ROI(予測1位基準)": {
+          "単勝": {
+            "n_bet": 141,
+            "n_hit": 60,
+            "hit_rate": 42.55,
+            "purchase_total": 141000.0,
+            "payout_total": 103700.0,
+            "pnl": -37300.0,
+            "roi": 73.55
+          },
+          "複勝": {
+            "n_bet": 141,
+            "n_hit": 105,
+            "hit_rate": 74.47,
+            "purchase_total": 141000.0,
+            "payout_total": 130700.0,
+            "pnl": -10300.0,
+            "roi": 92.7
+          },
+          "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        },
+        "ワイドROI(予測1-2位基準)": {
+          "n_bet": 128,
+          "n_hit": 57,
+          "hit_rate": 44.53,
+          "purchase_total": 128000.0,
+          "payout_total": 119500.0,
+          "pnl": -8500.0,
+          "roi": 93.36,
+          "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+        },
+        "3連複3連単ROI(予測1-3位基準)": {
+          "3連複": {
+            "n_bet": 128,
+            "n_hit": 24,
+            "hit_rate": 18.75,
+            "purchase_total": 128000.0,
+            "payout_total": 115500.0,
+            "pnl": -12500.0,
+            "roi": 90.23
+          },
+          "3連単": {
+            "n_bet": 128,
+            "n_hit": 9,
+            "hit_rate": 7.03,
+            "purchase_total": 128000.0,
+            "payout_total": 73200.0,
+            "pnl": -54800.0,
+            "roi": 57.19
+          },
+          "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        }
+      },
+      "全期間": {
+        "n_predictions": 146,
+        "n_confirmed": 141,
+        "accuracy": {
+          "n_total_predictions": 141,
+          "n_confirmed": 141,
+          "n_unconfirmed": 0,
+          "top1_win_rate": 42.55,
+          "top1_place_rate": 74.47,
+          "top2_place_rate": 25.53,
+          "top3_place_rate": 18.44,
+          "wide_hit_rate": 45.39,
+          "trifecta_exact_rate": 6.38,
+          "avg_top3_set_overlap": 1.809
+        },
+        "単勝複勝ROI(予測1位基準)": {
+          "単勝": {
+            "n_bet": 141,
+            "n_hit": 60,
+            "hit_rate": 42.55,
+            "purchase_total": 141000.0,
+            "payout_total": 103700.0,
+            "pnl": -37300.0,
+            "roi": 73.55
+          },
+          "複勝": {
+            "n_bet": 141,
+            "n_hit": 105,
+            "hit_rate": 74.47,
+            "purchase_total": 141000.0,
+            "payout_total": 130700.0,
+            "pnl": -10300.0,
+            "roi": 92.7
+          },
+          "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        },
+        "ワイドROI(予測1-2位基準)": {
+          "n_bet": 128,
+          "n_hit": 57,
+          "hit_rate": 44.53,
+          "purchase_total": 128000.0,
+          "payout_total": 119500.0,
+          "pnl": -8500.0,
+          "roi": 93.36,
+          "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+        },
+        "3連複3連単ROI(予測1-3位基準)": {
+          "3連複": {
+            "n_bet": 128,
+            "n_hit": 24,
+            "hit_rate": 18.75,
+            "purchase_total": 128000.0,
+            "payout_total": 115500.0,
+            "pnl": -12500.0,
+            "roi": 90.23
+          },
+          "3連単": {
+            "n_bet": 128,
+            "n_hit": 9,
+            "hit_rate": 7.03,
+            "purchase_total": 128000.0,
+            "payout_total": 73200.0,
+            "pnl": -54800.0,
+            "roi": 57.19
+          },
+          "note": "予測本命・対抗・穴馬の3頭を毎回3連複・3連単で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        }
+      }
+    },
+    "out_of_sample_check": {
+      "discovery_period(前半)": {
+        "n": 70,
+        "単勝複勝ROI": {
+          "単勝": {
+            "n_bet": 70,
+            "n_hit": 32,
+            "hit_rate": 45.71,
+            "purchase_total": 70000.0,
+            "payout_total": 59000.0,
+            "pnl": -11000.0,
+            "roi": 84.29
+          },
+          "複勝": {
+            "n_bet": 70,
+            "n_hit": 54,
+            "hit_rate": 77.14,
+            "purchase_total": 70000.0,
+            "payout_total": 71600.0,
+            "pnl": 1600.0,
+            "roi": 102.29
+          },
+          "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        },
+        "ワイドROI": {
+          "n_bet": 57,
+          "n_hit": 26,
+          "hit_rate": 45.61,
+          "purchase_total": 57000.0,
+          "payout_total": 63700.0,
+          "pnl": 6700.0,
+          "roi": 111.75,
+          "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+        }
+      },
+      "confirmation_period(後半)": {
+        "n": 71,
+        "単勝複勝ROI": {
+          "単勝": {
+            "n_bet": 71,
+            "n_hit": 28,
+            "hit_rate": 39.44,
+            "purchase_total": 71000.0,
+            "payout_total": 44700.0,
+            "pnl": -26300.0,
+            "roi": 62.96
+          },
+          "複勝": {
+            "n_bet": 71,
+            "n_hit": 51,
+            "hit_rate": 71.83,
+            "purchase_total": 71000.0,
+            "payout_total": 59100.0,
+            "pnl": -11900.0,
+            "roi": 83.24
+          },
+          "note": "予測1位(本命)を毎回単勝/複勝で定額購入したと仮定する完全な仮想集計。実際の馬券購入は行っていない。"
+        },
+        "ワイドROI": {
+          "n_bet": 71,
+          "n_hit": 31,
+          "hit_rate": 43.66,
+          "purchase_total": 71000.0,
+          "payout_total": 55800.0,
+          "pnl": -15200.0,
+          "roi": 78.59,
+          "note": "全レースの予測上位2頭を毎回定額購入したと仮定する完全な仮想集計。品質ゲート済みの公式配信(simulation_pnl.py)とは別系列、混同しない。"
+        }
+      }
+    },
+    "note": "的中率・ROIは全て『予測時点』オッズ(購入時点で取得可能だった値)に基づく。確定オッズによる事後的な水増しは行っていない。ワイド・3連複・3連単は予測上位2/3頭を毎回仮想購入したと仮定する無条件の仮想集計(既存ベストフィルター等の選別は適用していない)。サンプルが小さい期間(直近7日等)は参考値として扱う。"
+  },
+  "crosstrack_comparison(第5期研究2)": {
+    "track_rankings": [
+      {
+        "track": "名古屋",
+        "n": 47,
+        "n_hit": 45,
+        "hit_rate_pct": 95.74,
+        "roi_pct": 102.34,
+        "ci95": {
+          "n_legs": 47,
+          "n_race_days": 18,
+          "point_roi": 102.34,
+          "ci95_low": 95.58,
+          "ci95_high": 108.27
+        },
+        "insufficient_sample": false,
+        "is_priority_track": true
+      },
+      {
+        "track": "浦和",
+        "n": 19,
+        "n_hit": 18,
+        "hit_rate_pct": 94.74,
+        "roi_pct": 102.11,
+        "ci95": {
+          "n_legs": 19,
+          "n_race_days": 8,
+          "point_roi": 102.11,
+          "ci95_low": 94.29,
+          "ci95_high": 108.83
+        },
+        "insufficient_sample": false,
+        "is_priority_track": true
+      },
+      {
+        "track": "門別",
+        "n": 66,
+        "n_hit": 61,
+        "hit_rate_pct": 92.42,
+        "roi_pct": 101.97,
+        "ci95": {
+          "n_legs": 66,
+          "n_race_days": 25,
+          "point_roi": 101.97,
+          "ci95_low": 93.21,
+          "ci95_high": 110.44
+        },
+        "insufficient_sample": false,
+        "is_priority_track": true
+      },
+      {
+        "track": "園田",
+        "n": 84,
+        "n_hit": 80,
+        "hit_rate_pct": 95.24,
+        "roi_pct": 99.4,
+        "ci95": {
+          "n_legs": 84,
+          "n_race_days": 27,
+          "point_roi": 99.4,
+          "ci95_low": 93.06,
+          "ci95_high": 104.74
+        },
+        "insufficient_sample": false,
+        "is_priority_track": false
+      },
+      {
+        "track": "高知",
+        "n": 36,
+        "n_hit": 34,
+        "hit_rate_pct": 94.44,
+        "roi_pct": 96.94,
+        "ci95": {
+          "n_legs": 36,
+          "n_race_days": 14,
+          "point_roi": 96.94,
+          "ci95_low": 90.24,
+          "ci95_high": 103.33
+        },
+        "insufficient_sample": false,
+        "is_priority_track": true
+      },
+      {
+        "track": "金沢",
+        "n": 66,
+        "n_hit": 61,
+        "hit_rate_pct": 92.42,
+        "roi_pct": 96.67,
+        "ci95": {
+          "n_legs": 66,
+          "n_race_days": 15,
+          "point_roi": 96.67,
+          "ci95_low": 88.25,
+          "ci95_high": 104.34
+        },
+        "insufficient_sample": false,
+        "is_priority_track": true
+      },
+      {
+        "track": "佐賀",
+        "n": 52,
+        "n_hit": 48,
+        "hit_rate_pct": 92.31,
+        "roi_pct": 95.19,
+        "ci95": {
+          "n_legs": 52,
+          "n_race_days": 16,
+          "point_roi": 95.19,
+          "ci95_low": 83.38,
+          "ci95_high": 103.9
+        },
+        "insufficient_sample": false,
+        "is_priority_track": true
+      },
+      {
+        "track": "大井",
+        "n": 29,
+        "n_hit": 26,
+        "hit_rate_pct": 89.66,
+        "roi_pct": 93.45,
+        "ci95": {
+          "n_legs": 29,
+          "n_race_days": 11,
+          "point_roi": 93.45,
+          "ci95_low": 77.3,
+          "ci95_high": 108.4
+        },
+        "insufficient_sample": false,
+        "is_priority_track": false
+      },
+      {
+        "track": "川崎",
+        "n": 34,
+        "n_hit": 30,
+        "hit_rate_pct": 88.24,
+        "roi_pct": 91.18,
+        "ci95": {
+          "n_legs": 34,
+          "n_race_days": 11,
+          "point_roi": 91.18,
+          "ci95_low": 82.33,
+          "ci95_high": 101.14
+        },
+        "insufficient_sample": false,
+        "is_priority_track": false
+      },
+      {
+        "track": "盛岡",
+        "n": 62,
+        "n_hit": 52,
+        "hit_rate_pct": 83.87,
+        "roi_pct": 89.35,
+        "ci95": {
+          "n_legs": 62,
+          "n_race_days": 18,
+          "point_roi": 89.35,
+          "ci95_low": 77.62,
+          "ci95_high": 99.19
+        },
+        "insufficient_sample": false,
+        "is_priority_track": true
+      },
+      {
+        "track": "笠松",
+        "n": 44,
+        "n_hit": 37,
+        "hit_rate_pct": 84.09,
+        "roi_pct": 87.05,
+        "ci95": {
+          "n_legs": 44,
+          "n_race_days": 14,
+          "point_roi": 87.05,
+          "ci95_low": 77.37,
+          "ci95_high": 95.85
+        },
+        "insufficient_sample": false,
+        "is_priority_track": false
+      },
+      {
+        "track": "船橋",
+        "n": 23,
+        "n_hit": 20,
+        "hit_rate_pct": 86.96,
+        "roi_pct": 86.96,
+        "ci95": {
+          "n_legs": 23,
+          "n_race_days": 8,
+          "point_roi": 86.96,
+          "ci95_low": 72.63,
+          "ci95_high": 99.56
+        },
+        "insufficient_sample": false,
+        "is_priority_track": true
+      }
+    ],
+    "insufficient_sample_tracks": [
+      "水沢"
+    ],
+    "chi2_test": {
+      "tracks_included": [
+        "園田",
+        "笠松",
+        "船橋",
+        "門別",
+        "大井",
+        "盛岡",
+        "金沢",
+        "名古屋",
+        "佐賀",
+        "川崎",
+        "高知",
+        "浦和"
+      ],
+      "chi2": 11.782,
+      "dof": 11,
+      "p_value": 0.3802,
+      "significant_at_0.05": false,
+      "n_tracks_compared": 12,
+      "bonferroni_alpha_for_individual_tracks": 0.00417
+    },
+    "note": "全競馬場でCI95が100%を含むか下回る場合、『統計的に100%超えを確認した競馬場は無い』と結論する。サンプル不足の競馬場(n<10)は優位性を断定せず研究候補として扱う。"
+  },
+  "skip_opportunity_cost(第5期研究3)": {
+    "roi_by_odds_bin": {
+      "0-1.0倍": null,
+      "1.0-1.5倍(F該当)": {
+        "n": 461,
+        "n_hit": 415,
+        "hit_rate_pct": 90.02,
+        "roi_pct": 95.75,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 461,
+          "n_race_days": 56,
+          "point_roi": 95.75,
+          "ci95_low": 92.63,
+          "ci95_high": 98.7
+        }
+      },
+      "1.5-2.0倍": {
+        "n": 522,
+        "n_hit": 418,
+        "hit_rate_pct": 80.08,
+        "roi_pct": 89.56,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 522,
+          "n_race_days": 55,
+          "point_roi": 89.56,
+          "ci95_low": 85.86,
+          "ci95_high": 92.92
+        }
+      },
+      "2.0-3.0倍": {
+        "n": 843,
+        "n_hit": 570,
+        "hit_rate_pct": 67.62,
+        "roi_pct": 83.69,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 843,
+          "n_race_days": 55,
+          "point_roi": 83.69,
+          "ci95_low": 78.63,
+          "ci95_high": 88.78
+        }
+      },
+      "3.0-5.0倍": {
+        "n": 525,
+        "n_hit": 284,
+        "hit_rate_pct": 54.1,
+        "roi_pct": 77.96,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 525,
+          "n_race_days": 55,
+          "point_roi": 77.96,
+          "ci95_low": 70.92,
+          "ci95_high": 85.03
+        }
+      },
+      "5.0倍以上": {
+        "n": 33,
+        "n_hit": 20,
+        "hit_rate_pct": 60.61,
+        "roi_pct": 91.52,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 33,
+          "n_race_days": 23,
+          "point_roi": 91.52,
+          "ci95_low": 62.79,
+          "ci95_high": 121.52
+        }
+      }
+    },
+    "f_bought": {
+      "n": 461,
+      "n_hit": 415,
+      "hit_rate_pct": 90.02,
+      "roi_pct": 95.75,
+      "ci95(開催日単位クラスタブートストラップ)": {
+        "n_legs": 461,
+        "n_race_days": 56,
+        "point_roi": 95.75,
+        "ci95_low": 92.63,
+        "ci95_high": 98.7
+      }
+    },
+    "f_skipped": {
+      "n": 1923,
+      "n_hit": 1292,
+      "hit_rate_pct": 67.19,
+      "roi_pct": 83.85,
+      "ci95(開催日単位クラスタブートストラップ)": {
+        "n_legs": 1923,
+        "n_race_days": 56,
+        "point_roi": 83.85,
+        "ci95_low": 80.77,
+        "ci95_high": 86.96
+      }
+    },
+    "note": "Fが見送った他のオッズ帯は、1.0-1.5倍帯(F該当)より明確にROIが低い場合、見送り基準は機会損失を生んでいないと解釈する。逆に見送り帯の方が高ROIであれば、Fの基準自体が機会損失を生んでいる可能性があるため、閾値見直しの検討材料とする(ただし本研究では閾値変更は行わない、次回の仮説生成用)。"
   },
   "last_model_research_date": "2026-11-14",
   "notes": [
