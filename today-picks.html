@@ -146,6 +146,81 @@ button{font-family:inherit;}
 .bettype-mini{font-size:11px;color:var(--text-dim);display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
 .bettype-mini span{white-space:nowrap;}
 .bettype-mini b{color:var(--text);}
+
+/* ---------- 全レース結果: 比較カード(2026-11-14 UI改善) ---------- */
+.date-picker-row{display:flex;gap:8px;align-items:center;margin-bottom:10px;}
+.date-picker-row input[type="date"]{
+  flex:1;min-height:40px;padding:6px 10px;border-radius:var(--radius-sm);
+  background:var(--bg-elev);border:1px solid var(--border);color:var(--text);font-size:13.5px;
+}
+.date-picker-row button{
+  min-height:40px;padding:0 14px;border-radius:var(--radius-sm);
+  background:var(--accent-bg);border:1px solid var(--accent-dim);color:var(--accent);
+  font-weight:700;font-size:13px;white-space:nowrap;
+}
+.chip-filter-row{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  margin-bottom:8px;padding-bottom:2px;}
+.chip-filter-row button{
+  flex-shrink:0;background:var(--bg-elev);border:1px solid var(--border);color:var(--text-dim);
+  font-size:12px;font-weight:700;padding:7px 12px;border-radius:999px;min-height:34px;white-space:nowrap;
+}
+.chip-filter-row button.active{background:var(--accent-bg);border-color:var(--accent-dim);color:var(--accent);}
+.sort-toggle-row{display:flex;justify-content:flex-end;margin-bottom:10px;}
+.sort-toggle-row button{
+  background:none;border:1px solid var(--border);color:var(--text-dim);font-size:11.5px;
+  padding:5px 10px;border-radius:999px;min-height:30px;
+}
+.sort-toggle-row button.active{color:var(--accent);border-color:var(--accent-dim);}
+
+.summary-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px;margin-bottom:12px;}
+.summary-card .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.summary-card .cell{background:var(--bg-elev2);border-radius:var(--radius-sm);padding:8px 10px;}
+.summary-card .cell .label{font-size:10.5px;color:var(--text-faint);}
+.summary-card .cell .value{font-size:16px;font-weight:900;margin-top:2px;}
+.summary-card .cell .value.accent{color:var(--accent);}
+.summary-card .cell .value.bad{color:var(--bad);}
+.summary-card .note{font-size:10.5px;color:var(--text-faint);margin-top:8px;}
+
+.compare-card{background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);
+  padding:0;margin-bottom:10px;overflow:hidden;}
+.compare-head{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:12px 14px;cursor:pointer;min-height:48px;}
+.compare-head .meta{display:flex;flex-direction:column;gap:1px;}
+.compare-head .track-race{font-weight:900;font-size:14.5px;}
+.compare-head .ptime{font-size:11.5px;color:var(--text-dim);}
+.status-badge{font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;flex-shrink:0;}
+.status-badge.upcoming{background:var(--info-bg);color:var(--info);}
+.status-badge.pending{background:var(--chip);color:var(--text-dim);}
+.status-badge.finished{background:var(--accent-bg);color:var(--accent);}
+.compare-body{display:none;padding:0 14px 14px;}
+.compare-body.open{display:block;}
+.compare-cols{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.compare-col{background:var(--bg-elev2);border-radius:var(--radius-sm);padding:10px;min-width:0;}
+.compare-col .col-title{font-size:10.5px;color:var(--text-faint);font-weight:700;margin-bottom:6px;
+  text-transform:uppercase;letter-spacing:.04em;}
+.pick-row{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:12.5px;}
+.pick-row .rank{font-size:10px;color:var(--text-faint);width:14px;flex-shrink:0;}
+.pick-no{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:22px;
+  padding:0 4px;border-radius:6px;background:var(--chip);font-weight:900;font-size:12.5px;flex-shrink:0;}
+.pick-no.match{background:var(--accent);color:#0b0f0c;}
+.pick-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;}
+.pick-row.empty{color:var(--text-faint);font-size:11.5px;}
+
+.hit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:10px;}
+.hit-chip{display:flex;align-items:center;justify-content:space-between;gap:6px;
+  background:var(--bg-elev2);border-radius:var(--radius-sm);padding:7px 10px;font-size:12px;}
+.hit-chip .hit-label{color:var(--text-dim);}
+.hit-chip .hit-result{font-weight:900;display:flex;align-items:center;gap:3px;}
+.hit-chip .hit-result.hit{color:var(--accent);}
+.hit-chip .hit-result.miss{color:var(--bad);}
+.hit-chip .hit-result.pending{color:var(--text-faint);}
+
+.pnl-box{background:var(--bg-elev2);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:6px;}
+.pnl-box .kv-grid{margin-top:0;}
+.pnl-box .title{font-size:11.5px;font-weight:900;margin-bottom:6px;color:var(--text-dim);}
+.model-tag{font-size:10px;color:var(--text-faint);margin-top:8px;}
+
 .result-row{background:var(--bg-elev2);border:1px solid var(--border);border-radius:var(--radius-sm);
   padding:10px 12px;margin-bottom:8px;font-size:12.5px;}
 .result-row .head{display:flex;justify-content:space-between;font-weight:900;margin-bottom:4px;}
@@ -216,6 +291,7 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
 
     <!-- ============ 全レース結果 ============ -->
     <section class="view" id="view-results">
+      <div id="resultsSummary"></div>
       <div id="resultsFilters"></div>
       <div id="resultsContent"><div class="loading">タブを開くと読み込みます…</div></div>
     </section>
