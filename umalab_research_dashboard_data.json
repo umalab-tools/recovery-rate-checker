@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14 19:37:42",
+  "updated_at": "2026-11-15 01:02:23",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -12587,7 +12587,487 @@
     },
     "note": "Fが見送った他のオッズ帯は、1.0-1.5倍帯(F該当)より明確にROIが低い場合、見送り基準は機会損失を生んでいないと解釈する。逆に見送り帯の方が高ROIであれば、Fの基準自体が機会損失を生んでいる可能性があるため、閾値見直しの検討材料とする(ただし本研究では閾値変更は行わない、次回の仮説生成用)。"
   },
-  "last_model_research_date": "2026-11-14",
+  "wide_box3_research(第7期追加研究、2026-11-15)": {
+    "overall_by_strategy": {
+      "A_ワイドBOX(3点300円)": {
+        "n_races": 2395,
+        "n_settled": 2203,
+        "n_unsettled": 192,
+        "n_hit_races": 1443,
+        "hit_rate_pct": 65.5,
+        "stake_total": 660900.0,
+        "payout_total": 512680.0,
+        "pnl": -148220.0,
+        "roi_pct": 77.57,
+        "max_losing_streak": 11,
+        "max_drawdown_yen": -148470.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 2203,
+          "n_race_days": 54,
+          "point_roi": 77.57,
+          "ci95_low": 73.3,
+          "ci95_high": 82.06
+        }
+      },
+      "B_ワイド2点流し(200円)": {
+        "n_races": 2395,
+        "n_settled": 2203,
+        "n_unsettled": 192,
+        "n_hit_races": 1253,
+        "hit_rate_pct": 56.88,
+        "stake_total": 440600.0,
+        "payout_total": 339910.0,
+        "pnl": -100690.0,
+        "roi_pct": 77.15,
+        "max_losing_streak": 12,
+        "max_drawdown_yen": -100830.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 2203,
+          "n_race_days": 54,
+          "point_roi": 77.15,
+          "ci95_low": 72.47,
+          "ci95_high": 82.56
+        }
+      },
+      "C_ワイド1点(100円)": {
+        "n_races": 2395,
+        "n_settled": 2203,
+        "n_unsettled": 192,
+        "n_hit_races": 876,
+        "hit_rate_pct": 39.76,
+        "stake_total": 220300.0,
+        "payout_total": 172730.0,
+        "pnl": -47570.0,
+        "roi_pct": 78.41,
+        "max_losing_streak": 13,
+        "max_drawdown_yen": -48100.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 2203,
+          "n_race_days": 54,
+          "point_roi": 78.41,
+          "ci95_low": 72.24,
+          "ci95_high": 84.63
+        }
+      },
+      "D_複勝1点(100円)": {
+        "n_races": 2395,
+        "n_settled": 2380,
+        "n_unsettled": 15,
+        "n_hit_races": 1705,
+        "hit_rate_pct": 71.64,
+        "stake_total": 238000.0,
+        "payout_total": 204810.0,
+        "pnl": -33190.0,
+        "roi_pct": 86.05,
+        "max_losing_streak": 7,
+        "max_drawdown_yen": -33190.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 2380,
+          "n_race_days": 55,
+          "point_roi": 86.05,
+          "ci95_low": 83.35,
+          "ci95_high": 88.62
+        }
+      }
+    },
+    "by_track(主要競馬場)": {
+      "船橋": {
+        "n_races": 95,
+        "is_priority_track": true,
+        "n_settled": 75,
+        "n_unsettled": 20,
+        "n_hit_races": 46,
+        "hit_rate_pct": 61.33,
+        "stake_total": 22500.0,
+        "payout_total": 22570.0,
+        "pnl": 70.0,
+        "roi_pct": 100.31,
+        "max_losing_streak": 5,
+        "max_drawdown_yen": -2480.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 75,
+          "n_race_days": 8,
+          "point_roi": 100.31,
+          "ci95_low": 73.03,
+          "ci95_high": 125.23
+        }
+      },
+      "笠松": {
+        "n_races": 159,
+        "is_priority_track": false,
+        "n_settled": 158,
+        "n_unsettled": 1,
+        "n_hit_races": 113,
+        "hit_rate_pct": 71.52,
+        "stake_total": 47400.0,
+        "payout_total": 32670.0,
+        "pnl": -14730.0,
+        "roi_pct": 68.92,
+        "max_losing_streak": 4,
+        "max_drawdown_yen": -14830.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 158,
+          "n_race_days": 14,
+          "point_roi": 68.92,
+          "ci95_low": 56.46,
+          "ci95_high": 84.49
+        }
+      },
+      "園田": {
+        "n_races": 324,
+        "is_priority_track": true,
+        "n_settled": 310,
+        "n_unsettled": 14,
+        "n_hit_races": 228,
+        "hit_rate_pct": 73.55,
+        "stake_total": 93000.0,
+        "payout_total": 71060.0,
+        "pnl": -21940.0,
+        "roi_pct": 76.41,
+        "max_losing_streak": 4,
+        "max_drawdown_yen": -22280.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 310,
+          "n_race_days": 27,
+          "point_roi": 76.41,
+          "ci95_low": 68.51,
+          "ci95_high": 84.02
+        }
+      },
+      "門別": {
+        "n_races": 319,
+        "is_priority_track": true,
+        "n_settled": 274,
+        "n_unsettled": 45,
+        "n_hit_races": 180,
+        "hit_rate_pct": 65.69,
+        "stake_total": 82200.0,
+        "payout_total": 69470.0,
+        "pnl": -12730.0,
+        "roi_pct": 84.51,
+        "max_losing_streak": 8,
+        "max_drawdown_yen": -15270.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 274,
+          "n_race_days": 28,
+          "point_roi": 84.51,
+          "ci95_low": 72.01,
+          "ci95_high": 98.07
+        }
+      },
+      "帯広ば": {
+        "n_races": 209,
+        "is_priority_track": true,
+        "n_settled": 198,
+        "n_unsettled": 11,
+        "n_hit_races": 103,
+        "hit_rate_pct": 52.02,
+        "stake_total": 59400.0,
+        "payout_total": 53500.0,
+        "pnl": -5900.0,
+        "roi_pct": 90.07,
+        "max_losing_streak": 5,
+        "max_drawdown_yen": -9450.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 198,
+          "n_race_days": 18,
+          "point_roi": 90.07,
+          "ci95_low": 73.01,
+          "ci95_high": 106.39
+        }
+      },
+      "盛岡": {
+        "n_races": 211,
+        "is_priority_track": true,
+        "n_settled": 201,
+        "n_unsettled": 10,
+        "n_hit_races": 131,
+        "hit_rate_pct": 65.17,
+        "stake_total": 60300.0,
+        "payout_total": 45560.0,
+        "pnl": -14740.0,
+        "roi_pct": 75.56,
+        "max_losing_streak": 5,
+        "max_drawdown_yen": -14910.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 201,
+          "n_race_days": 17,
+          "point_roi": 75.56,
+          "ci95_low": 62.55,
+          "ci95_high": 90.9
+        }
+      },
+      "大井": {
+        "n_races": 148,
+        "is_priority_track": true,
+        "n_settled": 134,
+        "n_unsettled": 14,
+        "n_hit_races": 79,
+        "hit_rate_pct": 58.96,
+        "stake_total": 40200.0,
+        "payout_total": 29610.0,
+        "pnl": -10590.0,
+        "roi_pct": 73.66,
+        "max_losing_streak": 4,
+        "max_drawdown_yen": -10600.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 134,
+          "n_race_days": 13,
+          "point_roi": 73.66,
+          "ci95_low": 59.48,
+          "ci95_high": 87.95
+        }
+      },
+      "金沢": {
+        "n_races": 160,
+        "is_priority_track": true,
+        "n_settled": 160,
+        "n_unsettled": 0,
+        "n_hit_races": 117,
+        "hit_rate_pct": 73.12,
+        "stake_total": 48000.0,
+        "payout_total": 35440.0,
+        "pnl": -12560.0,
+        "roi_pct": 73.83,
+        "max_losing_streak": 5,
+        "max_drawdown_yen": -13230.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 160,
+          "n_race_days": 15,
+          "point_roi": 73.83,
+          "ci95_low": 61.85,
+          "ci95_high": 88.26
+        }
+      },
+      "名古屋": {
+        "n_races": 219,
+        "is_priority_track": true,
+        "n_settled": 198,
+        "n_unsettled": 21,
+        "n_hit_races": 136,
+        "hit_rate_pct": 68.69,
+        "stake_total": 59400.0,
+        "payout_total": 44870.0,
+        "pnl": -14530.0,
+        "roi_pct": 75.54,
+        "max_losing_streak": 4,
+        "max_drawdown_yen": -15150.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 198,
+          "n_race_days": 18,
+          "point_roi": 75.54,
+          "ci95_low": 64.85,
+          "ci95_high": 86.21
+        }
+      },
+      "川崎": {
+        "n_races": 135,
+        "is_priority_track": true,
+        "n_settled": 128,
+        "n_unsettled": 7,
+        "n_hit_races": 72,
+        "hit_rate_pct": 56.25,
+        "stake_total": 38400.0,
+        "payout_total": 27410.0,
+        "pnl": -10990.0,
+        "roi_pct": 71.38,
+        "max_losing_streak": 9,
+        "max_drawdown_yen": -13920.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 128,
+          "n_race_days": 12,
+          "point_roi": 71.38,
+          "ci95_low": 50.67,
+          "ci95_high": 96.45
+        }
+      },
+      "浦和": {
+        "n_races": 98,
+        "is_priority_track": true,
+        "n_settled": 83,
+        "n_unsettled": 15,
+        "n_hit_races": 43,
+        "hit_rate_pct": 51.81,
+        "stake_total": 24900.0,
+        "payout_total": 13420.0,
+        "pnl": -11480.0,
+        "roi_pct": 53.9,
+        "max_losing_streak": 5,
+        "max_drawdown_yen": -11900.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 83,
+          "n_race_days": 9,
+          "point_roi": 53.9,
+          "ci95_low": 43.42,
+          "ci95_high": 67.85
+        }
+      },
+      "高知": {
+        "n_races": 146,
+        "is_priority_track": true,
+        "n_settled": 133,
+        "n_unsettled": 13,
+        "n_hit_races": 91,
+        "hit_rate_pct": 68.42,
+        "stake_total": 39900.0,
+        "payout_total": 33720.0,
+        "pnl": -6180.0,
+        "roi_pct": 84.51,
+        "max_losing_streak": 4,
+        "max_drawdown_yen": -7180.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 133,
+          "n_race_days": 13,
+          "point_roi": 84.51,
+          "ci95_low": 72.79,
+          "ci95_high": 97.03
+        }
+      },
+      "水沢": {
+        "n_races": 12,
+        "is_priority_track": false,
+        "n_settled": 10,
+        "n_unsettled": 2,
+        "n_hit_races": 9,
+        "hit_rate_pct": 90.0,
+        "stake_total": 3000.0,
+        "payout_total": 2280.0,
+        "pnl": -720.0,
+        "roi_pct": 76.0,
+        "max_losing_streak": 1,
+        "max_drawdown_yen": -870.0,
+        "ci95(開催日単位クラスタブートストラップ)": null
+      },
+      "佐賀": {
+        "n_races": 160,
+        "is_priority_track": true,
+        "n_settled": 141,
+        "n_unsettled": 19,
+        "n_hit_races": 95,
+        "hit_rate_pct": 67.38,
+        "stake_total": 42300.0,
+        "payout_total": 31100.0,
+        "pnl": -11200.0,
+        "roi_pct": 73.52,
+        "max_losing_streak": 5,
+        "max_drawdown_yen": -11200.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 141,
+          "n_race_days": 14,
+          "point_roi": 73.52,
+          "ci95_low": 58.91,
+          "ci95_high": 88.2
+        }
+      }
+    },
+    "n_races_total": 2395,
+    "out_of_sample_check": {
+      "discovery_period(前半)": {
+        "n_races": 1097,
+        "n_settled": 905,
+        "n_unsettled": 192,
+        "n_hit_races": 590,
+        "hit_rate_pct": 65.19,
+        "stake_total": 271500.0,
+        "payout_total": 206270.0,
+        "pnl": -65230.0,
+        "roi_pct": 75.97,
+        "max_losing_streak": 8,
+        "max_drawdown_yen": -65480.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 905,
+          "n_race_days": 26,
+          "point_roi": 75.97,
+          "ci95_low": 68.24,
+          "ci95_high": 84.66
+        }
+      },
+      "confirmation_period(後半)": {
+        "n_races": 1298,
+        "n_settled": 1298,
+        "n_unsettled": 0,
+        "n_hit_races": 853,
+        "hit_rate_pct": 65.72,
+        "stake_total": 389400.0,
+        "payout_total": 306410.0,
+        "pnl": -82990.0,
+        "roi_pct": 78.69,
+        "max_losing_streak": 11,
+        "max_drawdown_yen": -83100.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 1298,
+          "n_race_days": 28,
+          "point_roi": 78.69,
+          "ci95_low": 73.98,
+          "ci95_high": 83.7
+        }
+      }
+    },
+    "ev_selection_vs_box(F_G)": {
+      "box_all3": {
+        "n_races": 1575,
+        "n_settled": 1575,
+        "n_unsettled": 0,
+        "n_hit_races": 1037,
+        "hit_rate_pct": 65.84,
+        "stake_total": 472500.0,
+        "payout_total": 369420.0,
+        "pnl": -103080.0,
+        "roi_pct": 78.18,
+        "max_losing_streak": 11,
+        "max_drawdown_yen": -103320.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 1575,
+          "n_race_days": 34,
+          "point_roi": 78.18,
+          "ci95_low": 74.04,
+          "ci95_high": 82.4
+        }
+      },
+      "ev_best1": {
+        "n_races": 1575,
+        "n_settled": 1575,
+        "n_unsettled": 0,
+        "n_hit_races": 371,
+        "hit_rate_pct": 23.56,
+        "stake_total": 157500.0,
+        "payout_total": 130020.0,
+        "pnl": -27480.0,
+        "roi_pct": 82.55,
+        "max_losing_streak": 21,
+        "max_drawdown_yen": -28540.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 1575,
+          "n_race_days": 34,
+          "point_roi": 82.55,
+          "ci95_low": 74.47,
+          "ci95_high": 90.31
+        }
+      },
+      "ev_threshold": {
+        "n_races": 1575,
+        "n_settled": 1575,
+        "n_unsettled": 0,
+        "n_hit_races": 155,
+        "hit_rate_pct": 9.84,
+        "stake_total": 131000.0,
+        "payout_total": 100830.0,
+        "pnl": -30170.0,
+        "roi_pct": 76.97,
+        "max_losing_streak": 73,
+        "max_drawdown_yen": -30180.0,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 792,
+          "n_race_days": 34,
+          "point_roi": 75.44,
+          "ci95_low": 63.9,
+          "ci95_high": 87.98
+        }
+      }
+    },
+    "note": "ワイドBOX(3点300円)は的中率が高い(約65%)が、ROIは複勝1点購入より低い(全競馬場・全期間でROI100%未満、統計的に優位性を確認できる競馬場は無い)。検証中の研究結果であり実運用の推奨ではない。"
+  },
+  "last_model_research_date": "2026-11-15",
   "notes": [
     "ここに表示される新戦略候補は検証中であり、実運用の推奨ではありません。",
     "本番の買い目は現行ワイド1点のみです(today-picks.html等)。",
