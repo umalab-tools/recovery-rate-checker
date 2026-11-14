@@ -260,6 +260,10 @@ async function load(force){
       </table></div>
       <p class="note">loglossは小さいほど良い。確率校正: raw Brier=${d.probability_calibration?.brier_score_raw ?? '-'} /
         isotonic校正後=${d.probability_calibration?.brier_score_isotonic_calibrated ?? '-'}</p>
+      <p class="note">「採用」は事前登録した機械的な採用基準(test logloss・Brier双方の改善、的中率が
+        有意に悪化しない)を満たした候補であることを示すのみで、本番モデル(model_e_top3.joblib)への
+        実際の切り替えが完了したことは意味しません。差が僅少な場合は追加の独立検証を経るまで候補のまま
+        保留しています。</p>
     </div>
 
     <div class="panel">
