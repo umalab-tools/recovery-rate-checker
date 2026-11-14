@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13 23:44 JST",
+  "updated_at": "2026-11-14 16:51:42",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -379,6 +379,36 @@
       "test_top1_hit_rate": 0.4400052397170553,
       "vs_model_e_logloss": 0.46984754679122387,
       "adopted": false
+    },
+    {
+      "name": "LightGBM(第2期研究4、2026-11-14再検証)",
+      "test_logloss": 0.46997,
+      "test_brier": 0.15407,
+      "test_top1_hit_rate": 0.7545000000000001,
+      "vs_model_e_logloss": 0.4701,
+      "vs_model_e_brier": 0.15407,
+      "hit_rate_diff_ci95": {
+        "point_diff_pt": 0.052,
+        "ci95_low_pt": -0.139,
+        "ci95_high_pt": 0.23,
+        "n_race_days": 180
+      },
+      "adopted": false
+    },
+    {
+      "name": "CatBoost(第2期研究4b、2026-11-14)",
+      "test_logloss": 0.46973,
+      "test_brier": 0.15395,
+      "test_top1_hit_rate": 0.7545000000000001,
+      "vs_model_e_logloss": 0.4701,
+      "vs_model_e_brier": 0.15407,
+      "hit_rate_diff_ci95": {
+        "point_diff_pt": 0.052,
+        "ci95_low_pt": -0.171,
+        "ci95_high_pt": 0.287,
+        "n_race_days": 180
+      },
+      "adopted": true
     }
   ],
   "probability_calibration": {
@@ -11583,548 +11613,119 @@
       "path_len": 525
     }
   },
+  "miss_classification(第2期研究3、2026-11-14)": {
+    "n_misses": 1878,
+    "miss_rate_pct": 24.67,
+    "by_category": {
+      "A:人気馬(本命)の過大評価": {
+        "n": 1025,
+        "pct_of_misses": 54.58
+      },
+      "B:穴馬の過小評価": {
+        "n": 0,
+        "pct_of_misses": 0.0
+      },
+      "D:馬場適性の誤り(弱根拠)": {
+        "n": 0,
+        "pct_of_misses": 0.0
+      },
+      "E:距離適性の誤り(弱根拠)": {
+        "n": 0,
+        "pct_of_misses": 0.0
+      },
+      "F:騎手調教師の影響見落とし(弱根拠)": {
+        "n": 0,
+        "pct_of_misses": 0.0
+      },
+      "G:オッズと独自勝率の乖離": {
+        "n": 853,
+        "pct_of_misses": 45.42
+      },
+      "H:データ不足・予測不確実性": {
+        "n": 0,
+        "pct_of_misses": 0.0
+      },
+      "原因未特定(C:展開脚質の可能性を含む、検証不能データのため推測しない)": {
+        "n": 0,
+        "pct_of_misses": 0.0
+      }
+    },
+    "note": "C(展開・脚質)は生データにコーナー通過順が存在せず(H059で確定済み)直接検証できないため、本分類では一度も割り当てていない(捏造しない)。D/E/Fは弱い根拠(相関であり因果の証明ではない)。サンプル数が少ないカテゴリは『優位性がある』と解釈しない。"
+  },
+  "ev_threshold_strategy(第2期研究5、2026-11-14)": {
+    "all_period": {
+      "全レース均等購入": {
+        "n": 2373,
+        "n_hit": 1698,
+        "hit_rate_pct": 71.55,
+        "roi_pct": 86.11,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 2373,
+          "n_race_days": 57,
+          "point_roi": 86.11,
+          "ci95_low": 83.57,
+          "ci95_high": 88.79
+        }
+      },
+      "既存ベストフィルターF": {
+        "n": 580,
+        "n_hit": 518,
+        "hit_rate_pct": 89.31,
+        "roi_pct": 95.47,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 580,
+          "n_race_days": 56,
+          "point_roi": 95.47,
+          "ci95_low": 91.98,
+          "ci95_high": 98.59
+        }
+      },
+      "EV>0%で選別": {
+        "n": 531,
+        "n_hit": 299,
+        "hit_rate_pct": 56.31,
+        "roi_pct": 81.43,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 531,
+          "n_race_days": 54,
+          "point_roi": 81.43,
+          "ci95_low": 75.55,
+          "ci95_high": 87.66
+        }
+      },
+      "EV>10%で選別": {
+        "n": 369,
+        "n_hit": 204,
+        "hit_rate_pct": 55.28,
+        "roi_pct": 82.36,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 369,
+          "n_race_days": 54,
+          "point_roi": 82.36,
+          "ci95_low": 73.78,
+          "ci95_high": 91.16
+        }
+      },
+      "EV>20%で選別": {
+        "n": 279,
+        "n_hit": 144,
+        "hit_rate_pct": 51.61,
+        "roi_pct": 79.89,
+        "ci95(開催日単位クラスタブートストラップ)": {
+          "n_legs": 279,
+          "n_race_days": 51,
+          "point_roi": 79.89,
+          "ci95_low": 68.16,
+          "ci95_high": 91.38
+        }
+      }
+    },
+    "note": "複勝のみを対象(単勝・ワイド等は予測時点オッズの取得範囲外のため今回は含めない)。しきい値は事前に決めた3点のみで、結果を見てからの事後調整は行っていない。発見期間・検証期間の両方でF超えが確認できた場合のみ採用候補とする。"
+  },
+  "last_model_research_date": "2026-11-14",
   "notes": [
     "ここに表示される新戦略候補は検証中であり、実運用の推奨ではありません。",
     "本番の買い目は現行ワイド1点のみです(today-picks.html等)。",
     "利益を保証する結果ではありません。実際の馬券購入・自動投票は行っていません。"
-  ],
-  "stage8_research1_data_audit": {
-    "summary": "races 102,763行・15競馬場(2020-2026)、features 138列・1,043,987行をA(発走前)/B(過去走集計)/C(発走後のみ判明)/D(取得時刻不明)に分類。",
-    "finding": "TIER_S_A/B/C_FEATURES全104列を確認し、着順・確定タイム・当該レース上がり3F・コーナー通過順・確定払戻のいずれも含まれず、Cの混入なし。ninki列は確定人気(締切直前情報)であり、数日前予測には使えない既知の限界として記録。"
-  },
-  "stage8_research2_track_comparison": {
-    "target_tracks": [
-      "川崎",
-      "盛岡",
-      "浦和",
-      "園田",
-      "門別",
-      "船橋",
-      "金沢",
-      "笠松"
-    ],
-    "rows": [
-      {
-        "track": "川崎",
-        "n_test": 420,
-        "top1_win_rate": 42.14,
-        "logloss": 0.4635,
-        "calib_error_pt": 0.54,
-        "tansho_roi": 90.94,
-        "fukusho_roi": 80.71,
-        "wide_roi": 57.71,
-        "insufficient_sample": false
-      },
-      {
-        "track": "盛岡",
-        "n_test": 319,
-        "top1_win_rate": 46.08,
-        "logloss": 0.4831,
-        "calib_error_pt": 1.16,
-        "tansho_roi": 59.66,
-        "fukusho_roi": 86.71,
-        "wide_roi": 76.22,
-        "insufficient_sample": false
-      },
-      {
-        "track": "浦和",
-        "n_test": 360,
-        "top1_win_rate": 37.78,
-        "logloss": 0.4675,
-        "calib_error_pt": 1.41,
-        "tansho_roi": 84.24,
-        "fukusho_roi": 76.95,
-        "wide_roi": 56.33,
-        "insufficient_sample": false
-      },
-      {
-        "track": "園田",
-        "n_test": 725,
-        "top1_win_rate": 48.55,
-        "logloss": 0.4534,
-        "calib_error_pt": 1.67,
-        "tansho_roi": 76.49,
-        "fukusho_roi": 87.68,
-        "wide_roi": 80.71,
-        "insufficient_sample": false
-      },
-      {
-        "track": "門別",
-        "n_test": 473,
-        "top1_win_rate": 45.24,
-        "logloss": 0.4451,
-        "calib_error_pt": 0.92,
-        "tansho_roi": 83.31,
-        "fukusho_roi": 82.33,
-        "wide_roi": 76.28,
-        "insufficient_sample": false
-      },
-      {
-        "track": "船橋",
-        "n_test": 360,
-        "top1_win_rate": 41.94,
-        "logloss": 0.479,
-        "calib_error_pt": 2.7,
-        "tansho_roi": 108.12,
-        "fukusho_roi": 87.71,
-        "wide_roi": 90.21,
-        "insufficient_sample": false
-      },
-      {
-        "track": "金沢",
-        "n_test": 496,
-        "top1_win_rate": 51.41,
-        "logloss": 0.4701,
-        "calib_error_pt": 2.42,
-        "tansho_roi": 84.08,
-        "fukusho_roi": 87.28,
-        "wide_roi": 66.26,
-        "insufficient_sample": false
-      },
-      {
-        "track": "笠松",
-        "n_test": 535,
-        "top1_win_rate": 43.55,
-        "logloss": 0.5129,
-        "calib_error_pt": 0.79,
-        "tansho_roi": 63.61,
-        "fukusho_roi": 84.1,
-        "wide_roi": 77.35,
-        "insufficient_sample": false
-      }
-    ],
-    "note": "単勝・複勝・ワイドROIは購入時点オッズが存在する32日分のみ。的中率・logloss・校正誤差はtest期間(未知データ)。選択バイアス: 8場は過去段階でデータ量が十分なものを選定しており、他場を除外した恣意性がある。"
-  },
-  "stage8_research3_kawasaki_diagnostic": {
-    "summary": "川崎12R8番ナリノボガートの複勝圏内確率0.689は、使用特徴量(近走複勝率1.0・コース複勝率0.615・距離複勝率0.778)が高水準であることと整合しており、モデルの評価自体は妥当だった。",
-    "gap_found": "未使用特徴量baba_matched_starts(重馬場適性)が8番は欠損(重馬場未経験)、2着10番は複勝率0.625と強い適性を持っていた。また8番のrecent3_agari3f_avg=42.07は実際の1-3着馬(39.4-39.7台)より明確に遅かった。",
-    "caveat": "この診断は結果に合わせたモデルの後付け変更ではない。着想した仮説(研究4)は集計全体では改善効果なしと判明した。"
-  },
-  "stage8_research4_5_findings": [
-    {
-      "id": "H040",
-      "theme": "上がり3Fのレース内相対化(Z-score)",
-      "status": "不採用",
-      "finding": "logloss改善0.01%(無視できる水準)、本命的中率-0.45pt。川崎12Rの個別診断から着想したが集計全体では効果なし。"
-    },
-    {
-      "id": "H041",
-      "theme": "SHAP特徴量重要度(本番Model E、test期間3000件)",
-      "status": "保留(除外は未実施)",
-      "finding": "recent1_finish(直近1走の着順)が0.974で他を大きく上回る唯一の支配的特徴量(2位impost=0.160)。ninki(人気)は重要度最下位(0.00013)で直感に反し、多重共線性の影響を未確認のため除外判断はしない。"
-    },
-    {
-      "id": "H042",
-      "theme": "EV閾値A(既存)〜E(EV>1.20)比較(複勝、半ケリー資金配分含む)",
-      "status": "不採用",
-      "finding": "既存フィルターROI94.46%(CI95=[91.65,97.05])に対しEV閾値ルールは67.3〜74.2%に留まり劣る。半ケリー適用時の最大ドローダウンは既存2.0%に対しEV閾値ルールは51.5〜64.0%と極端な資金溶解を示した。H039に続く独立検証での再確認。"
-    }
-  ],
-  "stage9_step1_reaudit": {
-    "target": "既存フィルター(複勝・予測1位・単勝1.0-1.5倍)のROI94.46%(Stage8 Cycle1)",
-    "period": "20261008~20261111(32日)",
-    "n_tracks": 13,
-    "n_bets": 386,
-    "bet_total": 386000.0,
-    "payout_total": 364600.0,
-    "roi": 94.46,
-    "max_dd_yen": 22800.0,
-    "max_dd_pct": 45.15,
-    "odds_timing_median_min": 1.6,
-    "conclusion": "94.46%は実購入の確定成績ではなく、研究用バックテストの数値である。モデルの学習データとは時系列的に重複していないため学習データリークは無いが、ホールドアウト期間の「未使用性」は既に損なわれている。"
-  },
-  "stage9_step3_track_stats": {
-    "chi2": 33.277,
-    "p_value": 0.0015,
-    "significant": true,
-    "interpretation": "p<0.05: 競馬場間の的中率差は偶然のばらつきだけでは説明しにくい",
-    "rows": [
-      {
-        "track": "門別",
-        "n": 4667,
-        "brier": 0.1457,
-        "fukusho_roi": 82.33,
-        "max_dd_pct": 63.58
-      },
-      {
-        "track": "盛岡",
-        "n": 3253,
-        "brier": 0.1591,
-        "fukusho_roi": 86.71,
-        "max_dd_pct": 42.15
-      },
-      {
-        "track": "水沢",
-        "n": 4156,
-        "brier": 0.1609,
-        "fukusho_roi": null,
-        "max_dd_pct": null
-      },
-      {
-        "track": "浦和",
-        "n": 3837,
-        "brier": 0.1528,
-        "fukusho_roi": 76.95,
-        "max_dd_pct": 27.2
-      },
-      {
-        "track": "船橋",
-        "n": 3884,
-        "brier": 0.1581,
-        "fukusho_roi": 87.71,
-        "max_dd_pct": 14.94
-      },
-      {
-        "track": "大井",
-        "n": 6432,
-        "brier": 0.138,
-        "fukusho_roi": 76.29,
-        "max_dd_pct": 33.8
-      },
-      {
-        "track": "川崎",
-        "n": 4522,
-        "brier": 0.1506,
-        "fukusho_roi": 80.71,
-        "max_dd_pct": 33.8
-      },
-      {
-        "track": "金沢",
-        "n": 4433,
-        "brier": 0.1533,
-        "fukusho_roi": 87.28,
-        "max_dd_pct": 28.17
-      },
-      {
-        "track": "笠松",
-        "n": 4675,
-        "brier": 0.1703,
-        "fukusho_roi": 84.1,
-        "max_dd_pct": 30.65
-      },
-      {
-        "track": "名古屋",
-        "n": 7817,
-        "brier": 0.1472,
-        "fukusho_roi": 88.92,
-        "max_dd_pct": 33.07
-      },
-      {
-        "track": "園田",
-        "n": 7205,
-        "brier": 0.1479,
-        "fukusho_roi": 87.68,
-        "max_dd_pct": 42.46
-      },
-      {
-        "track": "姫路",
-        "n": 2202,
-        "brier": 0.1474,
-        "fukusho_roi": null,
-        "max_dd_pct": null
-      },
-      {
-        "track": "高知",
-        "n": 5927,
-        "brier": 0.1566,
-        "fukusho_roi": 85.71,
-        "max_dd_pct": 31.88
-      },
-      {
-        "track": "佐賀",
-        "n": 6438,
-        "brier": 0.1394,
-        "fukusho_roi": 92.16,
-        "max_dd_pct": 21.4
-      }
-    ]
-  },
-  "stage9_step4_hypotheses": {
-    "n_overrated": 1878,
-    "n_underrated": 4212,
-    "E_note": "features表に脚質(先行/差し/追込等)・展開カラムが存在しないため、データ不足により検証不能(推測で補完しない)。Stage10での新規データ取得を検討課題とする。",
-    "G_overconfident_bins": "4/10",
-    "summary": "A/B/C/D/Fは予測1位に選ばれる理由そのものと相関するため因果的な過大評価の原因とは言えない。C/Dでは経験(course_starts/baba_matched_starts)が少ないほど過大評価されやすい傾向が見られ、Stage10で小サンプル縮小補正を検討。"
-  },
-  "stage9_step5_model_comparison": {
-    "rows": [
-      {
-        "name": "existing_Model_E",
-        "logloss": 0.4701,
-        "brier": 0.15407,
-        "auc": 0.812
-      },
-      {
-        "name": "logistic_regression",
-        "logloss": 0.47393,
-        "brier": 0.15531,
-        "auc": 0.8096
-      },
-      {
-        "name": "lightgbm",
-        "logloss": 0.46997,
-        "brier": 0.15407,
-        "auc": 0.812
-      },
-      {
-        "name": "catboost",
-        "logloss": 0.46973,
-        "brier": 0.15395,
-        "auc": 0.8123
-      },
-      {
-        "name": "track_corrected_Model_E",
-        "logloss": 0.47813,
-        "brier": 0.15459,
-        "auc": 0.811
-      },
-      {
-        "name": "ensemble_lightgbm_catboost",
-        "logloss": 0.46938,
-        "brier": 0.15384,
-        "auc": 0.8126
-      }
-    ],
-    "best": "ensemble_lightgbm_catboost",
-    "conclusion": "最良モデルとの差は既存Model Eから0.15%程度でランダムシード相当の変動域。信頼区間未算出のため厳格な採用基準を満たさず「改善なし」と判定。"
-  },
-  "stage9_step6_wide_strategy": {
-    "rows": [
-      {
-        "rule": "A_既存構成(予測1-2位ワイド1点)",
-        "n": 1459,
-        "roi": 79.15,
-        "ci95": {
-          "n_legs": 1459,
-          "n_race_days": 31,
-          "point_roi": 79.15,
-          "ci95_low": 71.72,
-          "ci95_high": 86.15
-        },
-        "flat_dd": 60.92,
-        "kelly_dd": null
-      },
-      {
-        "rule": "B_補正前EV>0",
-        "n": 549,
-        "roi": 78.29,
-        "ci95": {
-          "n_legs": 549,
-          "n_race_days": 31,
-          "point_roi": 78.29,
-          "ci95_low": 64.84,
-          "ci95_high": 91.87
-        },
-        "flat_dd": 24.74,
-        "kelly_dd": 92.87
-      },
-      {
-        "rule": "C_補正後EV>0(同時分布補正)",
-        "n": 496,
-        "roi": 78.95,
-        "ci95": {
-          "n_legs": 496,
-          "n_race_days": 31,
-          "point_roi": 78.95,
-          "ci95_low": 63.96,
-          "ci95_high": 93.54
-        },
-        "flat_dd": 23.46,
-        "kelly_dd": 91.26
-      }
-    ],
-    "conclusion": "同時分布補正(pa*pbの単純積を廃止)はキャリブレーションを改善したがROIは改善せず、3ルールとも統計的に区別不能(ROI78-79%、CI大幅重複)。半ケリーは最大ドローダウン91-93%と壊滅的でフラットベットの方が明確に安全。"
-  },
-  "stage9_overall_conclusion": "Stage9の全ステップを通じて、本番採用可能な改善案は確認されなかった。94.46%は実購入成績ではなく研究用バックテストであること、競馬場間の有意な異質性は存在するが単純な補正では活かせないこと、新モデル群は既存Model Eと統計的に区別できない水準にとどまること、ワイドの同時分布補正はキャリブレーションのみ改善しROIには結びつかないこと、EVベースの資金配分(半ケリー)は複勝・ワイドいずれでも壊滅的なドローダウンを招くことが確認された。既存の固定オッズ帯フィルター+フラットベットを本番運用として維持する。",
-  "stage10_model_ranking": {
-    "rows": [
-      {
-        "name": "ensemble_lightgbm_catboost",
-        "logloss": 0.46938
-      },
-      {
-        "name": "catboost",
-        "logloss": 0.46973
-      },
-      {
-        "name": "lightgbm",
-        "logloss": 0.46997
-      },
-      {
-        "name": "existing_Model_E",
-        "logloss": 0.4701
-      },
-      {
-        "name": "logistic_regression",
-        "logloss": 0.47393
-      },
-      {
-        "name": "track_corrected_Model_E",
-        "logloss": 0.47813
-      },
-      {
-        "name": "market_model_H",
-        "logloss": 0.48277
-      },
-      {
-        "name": "ranking_lambdarank",
-        "logloss": 0.56641
-      }
-    ],
-    "best": "ensemble_lightgbm_catboost",
-    "xgboost_status": "環境制約のため保留(libomp/Homebrew不在)",
-    "conclusion": "最良モデルでも既存Model Eとの差は0.15%程度で、ランキング学習・市場モデルはいずれも劣る。採用基準未達。"
-  },
-  "stage10_track_shrinkage": {
-    "rows": [
-      {
-        "track": "門別",
-        "n_test": 473,
-        "raw_win_rate": 45.24,
-        "shrunk_win_rate": 45.35,
-        "raw_fukusho_hit_rate_32d": 69.77,
-        "shrunk_fukusho_hit_rate_32d": 72.45
-      },
-      {
-        "track": "盛岡",
-        "n_test": 319,
-        "raw_win_rate": 46.08,
-        "shrunk_win_rate": 45.78,
-        "raw_fukusho_hit_rate_32d": 74.5,
-        "shrunk_fukusho_hit_rate_32d": 72.86
-      },
-      {
-        "track": "水沢",
-        "n_test": 419,
-        "raw_win_rate": 41.53,
-        "shrunk_win_rate": 43.31
-      },
-      {
-        "track": "浦和",
-        "n_test": 360,
-        "raw_win_rate": 37.78,
-        "shrunk_win_rate": 41.54,
-        "raw_fukusho_hit_rate_32d": 64.41,
-        "shrunk_fukusho_hit_rate_32d": 72.45
-      },
-      {
-        "track": "船橋",
-        "n_test": 360,
-        "raw_win_rate": 41.94,
-        "shrunk_win_rate": 43.68,
-        "raw_fukusho_hit_rate_32d": 66.67,
-        "shrunk_fukusho_hit_rate_32d": 72.56
-      },
-      {
-        "track": "大井",
-        "n_test": 537,
-        "raw_win_rate": 47.3,
-        "shrunk_win_rate": 46.59,
-        "raw_fukusho_hit_rate_32d": 64.29,
-        "shrunk_fukusho_hit_rate_32d": 72.39
-      },
-      {
-        "track": "川崎",
-        "n_test": 420,
-        "raw_win_rate": 42.14,
-        "shrunk_win_rate": 43.65,
-        "raw_fukusho_hit_rate_32d": 65.88,
-        "shrunk_fukusho_hit_rate_32d": 72.4
-      },
-      {
-        "track": "金沢",
-        "n_test": 496,
-        "raw_win_rate": 51.41,
-        "shrunk_win_rate": 48.99,
-        "raw_fukusho_hit_rate_32d": 76.7,
-        "shrunk_fukusho_hit_rate_32d": 72.94
-      },
-      {
-        "track": "笠松",
-        "n_test": 535,
-        "raw_win_rate": 43.55,
-        "shrunk_win_rate": 44.31,
-        "raw_fukusho_hit_rate_32d": 75.9,
-        "shrunk_fukusho_hit_rate_32d": 72.87
-      },
-      {
-        "track": "名古屋",
-        "n_test": 711,
-        "raw_win_rate": 44.02,
-        "shrunk_win_rate": 44.5,
-        "raw_fukusho_hit_rate_32d": 73.08,
-        "shrunk_fukusho_hit_rate_32d": 72.75
-      },
-      {
-        "track": "園田",
-        "n_test": 725,
-        "raw_win_rate": 48.55,
-        "shrunk_win_rate": 47.57,
-        "raw_fukusho_hit_rate_32d": 76.79,
-        "shrunk_fukusho_hit_rate_32d": 73.08
-      },
-      {
-        "track": "姫路",
-        "n_test": 216,
-        "raw_win_rate": 45.83,
-        "shrunk_win_rate": 45.62
-      },
-      {
-        "track": "高知",
-        "n_test": 602,
-        "raw_win_rate": 45.18,
-        "shrunk_win_rate": 45.3,
-        "raw_fukusho_hit_rate_32d": 72.53,
-        "shrunk_fukusho_hit_rate_32d": 72.71
-      },
-      {
-        "track": "佐賀",
-        "n_test": 626,
-        "raw_win_rate": 50.48,
-        "shrunk_win_rate": 48.71,
-        "raw_fukusho_hit_rate_32d": 79.2,
-        "shrunk_fukusho_hit_rate_32d": 73.16
-      }
-    ],
-    "method": "Beta-Binomial経験的ベイズ(PyMC等フルMCMCは未導入のため実用的代替)",
-    "note": "shrunk値はサンプルが少ない競馬場ほどグループ平均に近づく。金沢・佐賀等の一見高いROIの一部はサンプリング変動の可能性。"
-  },
-  "stage10_fresh_holdout_and_interactions": {
-    "fresh_date": "20261112",
-    "fresh_result_n": 0,
-    "fresh_note": "1日分のみ(n=0)のため統計的な確認検証ではなく、方向性参考値として扱う。",
-    "interaction_cells_tested": 127,
-    "interaction_bonferroni_alpha": 0.000394,
-    "interaction_n_promising": 0,
-    "interaction_conclusion": "127セルの競馬場×距離・馬場・頭数・人気の交互作用をBonferroni補正付きで検定し、有意なセルは0件。"
-  },
-  "stage10_overall_conclusion": "Stage10でも本番採用可能な改善案は確認されなかった。XGBoostは環境制約(libomp未導入)で保留、ランキング学習・市場ベースモデルはいずれも既存Model Eに劣り、交互作用のBonferroni補正付き探索でも有意な新条件は見つからなかった。経験的ベイズ縮小推定により、一部競馬場の見かけ上の優位性がサンプリング変動である可能性を定量化した。真に未使用の新しい日(2026-11-12)の再検証はn=0で比較不能だったが、恣意的な除外ではなく実際のオッズ分布の結果。既存の固定オッズ帯フィルター+フラットベットを本番運用として維持する。",
-  "production_real_results_status": {
-    "wide_method": {
-      "n_logged": 331,
-      "n_skipped": 331,
-      "n_purchased": 0,
-      "by_track": {
-        "帯広ば": 24,
-        "高知": 24,
-        "佐賀": 34,
-        "盛岡": 36,
-        "名古屋": 60,
-        "川崎": 60,
-        "門別": 36,
-        "金沢": 21,
-        "園田": 36
-      },
-      "note": "品質ゲート(MODEL_CONFIRMED_PROFITABLE=False)により全件見送り。実際の購入は一度も発生していない(的中率・回収率は計算不能)。"
-    },
-    "validated_fukusho_filter": {
-      "n_logged": 0,
-      "note": "2026-11-14に本番予想へ追加した新フィールド(既存ベストフィルター: 複勝・予測1位・単勝1.0-1.5倍)。本日追加のため実績履歴はまだ無い。今後の本番予想から蓄積が始まる。"
-    },
-    "tansho": {
-      "n_logged": 0,
-      "note": "本番では単勝の購入推奨を行っていない(計算不能)。"
-    },
-    "last_checked": "2026-11-13 23:44 JST"
-  }
+  ]
 }
