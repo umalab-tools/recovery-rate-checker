@@ -1,9 +1,8 @@
 {
-  "generated_at": "2026-11-13T03:33:57",
-  "date": "20261113",
+  "generated_at": "2026-11-14T11:40:48",
+  "date": "20261114",
   "stake_per_bet": 1000.0,
-  "source": "github_actions",
-  "note": "GitHub Actions上で独立稼働する結果反映(Macがスリープ中でも動作)。対象は公式配信の買い目のみ。実際の馬券購入は行っていない。公式の当日ファイルは今日のレースのみ確定可能なため、今日以前の未確定分はMac側の月次アーカイブ照合を待つ必要がある(既知の確定済み履歴は保持する)。",
+  "note": "対象は公式配信(today-picks.html)の買い目のみ。実際の馬券購入は行っていない(全額シミュレーション)。品質ゲート不合格の間は「買う」判定が0件のため、購入総額・回収率も0/算出不能のままになる(これは正常な挙動)。",
   "periods": {
     "daily": {
       "purchase_total": 0,
@@ -18,7 +17,7 @@
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
-      "note": "GitHub Actions(独立稼働)側で計算。Mac側のsimulation_pnl.pyと同一の計算式を使用。"
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
     },
     "weekly": {
       "purchase_total": 0,
@@ -29,11 +28,11 @@
       "n_miss": 0,
       "hit_rate": null,
       "n_races_bought": 0,
-      "n_races_skipped": 189,
+      "n_races_skipped": 260,
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
-      "note": "GitHub Actions(独立稼働)側で計算。Mac側のsimulation_pnl.pyと同一の計算式を使用。"
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
     },
     "monthly": {
       "purchase_total": 0,
@@ -44,11 +43,11 @@
       "n_miss": 0,
       "hit_rate": null,
       "n_races_bought": 0,
-      "n_races_skipped": 189,
+      "n_races_skipped": 295,
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
-      "note": "GitHub Actions(独立稼働)側で計算。Mac側のsimulation_pnl.pyと同一の計算式を使用。"
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
     },
     "all": {
       "purchase_total": 0,
@@ -59,11 +58,11 @@
       "n_miss": 0,
       "hit_rate": null,
       "n_races_bought": 0,
-      "n_races_skipped": 189,
+      "n_races_skipped": 295,
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
-      "note": "GitHub Actions(独立稼働)側で計算。Mac側のsimulation_pnl.pyと同一の計算式を使用。"
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
     }
   },
   "by_track": {
@@ -76,11 +75,11 @@
       "n_miss": 0,
       "hit_rate": null,
       "n_races_bought": 0,
-      "n_races_skipped": 24,
+      "n_races_skipped": 22,
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
-      "note": "GitHub Actions(独立稼働)側で計算。Mac側のsimulation_pnl.pyと同一の計算式を使用。"
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
     },
     "高知": {
       "purchase_total": 0,
@@ -95,7 +94,7 @@
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
-      "note": "GitHub Actions(独立稼働)側で計算。Mac側のsimulation_pnl.pyと同一の計算式を使用。"
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
     },
     "佐賀": {
       "purchase_total": 0,
@@ -106,15 +105,105 @@
       "n_miss": 0,
       "hit_rate": null,
       "n_races_bought": 0,
-      "n_races_skipped": 34,
+      "n_races_skipped": 31,
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
-      "note": "GitHub Actions(独立稼働)側で計算。Mac側のsimulation_pnl.pyと同一の計算式を使用。"
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
+    },
+    "盛岡": {
+      "purchase_total": 0,
+      "payout_total": null,
+      "pnl": null,
+      "roi": null,
+      "n_hit": 0,
+      "n_miss": 0,
+      "hit_rate": null,
+      "n_races_bought": 0,
+      "n_races_skipped": 36,
+      "pending_amount": 0,
+      "n_pending": 0,
+      "sample_size_warning": true,
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
+    },
+    "名古屋": {
+      "purchase_total": 0,
+      "payout_total": null,
+      "pnl": null,
+      "roi": null,
+      "n_hit": 0,
+      "n_miss": 0,
+      "hit_rate": null,
+      "n_races_bought": 0,
+      "n_races_skipped": 60,
+      "pending_amount": 0,
+      "n_pending": 0,
+      "sample_size_warning": true,
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
+    },
+    "川崎": {
+      "purchase_total": 0,
+      "payout_total": null,
+      "pnl": null,
+      "roi": null,
+      "n_hit": 0,
+      "n_miss": 0,
+      "hit_rate": null,
+      "n_races_bought": 0,
+      "n_races_skipped": 46,
+      "pending_amount": 0,
+      "n_pending": 0,
+      "sample_size_warning": true,
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
+    },
+    "門別": {
+      "purchase_total": 0,
+      "payout_total": null,
+      "pnl": null,
+      "roi": null,
+      "n_hit": 0,
+      "n_miss": 0,
+      "hit_rate": null,
+      "n_races_bought": 0,
+      "n_races_skipped": 21,
+      "pending_amount": 0,
+      "n_pending": 0,
+      "sample_size_warning": true,
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
+    },
+    "金沢": {
+      "purchase_total": 0,
+      "payout_total": null,
+      "pnl": null,
+      "roi": null,
+      "n_hit": 0,
+      "n_miss": 0,
+      "hit_rate": null,
+      "n_races_bought": 0,
+      "n_races_skipped": 19,
+      "pending_amount": 0,
+      "n_pending": 0,
+      "sample_size_warning": true,
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
+    },
+    "園田": {
+      "purchase_total": 0,
+      "payout_total": null,
+      "pnl": null,
+      "roi": null,
+      "n_hit": 0,
+      "n_miss": 0,
+      "hit_rate": null,
+      "n_races_bought": 0,
+      "n_races_skipped": 36,
+      "pending_amount": 0,
+      "n_pending": 0,
+      "sample_size_warning": true,
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
     }
   },
   "max_drawdown": null,
-  "n_total_rows": 35,
+  "n_total_rows": 295,
   "recent_results": [
     {
       "track": "帯広ば",
@@ -124,7 +213,7 @@
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     },
     {
       "track": "高知",
@@ -134,7 +223,7 @@
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     },
     {
       "track": "帯広ば",
@@ -144,7 +233,7 @@
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     },
     {
       "track": "佐賀",
@@ -154,7 +243,7 @@
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     },
     {
       "track": "高知",
@@ -164,7 +253,7 @@
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     },
     {
       "track": "帯広ば",
@@ -174,7 +263,7 @@
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     },
     {
       "track": "佐賀",
@@ -184,7 +273,7 @@
       "judgement": "見送り",
       "status": "的中",
       "payout_per_100": 170.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     },
     {
       "track": "高知",
@@ -194,7 +283,7 @@
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     },
     {
       "track": "帯広ば",
@@ -204,7 +293,7 @@
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     },
     {
       "track": "佐賀",
@@ -214,7 +303,7 @@
       "judgement": "見送り",
       "status": "的中",
       "payout_per_100": 250.0,
-      "reconciled_at": "2026-11-08 11:32:38"
+      "reconciled_at": "2026-11-14 11:40:42"
     }
   ]
 }
