@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14 17:29:02",
+  "updated_at": "2026-11-14 17:52:13",
   "data_coverage": {
     "purchase_time_odds_period": "2026-10-08〜2026-11-11(32日間)",
     "walk_forward_split": {
@@ -11807,6 +11807,119 @@
       }
     },
     "note": "E(競馬場別)はH054の競馬場別CI(いずれも100%を含むか下回る)を参照。F(オッズ帯別)は既存のODDS_BAND_REVERIFICATION_RESULT.jsonを参照。G(EV選別)はH068で既にFに劣ると確認済み(本検証では再実施せず)。I(複勝+ワイド組み合わせ)は既存戦略C/D/E(ワイド)を参照、Fとの組み合わせ購入は未検証。J(見送り強化)は本サイクルでは未検証(次回課題)。 oddsテーブルの複勝オッズはレース確定後に記録された確定値であり、本番の『予測時点複勝オッズ』とは異なる(参考値)。本番運用のF実績(95.74%)とは直接比較できない。あくまでA/B/D/H間の相対比較に限定した参考値。"
+  },
+  "purchase_time_odds_study(第4期研究2、最重要)": {
+    "selection_stability_at_30min_before_post": {
+      "同じ範囲(1.0-1.5倍)のまま": 225,
+      "範囲外に変動": 122,
+      "データ不足(スナップショット無し)": 3
+    },
+    "roi_by_checkpoint": {
+      "発走30分前時点のオッズで購入": {
+        "n": 224,
+        "roi_ci95": {
+          "n_legs": 224,
+          "n_race_days": 32,
+          "point_roi": 98.62,
+          "ci95_low": 95.15,
+          "ci95_high": 101.59
+        }
+      },
+      "発走15分前時点のオッズで購入": {
+        "n": 248,
+        "roi_ci95": {
+          "n_legs": 248,
+          "n_race_days": 32,
+          "point_roi": 98.23,
+          "ci95_low": 94.9,
+          "ci95_high": 101.16
+        }
+      },
+      "発走10分前時点のオッズで購入": {
+        "n": 263,
+        "roi_ci95": {
+          "n_legs": 263,
+          "n_race_days": 32,
+          "point_roi": 96.05,
+          "ci95_low": 92.1,
+          "ci95_high": 99.83
+        }
+      },
+      "発走5分前時点のオッズで購入": {
+        "n": 264,
+        "roi_ci95": {
+          "n_legs": 264,
+          "n_race_days": 32,
+          "point_roi": 97.12,
+          "ci95_low": 94.37,
+          "ci95_high": 99.76
+        }
+      }
+    },
+    "odds_movement_vs_payout": {
+      "大幅下落(>15%)": {
+        "n": 115,
+        "n_hit": 101,
+        "hit_rate_pct": 87.83,
+        "roi_pct": 92.61
+      },
+      "下落(5-15%)": {
+        "n": 46,
+        "n_hit": 45,
+        "hit_rate_pct": 97.83,
+        "roi_pct": 105.0
+      },
+      "ほぼ変化無し(-5~5%)": {
+        "n": 55,
+        "n_hit": 52,
+        "hit_rate_pct": 94.55,
+        "roi_pct": 96.73
+      },
+      "上昇(5%超)": {
+        "n": 123,
+        "n_hit": 111,
+        "hit_rate_pct": 90.24,
+        "roi_pct": 96.18
+      },
+      "データ不足": {
+        "n": 9,
+        "n_hit": 9,
+        "hit_rate_pct": 100.0,
+        "roi_pct": 110.0
+      }
+    },
+    "note": "確定オッズではなく、各時点の実測スナップショットのみを使用(存在しない時点は推測で補わずデータ不足として除外)。既存F実績(予測時点オッズ、95.74%)とは異なる参考値であり、『発走X分前に実際に買えたと仮定した場合』の仮想ROI。許容誤差は目標時点±目標分数(例: 30分前目標は実測が30分以内に存在する場合のみ採用)。"
+  },
+  "filter_f_failure_analysis(第4期研究3)": {
+    "overall_hit_rate_pct": 91.09,
+    "n_bonferroni_significant": 0,
+    "note": "各セルは『そのバンド』対『それ以外全体』の2x2カイ二乗検定。事前に決めたビン定義(既存のband_*関数)のみを使用し、結果を見た閾値調整は行っていない。有意差が0件の場合、『Fの失敗は特定条件に偏っていない』ことを示す結果として報告する(偏りを探して見つからなかったことも正直に報告する)。"
+  },
+  "model_disagreement_analysis(第4期研究6)": {
+    "agree_rate_pct": 97.81,
+    "agree_hit_rate": {
+      "n": 2724,
+      "top1_place_rate_pct(ModelE軸馬基準)": 76.36,
+      "top1_win_rate_pct(ModelE軸馬基準)": 45.01,
+      "avg_prob_diff": 0.0281
+    },
+    "disagree_hit_rate_model_e": {
+      "n": 61,
+      "top1_place_rate_pct(ModelE軸馬基準)": 59.02,
+      "top1_win_rate_pct(ModelE軸馬基準)": 14.75,
+      "avg_prob_diff": 0.0365
+    },
+    "disagree_hit_rate_catboost": {
+      "n": 61,
+      "top1_place_rate_pct": 67.21,
+      "top1_win_rate_pct": 31.15
+    },
+    "chi2_test": {
+      "chi2": 8.904,
+      "p_value": 0.00285,
+      "significant_at_0.05": true
+    },
+    "note": "一致率が高い場合、不一致レースでの両モデルの軸馬成績の差は、どちらの予測が優れているかよりも、不一致自体が『difficult race(判断が割れる競走)』のシグナルになっている可能性を示唆する(不確実性評価への応用可能性、次回検証課題)。"
   },
   "last_model_research_date": "2026-11-14",
   "notes": [
