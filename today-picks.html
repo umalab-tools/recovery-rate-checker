@@ -633,121 +633,297 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
   }
 
   /* ============================================================
-     全レース結果(race_results_detail.json、戦略A-F精算済み2,384レース)
+     全レース結果(race_results_detail.json)— 予想と結果の比較カード表示
+     2026-11-14 UI改善: 横並び比較・的中判定・仮想収支・本日集計・
+     競馬場/状態フィルター・日付選択・新しい順並べ替えに対応。
      ============================================================ */
   var RESULTS_DATA = null;
   var STRATEGY_LABELS = {
     A: "A: 単勝◎", B: "B: 複勝◎", C: "C: ワイド◎○", D: "D: ワイド◎▲",
     E: "E: ワイドBOX", F: "F: 既存ベストフィルター(複勝)",
   };
-  var RESULTS_FILTER = { track: "", date: "", strategy: "A" };
-  var RESULTS_PAGE_SIZE = 100;
+  var HIT_LABELS = { A: "単勝", B: "複勝", E: "ワイド", G: "3連複", H: "3連単" };
+  var RESULTS_FILTER = { date: "", track: "", status: "" };
+  var RESULTS_SORT = "post_time"; // "post_time"(発走順) | "newest"(新しい順)
+  var RESULTS_EXPANDED = {}; // key -> bool(手動で開閉した状態を保持)
 
-  function legState(r, strat){
-    var settled = r[strat + "_settled"];
-    var hit = r[strat + "_hit"];
-    var notPurchased = r[strat + "_not_purchased"];
-    if(notPurchased) return { label: "対象外", cls: "miss" };
-    if(settled) return { label: hit ? "的中" : "はずれ", cls: hit ? "hit" : "miss" };
-    // settled=false/null: レース自体が中止・未確定か、軸馬等が個別に出走取消かを区別する
-    if(r.race_status === "cancelled_or_pending" && !r.actual_top3){
-      return { label: "中止/未定", cls: "pending" };
-    }
-    return { label: "返還", cls: "pending" };
+  function parsePostDateTime(dateStr, hhmm){
+    if(!dateStr || !hhmm) return null;
+    var y = +dateStr.slice(0,4), mo = +dateStr.slice(4,6), d = +dateStr.slice(6,8);
+    var parts = hhmm.split(":");
+    if(parts.length !== 2) return null;
+    return new Date(y, mo-1, d, +parts[0], +parts[1]);
   }
 
-  function legTagHtml(state){
-    return '<span class="legtag ' + state.cls + '">' + esc(state.label) + '</span>';
+  function raceState(r){
+    if(r.race_status === "finished") return "finished";
+    var postDt = parsePostDateTime(r.date, r.post_time);
+    if(postDt && postDt.getTime() > Date.now()) return "upcoming";
+    return "pending";
   }
 
-  function renderResultRow(r, strat){
-    var state = legState(r, strat);
-    var payout = r[strat + "_payout"];
+  function raceStateBadge(state){
+    var map = { upcoming: ["発走前", "upcoming"], pending: ["結果待ち", "pending"], finished: ["確定", "finished"] };
+    var v = map[state] || ["不明", "pending"];
+    return '<span class="status-badge ' + v[1] + '">' + v[0] + '</span>';
+  }
+
+  function hitState(r, prefix){
+    if(r.is_banei_reference) return { label: "対象外", cls: "pending" };
+    var settled = r[prefix + "_settled"];
+    var hit = r[prefix + "_hit"];
+    var notPurchased = r[prefix + "_not_purchased"];
+    if(notPurchased) return { label: "対象外", cls: "pending" };
+    if(settled === true) return { label: hit ? "的中" : "不的中", cls: hit ? "hit" : "miss" };
+    if(raceState(r) === "finished") return { label: "返還/集計不可", cls: "pending" };
+    return { label: "結果待ち", cls: "pending" };
+  }
+
+  function hitChipHtml(label, state){
+    var icon = state.cls === "hit" ? "✓" : (state.cls === "miss" ? "✗" : "…");
+    return '<div class="hit-chip"><span class="hit-label">' + esc(label) + '</span>' +
+      '<span class="hit-result ' + state.cls + '">' + icon + ' ' + esc(state.label) + '</span></div>';
+  }
+
+  function upper3StateHtml(r){
+    var v = r.upper3_any_order_hit;
+    var state = v === true ? { label: "的中", cls: "hit" } : v === false ? { label: "不的中", cls: "miss" }
+      : { label: "結果待ち", cls: "pending" };
+    return hitChipHtml("上位3頭(順不同)", state);
+  }
+
+  function pickRowHtml(rank, no, name, matchedNos){
+    if(no == null) return '<div class="pick-row empty"><span class="rank">' + rank + '</span>対象馬なし</div>';
+    var isMatch = matchedNos && matchedNos.indexOf(String(no)) !== -1;
+    return '<div class="pick-row"><span class="rank">' + rank + '</span>' +
+      '<span class="pick-no' + (isMatch ? " match" : "") + '">' + esc(no) + '</span>' +
+      '<span class="pick-name">' + esc(name || "") + '</span></div>';
+  }
+
+  function renderCompareCard(r){
+    var state = raceState(r);
+    var key = r.track + r.date + r.race_no;
+    var predictedNos = [r.axis_no, r.sub1_no, r.sub2_no].filter(function(x){ return x != null; }).map(String);
+    var actualNos = r.actual_top3 ? Object.keys(r.actual_top3).map(function(k){ return String(r.actual_top3[k].no); }) : [];
+
+    var predCol = '<div class="compare-col"><div class="col-title">AI予想</div>' +
+      pickRowHtml("1着予想", r.axis_no, r.axis_name, actualNos) +
+      pickRowHtml("2着予想", r.sub1_no, r.sub1_name, actualNos) +
+      pickRowHtml("3着予想", r.sub2_no, r.sub2_name, actualNos) + '</div>';
+
     var top3 = r.actual_top3;
-    var top3Text = "未確定(中止の可能性を含む)";
-    if(top3){
-      var parts = ["1","2","3"].filter(function(k){ return top3[k]; })
-        .map(function(k){ return k + "着:" + top3[k].no + "番" + top3[k].name; });
-      top3Text = parts.join(" / ") || top3Text;
+    var resultCol = '<div class="compare-col"><div class="col-title">確定結果</div>' +
+      (top3 ?
+        ["1","2","3"].map(function(k){
+          var h = top3[k];
+          return h ? pickRowHtml(k + "着", h.no, h.name, predictedNos)
+                    : pickRowHtml(k + "着", null, null, predictedNos);
+        }).join("")
+        : '<div class="pick-row empty">' + (state === "upcoming" ? "発走前" : "結果待ち") + '</div>'
+      ) + '</div>';
+
+    var defaultOpen = state === "finished";
+    var isOpen = RESULTS_EXPANDED.hasOwnProperty(key) ? RESULTS_EXPANDED[key] : defaultOpen;
+
+    var hitGrid = '<div class="hit-grid">';
+    if(r.is_banei_reference){
+      ["単勝","複勝","ワイド","3連複","3連単"].forEach(function(lb){
+        hitGrid += hitChipHtml(lb, { label: "対象外(参考予想)", cls: "pending" });
+      });
+    } else {
+      Object.keys(HIT_LABELS).forEach(function(p){ hitGrid += hitChipHtml(HIT_LABELS[p], hitState(r, p)); });
     }
-    var el = document.createElement("div");
-    el.className = "result-row";
-    el.innerHTML =
-      '<div class="head"><span>' + esc(r.track) + ' ' + esc(r.date) + ' ' + esc(r.race_no) + 'R</span>' +
-        '<span>' + legTagHtml(state) + '</span></div>' +
-      '<div style="color:var(--text-dim);">予想: ◎' + esc(r.axis_no) + '番' + esc(r.axis_name) +
-      (r.sub1_no ? ' / ○' + esc(r.sub1_no) + '番' + esc(r.sub1_name) : '') +
-      (r.sub2_no ? ' / ▲' + esc(r.sub2_no) + '番' + esc(r.sub2_name) : '') +
+    hitGrid += upper3StateHtml(r) + '</div>';
+
+    var pnlHtml;
+    if(r.is_banei_reference){
+      pnlHtml = '<div class="pnl-box"><div class="title">仮想購入(参考予想)</div>' +
+        '対象外(ばんえい専用の検証済み購入戦略が無いため)</div>';
+    } else if(r.F_not_purchased){
+      pnlHtml = '<div class="pnl-box"><div class="title">仮想購入</div>購入なし(既存ベストフィルター非該当)</div>';
+    } else {
+      var fSettled = r.F_settled === true;
+      var payout = fSettled ? r.F_payout : null;
+      pnlHtml = '<div class="pnl-box"><div class="title">仮想購入(既存ベストフィルター: 複勝)</div>' +
+        '<div class="kv-grid">' +
+          '<div class="k">買い目</div><div class="v">' + esc(r.axis_no) + '番 複勝</div>' +
+          '<div class="k">仮想購入額</div><div class="v">100円</div>' +
+          '<div class="k">確定払戻額</div><div class="v">' + (fSettled ? Math.round(payout) + "円" : "未確定") + '</div>' +
+          '<div class="k">仮想損益</div><div class="v">' + (fSettled ? (payout >= 100 ? "+" : "") + Math.round(payout-100) + "円" : "未確定") + '</div>' +
+          '<div class="k">回収率</div><div class="v">' + (fSettled ? Math.round(payout) + "%" : "未確定") + '</div>' +
+        '</div></div>';
+    }
+
+    var modelTag = '予想時刻: ' + esc(r.predicted_at || "不明") +
+      ' ／ モデル: ' + esc(r.is_banei_reference ? "banei_reference_v1(参考予想)" : (r.axis_model_version || "不明"));
+
+    var card = document.createElement("div");
+    card.className = "compare-card";
+    card.innerHTML =
+      '<div class="compare-head" data-key="' + esc(key) + '">' +
+        '<div class="meta"><div class="track-race">' + esc(r.track) + ' ' + esc(r.race_no) + 'R</div>' +
+        '<div class="ptime">発走時刻: ' + esc(r.post_time || "未取得") + '</div></div>' +
+        raceStateBadge(state) +
       '</div>' +
-      '<div style="color:var(--text-dim);margin-top:2px;">確定: ' + esc(top3Text) + '</div>' +
-      (state.cls !== "pending" && payout != null ? '<div class="legs">' + legTagHtml(state) +
-        '<span class="legtag muted">払戻 ' + Math.round(payout) + '円/100円</span></div>' : '');
-    return el;
+      '<div class="compare-body' + (isOpen ? " open" : "") + '" id="body-' + esc(key) + '">' +
+        '<div class="compare-cols">' + predCol + resultCol + '</div>' +
+        hitGrid + pnlHtml +
+        '<div class="model-tag">' + modelTag + '</div>' +
+      '</div>';
+    card.querySelector(".compare-head").addEventListener("click", function(){
+      RESULTS_EXPANDED[key] = !isOpen;
+      var body = $("body-" + key);
+      body.classList.toggle("open");
+    });
+    return card;
   }
 
-  function applyResultsFilters(){
-    var rows = (RESULTS_DATA || {}).rows || [];
+  function computeTodaySummary(rowsForDate){
+    var nTracks = new Set(rowsForDate.map(function(r){ return r.track; })).size;
+    var nPredicted = rowsForDate.length;
+    var finished = rowsForDate.filter(function(r){ return raceState(r) === "finished"; });
+    var nFinished = finished.length;
+    var nWin1 = finished.filter(function(r){ return r.axis_finish === 1; }).length;
+    var nUpper3 = finished.filter(function(r){ return r.upper3_any_order_hit === true; }).length;
+    var bought = rowsForDate.filter(function(r){ return !r.is_banei_reference && r.F_not_purchased === false; });
+    var boughtSettled = bought.filter(function(r){ return r.F_settled === true; });
+    var betTotal = boughtSettled.length * 100;
+    var payoutTotal = boughtSettled.reduce(function(s,r){ return s + (r.F_payout || 0); }, 0);
+    return {
+      nTracks: nTracks, nPredicted: nPredicted, nFinished: nFinished,
+      nWin1: nWin1, win1Rate: nFinished ? Math.round(nWin1/nFinished*1000)/10 : null,
+      nUpper3: nUpper3,
+      nBought: bought.length, nBoughtSettled: boughtSettled.length,
+      betTotal: betTotal, payoutTotal: payoutTotal,
+      pnl: boughtSettled.length ? payoutTotal - betTotal : null,
+      roi: boughtSettled.length ? Math.round(payoutTotal/betTotal*1000)/10 : null,
+    };
+  }
+
+  function renderResultsSummary(rowsForDate){
+    var s = computeTodaySummary(rowsForDate);
+    var el = $("resultsSummary");
+    el.innerHTML = '<div class="summary-card"><div class="grid">' +
+      '<div class="cell"><div class="label">開催競馬場数</div><div class="value">' + s.nTracks + '</div></div>' +
+      '<div class="cell"><div class="label">予想済みレース数</div><div class="value">' + s.nPredicted + '</div></div>' +
+      '<div class="cell"><div class="label">結果確定レース数</div><div class="value">' + s.nFinished + '</div></div>' +
+      '<div class="cell"><div class="label">1着的中(率)</div><div class="value">' + s.nWin1 +
+        (s.win1Rate != null ? ' <span style="font-size:11px;color:var(--text-dim);">(' + s.win1Rate + '%)</span>' : '') + '</div></div>' +
+      '<div class="cell"><div class="label">上位3頭一致数</div><div class="value">' + s.nUpper3 + '</div></div>' +
+      '<div class="cell"><div class="label">仮想購入レース数</div><div class="value">' + s.nBought + '</div></div>' +
+      '<div class="cell"><div class="label">仮想購入額(確定分)</div><div class="value">' + s.betTotal + '円</div></div>' +
+      '<div class="cell"><div class="label">確定払戻額</div><div class="value">' + Math.round(s.payoutTotal) + '円</div></div>' +
+      '<div class="cell"><div class="label">仮想損益</div><div class="value' + (s.pnl != null && s.pnl < 0 ? ' bad' : '') + '">' +
+        (s.pnl != null ? (s.pnl >= 0 ? "+" : "") + Math.round(s.pnl) + "円" : "未確定") + '</div></div>' +
+      '<div class="cell"><div class="label">仮想回収率</div><div class="value accent">' +
+        (s.roi != null ? s.roi + "%" : "未確定") + '</div></div>' +
+      '</div><div class="note">結果未確定のレースは回収率・損益の計算に含めていません。既存ベストフィルター(複勝)基準の仮想購入のみを集計(実際の馬券購入ではありません)。</div></div>';
+  }
+
+  function applyResultsFilters(allRows){
     var f = RESULTS_FILTER;
-    return rows.filter(function(r){
-      if(f.track && r.track !== f.track) return false;
+    return allRows.filter(function(r){
       if(f.date && r.date !== f.date) return false;
+      if(f.track && r.track !== f.track) return false;
+      if(!f.status) return true;
+      if(f.status === "upcoming") return raceState(r) === "upcoming";
+      if(f.status === "pending") return raceState(r) === "pending";
+      if(f.status === "finished") return raceState(r) === "finished";
+      if(f.status === "hit") return r.F_hit === true;
+      if(f.status === "miss") return r.F_hit === false;
+      if(f.status === "bought") return !r.is_banei_reference && r.F_not_purchased === false;
       return true;
     });
   }
 
   function renderResultsList(){
     var container = $("resultsContent");
-    var filtered = applyResultsFilters().slice().reverse(); // 新しい日付を先頭に
-    var shown = filtered.slice(0, RESULTS_PAGE_SIZE);
+    var allRows = (RESULTS_DATA || {}).rows || [];
+    var rowsForDate = allRows.filter(function(r){ return r.date === RESULTS_FILTER.date; });
+    renderResultsSummary(rowsForDate);
+
+    var filtered = applyResultsFilters(allRows);
+    filtered = filtered.slice().sort(function(a,b){
+      var byRace = a.date === b.date ? (a.race_no - b.race_no) : (a.date < b.date ? -1 : 1);
+      return RESULTS_SORT === "newest" ? -byRace : byRace;
+    });
     container.innerHTML = "";
-    var summary = document.createElement("div");
-    summary.className = "banner neutral";
-    summary.textContent = "該当" + filtered.length + "件中" + shown.length + "件を表示(" + STRATEGY_LABELS[RESULTS_FILTER.strategy] + ")。";
-    container.appendChild(summary);
-    if(shown.length === 0){
+    if(filtered.length === 0){
       var e = document.createElement("div");
       e.className = "banner neutral";
       e.textContent = "条件に一致するレースがありません。";
       container.appendChild(e);
       return;
     }
-    shown.forEach(function(r){ container.appendChild(renderResultRow(r, RESULTS_FILTER.strategy)); });
+    filtered.forEach(function(r){ container.appendChild(renderCompareCard(r)); });
   }
 
   function renderResultsFilters(){
     var rows = (RESULTS_DATA || {}).rows || [];
-    var tracks = Array.from(new Set(rows.map(function(r){ return r.track; }))).sort();
-    var dates = Array.from(new Set(rows.map(function(r){ return r.date; }))).sort().reverse();
+    var dates = Array.from(new Set(rows.map(function(r){ return r.date; }))).sort();
+    var latest = dates[dates.length - 1] || "";
+    var todayAvailable = dates.indexOf(todayStr()) !== -1;
+    if(!RESULTS_FILTER.date) RESULTS_FILTER.date = todayAvailable ? todayStr() : latest;
+
+    var tracksForDate = Array.from(new Set(rows.filter(function(r){ return r.date === RESULTS_FILTER.date; })
+      .map(function(r){ return r.track; }))).sort();
+
     var bar = $("resultsFilters");
     bar.innerHTML =
-      '<div class="filter-bar">' +
-        '<div><label>競馬場</label><select id="filterTrack"><option value="">すべて</option>' +
-          tracks.map(function(t){ return '<option value="' + esc(t) + '">' + esc(t) + '</option>'; }).join("") +
-        '</select></div>' +
-        '<div><label>日付</label><select id="filterDate"><option value="">すべて</option>' +
-          dates.map(function(d){ return '<option value="' + esc(d) + '">' + esc(fmtDateLabel(d)) + '</option>'; }).join("") +
-        '</select></div>' +
-        '<div style="grid-column:1/-1;"><label>券種・戦略</label><select id="filterStrategy">' +
-          Object.keys(STRATEGY_LABELS).map(function(k){ return '<option value="' + k + '">' + esc(STRATEGY_LABELS[k]) + '</option>'; }).join("") +
-        '</select></div>' +
+      '<div class="date-picker-row">' +
+        '<input type="date" id="resultsDateInput" min="' + dates[0] + '" max="' + latest + '" />' +
+        '<button id="resultsTodayBtn">今日</button>' +
+      '</div>' +
+      '<div class="chip-filter-row" id="trackChips">' +
+        '<button data-track="" class="' + (RESULTS_FILTER.track === "" ? "active" : "") + '">すべて</button>' +
+        tracksForDate.map(function(t){
+          return '<button data-track="' + esc(t) + '" class="' + (RESULTS_FILTER.track === t ? "active" : "") + '">' + esc(t) + '</button>';
+        }).join("") +
+      '</div>' +
+      '<div class="chip-filter-row" id="statusChips">' +
+        [["","すべて"],["upcoming","発走前"],["pending","結果待ち"],["finished","確定"],
+         ["hit","的中"],["miss","不的中"],["bought","仮想購入あり"]].map(function(p){
+          return '<button data-status="' + p[0] + '" class="' + (RESULTS_FILTER.status === p[0] ? "active" : "") + '">' + esc(p[1]) + '</button>';
+        }).join("") +
+      '</div>' +
+      '<div class="sort-toggle-row">' +
+        '<button data-sort="post_time" class="' + (RESULTS_SORT === "post_time" ? "active" : "") + '">発走順</button>' +
+        '<button data-sort="newest" class="' + (RESULTS_SORT === "newest" ? "active" : "") + '">新しい順</button>' +
       '</div>';
-    $("filterTrack").addEventListener("change", function(e){ RESULTS_FILTER.track = e.target.value; renderResultsList(); });
-    $("filterDate").addEventListener("change", function(e){ RESULTS_FILTER.date = e.target.value; renderResultsList(); });
-    $("filterStrategy").addEventListener("change", function(e){ RESULTS_FILTER.strategy = e.target.value; renderResultsList(); });
+
+    var dateInput = $("resultsDateInput");
+    dateInput.value = RESULTS_FILTER.date.slice(0,4) + "-" + RESULTS_FILTER.date.slice(4,6) + "-" + RESULTS_FILTER.date.slice(6,8);
+    dateInput.addEventListener("change", function(e){
+      var v = e.target.value.replace(/-/g, "");
+      if(dates.indexOf(v) === -1){
+        renderResultsList(); // 該当日付のデータが無ければ変更せず現状維持
+        dateInput.value = RESULTS_FILTER.date.slice(0,4) + "-" + RESULTS_FILTER.date.slice(4,6) + "-" + RESULTS_FILTER.date.slice(6,8);
+        return;
+      }
+      RESULTS_FILTER.date = v; RESULTS_FILTER.track = ""; renderResultsFilters(); renderResultsList();
+    });
+    $("resultsTodayBtn").addEventListener("click", function(){
+      if(dates.indexOf(todayStr()) === -1) return;
+      RESULTS_FILTER.date = todayStr(); RESULTS_FILTER.track = ""; renderResultsFilters(); renderResultsList();
+    });
+    $("trackChips").querySelectorAll("button").forEach(function(btn){
+      btn.addEventListener("click", function(){ RESULTS_FILTER.track = btn.getAttribute("data-track"); renderResultsFilters(); renderResultsList(); });
+    });
+    $("statusChips").querySelectorAll("button").forEach(function(btn){
+      btn.addEventListener("click", function(){ RESULTS_FILTER.status = btn.getAttribute("data-status"); renderResultsFilters(); renderResultsList(); });
+    });
+    bar.querySelectorAll(".sort-toggle-row button").forEach(function(btn){
+      btn.addEventListener("click", function(){ RESULTS_SORT = btn.getAttribute("data-sort"); renderResultsFilters(); renderResultsList(); });
+    });
   }
 
   function renderResults(){
     var content = $("resultsContent");
-    content.innerHTML = '<div class="loading">読み込み中…(約2,400レース)</div>';
+    content.innerHTML = '<div class="loading">読み込み中…</div>';
     fetch("race_results_detail.json?t=" + Date.now(), {cache: "no-store"})
       .then(function(res){ return res.json(); })
       .then(function(data){
         RESULTS_DATA = data;
-        var note = document.createElement("div");
-        note.className = "banner info";
-        note.textContent = "既存の本番予測ログ(56日分・" + data.n_races + "レース)を使い、戦略A-Fを仮想購入した場合の精算結果です。実際の馬券購入ではありません。全レース予想とAI購入推奨(既存ベストフィルターF)は別物として区別しています。";
-        $("resultsFilters").innerHTML = "";
-        $("resultsFilters").appendChild(note);
         renderResultsFilters();
         renderResultsList();
       })
