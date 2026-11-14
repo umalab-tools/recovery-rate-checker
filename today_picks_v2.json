@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14 20:31",
+  "updated_at": "2026-11-14 20:41",
   "date": "20261114",
   "total_races_analyzed": 14,
   "races": [
@@ -543,24 +543,29 @@
           "name": "ダノンプレリュード",
           "prob": 0.735,
           "waku": 7,
-          "win_odds_at_prediction": 1.1
+          "win_odds_at_prediction": 1.0
         },
         {
           "no": 9,
           "name": "フランシーヌ",
-          "prob": 0.58,
+          "prob": 0.47,
           "waku": 6,
-          "win_odds_at_prediction": 12.9
+          "win_odds_at_prediction": 14.5
         },
         {
-          "no": 14,
-          "name": "テイエムプレミラン",
-          "prob": 0.419,
-          "waku": 8,
-          "win_odds_at_prediction": 18.6
+          "no": 1,
+          "name": "レイエル",
+          "prob": 0.462,
+          "waku": 1,
+          "win_odds_at_prediction": 13.2
         }
       ],
       "bottom4": [
+        {
+          "no": 11,
+          "name": "バティックオーレ",
+          "bottom4_prob": 0.519
+        },
         {
           "no": 8,
           "name": "ルミリオン",
@@ -572,22 +577,17 @@
           "bottom4_prob": 0.482
         },
         {
-          "no": 11,
-          "name": "バティックオーレ",
-          "bottom4_prob": 0.478
-        },
-        {
           "no": 5,
           "name": "リネンドライブ",
-          "bottom4_prob": 0.333
+          "bottom4_prob": 0.298
         }
       ],
       "wide_candidate": {
         "combo": "12-9",
-        "odds_low": 1.7,
-        "odds_high": 1.8
+        "odds_low": 1.8,
+        "odds_high": 2.1
       },
-      "calibrated_prob": 0.4538,
+      "calibrated_prob": 0.2917,
       "decision": "見送り",
       "reason": "頭数14頭(検証で13頭以上は成績悪化が確認されているため見送り)",
       "suggested_virtual_stake": null,
@@ -598,7 +598,7 @@
         "horse_no": 12,
         "horse_name": "ダノンプレリュード",
         "model_prob": 0.735,
-        "win_odds_at_prediction": 1.1,
+        "win_odds_at_prediction": 1.0,
         "place_odds_at_prediction": 1.0,
         "breakeven_place_odds": 1.361,
         "ev_place_per_100yen": -26.5,
@@ -621,14 +621,14 @@
           "name": "インユアアイズ",
           "prob": 0.74,
           "waku": 7,
-          "win_odds_at_prediction": 4.0
+          "win_odds_at_prediction": 3.9
         },
         {
           "no": 4,
           "name": "ダノンブロッサム",
           "prob": 0.518,
           "waku": 4,
-          "win_odds_at_prediction": 4.3
+          "win_odds_at_prediction": 4.2
         },
         {
           "no": 12,
@@ -642,28 +642,28 @@
         {
           "no": 3,
           "name": "ナムラルッコラ",
-          "bottom4_prob": 0.517
-        },
-        {
-          "no": 7,
-          "name": "アークオブライフ",
-          "bottom4_prob": 0.511
+          "bottom4_prob": 0.553
         },
         {
           "no": 2,
           "name": "ケーニッヒブルート",
-          "bottom4_prob": 0.506
+          "bottom4_prob": 0.527
         },
         {
           "no": 6,
           "name": "ヴィクトリーナイト",
-          "bottom4_prob": 0.453
+          "bottom4_prob": 0.483
+        },
+        {
+          "no": 1,
+          "name": "ノアプレスリー",
+          "bottom4_prob": 0.429
         }
       ],
       "wide_candidate": {
         "combo": "9-4",
-        "odds_low": 4.0,
-        "odds_high": 4.3
+        "odds_low": 3.8,
+        "odds_high": 4.1
       },
       "calibrated_prob": 0.4454,
       "decision": "見送り",
@@ -684,7 +684,7 @@
     }
   ],
   "total_races_scheduled": 34,
-  "total_races_finished": 31,
+  "total_races_finished": 32,
   "total_races_unpredictable": 0,
   "odds_age_minutes": 0.5,
   "odds_stale": false,
@@ -694,7 +694,7 @@
     "n_published_total": 365,
     "n_skipped": 365,
     "n_bought": 0,
-    "n_confirmed": 326,
+    "n_confirmed": 327,
     "roi_bought": null
   }
 }
