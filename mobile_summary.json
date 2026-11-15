@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14 23:06",
+  "updated_at": "2026-11-15 08:51",
   "data_tiers_note": "本サイトのデータは集計期間が異なる3種類を明確に区別する。(1)過去データ・学習・検証件数=races表/features表の全期間(10万件規模、研究用バックテスト)。(2)本番予想56日分精算=predictions/all_predictions_history.csv(2026-08-26~、track_data_auditとstrategy_settlementが対象)。(3)直近の本番ログ=predictions/published_picks_log.csv(直近7日・数十件、production_real_results_status)。(3)を(1)(2)の代わりに表示しないこと。",
   "track_data_audit": {
     "status": "ok",
@@ -12,7 +12,7 @@
     "rows": [
       {
         "track": "帯広ば",
-        "過去データ数(races表全期間)": 11765,
+        "過去データ数(races表全期間)": 11777,
         "学習レース数(train, 2023-08~2025-07)": 3468,
         "検証レース数(val+test, 2025-08~2026-07)": 1759,
         "本番予想レース数(all_predictions_history.csv, 56日分)": 0,
@@ -48,25 +48,25 @@
       },
       {
         "track": "佐賀",
-        "過去データ数(races表全期間)": 8557,
+        "過去データ数(races表全期間)": 8568,
         "学習レース数(train, 2023-08~2025-07)": 2518,
         "検証レース数(val+test, 2025-08~2026-07)": 1236,
-        "本番予想レース数(all_predictions_history.csv, 56日分)": 162,
-        "購入数(既存ベストフィルター該当)": 55,
-        "的中率(%)": 92.31,
-        "回収率(%)": 95.19,
+        "本番予想レース数(all_predictions_history.csv, 56日分)": 163,
+        "購入数(既存ベストフィルター該当)": 54,
+        "的中率(%)": 92.59,
+        "回収率(%)": 95.37,
         "最大ドローダウン(円)": 360.0,
         "サンプル不足": false
       },
       {
         "track": "高知",
-        "過去データ数(races表全期間)": 8180,
+        "過去データ数(races表全期間)": 8191,
         "学習レース数(train, 2023-08~2025-07)": 2389,
         "検証レース数(val+test, 2025-08~2026-07)": 1146,
         "本番予想レース数(all_predictions_history.csv, 56日分)": 146,
-        "購入数(既存ベストフィルター該当)": 37,
-        "的中率(%)": 94.44,
-        "回収率(%)": 96.94,
+        "購入数(既存ベストフィルター該当)": 39,
+        "的中率(%)": 94.74,
+        "回収率(%)": 97.63,
         "最大ドローダウン(円)": 180.0,
         "サンプル不足": false
       },
@@ -193,15 +193,15 @@
     ]
   },
   "strategy_settlement": {
-    "prediction_log_date_range": "20260826~20261114(57日分)",
-    "n_races_settlement_eligible": 2406,
+    "prediction_log_date_range": "20260826~20261115(58日分)",
+    "n_races_settlement_eligible": 2407,
     "n_leak_violations_excluded": 609,
     "overall_by_strategy": {
       "A_単勝◎": {
-        "n_predicted": 2197,
-        "n_purchased": 2197,
+        "n_predicted": 2198,
+        "n_purchased": 2198,
         "n_settled": 2184,
-        "n_unsettled": 13,
+        "n_unsettled": 14,
         "n_hit": 925,
         "hit_rate_pct": 42.35,
         "bet_total_yen": 218400.0,
@@ -212,10 +212,10 @@
         "insufficient_sample": false
       },
       "B_複勝◎": {
-        "n_predicted": 2197,
-        "n_purchased": 2197,
+        "n_predicted": 2198,
+        "n_purchased": 2198,
         "n_settled": 2184,
-        "n_unsettled": 13,
+        "n_unsettled": 14,
         "n_hit": 1618,
         "hit_rate_pct": 74.08,
         "bet_total_yen": 218400.0,
@@ -226,10 +226,10 @@
         "insufficient_sample": false
       },
       "C_ワイド◎○": {
-        "n_predicted": 2197,
-        "n_purchased": 2197,
+        "n_predicted": 2198,
+        "n_purchased": 2198,
         "n_settled": 2005,
-        "n_unsettled": 192,
+        "n_unsettled": 193,
         "n_hit": 826,
         "hit_rate_pct": 41.2,
         "bet_total_yen": 200500.0,
@@ -240,10 +240,10 @@
         "insufficient_sample": false
       },
       "D_ワイド◎▲": {
-        "n_predicted": 2197,
-        "n_purchased": 2197,
+        "n_predicted": 2198,
+        "n_purchased": 2198,
         "n_settled": 2005,
-        "n_unsettled": 192,
+        "n_unsettled": 193,
         "n_hit": 628,
         "hit_rate_pct": 31.32,
         "bet_total_yen": 200500.0,
@@ -254,10 +254,10 @@
         "insufficient_sample": false
       },
       "E_ワイドBOX": {
-        "n_predicted": 2197,
-        "n_purchased": 2197,
+        "n_predicted": 2198,
+        "n_purchased": 2198,
         "n_settled": 2005,
-        "n_unsettled": 192,
+        "n_unsettled": 193,
         "n_hit": 1340,
         "hit_rate_pct": 66.83,
         "bet_total_yen": 601500.0,
@@ -268,7 +268,7 @@
         "insufficient_sample": false
       },
       "F_既存ベストフィルター": {
-        "n_predicted": 2197,
+        "n_predicted": 2198,
         "n_purchased": 568,
         "n_settled": 567,
         "n_unsettled": 1,
@@ -282,10 +282,10 @@
         "insufficient_sample": false
       },
       "G_3連複": {
-        "n_predicted": 2197,
-        "n_purchased": 2197,
+        "n_predicted": 2198,
+        "n_purchased": 2198,
         "n_settled": 1998,
-        "n_unsettled": 199,
+        "n_unsettled": 200,
         "n_hit": 276,
         "hit_rate_pct": 13.81,
         "bet_total_yen": 199800.0,
@@ -296,10 +296,10 @@
         "insufficient_sample": false
       },
       "H_3連単": {
-        "n_predicted": 2197,
-        "n_purchased": 2197,
+        "n_predicted": 2198,
+        "n_purchased": 2198,
         "n_settled": 1998,
-        "n_unsettled": 199,
+        "n_unsettled": 200,
         "n_hit": 75,
         "hit_rate_pct": 3.75,
         "bet_total_yen": 199800.0,
@@ -313,10 +313,10 @@
     "by_track": {
       "佐賀": {
         "A_単勝◎": {
-          "n_predicted": 162,
-          "n_purchased": 162,
+          "n_predicted": 163,
+          "n_purchased": 163,
           "n_settled": 162,
-          "n_unsettled": 0,
+          "n_unsettled": 1,
           "n_hit": 85,
           "hit_rate_pct": 52.47,
           "bet_total_yen": 16200.0,
@@ -327,10 +327,10 @@
           "insufficient_sample": false
         },
         "B_複勝◎": {
-          "n_predicted": 162,
-          "n_purchased": 162,
+          "n_predicted": 163,
+          "n_purchased": 163,
           "n_settled": 162,
-          "n_unsettled": 0,
+          "n_unsettled": 1,
           "n_hit": 129,
           "hit_rate_pct": 79.63,
           "bet_total_yen": 16200.0,
@@ -341,10 +341,10 @@
           "insufficient_sample": false
         },
         "C_ワイド◎○": {
-          "n_predicted": 162,
-          "n_purchased": 162,
+          "n_predicted": 163,
+          "n_purchased": 163,
           "n_settled": 141,
-          "n_unsettled": 21,
+          "n_unsettled": 22,
           "n_hit": 65,
           "hit_rate_pct": 46.1,
           "bet_total_yen": 14100.0,
@@ -355,10 +355,10 @@
           "insufficient_sample": false
         },
         "D_ワイド◎▲": {
-          "n_predicted": 162,
-          "n_purchased": 162,
+          "n_predicted": 163,
+          "n_purchased": 163,
           "n_settled": 141,
-          "n_unsettled": 21,
+          "n_unsettled": 22,
           "n_hit": 47,
           "hit_rate_pct": 33.33,
           "bet_total_yen": 14100.0,
@@ -369,10 +369,10 @@
           "insufficient_sample": false
         },
         "E_ワイドBOX": {
-          "n_predicted": 162,
-          "n_purchased": 162,
+          "n_predicted": 163,
+          "n_purchased": 163,
           "n_settled": 141,
-          "n_unsettled": 21,
+          "n_unsettled": 22,
           "n_hit": 95,
           "hit_rate_pct": 67.38,
           "bet_total_yen": 42300.0,
@@ -383,7 +383,7 @@
           "insufficient_sample": false
         },
         "F_既存ベストフィルター": {
-          "n_predicted": 162,
+          "n_predicted": 163,
           "n_purchased": 54,
           "n_settled": 54,
           "n_unsettled": 0,
@@ -397,10 +397,10 @@
           "insufficient_sample": false
         },
         "G_3連複": {
-          "n_predicted": 162,
-          "n_purchased": 162,
+          "n_predicted": 163,
+          "n_purchased": 163,
           "n_settled": 141,
-          "n_unsettled": 21,
+          "n_unsettled": 22,
           "n_hit": 22,
           "hit_rate_pct": 15.6,
           "bet_total_yen": 14100.0,
@@ -411,10 +411,10 @@
           "insufficient_sample": false
         },
         "H_3連単": {
-          "n_predicted": 162,
-          "n_purchased": 162,
+          "n_predicted": 163,
+          "n_purchased": 163,
           "n_settled": 141,
-          "n_unsettled": 21,
+          "n_unsettled": 22,
           "n_hit": 4,
           "hit_rate_pct": 2.84,
           "bet_total_yen": 14100.0,
@@ -1801,18 +1801,18 @@
     }
   },
   "paper_trading_summary": {
-    "updated_at": "最終更新: 2026-11-14 02:24（自動更新）",
-    "total_n": "759件",
-    "total_days": "56日",
-    "total_hit_rate": "54.0%",
-    "total_roi": "89.92%",
-    "balance": "92,350円",
+    "updated_at": "最終更新: 2026-11-15 00:05（自動更新）",
+    "total_n": "765件",
+    "total_days": "57日",
+    "total_hit_rate": "54.1%",
+    "total_roi": "89.75%",
+    "balance": "92,160円",
     "condition_rows": [
       [
         "Tier A（単勝1.0-1.2倍・予測1位）",
-        "258",
-        "91.5%",
-        "95.35%",
+        "262",
+        "91.6%",
+        "95.46%",
         "2"
       ],
       [
@@ -1824,16 +1824,16 @@
       ],
       [
         "新ルール（AI評価差-1×単勝4-10倍）",
-        "257",
-        "16.7%",
-        "92.06%",
+        "259",
+        "16.6%",
+        "91.35%",
         "32"
       ],
       [
         "B候補（馬体重450-480kg×単勝16-18倍）",
-        "256",
+        "257",
         "3.5%",
-        "56.37%",
+        "56.15%",
         "57"
       ]
     ],
