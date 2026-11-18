@@ -51,6 +51,18 @@
   .wide-pick{display:inline-block;background:var(--gold-bg);color:var(--gold);font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;padding:3px 10px;border-radius:8px;margin-top:4px;}
   .result-row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:8px 0;border-bottom:1px solid var(--border);}
   .result-row:last-child{border-bottom:none;}
+  .result-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:8px;}
+  .result-card .rc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;gap:8px;}
+  .result-card .rc-title{font-weight:700;font-size:13.5px;}
+  .result-card .rc-combo{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--gold);font-size:13px;margin:4px 0;}
+  .result-card .rc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px;}
+  .result-card .rc-cell{font-size:11px;}
+  .result-card .rc-cell .k{color:var(--text-faint);}
+  .result-card .rc-cell .v{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;}
+  .track-row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:9px 0;border-bottom:1px solid var(--border);gap:8px;}
+  .track-row:last-child{border-bottom:none;}
+  .track-row .tn{font-weight:700;}
+  .track-row .tv{display:flex;gap:10px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-dim);white-space:nowrap;}
   .links{display:grid;gap:8px;}
   a.linkcard{display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;color:var(--text);text-decoration:none;}
   a.linkcard .t{font-weight:700;font-size:13.5px;margin-bottom:2px;}
@@ -94,6 +106,12 @@
       <button data-period="all">累計</button>
     </div>
     <div id="pnl-root" class="panel"><div class="empty">読み込み中…</div></div>
+  </section>
+
+  <section>
+    <h2>競馬場別 推奨成績</h2>
+    <p style="font-size:11px;color:var(--text-dim);margin:0 0 10px;">UMALABが品質ゲートを通過して「買う」と判定した買い目のみを競馬場別に集計(見送りは的中率・回収率の分母に含めません)。</p>
+    <div id="bytrack-root" class="panel"><div class="empty">読み込み中…</div></div>
   </section>
 
   <section>
@@ -163,18 +181,64 @@
     root.innerHTML = html;
   }
 
+  function statusBadge(wasBought, status){
+    if(!wasBought) return badge('skip','見送り');
+    if(status==='的中') return badge('hit','的中');
+    if(status==='不的中') return badge('miss','不的中');
+    if(status==='判定不可') return badge('pending','判定不可');
+    return badge('pending','結果待ち');
+  }
+
   function renderResults(sim){
     const root = document.getElementById('results-root');
     const rows = (sim && sim.recent_results) || [];
+    const stake = (sim && sim.stake_per_bet) || null;
     if(rows.length===0){
       root.innerHTML = '<div class="empty">確定済みの結果がまだありません。</div>';
       return;
     }
     root.innerHTML = rows.map(r=>{
-      const cls = r.status==='的中' ? 'hit' : (r.status==='不的中' ? 'miss' : 'pending');
-      const label = r.status;
-      return '<div class="result-row"><span>'+r.track+' '+r.race_no+'R '+r.combo+'</span>'+
-        badge(cls,label)+'</div>';
+      const wasBought = r.judgement === '買う';
+      const settled = r.status==='的中' || r.status==='不的中';
+      const payout = (settled && r.payout_per_100!=null && stake!=null) ? (r.payout_per_100/100*stake) : null;
+      const pnl = (wasBought && payout!=null && stake!=null) ? (payout - stake) : null;
+      const roi = (wasBought && payout!=null && stake!=null && stake>0) ? Math.round(payout/stake*1000)/10 : null;
+      let grid = '';
+      if(wasBought){
+        grid = '<div class="rc-grid">'+
+          '<div class="rc-cell"><div class="k">推奨金額</div><div class="v">'+yen(stake)+'</div></div>'+
+          '<div class="rc-cell"><div class="k">払戻</div><div class="v">'+(payout==null?'—':yen(Math.round(payout)))+'</div></div>'+
+          '<div class="rc-cell"><div class="k">収支</div><div class="v '+(pnl==null?'':(pnl>=0?'pos':'neg'))+'">'+(pnl==null?'—':((pnl>=0?'+':'')+yen(Math.round(pnl))))+'</div></div>'+
+        '</div>'+
+        (roi!=null ? '<div style="font-size:11px;color:var(--text-dim);margin-top:6px;">回収率: <span class="mono">'+roi+'%</span></div>' : '');
+      } else {
+        grid = '<div style="font-size:11px;color:var(--text-dim);margin-top:4px;">UMALABはこのレースを見送りと判定しました(品質ゲート未通過)。</div>';
+      }
+      return '<div class="result-card">'+
+        '<div class="rc-head"><span class="rc-title">'+r.track+' '+r.race_no+'R</span>'+statusBadge(wasBought, r.status)+'</div>'+
+        (wasBought ? badge('buy','UMALAB推奨') : '')+
+        '<div class="rc-combo">ワイド '+r.combo+(wasBought?'':' (検討した買い目・未購入)')+'</div>'+
+        grid+
+        '</div>';
+    }).join('');
+  }
+
+  function renderByTrack(sim){
+    const root = document.getElementById('bytrack-root');
+    const bt = (sim && sim.by_track) || {};
+    const entries = Object.entries(bt).sort((a,b)=> (b[1].n_races_bought+b[1].n_races_skipped) - (a[1].n_races_bought+a[1].n_races_skipped));
+    if(entries.length===0){
+      root.innerHTML = '<div class="empty">競馬場別データがまだありません。</div>';
+      return;
+    }
+    root.innerHTML = entries.map(([track, v])=>{
+      const roiText = v.roi==null ? '算出不能' : v.roi+'%';
+      const hitText = v.hit_rate==null ? '未確認' : v.hit_rate+'%';
+      return '<div class="track-row"><span class="tn">'+track+'</span>'+
+        '<span class="tv">推奨'+v.n_races_bought+'件(的中'+v.n_hit+'/不的中'+v.n_miss+')'+
+        ' / 的中率'+hitText+' / 回収率'+roiText+' / 見送り'+v.n_races_skipped+'件'+
+        (v.n_pending>0 ? ' / 判定待ち'+v.n_pending+'件' : '')+
+        '</span></div>';
     }).join('');
   }
 
@@ -223,10 +287,12 @@
       currentSim = data;
       renderPnl();
       renderResults(data);
+      renderByTrack(data);
     })
     .catch(()=>{
       document.getElementById('pnl-root').innerHTML = '<div class="empty">収支データを取得できませんでした。</div>';
       document.getElementById('results-root').innerHTML = '<div class="empty">結果データを取得できませんでした。</div>';
+      document.getElementById('bytrack-root').innerHTML = '<div class="empty">競馬場別データを取得できませんでした。</div>';
     });
 
   function renderAccuracy(data){
