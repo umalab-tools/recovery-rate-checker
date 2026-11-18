@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T10:09:33",
+  "generated_at": "2026-11-18T10:36:09",
   "date": "20261118",
   "stake_per_bet": 1000.0,
   "note": "対象は公式配信(today-picks.html)の買い目のみ。実際の馬券購入は行っていない(全額シミュレーション)。品質ゲート不合格の間は「買う」判定が0件のため、購入総額・回収率も0/算出不能のままになる(これは正常な挙動)。",
@@ -13,7 +13,7 @@
       "n_miss": 0,
       "hit_rate": null,
       "n_races_bought": 0,
-      "n_races_skipped": 0,
+      "n_races_skipped": 1,
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
@@ -28,7 +28,7 @@
       "n_miss": 0,
       "hit_rate": null,
       "n_races_bought": 0,
-      "n_races_skipped": 240,
+      "n_races_skipped": 241,
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
@@ -43,7 +43,7 @@
       "n_miss": 0,
       "hit_rate": null,
       "n_races_bought": 0,
-      "n_races_skipped": 452,
+      "n_races_skipped": 453,
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
@@ -58,7 +58,7 @@
       "n_miss": 0,
       "hit_rate": null,
       "n_races_bought": 0,
-      "n_races_skipped": 452,
+      "n_races_skipped": 453,
       "pending_amount": 0,
       "n_pending": 0,
       "sample_size_warning": true,
@@ -230,110 +230,125 @@
       "n_pending": 0,
       "sample_size_warning": true,
       "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
+    },
+    "笠松": {
+      "purchase_total": 0,
+      "payout_total": null,
+      "pnl": null,
+      "roi": null,
+      "n_hit": 0,
+      "n_miss": 0,
+      "hit_rate": null,
+      "n_races_bought": 0,
+      "n_races_skipped": 1,
+      "pending_amount": 0,
+      "n_pending": 0,
+      "sample_size_warning": true,
+      "note": "的中率・回収率は的中+不的中のみ対象(返還・取消は損益ゼロとして損益には含むが分母から除外)。購入件数が30件未満の場合はsample_size_warning=trueとなり、参考値に過ぎないことを示す(統計的な保証ではない目安)。"
     }
   },
   "max_drawdown": null,
-  "n_total_rows": 452,
+  "n_total_rows": 453,
   "recent_results": [
     {
-      "track": "帯広ば",
-      "race_date": "20261107",
-      "race_no": 1,
-      "combo": "7-6",
-      "judgement": "見送り",
-      "status": "不的中",
-      "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-18 10:09:26"
-    },
-    {
-      "track": "高知",
-      "race_date": "20261107",
-      "race_no": 1,
-      "combo": "5-6",
-      "judgement": "見送り",
-      "status": "不的中",
-      "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-18 10:09:26"
-    },
-    {
-      "track": "帯広ば",
-      "race_date": "20261107",
-      "race_no": 2,
-      "combo": "5-3",
-      "judgement": "見送り",
-      "status": "不的中",
-      "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-18 10:09:26"
-    },
-    {
       "track": "佐賀",
-      "race_date": "20261107",
+      "race_date": "20261115",
+      "race_no": 8,
+      "combo": "6-4",
+      "judgement": "見送り",
+      "status": "不的中",
+      "payout_per_100": 0.0,
+      "reconciled_at": "2026-11-18 10:35:56"
+    },
+    {
+      "track": "水沢",
+      "race_date": "20261116",
       "race_no": 1,
-      "combo": "1-8",
+      "combo": "9-7",
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-18 10:09:26"
+      "reconciled_at": "2026-11-18 10:35:56"
     },
     {
-      "track": "高知",
-      "race_date": "20261107",
-      "race_no": 2,
-      "combo": "3-1",
-      "judgement": "見送り",
-      "status": "不的中",
-      "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-18 10:09:26"
-    },
-    {
-      "track": "帯広ば",
-      "race_date": "20261107",
-      "race_no": 3,
-      "combo": "4-6",
-      "judgement": "見送り",
-      "status": "不的中",
-      "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-18 10:09:26"
-    },
-    {
-      "track": "佐賀",
-      "race_date": "20261107",
-      "race_no": 2,
-      "combo": "1-4",
+      "track": "金沢",
+      "race_date": "20261116",
+      "race_no": 1,
+      "combo": "2-1",
       "judgement": "見送り",
       "status": "的中",
-      "payout_per_100": 170.0,
-      "reconciled_at": "2026-11-18 10:09:26"
+      "payout_per_100": 150.0,
+      "reconciled_at": "2026-11-18 10:35:56"
     },
     {
-      "track": "高知",
-      "race_date": "20261107",
-      "race_no": 3,
-      "combo": "1-10",
+      "track": "水沢",
+      "race_date": "20261116",
+      "race_no": 2,
+      "combo": "2-7",
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-18 10:09:26"
+      "reconciled_at": "2026-11-18 10:35:56"
     },
     {
-      "track": "帯広ば",
-      "race_date": "20261107",
+      "track": "金沢",
+      "race_date": "20261116",
+      "race_no": 2,
+      "combo": "1-9",
+      "judgement": "見送り",
+      "status": "不的中",
+      "payout_per_100": 0.0,
+      "reconciled_at": "2026-11-18 10:35:56"
+    },
+    {
+      "track": "水沢",
+      "race_date": "20261116",
+      "race_no": 3,
+      "combo": "6-5",
+      "judgement": "見送り",
+      "status": "的中",
+      "payout_per_100": 180.0,
+      "reconciled_at": "2026-11-18 10:35:56"
+    },
+    {
+      "track": "金沢",
+      "race_date": "20261116",
+      "race_no": 3,
+      "combo": "3-2",
+      "judgement": "見送り",
+      "status": "的中",
+      "payout_per_100": 140.0,
+      "reconciled_at": "2026-11-18 10:35:56"
+    },
+    {
+      "track": "水沢",
+      "race_date": "20261116",
       "race_no": 4,
-      "combo": "9-10",
+      "combo": "11-7",
       "judgement": "見送り",
       "status": "不的中",
       "payout_per_100": 0.0,
-      "reconciled_at": "2026-11-18 10:09:26"
+      "reconciled_at": "2026-11-18 10:35:56"
     },
     {
-      "track": "佐賀",
-      "race_date": "20261107",
-      "race_no": 3,
-      "combo": "6-9",
+      "track": "金沢",
+      "race_date": "20261116",
+      "race_no": 4,
+      "combo": "2-4",
       "judgement": "見送り",
-      "status": "的中",
-      "payout_per_100": 250.0,
-      "reconciled_at": "2026-11-18 10:09:26"
+      "status": "不的中",
+      "payout_per_100": 0.0,
+      "reconciled_at": "2026-11-18 10:35:56"
+    },
+    {
+      "track": "水沢",
+      "race_date": "20261116",
+      "race_no": 5,
+      "combo": "2-5",
+      "judgement": "見送り",
+      "status": "不的中",
+      "payout_per_100": 0.0,
+      "reconciled_at": "2026-11-18 10:35:56"
     }
   ]
 }
