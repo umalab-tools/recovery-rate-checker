@@ -1,86 +1,8 @@
 {
-  "updated_at": "2026-11-19 20:00",
+  "updated_at": "2026-11-19 20:40",
   "date": "20261119",
-  "total_races_analyzed": 2,
+  "total_races_analyzed": 1,
   "races": [
-    {
-      "track": "大井",
-      "race_no": 11,
-      "post_time": "20:10",
-      "頭数": 9,
-      "bet_type": "ワイド",
-      "top3": [
-        {
-          "no": 8,
-          "name": "ホーリーグレイル",
-          "prob": 0.768,
-          "waku": 8,
-          "win_odds_at_prediction": 1.5
-        },
-        {
-          "no": 3,
-          "name": "ジュンウィンダム",
-          "prob": 0.694,
-          "waku": 3,
-          "win_odds_at_prediction": 5.3
-        },
-        {
-          "no": 1,
-          "name": "イナダヒメ",
-          "prob": 0.462,
-          "waku": 1,
-          "win_odds_at_prediction": 6.6
-        }
-      ],
-      "bottom4": [
-        {
-          "no": 6,
-          "name": "リフレクトザムーン",
-          "bottom4_prob": 0.834
-        },
-        {
-          "no": 2,
-          "name": "メランポジューム",
-          "bottom4_prob": 0.645
-        },
-        {
-          "no": 5,
-          "name": "コアリオ",
-          "bottom4_prob": 0.511
-        },
-        {
-          "no": 7,
-          "name": "マーブルマカロン",
-          "bottom4_prob": 0.469
-        }
-      ],
-      "wide_candidate": {
-        "combo": "8-3",
-        "odds_low": 1.8,
-        "odds_high": 2.0
-      },
-      "calibrated_prob": 0.575,
-      "decision": "見送り",
-      "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
-      "suggested_virtual_stake": null,
-      "confidence": 0.768,
-      "validated_recommendation": {
-        "qualifies": true,
-        "bet_type": "複勝",
-        "horse_no": 8,
-        "horse_name": "ホーリーグレイル",
-        "model_prob": 0.768,
-        "win_odds_at_prediction": 1.5,
-        "place_odds_at_prediction": 1.0,
-        "breakeven_place_odds": 1.302,
-        "ev_place_per_100yen": -23.2,
-        "ev_tansho_per_100yen": null,
-        "ev_tansho_note": "単勝専用の勝率モデルが無いため単勝の期待値は算出していません(捏造防止)",
-        "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当",
-        "backtest_reference": "n=386、ROI94.46%、95%信頼区間[91.65,97.05](2026-10-08〜11-11、購入時点オッズによるバックテスト。実購入の確定成績ではない)"
-      },
-      "model_version": "model_e_top3"
-    },
     {
       "track": "大井",
       "race_no": 12,
@@ -93,21 +15,21 @@
           "name": "フラグランツァ",
           "prob": 0.612,
           "waku": 6,
-          "win_odds_at_prediction": 3.4
-        },
-        {
-          "no": 12,
-          "name": "ジャズスマイル",
-          "prob": 0.586,
-          "waku": 8,
-          "win_odds_at_prediction": 4.1
+          "win_odds_at_prediction": 2.9
         },
         {
           "no": 2,
           "name": "オメガドライヴ",
-          "prob": 0.468,
+          "prob": 0.539,
           "waku": 2,
-          "win_odds_at_prediction": 5.1
+          "win_odds_at_prediction": 3.9
+        },
+        {
+          "no": 12,
+          "name": "ジャズスマイル",
+          "prob": 0.502,
+          "waku": 8,
+          "win_odds_at_prediction": 4.6
         }
       ],
       "bottom4": [
@@ -133,9 +55,9 @@
         }
       ],
       "wide_candidate": {
-        "combo": "8-12",
-        "odds_low": 4.0,
-        "odds_high": 4.6
+        "combo": "8-2",
+        "odds_low": 2.3,
+        "odds_high": 2.6
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -156,7 +78,7 @@
     }
   ],
   "total_races_scheduled": 36,
-  "total_races_finished": 34,
+  "total_races_finished": 35,
   "total_races_unpredictable": 0,
   "odds_age_minutes": 1.0,
   "odds_stale": false,
@@ -166,7 +88,7 @@
     "n_published_total": 577,
     "n_skipped": 577,
     "n_bought": 0,
-    "n_confirmed": 519,
+    "n_confirmed": 520,
     "roi_bought": null
   }
 }
