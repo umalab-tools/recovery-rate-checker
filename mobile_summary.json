@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-19 10:01",
+  "updated_at": "2026-11-19 10:16",
   "data_tiers_note": "本サイトのデータは集計期間が異なる3種類を明確に区別する。(1)過去データ・学習・検証件数=races表/features表の全期間(10万件規模、研究用バックテスト)。(2)本番予想56日分精算=predictions/all_predictions_history.csv(2026-08-26~、track_data_auditとstrategy_settlementが対象)。(3)直近の本番ログ=predictions/published_picks_log.csv(直近7日・数十件、production_real_results_status)。(3)を(1)(2)の代わりに表示しないこと。",
   "track_data_audit": {
     "status": "ok",
@@ -193,15 +193,15 @@
     ]
   },
   "strategy_settlement": {
-    "prediction_log_date_range": "20260826~20261118(61日分)",
-    "n_races_settlement_eligible": 2558,
+    "prediction_log_date_range": "20260826~20261119(62日分)",
+    "n_races_settlement_eligible": 2577,
     "n_leak_violations_excluded": 645,
     "overall_by_strategy": {
       "A_単勝◎": {
-        "n_predicted": 2349,
-        "n_purchased": 2349,
+        "n_predicted": 2368,
+        "n_purchased": 2368,
         "n_settled": 2330,
-        "n_unsettled": 19,
+        "n_unsettled": 38,
         "n_hit": 988,
         "hit_rate_pct": 42.4,
         "bet_total_yen": 233000.0,
@@ -212,10 +212,10 @@
         "insufficient_sample": false
       },
       "B_複勝◎": {
-        "n_predicted": 2349,
-        "n_purchased": 2349,
+        "n_predicted": 2368,
+        "n_purchased": 2368,
         "n_settled": 2330,
-        "n_unsettled": 19,
+        "n_unsettled": 38,
         "n_hit": 1730,
         "hit_rate_pct": 74.25,
         "bet_total_yen": 233000.0,
@@ -226,10 +226,10 @@
         "insufficient_sample": false
       },
       "C_ワイド◎○": {
-        "n_predicted": 2349,
-        "n_purchased": 2349,
+        "n_predicted": 2368,
+        "n_purchased": 2368,
         "n_settled": 2157,
-        "n_unsettled": 192,
+        "n_unsettled": 211,
         "n_hit": 885,
         "hit_rate_pct": 41.03,
         "bet_total_yen": 215700.0,
@@ -240,10 +240,10 @@
         "insufficient_sample": false
       },
       "D_ワイド◎▲": {
-        "n_predicted": 2349,
-        "n_purchased": 2349,
+        "n_predicted": 2368,
+        "n_purchased": 2368,
         "n_settled": 2156,
-        "n_unsettled": 193,
+        "n_unsettled": 212,
         "n_hit": 675,
         "hit_rate_pct": 31.31,
         "bet_total_yen": 215600.0,
@@ -254,10 +254,10 @@
         "insufficient_sample": false
       },
       "E_ワイドBOX": {
-        "n_predicted": 2349,
-        "n_purchased": 2349,
+        "n_predicted": 2368,
+        "n_purchased": 2368,
         "n_settled": 2156,
-        "n_unsettled": 193,
+        "n_unsettled": 212,
         "n_hit": 1436,
         "hit_rate_pct": 66.6,
         "bet_total_yen": 646800.0,
@@ -268,10 +268,10 @@
         "insufficient_sample": false
       },
       "F_既存ベストフィルター": {
-        "n_predicted": 2349,
-        "n_purchased": 601,
+        "n_predicted": 2368,
+        "n_purchased": 609,
         "n_settled": 600,
-        "n_unsettled": 1,
+        "n_unsettled": 9,
         "n_hit": 544,
         "hit_rate_pct": 90.67,
         "bet_total_yen": 60000.0,
@@ -282,10 +282,10 @@
         "insufficient_sample": false
       },
       "G_3連複": {
-        "n_predicted": 2349,
-        "n_purchased": 2349,
+        "n_predicted": 2368,
+        "n_purchased": 2368,
         "n_settled": 2149,
-        "n_unsettled": 200,
+        "n_unsettled": 219,
         "n_hit": 293,
         "hit_rate_pct": 13.63,
         "bet_total_yen": 214900.0,
@@ -296,10 +296,10 @@
         "insufficient_sample": false
       },
       "H_3連単": {
-        "n_predicted": 2349,
-        "n_purchased": 2349,
+        "n_predicted": 2368,
+        "n_purchased": 2368,
         "n_settled": 2149,
-        "n_unsettled": 200,
+        "n_unsettled": 219,
         "n_hit": 77,
         "hit_rate_pct": 3.58,
         "bet_total_yen": 214900.0,
@@ -541,10 +541,10 @@
       },
       "園田": {
         "A_単勝◎": {
-          "n_predicted": 336,
-          "n_purchased": 336,
+          "n_predicted": 345,
+          "n_purchased": 345,
           "n_settled": 335,
-          "n_unsettled": 1,
+          "n_unsettled": 10,
           "n_hit": 143,
           "hit_rate_pct": 42.69,
           "bet_total_yen": 33500.0,
@@ -555,10 +555,10 @@
           "insufficient_sample": false
         },
         "B_複勝◎": {
-          "n_predicted": 336,
-          "n_purchased": 336,
+          "n_predicted": 345,
+          "n_purchased": 345,
           "n_settled": 335,
-          "n_unsettled": 1,
+          "n_unsettled": 10,
           "n_hit": 261,
           "hit_rate_pct": 77.91,
           "bet_total_yen": 33500.0,
@@ -569,10 +569,10 @@
           "insufficient_sample": false
         },
         "C_ワイド◎○": {
-          "n_predicted": 336,
-          "n_purchased": 336,
+          "n_predicted": 345,
+          "n_purchased": 345,
           "n_settled": 322,
-          "n_unsettled": 14,
+          "n_unsettled": 23,
           "n_hit": 151,
           "hit_rate_pct": 46.89,
           "bet_total_yen": 32200.0,
@@ -583,10 +583,10 @@
           "insufficient_sample": false
         },
         "D_ワイド◎▲": {
-          "n_predicted": 336,
-          "n_purchased": 336,
+          "n_predicted": 345,
+          "n_purchased": 345,
           "n_settled": 322,
-          "n_unsettled": 14,
+          "n_unsettled": 23,
           "n_hit": 108,
           "hit_rate_pct": 33.54,
           "bet_total_yen": 32200.0,
@@ -597,10 +597,10 @@
           "insufficient_sample": false
         },
         "E_ワイドBOX": {
-          "n_predicted": 336,
-          "n_purchased": 336,
+          "n_predicted": 345,
+          "n_purchased": 345,
           "n_settled": 322,
-          "n_unsettled": 14,
+          "n_unsettled": 23,
           "n_hit": 239,
           "hit_rate_pct": 74.22,
           "bet_total_yen": 96600.0,
@@ -611,10 +611,10 @@
           "insufficient_sample": false
         },
         "F_既存ベストフィルター": {
-          "n_predicted": 336,
-          "n_purchased": 87,
+          "n_predicted": 345,
+          "n_purchased": 90,
           "n_settled": 87,
-          "n_unsettled": 0,
+          "n_unsettled": 3,
           "n_hit": 83,
           "hit_rate_pct": 95.4,
           "bet_total_yen": 8700.0,
@@ -625,10 +625,10 @@
           "insufficient_sample": false
         },
         "G_3連複": {
-          "n_predicted": 336,
-          "n_purchased": 336,
+          "n_predicted": 345,
+          "n_purchased": 345,
           "n_settled": 322,
-          "n_unsettled": 14,
+          "n_unsettled": 23,
           "n_hit": 48,
           "hit_rate_pct": 14.91,
           "bet_total_yen": 32200.0,
@@ -639,10 +639,10 @@
           "insufficient_sample": false
         },
         "H_3連単": {
-          "n_predicted": 336,
-          "n_purchased": 336,
+          "n_predicted": 345,
+          "n_purchased": 345,
           "n_settled": 322,
-          "n_unsettled": 14,
+          "n_unsettled": 23,
           "n_hit": 8,
           "hit_rate_pct": 2.48,
           "bet_total_yen": 32200.0,
@@ -1225,10 +1225,10 @@
       },
       "笠松": {
         "A_単勝◎": {
-          "n_predicted": 171,
-          "n_purchased": 171,
+          "n_predicted": 181,
+          "n_purchased": 181,
           "n_settled": 171,
-          "n_unsettled": 0,
+          "n_unsettled": 10,
           "n_hit": 69,
           "hit_rate_pct": 40.35,
           "bet_total_yen": 17100.0,
@@ -1239,10 +1239,10 @@
           "insufficient_sample": false
         },
         "B_複勝◎": {
-          "n_predicted": 171,
-          "n_purchased": 171,
+          "n_predicted": 181,
+          "n_purchased": 181,
           "n_settled": 171,
-          "n_unsettled": 0,
+          "n_unsettled": 10,
           "n_hit": 126,
           "hit_rate_pct": 73.68,
           "bet_total_yen": 17100.0,
@@ -1253,10 +1253,10 @@
           "insufficient_sample": false
         },
         "C_ワイド◎○": {
-          "n_predicted": 171,
-          "n_purchased": 171,
+          "n_predicted": 181,
+          "n_purchased": 181,
           "n_settled": 170,
-          "n_unsettled": 1,
+          "n_unsettled": 11,
           "n_hit": 75,
           "hit_rate_pct": 44.12,
           "bet_total_yen": 17000.0,
@@ -1267,10 +1267,10 @@
           "insufficient_sample": false
         },
         "D_ワイド◎▲": {
-          "n_predicted": 171,
-          "n_purchased": 171,
+          "n_predicted": 181,
+          "n_purchased": 181,
           "n_settled": 169,
-          "n_unsettled": 2,
+          "n_unsettled": 12,
           "n_hit": 54,
           "hit_rate_pct": 31.95,
           "bet_total_yen": 16900.0,
@@ -1281,10 +1281,10 @@
           "insufficient_sample": false
         },
         "E_ワイドBOX": {
-          "n_predicted": 171,
-          "n_purchased": 171,
+          "n_predicted": 181,
+          "n_purchased": 181,
           "n_settled": 169,
-          "n_unsettled": 2,
+          "n_unsettled": 12,
           "n_hit": 116,
           "hit_rate_pct": 68.64,
           "bet_total_yen": 50700.0,
@@ -1295,10 +1295,10 @@
           "insufficient_sample": false
         },
         "F_既存ベストフィルター": {
-          "n_predicted": 171,
-          "n_purchased": 46,
+          "n_predicted": 181,
+          "n_purchased": 51,
           "n_settled": 46,
-          "n_unsettled": 0,
+          "n_unsettled": 5,
           "n_hit": 38,
           "hit_rate_pct": 82.61,
           "bet_total_yen": 4600.0,
@@ -1309,10 +1309,10 @@
           "insufficient_sample": false
         },
         "G_3連複": {
-          "n_predicted": 171,
-          "n_purchased": 171,
+          "n_predicted": 181,
+          "n_purchased": 181,
           "n_settled": 169,
-          "n_unsettled": 2,
+          "n_unsettled": 12,
           "n_hit": 25,
           "hit_rate_pct": 14.79,
           "bet_total_yen": 16900.0,
@@ -1323,10 +1323,10 @@
           "insufficient_sample": false
         },
         "H_3連単": {
-          "n_predicted": 171,
-          "n_purchased": 171,
+          "n_predicted": 181,
+          "n_purchased": 181,
           "n_settled": 169,
-          "n_unsettled": 2,
+          "n_unsettled": 12,
           "n_hit": 11,
           "hit_rate_pct": 6.51,
           "bet_total_yen": 16900.0,
