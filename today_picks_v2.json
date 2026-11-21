@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-21 13:55",
+  "updated_at": "2026-11-21 14:30",
   "date": "20261121",
   "total_races_analyzed": 35,
   "races": [
@@ -101,67 +101,67 @@
         {
           "no": 3,
           "name": "ヴァルドルチャ",
-          "prob": 0.797,
+          "prob": 0.8,
           "waku": 3,
           "win_odds_at_prediction": 1.0
         },
         {
           "no": 8,
           "name": "ピースドライブ",
-          "prob": 0.603,
+          "prob": 0.618,
           "waku": 8,
-          "win_odds_at_prediction": 19.0
+          "win_odds_at_prediction": 16.1
         },
         {
           "no": 7,
           "name": "クラックミーアップ",
-          "prob": 0.562,
+          "prob": 0.589,
           "waku": 7,
-          "win_odds_at_prediction": 20.6
+          "win_odds_at_prediction": 20.3
         }
       ],
       "bottom4": [
         {
           "no": 5,
           "name": "シェルブールレイン",
-          "bottom4_prob": 0.939
+          "bottom4_prob": 0.937
         },
         {
           "no": 1,
           "name": "ペイシャプレイ",
-          "bottom4_prob": 0.774
+          "bottom4_prob": 0.782
         },
         {
           "no": 4,
           "name": "ランツェンライター",
-          "bottom4_prob": 0.508
+          "bottom4_prob": 0.493
         },
         {
           "no": 2,
           "name": "リアルパラダイス",
-          "bottom4_prob": 0.439
+          "bottom4_prob": 0.472
         }
       ],
       "wide_candidate": {
         "combo": "3-8",
-        "odds_low": 1.8,
-        "odds_high": 2.1
+        "odds_low": 2.4,
+        "odds_high": 3.1
       },
       "calibrated_prob": 0.4958,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.797,
+      "confidence": 0.8,
       "validated_recommendation": {
         "qualifies": true,
         "bet_type": "複勝",
         "horse_no": 3,
         "horse_name": "ヴァルドルチャ",
-        "model_prob": 0.797,
+        "model_prob": 0.8,
         "win_odds_at_prediction": 1.0,
         "place_odds_at_prediction": 1.0,
-        "breakeven_place_odds": 1.254,
-        "ev_place_per_100yen": -20.3,
+        "breakeven_place_odds": 1.251,
+        "ev_place_per_100yen": -20.0,
         "ev_tansho_per_100yen": null,
         "ev_tansho_note": "単勝専用の勝率モデルが無いため単勝の期待値は算出していません(捏造防止)",
         "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当",
@@ -221,25 +221,25 @@
       "bet_type": "ワイド",
       "top3": [
         {
-          "no": 2,
-          "name": "イケビーノ",
-          "prob": 0.811,
-          "waku": 2,
-          "win_odds_at_prediction": 2.0
-        },
-        {
-          "no": 11,
-          "name": "クインテットホープ",
-          "prob": 0.554,
-          "waku": 8,
-          "win_odds_at_prediction": 3.4
+          "no": 6,
+          "name": "クリアマインド",
+          "prob": 0.65,
+          "waku": 6,
+          "win_odds_at_prediction": 4.7
         },
         {
           "no": 7,
           "name": "エスワンモコチャン",
-          "prob": 0.386,
+          "prob": 0.593,
           "waku": 6,
-          "win_odds_at_prediction": 7.9
+          "win_odds_at_prediction": 5.0
+        },
+        {
+          "no": 2,
+          "name": "イケビーノ",
+          "prob": 0.496,
+          "waku": 2,
+          "win_odds_at_prediction": 5.2
         }
       ],
       "bottom4": [
@@ -261,19 +261,19 @@
         {
           "no": 4,
           "name": "スターオブチャージ",
-          "bottom4_prob": 0.36
+          "bottom4_prob": 0.422
         }
       ],
       "wide_candidate": {
-        "combo": "2-11",
-        "odds_low": 6.3,
-        "odds_high": 7.1
+        "combo": "6-7",
+        "odds_low": 3.7,
+        "odds_high": 4.6
       },
-      "calibrated_prob": 0.4538,
+      "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.811,
+      "confidence": 0.65,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -294,25 +294,25 @@
       "bet_type": "ワイド",
       "top3": [
         {
-          "no": 10,
-          "name": "レヴロード",
-          "prob": 0.695,
-          "waku": 8,
-          "win_odds_at_prediction": 2.5
-        },
-        {
           "no": 3,
           "name": "ブラストビート",
-          "prob": 0.581,
+          "prob": 0.711,
           "waku": 3,
-          "win_odds_at_prediction": 3.5
+          "win_odds_at_prediction": 2.3
+        },
+        {
+          "no": 10,
+          "name": "レヴロード",
+          "prob": 0.617,
+          "waku": 8,
+          "win_odds_at_prediction": 2.9
         },
         {
           "no": 2,
           "name": "ユミッチラブ",
           "prob": 0.456,
           "waku": 2,
-          "win_odds_at_prediction": 8.0
+          "win_odds_at_prediction": 10.7
         }
       ],
       "bottom4": [
@@ -329,7 +329,7 @@
         {
           "no": 1,
           "name": "ショウナンアンバー",
-          "bottom4_prob": 0.515
+          "bottom4_prob": 0.599
         },
         {
           "no": 11,
@@ -338,15 +338,15 @@
         }
       ],
       "wide_candidate": {
-        "combo": "10-3",
+        "combo": "3-10",
         "odds_low": 1.0,
         "odds_high": 1.0
       },
-      "calibrated_prob": 0.4454,
+      "calibrated_prob": 0.4538,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.695,
+      "confidence": 0.711,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -413,23 +413,23 @@
         {
           "no": 6,
           "name": "クボウサマ",
-          "prob": 0.75,
+          "prob": 0.749,
           "waku": 5,
-          "win_odds_at_prediction": 2.4
+          "win_odds_at_prediction": 1.3
         },
         {
           "no": 7,
           "name": "ムーランラデ",
           "prob": 0.491,
           "waku": 6,
-          "win_odds_at_prediction": 2.7
+          "win_odds_at_prediction": 5.2
         },
         {
-          "no": 1,
-          "name": "マハーギータ",
-          "prob": 0.407,
-          "waku": 1,
-          "win_odds_at_prediction": 9.5
+          "no": 9,
+          "name": "アレキサンダーサン",
+          "prob": 0.394,
+          "waku": 7,
+          "win_odds_at_prediction": 14.0
         }
       ],
       "bottom4": [
@@ -439,40 +439,45 @@
           "bottom4_prob": 0.645
         },
         {
-          "no": 11,
-          "name": "エトワールフィーユ",
-          "bottom4_prob": 0.492
-        },
-        {
-          "no": 4,
-          "name": "ダイメイハマダ",
-          "bottom4_prob": 0.424
-        },
-        {
           "no": 10,
           "name": "ボンレジェンド",
-          "bottom4_prob": 0.416
+          "bottom4_prob": 0.498
+        },
+        {
+          "no": 11,
+          "name": "エトワールフィーユ",
+          "bottom4_prob": 0.491
+        },
+        {
+          "no": 2,
+          "name": "ミラクルスパート",
+          "bottom4_prob": 0.418
         }
       ],
       "wide_candidate": {
         "combo": "6-7",
-        "odds_low": 5.9,
-        "odds_high": 6.7
+        "odds_low": 4.6,
+        "odds_high": 5.4
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.75,
+      "confidence": 0.749,
       "validated_recommendation": {
-        "qualifies": false,
+        "qualifies": true,
         "bet_type": "複勝",
-        "horse_no": null,
-        "horse_name": null,
-        "model_prob": null,
-        "win_odds_at_prediction": null,
-        "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当する馬がいない",
-        "backtest_reference": null
+        "horse_no": 6,
+        "horse_name": "クボウサマ",
+        "model_prob": 0.749,
+        "win_odds_at_prediction": 1.3,
+        "place_odds_at_prediction": 1.0,
+        "breakeven_place_odds": 1.335,
+        "ev_place_per_100yen": -25.1,
+        "ev_tansho_per_100yen": null,
+        "ev_tansho_note": "単勝専用の勝率モデルが無いため単勝の期待値は算出していません(捏造防止)",
+        "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当",
+        "backtest_reference": "n=386、ROI94.46%、95%信頼区間[91.65,97.05](2026-10-08〜11-11、購入時点オッズによるバックテスト。実購入の確定成績ではない)"
       },
       "model_version": "model_e_top3"
     },
@@ -488,21 +493,21 @@
           "name": "フランスゴデイナ",
           "prob": 0.841,
           "waku": 4,
-          "win_odds_at_prediction": 1.0
+          "win_odds_at_prediction": 1.1
         },
         {
           "no": 3,
           "name": "フウリンカザン",
           "prob": 0.615,
           "waku": 3,
-          "win_odds_at_prediction": 18.3
+          "win_odds_at_prediction": 14.1
         },
         {
           "no": 5,
           "name": "ベアエクスプレス",
           "prob": 0.426,
           "waku": 5,
-          "win_odds_at_prediction": 23.3
+          "win_odds_at_prediction": 14.8
         }
       ],
       "bottom4": [
@@ -529,8 +534,8 @@
       ],
       "wide_candidate": {
         "combo": "4-3",
-        "odds_low": 2.4,
-        "odds_high": 2.9
+        "odds_low": 2.3,
+        "odds_high": 2.8
       },
       "calibrated_prob": 0.4958,
       "decision": "見送り",
@@ -543,7 +548,7 @@
         "horse_no": 4,
         "horse_name": "フランスゴデイナ",
         "model_prob": 0.841,
-        "win_odds_at_prediction": 1.0,
+        "win_odds_at_prediction": 1.1,
         "place_odds_at_prediction": 1.0,
         "breakeven_place_odds": 1.189,
         "ev_place_per_100yen": -15.9,
@@ -606,25 +611,25 @@
       "bet_type": "ワイド",
       "top3": [
         {
-          "no": 3,
-          "name": "ウインイルネージュ",
-          "prob": 0.767,
-          "waku": 3,
-          "win_odds_at_prediction": 2.0
-        },
-        {
           "no": 2,
           "name": "マッドヘッドラブ",
-          "prob": 0.648,
+          "prob": 0.77,
           "waku": 2,
-          "win_odds_at_prediction": 2.3
+          "win_odds_at_prediction": 2.1
+        },
+        {
+          "no": 3,
+          "name": "ウインイルネージュ",
+          "prob": 0.766,
+          "waku": 3,
+          "win_odds_at_prediction": 2.1
         },
         {
           "no": 1,
           "name": "ゴールデンマーチ",
           "prob": 0.472,
           "waku": 1,
-          "win_odds_at_prediction": 7.5
+          "win_odds_at_prediction": 8.4
         }
       ],
       "bottom4": [
@@ -639,26 +644,26 @@
           "bottom4_prob": 0.786
         },
         {
+          "no": 7,
+          "name": "クラリスヒメ",
+          "bottom4_prob": 0.63
+        },
+        {
           "no": 6,
           "name": "ケイツーコルーニ",
           "bottom4_prob": 0.552
-        },
-        {
-          "no": 7,
-          "name": "クラリスヒメ",
-          "bottom4_prob": 0.539
         }
       ],
       "wide_candidate": {
-        "combo": "3-2",
+        "combo": "2-3",
         "odds_low": 1.0,
         "odds_high": 1.0
       },
-      "calibrated_prob": 0.4958,
+      "calibrated_prob": 0.575,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.767,
+      "confidence": 0.77,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -690,14 +695,14 @@
           "name": "ロードベルファスト",
           "prob": 0.607,
           "waku": 2,
-          "win_odds_at_prediction": 5.0
+          "win_odds_at_prediction": 5.2
         },
         {
-          "no": 8,
-          "name": "バリキング",
-          "prob": 0.435,
-          "waku": 8,
-          "win_odds_at_prediction": 8.0
+          "no": 6,
+          "name": "タマモアマルフィ",
+          "prob": 0.409,
+          "waku": 6,
+          "win_odds_at_prediction": 5.8
         }
       ],
       "bottom4": [
@@ -709,23 +714,23 @@
         {
           "no": 3,
           "name": "エートゥージー",
-          "bottom4_prob": 0.647
-        },
-        {
-          "no": 5,
-          "name": "ペイシャマイデイズ",
-          "bottom4_prob": 0.598
+          "bottom4_prob": 0.739
         },
         {
           "no": 1,
           "name": "ビビットピンク",
           "bottom4_prob": 0.461
+        },
+        {
+          "no": 4,
+          "name": "バスターコール",
+          "bottom4_prob": 0.424
         }
       ],
       "wide_candidate": {
         "combo": "9-2",
-        "odds_low": 3.3,
-        "odds_high": 4.2
+        "odds_low": 2.8,
+        "odds_high": 3.5
       },
       "calibrated_prob": 0.4538,
       "decision": "見送り",
@@ -792,63 +797,63 @@
       "track": "佐賀",
       "race_no": 4,
       "post_time": "17:05",
-      "頭数": 9,
+      "頭数": 10,
       "bet_type": "ワイド",
       "top3": [
         {
           "no": 1,
           "name": "ミッジーチャンプ",
-          "prob": 0.679,
+          "prob": 0.687,
           "waku": 1,
-          "win_odds_at_prediction": 2.5
+          "win_odds_at_prediction": 2.9
         },
         {
           "no": 2,
           "name": "ライジングハース",
-          "prob": 0.595,
+          "prob": 0.581,
           "waku": 2,
-          "win_odds_at_prediction": 3.4
+          "win_odds_at_prediction": 3.3
         },
         {
           "no": 10,
           "name": "アルディオール",
-          "prob": 0.508,
+          "prob": 0.445,
           "waku": 8,
-          "win_odds_at_prediction": 7.4
+          "win_odds_at_prediction": 7.5
         }
       ],
       "bottom4": [
         {
-          "no": 7,
-          "name": "タケノライコウ",
-          "bottom4_prob": 0.897
-        },
-        {
           "no": 5,
           "name": "プリンセスダイヤ",
-          "bottom4_prob": 0.847
+          "bottom4_prob": 0.775
+        },
+        {
+          "no": 7,
+          "name": "タケノライコウ",
+          "bottom4_prob": 0.767
+        },
+        {
+          "no": 9,
+          "name": "クリノオリオン",
+          "bottom4_prob": 0.642
         },
         {
           "no": 6,
           "name": "フクノエヴリー",
-          "bottom4_prob": 0.573
-        },
-        {
-          "no": 4,
-          "name": "ウインクルキセキ",
-          "bottom4_prob": 0.407
+          "bottom4_prob": 0.44
         }
       ],
       "wide_candidate": {
         "combo": "1-2",
-        "odds_low": 3.2,
-        "odds_high": 3.9
+        "odds_low": 2.4,
+        "odds_high": 2.8
       },
       "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.679,
+      "confidence": 0.687,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -873,20 +878,20 @@
           "name": "メイショウミカワ",
           "prob": 0.681,
           "waku": 7,
-          "win_odds_at_prediction": 2.4
+          "win_odds_at_prediction": 2.7
+        },
+        {
+          "no": 8,
+          "name": "カレンワッツアップ",
+          "prob": 0.577,
+          "waku": 6,
+          "win_odds_at_prediction": 4.7
         },
         {
           "no": 3,
           "name": "アルデヤーノ",
-          "prob": 0.442,
+          "prob": 0.377,
           "waku": 3,
-          "win_odds_at_prediction": 5.1
-        },
-        {
-          "no": 5,
-          "name": "ボンジュールゼン",
-          "prob": 0.417,
-          "waku": 5,
           "win_odds_at_prediction": 6.1
         }
       ],
@@ -894,12 +899,12 @@
         {
           "no": 4,
           "name": "デュアリスト",
-          "bottom4_prob": 0.762
+          "bottom4_prob": 0.686
         },
         {
           "no": 11,
           "name": "ルージュブラゾン",
-          "bottom4_prob": 0.55
+          "bottom4_prob": 0.622
         },
         {
           "no": 9,
@@ -907,17 +912,17 @@
           "bottom4_prob": 0.534
         },
         {
-          "no": 7,
-          "name": "ダノンフロイデ",
-          "bottom4_prob": 0.494
+          "no": 12,
+          "name": "ダノンマカルー",
+          "bottom4_prob": 0.498
         }
       ],
       "wide_candidate": {
-        "combo": "10-3",
-        "odds_low": 3.0,
-        "odds_high": 3.4
+        "combo": "10-8",
+        "odds_low": 2.9,
+        "odds_high": 3.2
       },
-      "calibrated_prob": 0.2917,
+      "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
@@ -982,73 +987,73 @@
       "track": "佐賀",
       "race_no": 5,
       "post_time": "17:35",
-      "頭数": 8,
+      "頭数": 9,
       "bet_type": "ワイド",
       "top3": [
         {
           "no": 2,
           "name": "カンフージョン",
-          "prob": 0.9,
+          "prob": 0.894,
           "waku": 2,
-          "win_odds_at_prediction": 1.4
+          "win_odds_at_prediction": 1.5
         },
         {
           "no": 7,
           "name": "テーオーシーザー",
-          "prob": 0.614,
+          "prob": 0.617,
           "waku": 6,
-          "win_odds_at_prediction": 4.7
+          "win_odds_at_prediction": 4.6
         },
         {
           "no": 11,
           "name": "グラデュエール",
-          "prob": 0.547,
+          "prob": 0.511,
           "waku": 8,
-          "win_odds_at_prediction": 7.8
+          "win_odds_at_prediction": 8.3
         }
       ],
       "bottom4": [
         {
           "no": 1,
           "name": "ウイングラフトン",
-          "bottom4_prob": 0.891
+          "bottom4_prob": 0.835
         },
         {
-          "no": 9,
-          "name": "ヴィアツァ",
-          "bottom4_prob": 0.663
+          "no": 6,
+          "name": "エバーステイ",
+          "bottom4_prob": 0.741
         },
         {
           "no": 3,
           "name": "イケノエナガチャン",
-          "bottom4_prob": 0.627
+          "bottom4_prob": 0.573
         },
         {
           "no": 4,
           "name": "キトゥンズラスター",
-          "bottom4_prob": 0.622
+          "bottom4_prob": 0.499
         }
       ],
       "wide_candidate": {
         "combo": "2-7",
-        "odds_low": 7.5,
-        "odds_high": 8.6
+        "odds_low": 4.1,
+        "odds_high": 4.6
       },
       "calibrated_prob": 0.575,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.9,
+      "confidence": 0.894,
       "validated_recommendation": {
         "qualifies": true,
         "bet_type": "複勝",
         "horse_no": 2,
         "horse_name": "カンフージョン",
-        "model_prob": 0.9,
-        "win_odds_at_prediction": 1.4,
+        "model_prob": 0.894,
+        "win_odds_at_prediction": 1.5,
         "place_odds_at_prediction": 1.0,
-        "breakeven_place_odds": 1.112,
-        "ev_place_per_100yen": -10.0,
+        "breakeven_place_odds": 1.118,
+        "ev_place_per_100yen": -10.6,
         "ev_tansho_per_100yen": null,
         "ev_tansho_note": "単勝専用の勝率モデルが無いため単勝の期待値は算出していません(捏造防止)",
         "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当",
@@ -1060,63 +1065,63 @@
       "track": "高知",
       "race_no": 6,
       "post_time": "17:45",
-      "頭数": 9,
+      "頭数": 10,
       "bet_type": "ワイド",
       "top3": [
         {
           "no": 8,
           "name": "サンライズジャッジ",
-          "prob": 0.736,
+          "prob": 0.713,
           "waku": 7,
-          "win_odds_at_prediction": 2.9
+          "win_odds_at_prediction": 2.4
         },
         {
           "no": 10,
           "name": "パーセルペーパー",
-          "prob": 0.562,
+          "prob": 0.582,
           "waku": 8,
-          "win_odds_at_prediction": 4.9
+          "win_odds_at_prediction": 5.6
         },
         {
           "no": 6,
           "name": "フルフィルメント",
-          "prob": 0.489,
+          "prob": 0.485,
           "waku": 6,
-          "win_odds_at_prediction": 5.6
+          "win_odds_at_prediction": 6.3
         }
       ],
       "bottom4": [
         {
           "no": 9,
           "name": "エムティパブロ",
-          "bottom4_prob": 0.93
+          "bottom4_prob": 0.869
+        },
+        {
+          "no": 11,
+          "name": "チュラウェーブ",
+          "bottom4_prob": 0.696
         },
         {
           "no": 1,
           "name": "フォレストターキン",
-          "bottom4_prob": 0.718
+          "bottom4_prob": 0.606
         },
         {
           "no": 4,
           "name": "セージブラッシュ",
-          "bottom4_prob": 0.655
-        },
-        {
-          "no": 3,
-          "name": "エンファサイズ",
-          "bottom4_prob": 0.488
+          "bottom4_prob": 0.573
         }
       ],
       "wide_candidate": {
         "combo": "8-10",
-        "odds_low": 2.8,
+        "odds_low": 2.9,
         "odds_high": 3.3
       },
       "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.736,
+      "confidence": 0.713,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -1185,21 +1190,21 @@
           "name": "マイネルアース",
           "prob": 0.829,
           "waku": 6,
-          "win_odds_at_prediction": 2.6
+          "win_odds_at_prediction": 2.2
         },
         {
           "no": 6,
           "name": "ノブノリオウ",
           "prob": 0.533,
           "waku": 6,
-          "win_odds_at_prediction": 4.8
+          "win_odds_at_prediction": 5.3
         },
         {
           "no": 1,
           "name": "ウルトラキッド",
           "prob": 0.471,
           "waku": 1,
-          "win_odds_at_prediction": 6.6
+          "win_odds_at_prediction": 6.4
         }
       ],
       "bottom4": [
@@ -1226,8 +1231,8 @@
       ],
       "wide_candidate": {
         "combo": "7-6",
-        "odds_low": 3.1,
-        "odds_high": 4.4
+        "odds_low": 3.5,
+        "odds_high": 5.0
       },
       "calibrated_prob": 0.4538,
       "decision": "見送り",
@@ -1258,21 +1263,21 @@
           "name": "エナジーアユ",
           "prob": 0.795,
           "waku": 4,
-          "win_odds_at_prediction": 1.5
+          "win_odds_at_prediction": 1.7
         },
         {
           "no": 8,
           "name": "モズガネシア",
           "prob": 0.673,
           "waku": 8,
-          "win_odds_at_prediction": 2.5
+          "win_odds_at_prediction": 2.3
         },
         {
-          "no": 3,
-          "name": "スクーバー",
-          "prob": 0.474,
-          "waku": 3,
-          "win_odds_at_prediction": 18.4
+          "no": 5,
+          "name": "ローメット",
+          "prob": 0.522,
+          "waku": 5,
+          "win_odds_at_prediction": 18.5
         }
       ],
       "bottom4": [
@@ -1299,8 +1304,8 @@
       ],
       "wide_candidate": {
         "combo": "4-8",
-        "odds_low": 3.7,
-        "odds_high": 4.1
+        "odds_low": 3.9,
+        "odds_high": 4.4
       },
       "calibrated_prob": 0.575,
       "decision": "見送り",
@@ -1308,19 +1313,14 @@
       "suggested_virtual_stake": null,
       "confidence": 0.795,
       "validated_recommendation": {
-        "qualifies": true,
+        "qualifies": false,
         "bet_type": "複勝",
-        "horse_no": 4,
-        "horse_name": "エナジーアユ",
-        "model_prob": 0.795,
-        "win_odds_at_prediction": 1.5,
-        "place_odds_at_prediction": 4.0,
-        "breakeven_place_odds": 1.258,
-        "ev_place_per_100yen": 217.9,
-        "ev_tansho_per_100yen": null,
-        "ev_tansho_note": "単勝専用の勝率モデルが無いため単勝の期待値は算出していません(捏造防止)",
-        "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当",
-        "backtest_reference": "n=386、ROI94.46%、95%信頼区間[91.65,97.05](2026-10-08〜11-11、購入時点オッズによるバックテスト。実購入の確定成績ではない)"
+        "horse_no": null,
+        "horse_name": null,
+        "model_prob": null,
+        "win_odds_at_prediction": null,
+        "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当する馬がいない",
+        "backtest_reference": null
       },
       "model_version": "model_e_top3"
     },
@@ -1372,63 +1372,63 @@
       "track": "佐賀",
       "race_no": 7,
       "post_time": "18:40",
-      "頭数": 9,
+      "頭数": 10,
       "bet_type": "ワイド",
       "top3": [
         {
           "no": 4,
           "name": "ユイアヴェニール",
-          "prob": 0.785,
+          "prob": 0.763,
           "waku": 4,
-          "win_odds_at_prediction": 2.3
+          "win_odds_at_prediction": 3.2
+        },
+        {
+          "no": 8,
+          "name": "ヒロニャン",
+          "prob": 0.463,
+          "waku": 7,
+          "win_odds_at_prediction": 4.2
         },
         {
           "no": 1,
           "name": "リーフアクアリウム",
-          "prob": 0.603,
+          "prob": 0.451,
           "waku": 1,
-          "win_odds_at_prediction": 5.4
-        },
-        {
-          "no": 7,
-          "name": "ニューホライゾン",
-          "prob": 0.358,
-          "waku": 6,
-          "win_odds_at_prediction": 6.9
+          "win_odds_at_prediction": 8.0
         }
       ],
       "bottom4": [
         {
-          "no": 8,
-          "name": "ヒロニャン",
-          "bottom4_prob": 0.844
+          "no": 3,
+          "name": "コースタルタウン",
+          "bottom4_prob": 0.713
         },
         {
           "no": 10,
           "name": "サンサンタイヨウ",
-          "bottom4_prob": 0.683
+          "bottom4_prob": 0.687
         },
         {
           "no": 5,
           "name": "ジーティースピカ",
-          "bottom4_prob": 0.673
+          "bottom4_prob": 0.626
         },
         {
-          "no": 9,
-          "name": "アニラ",
-          "bottom4_prob": 0.431
+          "no": 7,
+          "name": "ニューホライゾン",
+          "bottom4_prob": 0.43
         }
       ],
       "wide_candidate": {
-        "combo": "4-1",
-        "odds_low": 5.5,
-        "odds_high": 8.5
+        "combo": "4-8",
+        "odds_low": 6.1,
+        "odds_high": 8.6
       },
-      "calibrated_prob": 0.4958,
+      "calibrated_prob": 0.2917,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.785,
+      "confidence": 0.763,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -1460,14 +1460,14 @@
           "name": "タイキエクセロン",
           "prob": 0.639,
           "waku": 2,
-          "win_odds_at_prediction": 105.7
+          "win_odds_at_prediction": 121.3
         },
         {
           "no": 8,
           "name": "バリジグリー",
           "prob": 0.445,
           "waku": 7,
-          "win_odds_at_prediction": 164.4
+          "win_odds_at_prediction": 164.6
         }
       ],
       "bottom4": [
@@ -1477,25 +1477,25 @@
           "bottom4_prob": 0.87
         },
         {
+          "no": 5,
+          "name": "エターナルライズ",
+          "bottom4_prob": 0.824
+        },
+        {
           "no": 1,
           "name": "パルメリータ",
           "bottom4_prob": 0.776
         },
         {
-          "no": 5,
-          "name": "エターナルライズ",
-          "bottom4_prob": 0.772
-        },
-        {
-          "no": 7,
-          "name": "グランマイース",
-          "bottom4_prob": 0.586
+          "no": 6,
+          "name": "シンゼンシャイン",
+          "bottom4_prob": 0.657
         }
       ],
       "wide_candidate": {
         "combo": "3-2",
-        "odds_low": 3.4,
-        "odds_high": 4.7
+        "odds_low": 3.7,
+        "odds_high": 5.1
       },
       "calibrated_prob": 0.575,
       "decision": "見送り",
@@ -1571,25 +1571,25 @@
       "bet_type": "ワイド",
       "top3": [
         {
+          "no": 8,
+          "name": "コワン",
+          "prob": 0.677,
+          "waku": 7,
+          "win_odds_at_prediction": 1.6
+        },
+        {
           "no": 10,
           "name": "ジャズダンス",
-          "prob": 0.674,
+          "prob": 0.584,
           "waku": 8,
-          "win_odds_at_prediction": 2.6
+          "win_odds_at_prediction": 4.7
         },
         {
           "no": 1,
           "name": "シンティリオ",
-          "prob": 0.558,
+          "prob": 0.464,
           "waku": 1,
-          "win_odds_at_prediction": 4.4
-        },
-        {
-          "no": 3,
-          "name": "ミスファントム",
-          "prob": 0.509,
-          "waku": 3,
-          "win_odds_at_prediction": 6.6
+          "win_odds_at_prediction": 8.2
         }
       ],
       "bottom4": [
@@ -1599,31 +1599,31 @@
           "bottom4_prob": 0.852
         },
         {
-          "no": 2,
-          "name": "ボブズヤアンクル",
-          "bottom4_prob": 0.814
-        },
-        {
           "no": 6,
           "name": "マジカルモーション",
-          "bottom4_prob": 0.662
+          "bottom4_prob": 0.713
         },
         {
-          "no": 8,
-          "name": "コワン",
-          "bottom4_prob": 0.501
+          "no": 2,
+          "name": "ボブズヤアンクル",
+          "bottom4_prob": 0.683
+        },
+        {
+          "no": 5,
+          "name": "ノーブルビーチ",
+          "bottom4_prob": 0.406
         }
       ],
       "wide_candidate": {
-        "combo": "10-1",
-        "odds_low": 7.7,
-        "odds_high": 8.6
+        "combo": "8-10",
+        "odds_low": 2.8,
+        "odds_high": 3.2
       },
-      "calibrated_prob": 0.2917,
+      "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.674,
+      "confidence": 0.677,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -1640,63 +1640,63 @@
       "track": "高知",
       "race_no": 9,
       "post_time": "19:20",
-      "頭数": 10,
+      "頭数": 11,
       "bet_type": "ワイド",
       "top3": [
         {
           "no": 6,
           "name": "ベンダバリラビア",
-          "prob": 0.708,
+          "prob": 0.718,
           "waku": 6,
-          "win_odds_at_prediction": 4.0
+          "win_odds_at_prediction": 3.6
         },
         {
           "no": 4,
           "name": "エイシンオッティモ",
-          "prob": 0.621,
+          "prob": 0.514,
           "waku": 4,
-          "win_odds_at_prediction": 4.0
+          "win_odds_at_prediction": 4.7
         },
         {
           "no": 9,
           "name": "リコーシーウルフ",
-          "prob": 0.463,
+          "prob": 0.454,
           "waku": 7,
-          "win_odds_at_prediction": 4.5
+          "win_odds_at_prediction": 5.3
         }
       ],
       "bottom4": [
         {
-          "no": 11,
-          "name": "ヴィアダクト",
-          "bottom4_prob": 0.679
+          "no": 3,
+          "name": "ディープギルドン",
+          "bottom4_prob": 0.687
         },
         {
-          "no": 1,
-          "name": "ゲンパチレオニダス",
-          "bottom4_prob": 0.585
+          "no": 11,
+          "name": "ヴィアダクト",
+          "bottom4_prob": 0.584
         },
         {
           "no": 5,
           "name": "ハルノサムソン",
-          "bottom4_prob": 0.54
+          "bottom4_prob": 0.573
         },
         {
-          "no": 2,
-          "name": "コノヨルヲトメテヨ",
-          "bottom4_prob": 0.44
+          "no": 1,
+          "name": "ゲンパチレオニダス",
+          "bottom4_prob": 0.369
         }
       ],
       "wide_candidate": {
         "combo": "6-4",
-        "odds_low": 9.3,
-        "odds_high": 12.9
+        "odds_low": 9.1,
+        "odds_high": 12.5
       },
-      "calibrated_prob": 0.4538,
+      "calibrated_prob": 0.2917,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.708,
+      "confidence": 0.718,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -1765,38 +1765,38 @@
           "name": "アックアヴィリーレ",
           "prob": 0.809,
           "waku": 3,
-          "win_odds_at_prediction": 1.6
+          "win_odds_at_prediction": 1.7
         },
         {
           "no": 10,
           "name": "ダバイシュクレ",
           "prob": 0.688,
           "waku": 8,
-          "win_odds_at_prediction": 6.4
+          "win_odds_at_prediction": 6.2
         },
         {
-          "no": 7,
-          "name": "ヤマニンレセディ",
-          "prob": 0.435,
-          "waku": 7,
-          "win_odds_at_prediction": 7.8
+          "no": 4,
+          "name": "アマルフィー",
+          "prob": 0.526,
+          "waku": 4,
+          "win_odds_at_prediction": 6.2
         }
       ],
       "bottom4": [
+        {
+          "no": 8,
+          "name": "サヨノハッピー",
+          "bottom4_prob": 0.684
+        },
         {
           "no": 6,
           "name": "マツリダマスラオ",
           "bottom4_prob": 0.615
         },
         {
-          "no": 8,
-          "name": "サヨノハッピー",
-          "bottom4_prob": 0.554
-        },
-        {
           "no": 2,
           "name": "クチャモザクワジャ",
-          "bottom4_prob": 0.551
+          "bottom4_prob": 0.493
         },
         {
           "no": 1,
@@ -1806,7 +1806,7 @@
       ],
       "wide_candidate": {
         "combo": "3-10",
-        "odds_low": 1.2,
+        "odds_low": 1.3,
         "odds_high": 1.3
       },
       "calibrated_prob": 0.575,
@@ -1834,25 +1834,25 @@
       "bet_type": "ワイド",
       "top3": [
         {
+          "no": 5,
+          "name": "カールスバート",
+          "prob": 0.696,
+          "waku": 5,
+          "win_odds_at_prediction": 3.9
+        },
+        {
           "no": 3,
           "name": "コパノハンプトン",
-          "prob": 0.762,
+          "prob": 0.593,
           "waku": 3,
-          "win_odds_at_prediction": 3.6
+          "win_odds_at_prediction": 4.8
         },
         {
-          "no": 9,
-          "name": "ブラッティーキッド",
-          "prob": 0.592,
-          "waku": 8,
-          "win_odds_at_prediction": 5.8
-        },
-        {
-          "no": 4,
-          "name": "フライヤートゥルー",
-          "prob": 0.477,
-          "waku": 4,
-          "win_odds_at_prediction": 6.2
+          "no": 1,
+          "name": "トサノシュジンコウ",
+          "prob": 0.435,
+          "waku": 1,
+          "win_odds_at_prediction": 5.4
         }
       ],
       "bottom4": [
@@ -1867,26 +1867,26 @@
           "bottom4_prob": 0.772
         },
         {
-          "no": 2,
-          "name": "プレジール",
-          "bottom4_prob": 0.465
+          "no": 8,
+          "name": "コスモシーウルフ",
+          "bottom4_prob": 0.531
         },
         {
-          "no": 1,
-          "name": "トサノシュジンコウ",
-          "bottom4_prob": 0.38
+          "no": 2,
+          "name": "プレジール",
+          "bottom4_prob": 0.399
         }
       ],
       "wide_candidate": {
-        "combo": "3-9",
-        "odds_low": 6.1,
-        "odds_high": 6.5
+        "combo": "5-3",
+        "odds_low": 15.0,
+        "odds_high": 16.3
       },
-      "calibrated_prob": 0.4538,
+      "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.762,
+      "confidence": 0.696,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -1903,7 +1903,7 @@
       "track": "帯広ば",
       "race_no": 12,
       "post_time": "20:00",
-      "頭数": 9,
+      "頭数": 10,
       "bet_type": "参考(単勝人気順)",
       "top3": [
         {
@@ -1947,63 +1947,63 @@
       "track": "佐賀",
       "race_no": 10,
       "post_time": "20:10",
-      "頭数": 8,
+      "頭数": 9,
       "bet_type": "ワイド",
       "top3": [
         {
-          "no": 3,
-          "name": "サバイブドーロ",
-          "prob": 0.737,
-          "waku": 3,
-          "win_odds_at_prediction": 1.9
-        },
-        {
           "no": 7,
           "name": "ジュンヴァッテッド",
-          "prob": 0.613,
+          "prob": 0.651,
           "waku": 7,
-          "win_odds_at_prediction": 2.8
+          "win_odds_at_prediction": 2.2
+        },
+        {
+          "no": 3,
+          "name": "サバイブドーロ",
+          "prob": 0.549,
+          "waku": 3,
+          "win_odds_at_prediction": 2.7
         },
         {
           "no": 10,
           "name": "ウインポラリス",
-          "prob": 0.514,
+          "prob": 0.466,
           "waku": 8,
-          "win_odds_at_prediction": 7.8
+          "win_odds_at_prediction": 7.7
         }
       ],
       "bottom4": [
         {
           "no": 4,
           "name": "アエノホープ",
-          "bottom4_prob": 0.803
+          "bottom4_prob": 0.546
         },
         {
-          "no": 1,
-          "name": "レレリオーナ",
-          "bottom4_prob": 0.662
+          "no": 9,
+          "name": "ウタカタ",
+          "bottom4_prob": 0.406
+        },
+        {
+          "no": 6,
+          "name": "テイエムリチャード",
+          "bottom4_prob": 0.398
         },
         {
           "no": 5,
           "name": "トーアアグネス",
-          "bottom4_prob": 0.502
-        },
-        {
-          "no": 8,
-          "name": "エイシンコラソン",
-          "bottom4_prob": 0.439
+          "bottom4_prob": 0.394
         }
       ],
       "wide_candidate": {
-        "combo": "3-7",
-        "odds_low": 12.2,
-        "odds_high": 13.3
+        "combo": "7-3",
+        "odds_low": 8.2,
+        "odds_high": 9.5
       },
-      "calibrated_prob": 0.4538,
+      "calibrated_prob": 0.2917,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.737,
+      "confidence": 0.651,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -2028,28 +2028,28 @@
           "name": "マイネルフォーコン",
           "prob": 0.672,
           "waku": 7,
-          "win_odds_at_prediction": 2.1
+          "win_odds_at_prediction": 2.5
+        },
+        {
+          "no": 5,
+          "name": "ファストワン",
+          "prob": 0.523,
+          "waku": 5,
+          "win_odds_at_prediction": 4.9
         },
         {
           "no": 2,
           "name": "ミラクルドリーム",
-          "prob": 0.497,
+          "prob": 0.409,
           "waku": 2,
-          "win_odds_at_prediction": 8.0
-        },
-        {
-          "no": 10,
-          "name": "ムサシフウジン",
-          "prob": 0.433,
-          "waku": 8,
-          "win_odds_at_prediction": 6.5
+          "win_odds_at_prediction": 8.4
         }
       ],
       "bottom4": [
         {
           "no": 4,
           "name": "ビックス",
-          "bottom4_prob": 0.658
+          "bottom4_prob": 0.732
         },
         {
           "no": 1,
@@ -2057,20 +2057,20 @@
           "bottom4_prob": 0.643
         },
         {
-          "no": 8,
-          "name": "ストーミーデイ",
-          "bottom4_prob": 0.473
-        },
-        {
           "no": 6,
           "name": "ウォーターレモン",
-          "bottom4_prob": 0.404
+          "bottom4_prob": 0.445
+        },
+        {
+          "no": 3,
+          "name": "ヒマワリクン",
+          "bottom4_prob": 0.388
         }
       ],
       "wide_candidate": {
-        "combo": "9-2",
-        "odds_low": 3.3,
-        "odds_high": 4.0
+        "combo": "9-5",
+        "odds_low": 1.8,
+        "odds_high": 2.0
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -2093,63 +2093,63 @@
       "track": "佐賀",
       "race_no": 11,
       "post_time": "20:40",
-      "頭数": 11,
+      "頭数": 13,
       "bet_type": "ワイド",
       "top3": [
         {
           "no": 9,
           "name": "アエログラム",
-          "prob": 0.732,
+          "prob": 0.754,
           "waku": 6,
-          "win_odds_at_prediction": 1.6
+          "win_odds_at_prediction": 1.8
         },
         {
           "no": 11,
           "name": "ソナタムーンライト",
-          "prob": 0.614,
+          "prob": 0.619,
           "waku": 7,
-          "win_odds_at_prediction": 3.7
+          "win_odds_at_prediction": 4.0
         },
         {
           "no": 4,
           "name": "ウェイヴメカニクス",
-          "prob": 0.529,
+          "prob": 0.534,
           "waku": 3,
-          "win_odds_at_prediction": 7.8
+          "win_odds_at_prediction": 6.1
         }
       ],
       "bottom4": [
         {
+          "no": 10,
+          "name": "リルマイベイビー",
+          "bottom4_prob": 0.372
+        },
+        {
           "no": 13,
           "name": "メイショウジーニー",
-          "bottom4_prob": 0.536
+          "bottom4_prob": 0.363
         },
         {
           "no": 6,
           "name": "レイナロハルンバ",
-          "bottom4_prob": 0.52
+          "bottom4_prob": 0.333
         },
         {
-          "no": 10,
-          "name": "リルマイベイビー",
-          "bottom4_prob": 0.509
-        },
-        {
-          "no": 12,
-          "name": "キタノガイヤール",
-          "bottom4_prob": 0.385
+          "no": 1,
+          "name": "ウメボシ",
+          "bottom4_prob": 0.297
         }
       ],
       "wide_candidate": {
         "combo": "9-11",
-        "odds_low": 1.1,
+        "odds_low": 1.2,
         "odds_high": 1.2
       },
       "calibrated_prob": 0.4538,
       "decision": "見送り",
-      "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
+      "reason": "頭数13頭(検証で13頭以上は成績悪化が確認されているため見送り)",
       "suggested_virtual_stake": null,
-      "confidence": 0.732,
+      "confidence": 0.754,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -2170,25 +2170,25 @@
       "bet_type": "ワイド",
       "top3": [
         {
-          "no": 1,
-          "name": "カラバッシュ",
-          "prob": 0.569,
-          "waku": 1,
-          "win_odds_at_prediction": 5.2
+          "no": 12,
+          "name": "ダノンタッチダウン",
+          "prob": 0.688,
+          "waku": 8,
+          "win_odds_at_prediction": 4.0
         },
         {
           "no": 4,
           "name": "シーザソング",
-          "prob": 0.552,
+          "prob": 0.458,
           "waku": 4,
-          "win_odds_at_prediction": 3.6
+          "win_odds_at_prediction": 4.5
         },
         {
           "no": 5,
           "name": "オーシンミリオン",
           "prob": 0.426,
           "waku": 5,
-          "win_odds_at_prediction": 8.2
+          "win_odds_at_prediction": 6.6
         }
       ],
       "bottom4": [
@@ -2203,9 +2203,9 @@
           "bottom4_prob": 0.474
         },
         {
-          "no": 6,
-          "name": "ベルベットアノ",
-          "bottom4_prob": 0.432
+          "no": 3,
+          "name": "チョットヤバイヨネ",
+          "bottom4_prob": 0.378
         },
         {
           "no": 10,
@@ -2214,15 +2214,15 @@
         }
       ],
       "wide_candidate": {
-        "combo": "1-4",
-        "odds_low": 10.1,
-        "odds_high": 10.9
+        "combo": "12-4",
+        "odds_low": 15.3,
+        "odds_high": 15.9
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.569,
+      "confidence": 0.688,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -2237,9 +2237,9 @@
     }
   ],
   "total_races_scheduled": 35,
-  "total_races_finished": 0,
+  "total_races_finished": 1,
   "total_races_unpredictable": 0,
-  "odds_age_minutes": 1.1,
+  "odds_age_minutes": 0.5,
   "odds_stale": false,
   "verified_roi_status": "回収率100%超えの統計的根拠は確認されていません(直近の時系列バックテストn=1,767件、95%信頼区間上限84.7%)。",
   "model_confirmed_profitable": false,
@@ -2247,7 +2247,7 @@
     "n_published_total": 648,
     "n_skipped": 648,
     "n_bought": 0,
-    "n_confirmed": 553,
+    "n_confirmed": 554,
     "roi_bought": null
   }
 }
