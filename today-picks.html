@@ -375,7 +375,11 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
   function renderRaceDetail(r){
     var marks = ["◎", "○", "▲"];
     var rows = (r.top3 || []).map(function(h, i){
-      var ev = horseEv(h.prob, h.win_odds_at_prediction);
+      // 2026-11-23修正: prob は複勝圏内(3着以内)確率のため、EVは複勝オッズと
+      // 組み合わせて計算する必要がある(以前は単勝オッズと組み合わせており、
+      // 対象券種が一致せず常に過大なEVを表示していた)。複勝オッズが無い場合は
+      // 捏造せず「未取得」を表示する。
+      var ev = horseEv(h.prob, h.place_odds_at_prediction);
       return (
         '<div class="horse-row">' +
           '<div class="horse-mark">' + marks[i] + '</div>' +
@@ -384,10 +388,10 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
             '<div class="horse-name">' + esc(h.no) + '番 ' + esc(h.name) + '</div>' +
             '<div class="horse-sub">' +
               '<span>予測確率(複勝圏内) ' + fmtPct(h.prob) + '</span>' +
-              '<span>発走前オッズ ' + fmtOdds(h.win_odds_at_prediction) + '</span>' +
+              '<span>発走前複勝オッズ ' + fmtOdds(h.place_odds_at_prediction) + '</span>' +
             '</div>' +
           '</div>' +
-          '<div class="horse-metric"><div class="big">' + fmtEv(ev) + '</div><div class="cap">参考EV</div></div>' +
+          '<div class="horse-metric"><div class="big">' + fmtEv(ev) + '</div><div class="cap">参考EV(複勝)</div></div>' +
         '</div>'
       );
     }).join("") || '<div class="horse-row">データ未取得</div>';
