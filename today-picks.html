@@ -418,6 +418,7 @@ footer.disclaimer{font-size:11px;color:var(--text-faint);text-align:center;paddi
       '<div class="kv-grid">' +
         '<div class="k">発走時刻</div><div class="v">' + esc(r.post_time) + '</div>' +
         '<div class="k">頭数</div><div class="v">' + (r.頭数 != null ? esc(r.頭数) + "頭" : "未取得") + '</div>' +
+        '<div class="k">予測確定時刻</div><div class="v">' + (r.predicted_at ? esc(r.predicted_at) : "未取得") + '</div>' +
       '</div>' +
       '<div class="section-title">予測上位3頭</div>' + rows +
       recBox + wideNote +
