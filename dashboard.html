@@ -59,10 +59,17 @@
   .result-card .rc-cell{font-size:11px;}
   .result-card .rc-cell .k{color:var(--text-faint);}
   .result-card .rc-cell .v{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;}
-  .track-row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:9px 0;border-bottom:1px solid var(--border);gap:8px;}
-  .track-row:last-child{border-bottom:none;}
-  .track-row .tn{font-weight:700;}
-  .track-row .tv{display:flex;gap:10px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--text-dim);white-space:nowrap;}
+  .track-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:8px;}
+  .track-card .tc-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px;}
+  .track-card .tn{font-weight:700;font-size:13.5px;}
+  .track-card .tc-status{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap;}
+  .track-card .tc-status.verified{background:var(--green-bg);color:var(--green);}
+  .track-card .tc-status.unverified{background:var(--surface);color:var(--text-dim);border:1px solid var(--border);}
+  .track-card .tc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+  .track-card .tc-cell{font-size:11px;}
+  .track-card .tc-cell .k{color:var(--text-faint);}
+  .track-card .tc-cell .v{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:12.5px;}
+  .track-card .tc-ci{font-size:10.5px;color:var(--text-dim);margin-top:8px;font-family:"JetBrains Mono",monospace;}
   .links{display:grid;gap:8px;}
   a.linkcard{display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;color:var(--text);text-decoration:none;}
   a.linkcard .t{font-weight:700;font-size:13.5px;margin-bottom:2px;}
@@ -226,19 +233,41 @@
   function renderByTrack(sim){
     const root = document.getElementById('bytrack-root');
     const bt = (sim && sim.by_track) || {};
+    const vs = (sim && sim.verification_status) || null;
     const entries = Object.entries(bt).sort((a,b)=> (b[1].n_races_bought+b[1].n_races_skipped) - (a[1].n_races_bought+a[1].n_races_skipped));
     if(entries.length===0){
       root.innerHTML = '<div class="empty">競馬場別データがまだありません。</div>';
       return;
     }
+    // 検証ステータスは現状ここに表示されているモデル全体で共通(競馬場別に個別の
+    // 品質ゲート結果を持つ仕組みは無い)。実測値であることを明示しつつ、
+    // 「推奨買い目の成績」自体は品質ゲート未通過である旨を各カードで繰り返す。
+    const statusVerified = !!(vs && vs.model_confirmed_profitable);
+    const statusLabel = vs ? vs.status_label : '検証ステータス不明';
     root.innerHTML = entries.map(([track, v])=>{
       const roiText = v.roi==null ? '算出不能' : v.roi+'%';
       const hitText = v.hit_rate==null ? '未確認' : v.hit_rate+'%';
-      return '<div class="track-row"><span class="tn">'+track+'</span>'+
-        '<span class="tv">推奨'+v.n_races_bought+'件(的中'+v.n_hit+'/不的中'+v.n_miss+')'+
-        ' / 的中率'+hitText+' / 回収率'+roiText+' / 見送り'+v.n_races_skipped+'件'+
-        (v.n_pending>0 ? ' / 判定待ち'+v.n_pending+'件' : '')+
-        '</span></div>';
+      const pnlText = v.pnl==null ? '算出不能' : (v.pnl>=0?'+':'')+yen(Math.round(v.pnl));
+      const ddText = v.max_drawdown==null ? '算出不能' : yen(Math.round(v.max_drawdown));
+      const nAnalyzed = v.n_races_bought + v.n_races_skipped + v.n_pending;
+      const ciText = v.roi_ci95
+        ? '95%信頼区間: ['+v.roi_ci95.ci95_low+'%, '+v.roi_ci95.ci95_high+'%] (開催日'+v.roi_ci95.n_race_days+'日分)'
+        : 'サンプル不足のため信頼区間は算出不能(実測値のみ、過去データでの参考値)';
+      return '<div class="track-card">'+
+        '<div class="tc-head"><span class="tn">'+track+'</span>'+
+        '<span class="tc-status '+(statusVerified?'verified':'unverified')+'">'+statusLabel+'</span></div>'+
+        '<div class="tc-grid">'+
+          '<div class="tc-cell"><div class="k">解析レース数</div><div class="v">'+nAnalyzed+'件</div></div>'+
+          '<div class="tc-cell"><div class="k">推奨的中率</div><div class="v">'+hitText+'</div></div>'+
+          '<div class="tc-cell"><div class="k">回収率</div><div class="v">'+roiText+'</div></div>'+
+          '<div class="tc-cell"><div class="k">推奨件数</div><div class="v">'+v.n_races_bought+'件(的中'+v.n_hit+'/不的中'+v.n_miss+')</div></div>'+
+          '<div class="tc-cell"><div class="k">累積損益</div><div class="v">'+pnlText+'</div></div>'+
+          '<div class="tc-cell"><div class="k">最大ドローダウン</div><div class="v">'+ddText+'</div></div>'+
+        '</div>'+
+        '<div class="tc-ci">'+ciText+'</div>'+
+        '<div class="tc-ci" style="color:var(--text-faint);margin-top:2px;">見送り'+v.n_races_skipped+'件'+
+          (v.n_pending>0 ? ' / 判定待ち'+v.n_pending+'件' : '')+'</div>'+
+      '</div>';
     }).join('');
   }
 
