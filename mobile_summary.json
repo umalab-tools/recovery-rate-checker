@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-21 23:01",
+  "updated_at": "2026-11-22 08:46",
   "data_tiers_note": "本サイトのデータは集計期間が異なる3種類を明確に区別する。(1)過去データ・学習・検証件数=races表/features表の全期間(10万件規模、研究用バックテスト)。(2)本番予想56日分精算=predictions/all_predictions_history.csv(2026-08-26~、track_data_auditとstrategy_settlementが対象)。(3)直近の本番ログ=predictions/published_picks_log.csv(直近7日・数十件、production_real_results_status)。(3)を(1)(2)の代わりに表示しないこと。",
   "track_data_audit": {
     "status": "ok",
@@ -12,7 +12,7 @@
     "rows": [
       {
         "track": "帯広ば",
-        "過去データ数(races表全期間)": 11801,
+        "過去データ数(races表全期間)": 11813,
         "学習レース数(train, 2023-08~2025-07)": 3468,
         "検証レース数(val+test, 2025-08~2026-07)": 1759,
         "本番予想レース数(all_predictions_history.csv, 56日分)": 0,
@@ -48,7 +48,7 @@
       },
       {
         "track": "佐賀",
-        "過去データ数(races表全期間)": 8579,
+        "過去データ数(races表全期間)": 8590,
         "学習レース数(train, 2023-08~2025-07)": 2518,
         "検証レース数(val+test, 2025-08~2026-07)": 1236,
         "本番予想レース数(all_predictions_history.csv, 56日分)": 184,
@@ -60,7 +60,7 @@
       },
       {
         "track": "高知",
-        "過去データ数(races表全期間)": 8203,
+        "過去データ数(races表全期間)": 8215,
         "学習レース数(train, 2023-08~2025-07)": 2389,
         "検証レース数(val+test, 2025-08~2026-07)": 1146,
         "本番予想レース数(all_predictions_history.csv, 56日分)": 170,
@@ -1801,18 +1801,18 @@
     }
   },
   "paper_trading_summary": {
-    "updated_at": "最終更新: 2026-11-21 00:05（自動更新）",
-    "total_n": "826件",
-    "total_days": "63日",
-    "total_hit_rate": "55.2%",
-    "total_roi": "89.73%",
+    "updated_at": "最終更新: 2026-11-22 00:05（自動更新）",
+    "total_n": "828件",
+    "total_days": "64日",
+    "total_hit_rate": "55.3%",
+    "total_roi": "89.76%",
     "balance": "91,520円",
     "condition_rows": [
       [
         "Tier A（単勝1.0-1.2倍・予測1位）",
-        "289",
-        "92.0%",
-        "95.92%",
+        "291",
+        "92.1%",
+        "95.95%",
         "2"
       ],
       [
