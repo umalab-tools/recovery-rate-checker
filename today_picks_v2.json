@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-22 20:11",
+  "updated_at": "2026-11-22 20:30",
   "date": "20261122",
-  "total_races_analyzed": 16,
+  "total_races_analyzed": 14,
   "races": [
     {
       "track": "帯広ば",
@@ -488,79 +488,6 @@
       "model_version": "banei_reference_v1"
     },
     {
-      "track": "佐賀",
-      "race_no": 10,
-      "post_time": "20:10",
-      "頭数": 10,
-      "bet_type": "ワイド",
-      "top3": [
-        {
-          "no": 3,
-          "name": "ラウダーティオ",
-          "prob": 0.721,
-          "waku": 3,
-          "win_odds_at_prediction": 2.5
-        },
-        {
-          "no": 4,
-          "name": "フランシナテソーロ",
-          "prob": 0.554,
-          "waku": 4,
-          "win_odds_at_prediction": 2.8
-        },
-        {
-          "no": 7,
-          "name": "デッドフレイ",
-          "prob": 0.472,
-          "waku": 7,
-          "win_odds_at_prediction": 5.1
-        }
-      ],
-      "bottom4": [
-        {
-          "no": 8,
-          "name": "サンスイレン",
-          "bottom4_prob": 0.803
-        },
-        {
-          "no": 10,
-          "name": "カシノルーカス",
-          "bottom4_prob": 0.694
-        },
-        {
-          "no": 1,
-          "name": "フリーホースパーク",
-          "bottom4_prob": 0.583
-        },
-        {
-          "no": 5,
-          "name": "エイシンチェンバー",
-          "bottom4_prob": 0.551
-        }
-      ],
-      "wide_candidate": {
-        "combo": "3-4",
-        "odds_low": 1.6,
-        "odds_high": 1.9
-      },
-      "calibrated_prob": 0.4454,
-      "decision": "見送り",
-      "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
-      "suggested_virtual_stake": null,
-      "confidence": 0.721,
-      "validated_recommendation": {
-        "qualifies": false,
-        "bet_type": "複勝",
-        "horse_no": null,
-        "horse_name": null,
-        "model_prob": null,
-        "win_odds_at_prediction": null,
-        "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当する馬がいない",
-        "backtest_reference": null
-      },
-      "model_version": "model_e_top3"
-    },
-    {
       "track": "帯広ば",
       "race_no": 12,
       "post_time": "20:15",
@@ -605,79 +532,6 @@
       "model_version": "banei_reference_v1"
     },
     {
-      "track": "高知",
-      "race_no": 10,
-      "post_time": "20:20",
-      "頭数": 7,
-      "bet_type": "ワイド",
-      "top3": [
-        {
-          "no": 6,
-          "name": "モズリッキー",
-          "prob": 0.792,
-          "waku": 6,
-          "win_odds_at_prediction": 1.7
-        },
-        {
-          "no": 4,
-          "name": "コロンバージュ",
-          "prob": 0.64,
-          "waku": 4,
-          "win_odds_at_prediction": 4.1
-        },
-        {
-          "no": 2,
-          "name": "ロードレイライン",
-          "prob": 0.525,
-          "waku": 2,
-          "win_odds_at_prediction": 5.7
-        }
-      ],
-      "bottom4": [
-        {
-          "no": 7,
-          "name": "サンダーゼウス",
-          "bottom4_prob": 0.822
-        },
-        {
-          "no": 5,
-          "name": "ミズワリヲクダサイ",
-          "bottom4_prob": 0.781
-        },
-        {
-          "no": 3,
-          "name": "メイショウヒューマ",
-          "bottom4_prob": 0.698
-        },
-        {
-          "no": 1,
-          "name": "ポイントフォワード",
-          "bottom4_prob": 0.534
-        }
-      ],
-      "wide_candidate": {
-        "combo": "6-4",
-        "odds_low": 2.3,
-        "odds_high": 2.6
-      },
-      "calibrated_prob": 0.4958,
-      "decision": "見送り",
-      "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
-      "suggested_virtual_stake": null,
-      "confidence": 0.792,
-      "validated_recommendation": {
-        "qualifies": false,
-        "bet_type": "複勝",
-        "horse_no": null,
-        "horse_name": null,
-        "model_prob": null,
-        "win_odds_at_prediction": null,
-        "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当する馬がいない",
-        "backtest_reference": null
-      },
-      "model_version": "model_e_top3"
-    },
-    {
       "track": "佐賀",
       "race_no": 11,
       "post_time": "20:40",
@@ -685,32 +539,32 @@
       "bet_type": "ワイド",
       "top3": [
         {
-          "no": 13,
-          "name": "メイショウシュハリ",
-          "prob": 0.721,
-          "waku": 8,
-          "win_odds_at_prediction": 2.4
-        },
-        {
           "no": 14,
           "name": "グリュイエール",
-          "prob": 0.587,
+          "prob": 0.798,
           "waku": 8,
-          "win_odds_at_prediction": 3.9
+          "win_odds_at_prediction": 2.1
         },
         {
-          "no": 12,
-          "name": "ミユンガー",
-          "prob": 0.362,
-          "waku": 7,
-          "win_odds_at_prediction": 7.5
+          "no": 13,
+          "name": "メイショウシュハリ",
+          "prob": 0.575,
+          "waku": 8,
+          "win_odds_at_prediction": 4.2
+        },
+        {
+          "no": 7,
+          "name": "アステリアート",
+          "prob": 0.492,
+          "waku": 5,
+          "win_odds_at_prediction": 8.5
         }
       ],
       "bottom4": [
         {
           "no": 4,
           "name": "ジーティーカメリア",
-          "bottom4_prob": 0.49
+          "bottom4_prob": 0.552
         },
         {
           "no": 2,
@@ -718,26 +572,26 @@
           "bottom4_prob": 0.463
         },
         {
+          "no": 1,
+          "name": "クロゴウ",
+          "bottom4_prob": 0.427
+        },
+        {
           "no": 8,
           "name": "イズジョーレイナス",
           "bottom4_prob": 0.42
-        },
-        {
-          "no": 1,
-          "name": "クロゴウ",
-          "bottom4_prob": 0.391
         }
       ],
       "wide_candidate": {
-        "combo": "13-14",
-        "odds_low": 2.2,
+        "combo": "14-13",
+        "odds_low": 2.1,
         "odds_high": 2.4
       },
-      "calibrated_prob": 0.4454,
+      "calibrated_prob": 0.4538,
       "decision": "見送り",
       "reason": "頭数14頭(検証で13頭以上は成績悪化が確認されているため見送り)",
       "suggested_virtual_stake": null,
-      "confidence": 0.721,
+      "confidence": 0.798,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -762,49 +616,49 @@
           "name": "ベンガルボダイジュ",
           "prob": 0.632,
           "waku": 1,
-          "win_odds_at_prediction": 3.7
+          "win_odds_at_prediction": 3.1
         },
         {
           "no": 8,
           "name": "リジョイシファイ",
           "prob": 0.515,
           "waku": 6,
-          "win_odds_at_prediction": 6.1
+          "win_odds_at_prediction": 5.7
         },
         {
-          "no": 10,
-          "name": "ミアソレイユ",
-          "prob": 0.464,
-          "waku": 7,
-          "win_odds_at_prediction": 7.4
+          "no": 12,
+          "name": "ヤマニンルーバス",
+          "prob": 0.496,
+          "waku": 8,
+          "win_odds_at_prediction": 6.9
         }
       ],
       "bottom4": [
         {
           "no": 6,
           "name": "トーケンタカハール",
-          "bottom4_prob": 0.772
+          "bottom4_prob": 0.801
         },
         {
           "no": 3,
           "name": "エリジブル",
-          "bottom4_prob": 0.569
+          "bottom4_prob": 0.542
+        },
+        {
+          "no": 5,
+          "name": "ソレユケカツコ",
+          "bottom4_prob": 0.48
         },
         {
           "no": 2,
           "name": "ヨシュア",
           "bottom4_prob": 0.45
-        },
-        {
-          "no": 5,
-          "name": "ソレユケカツコ",
-          "bottom4_prob": 0.418
         }
       ],
       "wide_candidate": {
         "combo": "1-8",
-        "odds_low": 5.0,
-        "odds_high": 5.3
+        "odds_low": 5.4,
+        "odds_high": 5.8
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
@@ -825,9 +679,9 @@
     }
   ],
   "total_races_scheduled": 46,
-  "total_races_finished": 41,
+  "total_races_finished": 44,
   "total_races_unpredictable": 0,
-  "odds_age_minutes": 0.8,
+  "odds_age_minutes": 1.2,
   "odds_stale": false,
   "verified_roi_status": "回収率100%超えの統計的根拠は確認されていません(直近の時系列バックテストn=1,767件、95%信頼区間上限84.7%)。",
   "model_confirmed_profitable": false,
@@ -835,7 +689,7 @@
     "n_published_total": 694,
     "n_skipped": 694,
     "n_bought": 0,
-    "n_confirmed": 629,
+    "n_confirmed": 632,
     "roi_bought": null
   }
 }
