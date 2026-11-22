@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22 20:30",
+  "updated_at": "2026-11-22 20:40",
   "date": "20261122",
   "total_races_analyzed": 14,
   "races": [
@@ -543,21 +543,21 @@
           "name": "グリュイエール",
           "prob": 0.798,
           "waku": 8,
-          "win_odds_at_prediction": 2.1
+          "win_odds_at_prediction": 1.7
         },
         {
           "no": 13,
           "name": "メイショウシュハリ",
           "prob": 0.575,
           "waku": 8,
-          "win_odds_at_prediction": 4.2
+          "win_odds_at_prediction": 4.4
         },
         {
           "no": 7,
           "name": "アステリアート",
           "prob": 0.492,
           "waku": 5,
-          "win_odds_at_prediction": 8.5
+          "win_odds_at_prediction": 6.1
         }
       ],
       "bottom4": [
@@ -584,8 +584,8 @@
       ],
       "wide_candidate": {
         "combo": "14-13",
-        "odds_low": 2.1,
-        "odds_high": 2.4
+        "odds_low": 2.0,
+        "odds_high": 2.3
       },
       "calibrated_prob": 0.4538,
       "decision": "見送り",
@@ -616,21 +616,21 @@
           "name": "ベンガルボダイジュ",
           "prob": 0.632,
           "waku": 1,
-          "win_odds_at_prediction": 3.1
-        },
-        {
-          "no": 8,
-          "name": "リジョイシファイ",
-          "prob": 0.515,
-          "waku": 6,
-          "win_odds_at_prediction": 5.7
+          "win_odds_at_prediction": 3.5
         },
         {
           "no": 12,
           "name": "ヤマニンルーバス",
-          "prob": 0.496,
+          "prob": 0.605,
           "waku": 8,
-          "win_odds_at_prediction": 6.9
+          "win_odds_at_prediction": 5.8
+        },
+        {
+          "no": 8,
+          "name": "リジョイシファイ",
+          "prob": 0.435,
+          "waku": 6,
+          "win_odds_at_prediction": 6.0
         }
       ],
       "bottom4": [
@@ -650,17 +650,17 @@
           "bottom4_prob": 0.48
         },
         {
-          "no": 2,
-          "name": "ヨシュア",
-          "bottom4_prob": 0.45
+          "no": 9,
+          "name": "シデレウス",
+          "bottom4_prob": 0.385
         }
       ],
       "wide_candidate": {
-        "combo": "1-8",
-        "odds_low": 5.4,
-        "odds_high": 5.8
+        "combo": "1-12",
+        "odds_low": 6.4,
+        "odds_high": 7.1
       },
-      "calibrated_prob": 0.2917,
+      "calibrated_prob": 0.4454,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
@@ -681,7 +681,7 @@
   "total_races_scheduled": 46,
   "total_races_finished": 44,
   "total_races_unpredictable": 0,
-  "odds_age_minutes": 1.2,
+  "odds_age_minutes": 1.4,
   "odds_stale": false,
   "verified_roi_status": "回収率100%超えの統計的根拠は確認されていません(直近の時系列バックテストn=1,767件、95%信頼区間上限84.7%)。",
   "model_confirmed_profitable": false,
