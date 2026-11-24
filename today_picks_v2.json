@@ -1,85 +1,8 @@
 {
-  "updated_at": "2026-11-24 20:06",
+  "updated_at": "2026-11-24 20:40",
   "date": "20261124",
-  "total_races_analyzed": 2,
+  "total_races_analyzed": 1,
   "races": [
-    {
-      "track": "名古屋",
-      "race_no": 11,
-      "post_time": "20:15",
-      "頭数": 11,
-      "bet_type": "ワイド",
-      "top3": [
-        {
-          "no": 12,
-          "name": "アルティメイタム",
-          "prob": 0.77,
-          "waku": 8,
-          "win_odds_at_prediction": 2.0,
-          "place_odds_at_prediction": 1.0
-        },
-        {
-          "no": 6,
-          "name": "イザベルソレイユ",
-          "prob": 0.603,
-          "waku": 5,
-          "win_odds_at_prediction": 3.9,
-          "place_odds_at_prediction": 1.2
-        },
-        {
-          "no": 4,
-          "name": "ミラクルカイザー",
-          "prob": 0.482,
-          "waku": 4,
-          "win_odds_at_prediction": 4.0,
-          "place_odds_at_prediction": 1.2
-        }
-      ],
-      "bottom4": [
-        {
-          "no": 5,
-          "name": "ミヤイグアス",
-          "bottom4_prob": 0.81
-        },
-        {
-          "no": 10,
-          "name": "インフォーマント",
-          "bottom4_prob": 0.794
-        },
-        {
-          "no": 7,
-          "name": "ゴルティス",
-          "bottom4_prob": 0.638
-        },
-        {
-          "no": 11,
-          "name": "ヴァルドグラース",
-          "bottom4_prob": 0.329
-        }
-      ],
-      "wide_candidate": {
-        "combo": "12-6",
-        "odds_low": 1.9,
-        "odds_high": 2.3
-      },
-      "calibrated_prob": 0.4538,
-      "decision": "見送り",
-      "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
-      "suggested_virtual_stake": null,
-      "confidence": 0.77,
-      "validated_recommendation": {
-        "qualifies": false,
-        "bet_type": "複勝",
-        "horse_no": null,
-        "horse_name": null,
-        "model_prob": null,
-        "win_odds_at_prediction": null,
-        "reason": "既存ベストフィルター(複勝・予測1位・単勝オッズ1.0〜1.5倍)に該当する馬がいない",
-        "backtest_reference": null
-      },
-      "model_version": "model_e_top3",
-      "predicted_at": "2026-11-24 20:06"
-    },
     {
       "track": "名古屋",
       "race_no": 12,
@@ -88,62 +11,62 @@
       "bet_type": "ワイド",
       "top3": [
         {
-          "no": 9,
-          "name": "サンコルテス",
-          "prob": 0.652,
-          "waku": 7,
-          "win_odds_at_prediction": 3.6,
-          "place_odds_at_prediction": 2.2
+          "no": 4,
+          "name": "ゼンダンマイウェイ",
+          "prob": 0.655,
+          "waku": 4,
+          "win_odds_at_prediction": 2.9,
+          "place_odds_at_prediction": 1.5
         },
         {
           "no": 1,
           "name": "ニホンピロデルマー",
-          "prob": 0.554,
+          "prob": 0.562,
           "waku": 1,
           "win_odds_at_prediction": 4.1,
-          "place_odds_at_prediction": 1.4
+          "place_odds_at_prediction": 1.5
         },
         {
-          "no": 4,
-          "name": "ゼンダンマイウェイ",
-          "prob": 0.463,
-          "waku": 4,
-          "win_odds_at_prediction": 4.6,
-          "place_odds_at_prediction": 1.8
+          "no": 12,
+          "name": "イントゥディープ",
+          "prob": 0.381,
+          "waku": 8,
+          "win_odds_at_prediction": 8.6,
+          "place_odds_at_prediction": 2.1
         }
       ],
       "bottom4": [
         {
-          "no": 7,
-          "name": "シルヴァークラウン",
-          "bottom4_prob": 0.703
-        },
-        {
           "no": 6,
           "name": "ナムラアダム",
-          "bottom4_prob": 0.687
+          "bottom4_prob": 0.771
+        },
+        {
+          "no": 7,
+          "name": "シルヴァークラウン",
+          "bottom4_prob": 0.644
         },
         {
           "no": 11,
           "name": "ココプレミア",
-          "bottom4_prob": 0.502
+          "bottom4_prob": 0.447
         },
         {
           "no": 3,
           "name": "ブリッジジェイアイ",
-          "bottom4_prob": 0.401
+          "bottom4_prob": 0.444
         }
       ],
       "wide_candidate": {
-        "combo": "9-1",
-        "odds_low": 5.0,
-        "odds_high": 5.6
+        "combo": "4-1",
+        "odds_low": 2.8,
+        "odds_high": 3.0
       },
       "calibrated_prob": 0.2917,
       "decision": "見送り",
       "reason": "購入判断の品質ゲート(6条件)により見送り: 条件1(独立した未使用データでの有効性確認)が未成立。既存A〜G・新C・LightGBM・Ver.2のいずれも、95%信頼区間下限が100%を上回ったことがない(research/strategy_lab/QUALITY_GATE_20261103.md参照)。",
       "suggested_virtual_stake": null,
-      "confidence": 0.652,
+      "confidence": 0.655,
       "validated_recommendation": {
         "qualifies": false,
         "bet_type": "複勝",
@@ -155,13 +78,13 @@
         "backtest_reference": null
       },
       "model_version": "model_e_top3",
-      "predicted_at": "2026-11-24 20:06"
+      "predicted_at": "2026-11-24 20:40"
     }
   ],
   "total_races_scheduled": 36,
-  "total_races_finished": 34,
+  "total_races_finished": 35,
   "total_races_unpredictable": 0,
-  "odds_age_minutes": 0.9,
+  "odds_age_minutes": 1.0,
   "odds_stale": false,
   "verified_roi_status": "回収率100%超えの統計的根拠は確認されていません(直近の時系列バックテストn=1,767件、95%信頼区間上限84.7%)。",
   "model_confirmed_profitable": false,
@@ -169,7 +92,7 @@
     "n_published_total": 775,
     "n_skipped": 775,
     "n_bought": 0,
-    "n_confirmed": 712,
+    "n_confirmed": 713,
     "roi_bought": null
   }
 }
