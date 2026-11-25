@@ -90,6 +90,38 @@ if [ "$CURRENT_BRANCH" != "$BRANCH" ]; then
 fi
 echo "OK: git=$(git --version | head -1), branch=$CURRENT_BRANCH, gh認証済み"
 
+echo "=== 2.5. GitHub障害ステータス確認 ==="
+# 2026-11-26追加: GitHubPages/Actions自体に既知の障害がある間にcommit/pushを
+# 試みても失敗するだけで、無駄なリトライ・失敗ログ・診断出力を増やすだけになる。
+# keiba-analysisリポジトリのgithub_outage_guard.py(githubstatus.comの公式API参照、
+# 読み取り専用)を再利用し、commit前に確認する。
+# 障害確認自体が失敗した場合(ネットワーク不調・モジュール読み込み失敗等)は
+# フェイルオープン(=障害なし扱いで通常通り続行)する。これはgithub_outage_guard.py
+# 自体の設計方針と同じ(ステータス確認の失敗で正常な公開処理まで止めないため)。
+GUARD_SCRIPT_DIR="$HOME/claude-work/keiba-analysis/scripts"
+GUARD_RC=0
+if [ -f "$GUARD_SCRIPT_DIR/github_outage_guard.py" ]; then
+  python3 -c "
+import sys
+sys.path.insert(0, '$GUARD_SCRIPT_DIR')
+from github_outage_guard import is_github_outage
+sys.exit(2 if is_github_outage() else 0)
+" 2>/dev/null
+  GUARD_RC=$?
+else
+  echo "注意: github_outage_guard.pyが見つかりません($GUARD_SCRIPT_DIR)。確認をスキップし通常通り続行します。"
+fi
+if [ "$GUARD_RC" -eq 2 ]; then
+  echo "GitHub側で既知の障害(Pages/Actionsのいずれか)を検知しました。今回のデプロイを見送ります。"
+  echo "commit/pushは一切行っていません。呼び出し元の既存リトライ処理により、障害解消後に自動的に再試行されます。"
+  echo "詳細: gh api repos/umalab-tools/recovery-rate-checker/pages や https://www.githubstatus.com を参照してください。"
+  exit 1
+elif [ "$GUARD_RC" -ne 0 ]; then
+  echo "警告: 障害確認自体が失敗しました(終了コード $GUARD_RC)。フェイルオープンとして通常通り続行します。"
+else
+  echo "OK: GitHub Pages/Actionsに既知の障害は検出されませんでした。"
+fi
+
 echo "=== 3. git状態確認 ==="
 git status --short -- "$@"
 
