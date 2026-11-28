@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28 14:08",
+  "updated_at": "2026-11-28 14:23",
   "data_tiers_note": "本サイトのデータは集計期間が異なる3種類を明確に区別する。(1)過去データ・学習・検証件数=races表/features表の全期間(10万件規模、研究用バックテスト)。(2)本番予想56日分精算=predictions/all_predictions_history.csv(2026-08-26~、track_data_auditとstrategy_settlementが対象)。(3)直近の本番ログ=predictions/published_picks_log.csv(直近7日・数十件、production_real_results_status)。(3)を(1)(2)の代わりに表示しないこと。",
   "track_data_audit": {
     "status": "ok",
@@ -269,9 +269,9 @@
       },
       "F_既存ベストフィルター": {
         "n_predicted": 2690,
-        "n_purchased": 723,
+        "n_purchased": 720,
         "n_settled": 713,
-        "n_unsettled": 10,
+        "n_unsettled": 7,
         "n_hit": 643,
         "hit_rate_pct": 90.18,
         "bet_total_yen": 71300.0,
@@ -384,9 +384,9 @@
         },
         "F_既存ベストフィルター": {
           "n_predicted": 218,
-          "n_purchased": 70,
+          "n_purchased": 68,
           "n_settled": 65,
-          "n_unsettled": 5,
+          "n_unsettled": 3,
           "n_hit": 61,
           "hit_rate_pct": 93.85,
           "bet_total_yen": 6500.0,
@@ -1752,9 +1752,9 @@
         },
         "F_既存ベストフィルター": {
           "n_predicted": 193,
-          "n_purchased": 52,
+          "n_purchased": 51,
           "n_settled": 47,
-          "n_unsettled": 5,
+          "n_unsettled": 4,
           "n_hit": 45,
           "hit_rate_pct": 95.74,
           "bet_total_yen": 4700.0,
